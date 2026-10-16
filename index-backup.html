@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Health overview of Mobile Squad repositories: versions, pipelines, Snyk findings and work items.">
+<title>Mobile Squad Repository Dashboard</title>
+
+<!--
+  =====================================================================
+  Mobile Squad Repository Dashboard  ·  single self-contained file
+  ---------------------------------------------------------------------
+  Data:   fetches ./data.json (same folder). See SAMPLE_DATA below for
+          the exact shape. Open with ?demo=1 to force the built-in sample.
+  Theme:  CSS custom properties; light/dark chosen before first paint
+          (no flash) and persisted in localStorage.
+  Note:   browsers block fetch() on file:// URLs. Serve the folder from
+          any web server (or Azure Static Web Apps / Pages / a pipeline
+          artifact site) so data.json can be loaded.
+  =====================================================================
+-->
+
+<!-- Apply the saved (or OS-preferred) theme BEFORE the page paints to avoid a flash. -->
+<script>
+  (function () {
+    var theme = null;
+    try { theme = localStorage.getItem('msd-theme'); } catch (e) { /* storage blocked: ignore */ }
+    if (theme !== 'light' && theme !== 'dark') {
+      theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+/* ===================================================================
+   1. DESIGN TOKENS  (light = default, dark = [data-theme="dark"])
+   =================================================================== */
+:root {
+  color-scheme: light;
+
+  /* Surfaces & text */
+  --bg:            #f2f4f9;
+  --surface:       #ffffff;
+  --surface-2:     #f6f7fb;
+  --border:        #e0e4ee;
+  --border-strong: #cdd3e1;
+  --text:          #18202f;
+  --muted:         #596277;
+  --accent:        #3452d1;
+  --accent-soft:   #e8ecff;
+
+  /* Health colours (border/solid) + soft backgrounds + readable text variants */
+  --ok:        #1b9a5f;  --ok-soft:   #e3f6ec;  --ok-text:   #116b41;
+  --warn:      #d97a12;  --warn-soft: #fdf0dd;  --warn-text: #8f4f05;
+  --crit:      #d23c35;  --crit-soft: #fde7e5;  --crit-text: #a52720;
+
+  /* Snyk severity chips */
+  --sev-critical-bg: #d23c35;  --sev-critical-fg: #ffffff;
+  --sev-high-bg:     #f28c28;  --sev-high-fg:     #2b1700;
+  --sev-medium-bg:   #f6d64a;  --sev-medium-fg:   #2e2600;
+  --sev-low-bg:      #dde1ea;  --sev-low-fg:      #3a4357;
+
+  /* Type badges */
+  --kmp-bg: #eee8ff;  --kmp-fg: #5a2fc2;
+  --cap-bg: #e0efff;  --cap-fg: #0a5fb0;
+  
+  /* KMP icon gradient */
+  --kmp-grad-1: #7F52FF;
+  --kmp-grad-2: #C811E2;
+  
+  /* Capacitor icon gradient */
+  --cap-grad-1: #0080FF;
+  --cap-grad-2: #73B3FF;
+
+  --shadow:    0 1px 2px rgba(20, 28, 45, .06), 0 4px 14px rgba(20, 28, 45, .05);
+  --shadow-lg: 0 2px 4px rgba(20, 28, 45, .08), 0 10px 28px rgba(20, 28, 45, .10);
+
+  --font: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, Menlo, monospace;
+  --radius: 14px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:            #0e121a;
+  --surface:       #161b27;
+  --surface-2:     #1d2433;
+  --border:        #293148;
+  --border-strong: #3a4460;
+  --text:          #e7ebf5;
+  --muted:         #9aa4bb;
+  --accent:        #8aa2ff;
+  --accent-soft:   #222c52;
+
+  --ok:        #3fcf8e;  --ok-soft:   #12301f;  --ok-text:   #6fe0ac;
+  --warn:      #f2a54a;  --warn-soft: #3a2a12;  --warn-text: #f7bf7a;
+  --crit:      #ff6a60;  --crit-soft: #3d1c1b;  --crit-text: #ff9a92;
+
+  --sev-critical-bg: #c9372f;  --sev-critical-fg: #ffffff;
+  --sev-high-bg:     #e8832a;  --sev-high-fg:     #1f1100;
+  --sev-medium-bg:   #d9bd3a;  --sev-medium-fg:   #231d00;
+  --sev-low-bg:      #2c3448;  --sev-low-fg:      #b7c0d6;
+
+  --kmp-bg: #2a2150;  --kmp-fg: #bfaaff;
+  --cap-bg: #14304d;  --cap-fg: #8cc6ff;
+  
+  --kmp-grad-1: #A97BFF;
+  --kmp-grad-2: #E951FF;
+  
+  --cap-grad-1: #4DA3FF;
+  --cap-grad-2: #99CCFF;
+
+  --shadow:    0 1px 2px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .25);
+  --shadow-lg: 0 2px 4px rgba(0, 0, 0, .5), 0 10px 28px rgba(0, 0, 0, .35);
+}
+
+/* ===================================================================
+   2. BASE
+   =================================================================== */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .2s ease, color .2s ease;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+h1, h2, h3, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+code { font-family: var(--mono); font-size: .86em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 2px; }
+button, select, input { font: inherit; color: inherit; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* ===================================================================
+   3. HEADER + TOOLBAR
+   =================================================================== */
+.app-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: calc(18px + env(safe-area-inset-top, 0px)) 24px 16px;
+}
+.header-inner, .page { max-width: 1440px; margin: 0 auto; }
+
+.header-top {
+  display: flex; flex-wrap: wrap; align-items: flex-start;
+  justify-content: space-between; gap: 12px 24px;
+}
+h1 { font-size: clamp(1.2rem, 2.3vw, 1.6rem); font-weight: 700; letter-spacing: -.01em; }
+.last-updated { margin-top: 4px; font-size: .85rem; color: var(--muted); }
+.last-updated .stale { color: var(--warn-text); font-weight: 600; }
+
+.header-actions { display: flex; gap: 8px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface-2); border: 1px solid var(--border-strong);
+  border-radius: 10px; padding: 8px 14px; cursor: pointer; font-size: .875rem; font-weight: 600;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+.btn:hover { border-color: var(--accent); }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+[data-theme="dark"] .btn-primary { color: #0e121a; }
+.btn-primary:hover { filter: brightness(1.08); }
+
+.toolbar {
+  margin-top: 16px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+}
+.field { display: flex; align-items: center; gap: 8px; }
+.field label, .sort-label { font-size: .8rem; font-weight: 600; color: var(--muted); }
+select, input[type="search"] {
+  background: var(--surface-2); border: 1px solid var(--border-strong);
+  border-radius: 10px; padding: 8px 12px; min-height: 38px;
+  transition: border-color .15s ease;
+}
+select:hover, input[type="search"]:hover { border-color: var(--accent); }
+.field-search { flex: 1 1 240px; position: relative; max-width: 420px; }
+.field-search input { width: 100%; padding-left: 36px; }
+.search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: .9rem; }
+
+.sort { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-wrap: wrap; }
+.sort-btn {
+  background: transparent; border: 1px solid var(--border-strong); border-radius: 999px;
+  padding: 6px 12px; font-size: .8rem; font-weight: 600; cursor: pointer; color: var(--text);
+  transition: background-color .15s ease, border-color .15s ease;
+}
+.sort-btn:hover { border-color: var(--accent); }
+.sort-btn[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.sort-btn .arrow { font-size: .65rem; margin-left: 4px; }
+
+/* ===================================================================
+   4. PAGE: SUMMARY STATS, NOTICES, GRID
+   =================================================================== */
+.page { padding: 22px 24px 40px; }
+
+.stats {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+.stat {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px 16px; box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 14px;
+}
+.stat-icon {
+  width: 42px; height: 42px; border-radius: 11px; background: var(--surface-2);
+  display: grid; place-items: center; font-size: 1.25rem; flex-shrink: 0;
+}
+.stat-value { font-size: 1.65rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat-label { font-size: .8rem; color: var(--muted); }
+.stat-sub { font-size: .75rem; color: var(--muted); margin-top: 1px; }
+.stat.is-ok .stat-value   { color: var(--ok-text); }
+.stat.is-warn .stat-value { color: var(--warn-text); }
+.stat.is-crit .stat-value { color: var(--crit-text); }
+
+.result-count { margin: 20px 0 12px; font-size: .85rem; color: var(--muted); }
+
+.notice {
+  margin-top: 16px; padding: 14px 16px; border-radius: 12px;
+  border: 1px solid var(--border-strong); background: var(--surface);
+}
+.notice strong { display: block; margin-bottom: 4px; }
+.notice p { font-size: .875rem; color: var(--muted); }
+.notice p + p { margin-top: 6px; }
+.notice .actions { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.notice.error { border-color: var(--crit); background: var(--crit-soft); }
+.notice.error strong { color: var(--crit-text); }
+.notice.info  { border-color: var(--accent); background: var(--accent-soft); }
+
+.grid {
+  display: grid; gap: 18px;
+  grid-template-columns: minmax(0, 1fr);            /* mobile: 1 column  */
+}
+@media (min-width: 720px)  { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }  /* tablet: 2 */
+@media (min-width: 1100px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }  /* desktop: 3 */
+
+.empty {
+  grid-column: 1 / -1; text-align: center; padding: 48px 16px;
+  background: var(--surface); border: 1px dashed var(--border-strong); border-radius: var(--radius);
+  color: var(--muted);
+}
+.empty strong { display: block; color: var(--text); font-size: 1.05rem; margin-bottom: 6px; }
+
+/* ===================================================================
+   5. REPOSITORY CARD
+   =================================================================== */
+.card {
+  --status: var(--ok);                      /* overridden by .is-warning / .is-critical */
+  background: var(--surface);
+  border: 2px solid var(--status);          /* status colour = border colour */
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex; flex-direction: column; overflow: hidden;
+  transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+}
+.card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.card.is-warning  { --status: var(--warn); }
+.card.is-critical { --status: var(--crit); }
+
+.card-head { padding: 16px 18px 14px; }
+.card-title-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.card-name { font-size: 1.12rem; font-weight: 700; line-height: 1.25; overflow-wrap: break-word; }
+.card-meta { margin-top: 10px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+
+.pill {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px;
+  font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap;
+}
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pill.healthy  { background: var(--ok-soft);   color: var(--ok-text); }
+.pill.warning  { background: var(--warn-soft); color: var(--warn-text); }
+.pill.critical { background: var(--crit-soft); color: var(--crit-text); }
+
+.type-badge { 
+  font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 6px;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.type-badge svg {
+  width: 14px; height: 14px; flex-shrink: 0;
+}
+.type-kmp       { background: var(--kmp-bg); color: var(--kmp-fg); }
+.type-capacitor { background: var(--cap-bg); color: var(--cap-fg); }
+.type-other     { background: var(--surface-2); color: var(--muted); }
+
+.platforms { display: flex; gap: 4px; }
+.platforms li {
+  width: 28px; height: 28px; display: grid; place-items: center;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; font-size: .95rem;
+}
+.platforms li.text { width: auto; padding: 0 8px; font-size: .72rem; font-weight: 600; color: var(--muted); }
+
+.section { padding: 12px 18px 14px; border-top: 1px solid var(--border); }
+.section-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 9px; min-height: 22px; }
+.section-head h3 { font-size: .8rem; font-weight: 700; color: var(--muted); }
+.ext { font-size: .78rem; font-weight: 600; white-space: nowrap; }
+
+.badge { font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+.badge-warn { background: var(--warn-soft); color: var(--warn-text); }
+.badge-ok   { background: var(--ok-soft);   color: var(--ok-text); }
+
+.empty-note { font-size: .85rem; color: var(--muted); }
+
+/* --- Versions --- */
+.ver-list { display: grid; gap: 6px; }
+.ver-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: .88rem; }
+.ver-label { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.ver-val { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.ver-val code {
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+  padding: 2px 7px; color: var(--text); overflow-wrap: anywhere;
+}
+.ver-val code.missing { color: var(--muted); }
+.flag { font-size: .7rem; font-weight: 700; color: var(--warn-text); background: var(--warn-soft); padding: 1px 7px; border-radius: 999px; white-space: nowrap; }
+
+/* --- Pipelines --- */
+.pipes { display: grid; gap: 10px; }
+.pipe { display: flex; align-items: flex-start; gap: 10px; }
+.pipe-icon { font-size: 1.1rem; line-height: 1.3; flex-shrink: 0; }
+.pipe-main { flex: 1; min-width: 0; }
+.pipe-name { font-size: .9rem; font-weight: 600; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
+.pipe-status { font-size: .75rem; font-weight: 700; }
+.pipe-status.ok   { color: var(--ok-text); }
+.pipe-status.bad  { color: var(--crit-text); }
+.pipe-status.warn { color: var(--warn-text); }
+.pipe-status.run  { color: var(--accent); }
+.pipe-status.idle { color: var(--muted); }
+.pipe-meta { display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: .78rem; color: var(--muted); margin-top: 1px; }
+
+/* --- Snyk + work-item tiles --- */
+.tiles { display: grid; gap: 8px; }
+.tiles.four  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.tiles.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tile {
+  border-radius: 10px; padding: 8px 4px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+}
+.tile .num { font-size: 1.2rem; font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.tile .lbl { font-size: .68rem; font-weight: 600; opacity: .9; white-space: nowrap; }
+.tile.zero { color: var(--muted); }
+.tile.zero .num { font-weight: 600; }
+.tile.sev-critical { background: var(--sev-critical-bg); color: var(--sev-critical-fg); border-color: transparent; }
+.tile.sev-high     { background: var(--sev-high-bg);     color: var(--sev-high-fg);     border-color: transparent; }
+.tile.sev-medium   { background: var(--sev-medium-bg);   color: var(--sev-medium-fg);   border-color: transparent; }
+.tile.sev-low      { background: var(--sev-low-bg);      color: var(--sev-low-fg);      border-color: transparent; }
+.scan-meta { margin-top: 8px; font-size: .78rem; color: var(--muted); }
+
+/* --- Footer --- */
+.card-foot {
+  margin-top: auto; padding: 12px 18px 14px; border-top: 1px solid var(--border);
+  background: var(--surface-2); display: grid; gap: 10px;
+}
+.pkgs { display: flex; flex-wrap: wrap; gap: 6px; }
+.pkgs li {
+  display: inline-flex; align-items: center; gap: 6px; max-width: 100%;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 3px 8px; font-size: .78rem;
+}
+.pkgs .pk-label { font-weight: 700; color: var(--muted); }
+.pkgs code { overflow-wrap: anywhere; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .8rem; font-weight: 600; }
+
+/* ===================================================================
+   6. LOADING SKELETONS
+   =================================================================== */
+.skeleton { pointer-events: none; border-color: var(--border); }
+.sk {
+  display: block; border-radius: 6px;
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 50%, var(--surface-2) 75%);
+  background-size: 200% 100%; animation: shimmer 1.4s ease-in-out infinite;
+}
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+.page-foot { text-align: center; font-size: .78rem; color: var(--muted); padding: 8px 24px 28px; }
+
+@media (max-width: 560px) {
+  .app-header { padding-left: 16px; padding-right: 16px; }
+  .page { padding-left: 16px; padding-right: 16px; }
+  .sort { margin-left: 0; }
+  .field-search { max-width: none; flex-basis: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .card:hover { transform: none; }
+}
+</style>
+</head>
+
+<body>
+<noscript>
+  <p style="padding:24px;font-family:sans-serif">This dashboard needs JavaScript enabled to load repository data.</p>
+</noscript>
+
+<!-- ===================== HEADER: title, filters, search, sort, theme ===================== -->
+<header class="app-header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div>
+        <h1>📊 Mobile Squad Repository Dashboard</h1>
+        <p class="last-updated" id="lastUpdated">Loading data…</p>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn" id="refreshBtn" aria-label="Reload data">↻ Refresh</button>
+        <button type="button" class="btn" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">🌙 Dark mode</button>
+      </div>
+    </div>
+
+    <div class="toolbar" role="group" aria-label="Filter, search and sort controls">
+      <div class="field field-search">
+        <label for="search" class="sr-only">Search repositories by name</label>
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input id="search" type="search" placeholder="Search repositories…  ( press / )" autocomplete="off" spellcheck="false">
+      </div>
+
+      <div class="field">
+        <label for="typeFilter">Type</label>
+        <select id="typeFilter">
+          <option value="all">All</option>
+          <option value="kmp">KMP</option>
+          <option value="capacitor">Capacitor</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="statusFilter">Status</label>
+        <select id="statusFilter">
+          <option value="all">All</option>
+          <option value="issues">Issues</option>
+          <option value="healthy">Healthy</option>
+        </select>
+      </div>
+
+      <!-- Cards have no table columns, so these buttons act as the "column headers" for sorting -->
+      <div class="sort" role="group" aria-label="Sort repositories">
+        <span class="sort-label">Sort by</span>
+        <button type="button" class="sort-btn" data-sort="name">Name <span class="arrow" aria-hidden="true"></span></button>
+        <button type="button" class="sort-btn" data-sort="lastRun">Last run <span class="arrow" aria-hidden="true"></span></button>
+        <button type="button" class="sort-btn" data-sort="vulns">Vulnerabilities <span class="arrow" aria-hidden="true"></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main">
+  <h2 class="sr-only">Summary</h2>
+  <section class="stats" id="stats" aria-label="Summary statistics"></section>
+
+  <div id="notice"></div>
+
+  <p class="result-count" id="resultCount" role="status" aria-live="polite"></p>
+
+  <h2 class="sr-only">Repositories</h2>
+  <section class="grid" id="grid" aria-label="Repositories" aria-busy="true"></section>
+</main>
+
+<footer class="page-foot">Data loaded from <code>data.json</code> · health is derived from pipeline results and Snyk findings</footer>
+
+<script>
+'use strict';
+
+/* ===================================================================
+   A. CONFIG + SAMPLE DATA
+   -------------------------------------------------------------------
+   SAMPLE_DATA mirrors the data.json contract and powers ?demo=1 and
+   the "Show sample data" button on the error panel.
+   Optional extras per repository (not required by the contract):
+     "links": { "repo": "https://…", "feeds": "https://…" }
+   =================================================================== */
+const DATA_URL = 'data.json';
+const FETCH_TIMEOUT_MS = 15000;
+const STALE_AFTER_HOURS = 24;     // warn in the header if data.json is older than this
+
+const SAMPLE_DATA = {
+  lastUpdated: '2026-10-14T10:30:00Z',
+  repositories: [
+    {   // 1) Healthy KMP library: everything green
+      name: 'Koerber.Mobile.Kotlin.Barcode',
+      type: 'kmp',
+      platforms: ['android', 'ios'],
+      versions: { source: '1.4.0', devFeed: '1.4.0-202610130915', platformFeed: '1.4.0' },
+      pipelines: {
+        ci:      { name: 'CI Pipeline',      status: 'succeeded', lastRun: '2026-10-14T08:12:00Z', duration: '7m 12s',  url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12401' },
+        release: { name: 'Release Pipeline', status: 'succeeded', lastRun: '2026-10-12T14:40:00Z', duration: '11m 03s', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12377' }
+      },
+      snyk: { critical: 0, high: 0, medium: 0, low: 2, lastScan: '2026-10-14T06:00:12Z', url: 'https://app.eu.snyk.io/org/mobile-sdk/project/barcode-001' },
+      workItems: { open: 4, inProgress: 2, committed: 5, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
+      packages: { npm: null, maven: 'com.infios:barcode-scanner-kmp-library' }
+    },
+    {   // 2) Capacitor plugin with Snyk findings (orange) + platform feed behind source
+      name: 'Koerber.Mobile.Capacitor.Printing',
+      type: 'capacitor',
+      platforms: ['android', 'ios', 'web'],
+      versions: { source: '2.0.1', devFeed: '2.0.1-202610131045', platformFeed: '2.0.0' },
+      pipelines: {
+        ci:      { name: 'CI Pipeline',      status: 'succeeded', lastRun: '2026-10-13T15:30:00Z', duration: '8m 45s', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12345' },
+        release: { name: 'Release Pipeline', status: 'notRun',    lastRun: null,                   duration: null,     url: 'https://highjumpvso.visualstudio.com/WES/_build' }
+      },
+      snyk: { critical: 0, high: 3, medium: 5, low: 2, lastScan: '2026-10-13T11:03:37Z', url: 'https://app.eu.snyk.io/org/mobile-sdk/project/abc123' },
+      workItems: { open: 2, inProgress: 1, committed: 3, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
+      packages: { npm: '@koerber/mobile-capacitor-printing', maven: null }
+    },
+    {   // 3) Failed pipeline AND critical/high findings (red)
+      name: 'Koerber.Mobile.Kotlin.Dex',
+      type: 'kmp',
+      platforms: ['android', 'ios', 'jvm'],
+      versions: { source: '1.2.3', devFeed: '1.2.2-202610091620', platformFeed: '1.2.2' },
+      pipelines: {
+        ci:      { name: 'CI Pipeline',      status: 'failed',    lastRun: '2026-10-14T07:55:00Z', duration: '3m 41s',  url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12410' },
+        release: { name: 'Release Pipeline', status: 'succeeded', lastRun: '2026-10-09T16:50:00Z', duration: '10m 27s', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12288' }
+      },
+      snyk: { critical: 1, high: 2, medium: 4, low: 6, lastScan: '2026-10-14T06:00:40Z', url: 'https://app.eu.snyk.io/org/mobile-sdk/project/dex-002' },
+      workItems: { open: 6, inProgress: 3, committed: 2, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
+      packages: { npm: null, maven: 'com.infios:dex-kmp-library' }
+    }
+  ]
+};
+
+/* ===================================================================
+   B. STATE + DOM HANDLES
+   =================================================================== */
+const state = {
+  items: [],                       // [{ repo, ev, latestRun }]  (precomputed once per load)
+  lastUpdated: null,
+  demo: false,
+  q: '',
+  type: 'all',
+  status: 'all',
+  sort: { key: 'name', dir: 'asc' }
+};
+
+const SORT_LABELS = { name: 'name', lastRun: 'last run', vulns: 'vulnerabilities' };
+const DEFAULT_DIR = { name: 'asc', lastRun: 'desc', vulns: 'desc' };   // what a first click does
+
+const $ = (id) => document.getElementById(id);
+const els = {
+  grid: $('grid'), stats: $('stats'), notice: $('notice'), count: $('resultCount'),
+  updated: $('lastUpdated'), search: $('search'), type: $('typeFilter'), status: $('statusFilter'),
+  theme: $('themeToggle'), refresh: $('refreshBtn')
+};
+
+/* ===================================================================
+   C. SMALL HELPERS (escaping, URLs, numbers, time)
+   =================================================================== */
+// All data.json strings are escaped before going into innerHTML.
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+// Only allow http(s) links: blocks javascript:, data: etc. coming from a bad data.json.
+function safeUrl(u) {
+  if (!u) return null;
+  try {
+    const url = new URL(String(u), location.href);
+    return (url.protocol === 'http:' || url.protocol === 'https:') ? url.href : null;
+  } catch (e) { return null; }
+}
+
+// Lets long dotted names (Koerber.Mobile.Kotlin.Printing) wrap after a dot instead of mid-word.
+const breakable = (v) => esc(v).replace(/\./g, '.<wbr>');
+const num = (v) => (Number.isFinite(+v) ? +v : 0);
+const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+function absTime(iso) {
+  const t = Date.parse(iso);
+  if (!iso || Number.isNaN(t)) return '';
+  try { return new Date(t).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }); }
+  catch (e) { return new Date(t).toISOString(); }
+}
+
+// "5m ago", "3h ago", "2d ago"; falls back to a date after 30 days.
+function relTime(iso) {
+  if (!iso) return 'never';
+  const t = Date.parse(iso);
+  if (Number.isNaN(t)) return 'unknown';
+  const diff = Date.now() - t, abs = Math.abs(diff);
+  const MIN = 6e4, HR = 36e5, DAY = 864e5;
+  let v;
+  if (abs < MIN) return 'just now';
+  if (abs < HR) v = Math.round(abs / MIN) + 'm';
+  else if (abs < DAY) v = Math.round(abs / HR) + 'h';
+  else if (abs < 30 * DAY) v = Math.round(abs / DAY) + 'd';
+  else return absTime(iso);
+  return diff < 0 ? 'in ' + v : v + ' ago';
+}
+
+// <time> element with the exact timestamp on hover and for assistive tech.
+function timeEl(iso) {
+  if (!iso) return '<span>never</span>';
+  return `<time datetime="${esc(iso)}" title="${esc(absTime(iso))}">${esc(relTime(iso))}</time>`;
+}
+
+/* ===================================================================
+   D. HEALTH LOGIC  (edit evaluate() to change what turns a card red/orange)
+   -------------------------------------------------------------------
+   GREEN  – no failed pipeline, no Snyk findings above "low"
+   RED    – a failed pipeline AND critical/high Snyk findings
+   ORANGE – anything in between: failed pipeline alone, partial/cancelled
+            runs, critical/high findings alone, or medium findings
+   =================================================================== */
+const PIPELINE_STATUS = {
+  succeeded:          { icon: '✅',  label: 'Succeeded',           cls: 'ok'   },
+  failed:             { icon: '❌',  label: 'Failed',              cls: 'bad'  },
+  notRun:             { icon: '⏸️', label: 'Not run',             cls: 'idle' },
+  inProgress:         { icon: '🔄',  label: 'Running',             cls: 'run'  },
+  partiallySucceeded: { icon: '⚠️', label: 'Partially succeeded', cls: 'warn' },
+  canceled:           { icon: '⏹️', label: 'Canceled',            cls: 'warn' }
+};
+const pipelineInfo = (s) => PIPELINE_STATUS[s] || { icon: '❔', label: s ? String(s) : 'Unknown', cls: 'idle' };
+
+function evaluate(repo) {
+  const pipes = Object.values(repo.pipelines || {}).filter(Boolean);
+  const failed = pipes.filter((p) => p.status === 'failed').length;
+  const softWarn = pipes.filter((p) => p.status === 'partiallySucceeded' || p.status === 'canceled').length;
+  const s = repo.snyk || {};
+  const crit = num(s.critical), high = num(s.high), med = num(s.medium);
+
+  let level = 'healthy';
+  if (failed > 0 && crit + high > 0) level = 'critical';
+  else if (failed > 0 || softWarn > 0 || crit + high > 0 || med > 0) level = 'warning';
+
+  // Human-readable reasons, used for the status pill's tooltip + screen-reader label.
+  const reasons = [];
+  if (failed) reasons.push(`${failed} failed pipeline${failed > 1 ? 's' : ''}`);
+  if (softWarn) reasons.push(`${softWarn} pipeline${softWarn > 1 ? 's' : ''} with warnings`);
+  if (crit) reasons.push(`${crit} critical vulnerabilit${crit > 1 ? 'ies' : 'y'}`);
+  if (high) reasons.push(`${high} high vulnerabilit${high > 1 ? 'ies' : 'y'}`);
+  if (med) reasons.push(`${med} medium vulnerabilit${med > 1 ? 'ies' : 'y'}`);
+
+  return { level, failed, crit, high, med, reasons };
+}
+
+// Most recent pipeline run across the repo (used for the "Last run" sort).
+function latestRun(repo) {
+  return Object.values(repo.pipelines || {}).reduce((max, p) => {
+    const t = p && p.lastRun ? Date.parse(p.lastRun) : NaN;
+    return Number.isNaN(t) ? max : Math.max(max, t);
+  }, 0);
+}
+
+/* ===================================================================
+   E. VERSION SYNC CHECK
+   -------------------------------------------------------------------
+   devFeed carries a build suffix (2.0.1-202610131045) so only the base
+   version is compared. platformFeed must match source exactly.
+   =================================================================== */
+const baseVersion = (v) => String(v).trim().replace(/^v/i, '').split(/[-+]/)[0];
+
+function compareVersions(a, b) {
+  const pa = baseVersion(a).split('.').map((n) => parseInt(n, 10) || 0);
+  const pb = baseVersion(b).split('.').map((n) => parseInt(n, 10) || 0);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const d = (pa[i] || 0) - (pb[i] || 0);
+    if (d) return d < 0 ? -1 : 1;
+  }
+  return 0;
+}
+
+function analyzeVersions(v) {
+  const out = { dev: null, platform: null, notes: [] };
+  if (v.source && v.devFeed) {
+    const c = compareVersions(v.devFeed, v.source);
+    if (c !== 0) { out.dev = c < 0 ? 'behind' : 'ahead'; out.notes.push(`Dev feed ${v.devFeed} is ${out.dev === 'behind' ? 'behind' : 'ahead of'} source ${v.source}`); }
+  }
+  if (v.source && v.platformFeed) {
+    const same = String(v.platformFeed).trim().replace(/^v/i, '') === String(v.source).trim().replace(/^v/i, '');
+    if (!same) {
+      const c = compareVersions(v.platformFeed, v.source);
+      out.platform = c < 0 ? 'behind' : c > 0 ? 'ahead' : 'differs';
+      out.notes.push(`Platform feed ${v.platformFeed} is ${out.platform === 'differs' ? 'different from' : out.platform === 'behind' ? 'behind' : 'ahead of'} source ${v.source}`);
+    }
+  }
+  out.outOfSync = out.notes.length > 0;
+  return out;
+}
+
+/* ===================================================================
+   F. CARD RENDERING
+   =================================================================== */
+const PLATFORMS = {
+  android: ['🤖', 'Android'], ios: ['🍎', 'iOS'], jvm: ['☕', 'JVM'], web: ['🌐', 'Web']
+};
+
+const section = (title, right, body) =>
+  `<section class="section"><div class="section-head"><h3>${title}</h3>${right || ''}</div>${body}</section>`;
+
+const extLink = (url, text, label) => {
+  const href = safeUrl(url);
+  return href
+    ? `<a class="ext" href="${esc(href)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(label)} (opens in new tab)">${esc(text)} <span aria-hidden="true">↗</span></a>`
+    : '';
+};
+
+function renderVersions(v) {
+  v = v || {};
+  const sync = analyzeVersions(v);
+  const rows = [
+    ['📝', 'Source',        v.source,       null],
+    ['🔧', 'Dev feed',      v.devFeed,      sync.dev],
+    ['🚀', 'Platform feed', v.platformFeed, sync.platform]
+  ];
+  const anyValue = rows.some((r) => r[2]);
+  if (!anyValue) return section('🏷️ Versions', '', '<p class="empty-note">No version data</p>');
+
+  const badge = sync.outOfSync
+    ? `<span class="badge badge-warn" title="${esc(sync.notes.join('. '))}">⚠️ Out of sync</span>`
+    : (v.source ? '<span class="badge badge-ok">✓ In sync</span>' : '');
+
+  const list = rows.map(([icon, label, val, flag]) => `
+    <li class="ver-row">
+      <span class="ver-label"><span aria-hidden="true">${icon}</span>${label}</span>
+      <span class="ver-val">
+        ${flag ? `<span class="flag" title="${esc(label)} is ${esc(flag)} source">⚠️ ${esc(flag)}</span>` : ''}
+        <code class="${val ? '' : 'missing'}">${val ? esc(val) : '—'}</code>
+      </span>
+    </li>`).join('');
+
+  return section('🏷️ Versions', badge, `<ul class="ver-list">${list}</ul>`);
+}
+
+function renderPipelines(pipelines) {
+  // Show CI first, then Release, then anything else the data contains.
+  const order = ['ci', 'release'];
+  const keys = Object.keys(pipelines || {}).filter((k) => pipelines[k]);
+  keys.sort((a, b) => {
+    const ia = order.indexOf(a), ib = order.indexOf(b);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+  });
+  if (!keys.length) return section('🔁 Pipelines', '', '<p class="empty-note">No pipeline data</p>');
+
+  const rows = keys.map((k) => {
+    const p = pipelines[k], info = pipelineInfo(p.status);
+    const href = safeUrl(p.url);
+    const title = p.name || (k === 'ci' ? 'CI Pipeline' : k === 'release' ? 'Release Pipeline' : k);
+    const linkText = p.lastRun ? 'View run' : 'Open';
+    return `
+      <li class="pipe">
+        <span class="pipe-icon" role="img" aria-label="${esc(info.label)}">${info.icon}</span>
+        <div class="pipe-main">
+          <div class="pipe-name">${esc(title)} <span class="pipe-status ${info.cls}">${esc(info.label)}</span></div>
+          <div class="pipe-meta">
+            <span><span aria-hidden="true">🕒</span> Last run: ${timeEl(p.lastRun)}</span>
+            <span><span aria-hidden="true">⏱️</span> ${p.duration ? esc(p.duration) : '—'}</span>
+          </div>
+        </div>
+        ${href ? extLink(href, linkText, `${linkText} for ${title}`) : ''}
+      </li>`;
+  }).join('');
+  return section('🔁 Pipelines', '', `<ul class="pipes">${rows}</ul>`);
+}
+
+function renderSnyk(s) {
+  if (!s) return section('🛡️ Security (Snyk)', '', '<p class="empty-note">No scan data</p>');
+  const sev = [
+    ['critical', '🔴', 'Critical'], ['high', '🟠', 'High'], ['medium', '🟡', 'Medium'], ['low', '⚪', 'Low']
+  ];
+  const tiles = sev.map(([key, icon, label]) => {
+    const n = num(s[key]);
+    // Colour only when > 0 (Low is always the neutral gray tone when present).
+    const cls = n > 0 ? `sev-${key}` : 'zero';
+    return `<li class="tile ${cls}" aria-label="${n} ${label}">
+      <span class="num">${n}</span><span class="lbl"><span aria-hidden="true">${icon}</span> ${label}</span></li>`;
+  }).join('');
+  const link = extLink(s.url, 'Open in Snyk', 'Open Snyk project');
+  return section('🛡️ Security (Snyk)', link,
+    `<ul class="tiles four">${tiles}</ul>
+     <p class="scan-meta"><span aria-hidden="true">🕒</span> Last scan: ${timeEl(s.lastScan)}</p>`);
+}
+
+function renderWorkItems(w) {
+  if (!w) return section('🗂️ Work items', '', '<p class="empty-note">No work item data</p>');
+  const items = [['📋', 'Open', w.open], ['⚙️', 'In progress', w.inProgress], ['✅', 'Committed', w.committed]];
+  const tiles = items.map(([icon, label, n]) =>
+    `<li class="tile" aria-label="${num(n)} ${label}"><span class="num">${num(n)}</span>
+      <span class="lbl"><span aria-hidden="true">${icon}</span> ${label}</span></li>`).join('');
+  return section('🗂️ Work items', extLink(w.url, 'View in ADO', 'Open Azure DevOps query'),
+    `<ul class="tiles three">${tiles}</ul>`);
+}
+
+/* Repo + feed links. Use repo.links.repo / repo.links.feeds if provided; otherwise derive
+   the Azure DevOps project URL from the CI pipeline link  (…/{project}/_build/… → …/{project}/_git/{name}). */
+function deriveLinks(repo) {
+  const explicit = repo.links || {};
+  let repoUrl = safeUrl(explicit.repo), feedUrl = safeUrl(explicit.feeds);
+  const ciUrl = (repo.pipelines && repo.pipelines.ci && repo.pipelines.ci.url) || '';
+  const m = String(ciUrl).match(/^(https:\/\/[^/]+\/[^/]+)\/_build/i);
+  if (m) {
+    if (!repoUrl && repo.name) repoUrl = `${m[1]}/_git/${encodeURIComponent(repo.name)}`;
+    if (!feedUrl) feedUrl = `${m[1]}/_artifacts`;
+  }
+  return { repoUrl, feedUrl };
+}
+
+function renderFooter(repo) {
+  const pk = repo.packages || {};
+  const pkgs = [['npm', pk.npm], ['Maven', pk.maven]].filter(([, v]) => v)
+    .map(([label, v]) => `<li><span class="pk-label">${label}</span><code>${esc(v)}</code></li>`).join('');
+  const { repoUrl, feedUrl } = deriveLinks(repo);
+  const links = [
+    extLink(repoUrl, '📁 Repository', `Open ${repo.name} repository`),
+    extLink(feedUrl, '📦 Feeds', `Open package feeds for ${repo.name}`)
+  ].filter(Boolean).join('');
+  if (!pkgs && !links) return '';
+
+  return `<footer class="card-foot">
+    ${pkgs ? `<ul class="pkgs" aria-label="Published packages">${pkgs}</ul>` : ''}
+    ${links ? `<div class="foot-links">${links}</div>` : ''}
+  </footer>`;
+}
+
+function renderCard({ repo, ev }, index) {
+  const name = repo.name || 'Unnamed repository';
+  const headingId = `repo-${slug(name)}-${index}`;
+  const type = String(repo.type || '').toLowerCase();
+  const typeLabel = type === 'kmp' ? 'KMP' : type === 'capacitor' ? 'Capacitor' : (repo.type ? String(repo.type) : 'Unknown');
+  const typeCls = type === 'kmp' ? 'type-kmp' : type === 'capacitor' ? 'type-capacitor' : 'type-other';
+  
+  // KMP icon (Kotlin Multiplatform logo - triangle)
+  const kmpIcon = type === 'kmp' ? `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="kmp-grad-${index}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--kmp-grad-1)"/><stop offset="100%" stop-color="var(--kmp-grad-2)"/></linearGradient></defs><path fill="url(#kmp-grad-${index})" d="M0 60V0h60L30 30L60 60H0z"/></svg>` : '';
+  
+  // Capacitor icon (crossed bars forming X shape)
+  const capIcon = type === 'capacitor' ? `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cap-grad-${index}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--cap-grad-1)"/><stop offset="100%" stop-color="var(--cap-grad-2)"/></linearGradient></defs><path fill="url(#cap-grad-${index})" d="M8 15 L15 8 L52 45 L45 52 Z"/><path fill="url(#cap-grad-${index})" opacity="0.7" d="M45 8 L52 15 L15 52 L8 45 Z"/></svg>` : '';
+  
+  const typeIcon = kmpIcon || capIcon;
+
+  const statusLabel = { healthy: 'Healthy', warning: 'Warnings', critical: 'Critical' }[ev.level];
+  const statusDetail = ev.reasons.length ? ev.reasons.join(', ') : 'All pipelines passing, no critical or high findings';
+
+  const platforms = (repo.platforms || []).map((p) => {
+    const known = PLATFORMS[String(p).toLowerCase()];
+    return known
+      ? `<li role="img" aria-label="${known[1]}" title="${known[1]}">${known[0]}</li>`
+      : `<li class="text" title="${esc(p)}">${esc(p)}</li>`;
+  }).join('');
+
+  return `
+  <article class="card is-${ev.level}" aria-labelledby="${headingId}">
+    <header class="card-head">
+      <div class="card-title-row">
+        <h2 class="card-name" id="${headingId}">${breakable(name)}</h2>
+        <span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span>
+      </div>
+      <div class="card-meta">
+        <span class="type-badge ${typeCls}">${typeIcon}${esc(typeLabel)}</span>
+        ${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}
+      </div>
+    </header>
+    ${renderVersions(repo.versions)}
+    ${renderPipelines(repo.pipelines)}
+    ${renderSnyk(repo.snyk)}
+    ${renderWorkItems(repo.workItems)}
+    ${renderFooter(repo)}
+  </article>`;
+}
+
+/* ===================================================================
+   G. STATS, FILTER/SORT PIPELINE, MAIN RENDER
+   =================================================================== */
+function renderStats(items) {
+  const total = items.length;
+  const withIssues = items.filter((i) => i.ev.level !== 'healthy').length;
+  const crit = items.reduce((n, i) => n + i.ev.crit, 0);
+  const high = items.reduce((n, i) => n + i.ev.high, 0);
+  const failedPipes = items.reduce((n, i) => n + i.ev.failed, 0);
+
+  const tone = (n, bad = 'crit') => (n > 0 ? 'is-' + bad : 'is-ok');
+  const tiles = [
+    { icon: '📦', value: total,       label: 'Total repositories',               sub: '',                                    cls: '' },
+    { icon: '🚨', value: withIssues,  label: 'Repositories with issues',         sub: `${total - withIssues} healthy`,        cls: tone(withIssues, 'warn') },
+    { icon: '🛡️', value: crit + high, label: 'Critical / high vulnerabilities',  sub: `${crit} critical · ${high} high`,      cls: crit > 0 ? 'is-crit' : tone(high, 'warn') },
+    { icon: '❌', value: failedPipes, label: 'Failed pipelines',                 sub: '',                                    cls: tone(failedPipes) }
+  ];
+  els.stats.innerHTML = tiles.map((t) => `
+    <div class="stat ${t.cls}">
+      <span class="stat-icon" aria-hidden="true">${t.icon}</span>
+      <div><div class="stat-value">${t.value}</div><div class="stat-label">${t.label}</div>${t.sub ? `<div class="stat-sub">${t.sub}</div>` : ''}</div>
+    </div>`).join('');
+}
+
+function getVisible() {
+  const q = state.q.trim().toLowerCase();
+  const list = state.items.filter(({ repo, ev }) => {
+    if (state.type !== 'all' && String(repo.type || '').toLowerCase() !== state.type) return false;
+    if (state.status === 'issues' && ev.level === 'healthy') return false;
+    if (state.status === 'healthy' && ev.level !== 'healthy') return false;
+    if (q && !String(repo.name || '').toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  const dir = state.sort.dir === 'asc' ? 1 : -1;
+  const sorters = {
+    name:    (a, b) => String(a.repo.name || '').localeCompare(String(b.repo.name || ''), undefined, { sensitivity: 'base' }),
+    lastRun: (a, b) => a.latestRun - b.latestRun,
+    // Severity-weighted: compare critical first, then high, medium, low.
+    vulns:   (a, b) => {
+      const sa = a.repo.snyk || {}, sb = b.repo.snyk || {};
+      return (num(sa.critical) - num(sb.critical)) || (num(sa.high) - num(sb.high)) ||
+             (num(sa.medium) - num(sb.medium)) || (num(sa.low) - num(sb.low));
+    }
+  };
+  list.sort((a, b) => (sorters[state.sort.key](a, b) * dir) ||
+    String(a.repo.name || '').localeCompare(String(b.repo.name || '')));   // stable tie-breaker
+  return list;
+}
+
+function render() {
+  const visible = getVisible();
+  els.grid.setAttribute('aria-busy', 'false');
+
+  if (!visible.length) {
+    els.grid.innerHTML = `<div class="empty"><strong>No repositories match your filters</strong>
+      Try a different search term or reset the filters.<br><br>
+      <button type="button" class="btn" data-action="clear-filters">Clear filters</button></div>`;
+  } else {
+    els.grid.innerHTML = visible.map(renderCard).join('');
+  }
+  els.count.textContent = `Showing ${visible.length} of ${state.items.length} repositories`;
+  updateSortButtons();
+}
+
+function renderLastUpdated() {
+  if (!state.lastUpdated) { els.updated.textContent = 'Last updated: unknown'; return; }
+  const t = Date.parse(state.lastUpdated);
+  const ageH = (Date.now() - t) / 36e5;
+  const stale = !state.demo && ageH > STALE_AFTER_HOURS;
+  els.updated.innerHTML = `Last updated: <time datetime="${esc(state.lastUpdated)}">${esc(absTime(state.lastUpdated))}</time> (${esc(relTime(state.lastUpdated))})` +
+    (stale ? ` <span class="stale">⚠️ data is more than ${STALE_AFTER_HOURS}h old</span>` : '');
+}
+
+/* ===================================================================
+   H. LOADING, SKELETONS, ERRORS
+   =================================================================== */
+function showSkeleton() {
+  els.grid.setAttribute('aria-busy', 'true');
+  els.notice.innerHTML = '';
+  els.count.textContent = 'Loading repositories…';
+  els.updated.textContent = 'Loading data…';
+  els.stats.innerHTML = Array.from({ length: 4 }, () => `
+    <div class="stat"><span class="sk" style="width:42px;height:42px;border-radius:11px"></span>
+      <div style="flex:1"><span class="sk" style="height:24px;width:40%;margin-bottom:8px"></span><span class="sk" style="height:12px;width:75%"></span></div></div>`).join('');
+  els.grid.innerHTML = Array.from({ length: 6 }, () => `
+    <div class="card skeleton" aria-hidden="true">
+      <div class="card-head">
+        <span class="sk" style="height:22px;width:70%"></span>
+        <div style="display:flex;gap:8px;margin-top:12px"><span class="sk" style="height:22px;width:56px"></span><span class="sk" style="height:28px;width:92px"></span></div>
+      </div>
+      <div class="section"><span class="sk" style="height:12px;width:30%;margin-bottom:10px"></span><span class="sk" style="height:14px;margin-bottom:6px"></span><span class="sk" style="height:14px;margin-bottom:6px"></span><span class="sk" style="height:14px"></span></div>
+      <div class="section"><span class="sk" style="height:12px;width:30%;margin-bottom:10px"></span><span class="sk" style="height:34px;margin-bottom:8px"></span><span class="sk" style="height:34px"></span></div>
+      <div class="section"><span class="sk" style="height:56px"></span></div>
+    </div>`).join('');
+}
+
+function showError(err) {
+  els.grid.setAttribute('aria-busy', 'false');
+  els.grid.innerHTML = '';
+  els.stats.innerHTML = '';
+  els.count.textContent = '';
+  els.updated.textContent = 'Data unavailable';
+
+  let msg = err && err.message ? err.message : 'Unknown error';
+  let hint = '';
+  if (err && err.name === 'AbortError') msg = `Timed out after ${FETCH_TIMEOUT_MS / 1000}s while loading ${DATA_URL}.`;
+  else if (err instanceof SyntaxError) msg = `${DATA_URL} is not valid JSON.`;
+  else if (err instanceof TypeError) {
+    msg = `Could not fetch ${DATA_URL}.`;
+    hint = location.protocol === 'file:'
+      ? 'This page was opened straight from disk, and browsers block fetch() for local files. Serve the folder from a web server instead.'
+      : 'Check that data.json exists next to this page and that the network is reachable.';
+  }
+  els.notice.innerHTML = `
+    <div class="notice error" role="alert">
+      <strong>Couldn't load repository data</strong>
+      <p>${esc(msg)}</p>
+      ${hint ? `<p>${esc(hint)}</p>` : ''}
+      <div class="actions">
+        <button type="button" class="btn btn-primary" data-action="retry">Try again</button>
+        <button type="button" class="btn" data-action="demo">Show sample data</button>
+      </div>
+    </div>`;
+}
+
+function validate(json) {
+  if (!json || typeof json !== 'object' || !Array.isArray(json.repositories)) {
+    throw new Error(`${DATA_URL} must contain a "repositories" array.`);
+  }
+}
+
+async function loadData({ demo = false } = {}) {
+  showSkeleton();
+  state.demo = demo;
+  try {
+    let json;
+    if (demo) {
+      json = SAMPLE_DATA;
+    } else {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
+      try {
+        const res = await fetch(DATA_URL, { cache: 'no-store', signal: ctrl.signal });
+        if (!res.ok) throw new Error(`The server answered ${res.status} ${res.statusText} for ${DATA_URL}.`);
+        json = await res.json();
+      } finally { clearTimeout(timer); }
+    }
+    validate(json);
+
+    // Precompute health + latest run once; filtering/sorting then stays cheap.
+    state.items = json.repositories.filter(Boolean).map((repo) => ({ repo, ev: evaluate(repo), latestRun: latestRun(repo) }));
+    state.lastUpdated = json.lastUpdated || null;
+
+    els.notice.innerHTML = demo ? `
+      <div class="notice info" role="status">
+        <strong>Showing built-in sample data</strong>
+        <p>Place a <code>data.json</code> next to this page to see live repositories.</p>
+        <div class="actions"><button type="button" class="btn" data-action="retry">Load data.json</button></div>
+      </div>` : '';
+
+    renderLastUpdated();
+    renderStats(state.items);
+    render();
+  } catch (err) {
+    showError(err);
+  }
+}
+
+/* ===================================================================
+   I. CONTROLS: sort buttons, theme, filters, keyboard
+   =================================================================== */
+function updateSortButtons() {
+  document.querySelectorAll('.sort-btn').forEach((btn) => {
+    const key = btn.dataset.sort, active = key === state.sort.key;
+    btn.setAttribute('aria-pressed', String(active));
+    btn.querySelector('.arrow').textContent = active ? (state.sort.dir === 'asc' ? '▲' : '▼') : '';
+    btn.setAttribute('aria-label', active
+      ? `Sort by ${SORT_LABELS[key]}, currently ${state.sort.dir === 'asc' ? 'ascending' : 'descending'}. Activate to reverse.`
+      : `Sort by ${SORT_LABELS[key]}`);
+  });
+}
+
+function setTheme(theme, persist) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const dark = theme === 'dark';
+  els.theme.setAttribute('aria-pressed', String(dark));
+  els.theme.textContent = dark ? '☀️ Light mode' : '🌙 Dark mode';
+  if (persist) { try { localStorage.setItem('msd-theme', theme); } catch (e) { /* ignore */ } }
+}
+
+function clearFilters() {
+  state.q = ''; state.type = 'all'; state.status = 'all';
+  els.search.value = ''; els.type.value = 'all'; els.status.value = 'all';
+  render();
+}
+
+els.search.addEventListener('input', (e) => { state.q = e.target.value; render(); });
+els.type.addEventListener('change', (e) => { state.type = e.target.value; render(); });
+els.status.addEventListener('change', (e) => { state.status = e.target.value; render(); });
+
+document.querySelector('.sort').addEventListener('click', (e) => {
+  const btn = e.target.closest('.sort-btn');
+  if (!btn) return;
+  const key = btn.dataset.sort;
+  state.sort = (state.sort.key === key)
+    ? { key, dir: state.sort.dir === 'asc' ? 'desc' : 'asc' }     // same column: reverse
+    : { key, dir: DEFAULT_DIR[key] };                              // new column: sensible default
+  render();
+});
+
+els.theme.addEventListener('click', () => {
+  setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+});
+els.refresh.addEventListener('click', () => loadData({ demo: state.demo }));
+
+// Event delegation for the buttons rendered inside notices / the empty state.
+document.addEventListener('click', (e) => {
+  const action = e.target.closest('[data-action]');
+  if (!action) return;
+  const a = action.dataset.action;
+  if (a === 'retry') loadData({ demo: false });
+  if (a === 'demo') loadData({ demo: true });
+  if (a === 'clear-filters') clearFilters();
+});
+
+// "/" jumps to search (unless you're already typing in a field).
+document.addEventListener('keydown', (e) => {
+  const tag = (document.activeElement && document.activeElement.tagName) || '';
+  if (e.key === '/' && !['INPUT', 'SELECT', 'TEXTAREA'].includes(tag) && !e.metaKey && !e.ctrlKey && !e.altKey) {
+    e.preventDefault();
+    els.search.focus();
+  }
+});
+
+/* ===================================================================
+   J. BOOT
+   =================================================================== */
+setTheme(document.documentElement.getAttribute('data-theme') || 'light', false);
+updateSortButtons();
+loadData({ demo: new URLSearchParams(location.search).has('demo') });
+</script>
+</body>
+</html>
