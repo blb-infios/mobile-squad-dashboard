@@ -42,6 +42,8 @@ Automated monitoring dashboard for all Mobile Squad repositories (KMP, Capacitor
   - Code (read)
   - Build (read)
   - Work Items (read)
+  - Packaging (read) - required for Azure Artifacts feed versions
+- Optional Snyk API token and organization ID for Snyk findings
 
 ### Local Development
 
@@ -88,9 +90,10 @@ See **[DEPLOY_AZURE.md](DEPLOY_AZURE.md)** for complete Azure deployment guide.
 ### GitHub Pages
 
 1. **Create GitHub repository**
-2. **Add repository secret:**
+2. **Add repository secrets:**
    - Go to Settings → Secrets and variables → Actions
-   - Add `ADO_PAT` with your Azure DevOps PAT
+   - Add `ADO_PAT` with an Azure DevOps PAT having Code, Build, Work Items, and Packaging (read) scopes
+   - Add `SNYK_TOKEN` and `SNYK_ORG_ID` if Snyk findings are required
 
 3. **Push code to GitHub:**
    ```bash

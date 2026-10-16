@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 /**
- * Mobile Squad Dashboard - Data Aggregation Script
- * 
- * Fetches repository data from Azure DevOps and generates dashboard JSON
+ * Mobile Squad Dashboard - real data aggregation.
+ *
+ * Required: ADO_PAT, ADO_ORG, ADO_PROJECT
+ * Optional: SNYK_TOKEN, SNYK_ORG_ID, SNYK_API
+ *
+ * The script deliberately returns null/zero for a source that is not
+ * configured or accessible. It never invents dashboard values.
  */
 
 require('dotenv').config();
@@ -10,17 +14,19 @@ const axios = require('axios');
 const fs = require('fs').promises;
 const path = require('path');
 
-// Configuration
 const ADO_ORG = process.env.ADO_ORG || 'Highjumpvso';
 const ADO_PROJECT = process.env.ADO_PROJECT || 'WES';
 const ADO_PAT = process.env.ADO_PAT || process.env.AZURE_DEVOPS_EXT_PAT;
+const ADO_API_VERSION = '7.1';
+const SNYK_TOKEN = process.env.SNYK_TOKEN;
+const SNYK_ORG_ID = process.env.SNYK_ORG_ID;
+const SNYK_API = process.env.SNYK_API || 'https://api.eu.snyk.io';
 
 if (!ADO_PAT) {
   console.error('❌ Error: ADO_PAT or AZURE_DEVOPS_EXT_PAT environment variable is required');
   process.exit(1);
 }
 
-// Repository definitions
 const REPOSITORIES = {
   kmp: [
     { name: 'Koerber.Mobile.Kotlin.Dex', displayName: 'Dex' },
@@ -44,279 +50,545 @@ const REPOSITORIES = {
   ]
 };
 
-// ADO API client
 const adoClient = axios.create({
   baseURL: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_apis`,
-  auth: {
-    username: '',
-    password: ADO_PAT
-  },
-  headers: {
-    'Content-Type': 'application/json'
-  }
+  auth: { username: '', password: ADO_PAT },
+  headers: { Accept: 'application/json' },
+  timeout: 30000
 });
 
-/**
- * Fetch all repositories
- */
+const snykClient = axios.create({
+  baseURL: `${SNYK_API}/v1`,
+  headers: SNYK_TOKEN ? { Authorization: `token ${SNYK_TOKEN}` } : {},
+  timeout: 30000
+});
+
+const apiParams = (extra = {}) => ({ 'api-version': ADO_API_VERSION, ...extra });
+const dollarTop = (value) => ({ [String.fromCharCode(36) + 'top']: value });
+
+function warn(message, error) {
+  const detail = error?.response?.status ? ` (${error.response.status})` : '';
+  console.warn(`  ⚠️ ${message}${detail}`);
+}
+
+async function optionalGet(url, config, message, fallback) {
+  try {
+    return (await adoClient.get(url, config)).data;
+  } catch (error) {
+    warn(message, error);
+    return fallback;
+  }
+}
+
 async function fetchRepositories() {
   console.log('📦 Fetching repositories...');
-  const response = await adoClient.get('/git/repositories', {
-    params: { 'api-version': '7.0' }
-  });
-  return response.data.value;
+  const response = await adoClient.get('/git/repositories', { params: apiParams() });
+  return response.data.value || [];
 }
 
-/**
- * Fetch latest build for a repository
- */
-async function fetchLatestBuild(repoName) {
+async function fetchBuilds(repoId) {
+  const data = await optionalGet(
+    '/build/builds',
+    { params: apiParams({
+      repositoryId: repoId,
+      repositoryType: 'TfsGit',
+      queryOrder: 'finishTimeDescending',
+      ...dollarTop(50)
+    }) },
+    `Could not fetch builds for repository ${repoId}`,
+    { value: [] }
+  );
+  return data.value || [];
+}
+
+function isReleaseBuild(build) {
+  const name = String(build.definition?.name || '').toLowerCase();
+  return /(^|[.\-_ ])(release|prod|production|publish)([.\-_ ]|$)/i.test(name);
+}
+
+function duration(start, finish) {
+  if (!start || !finish) return null;
+  const seconds = Math.max(0, (Date.parse(finish) - Date.parse(start)) / 1000);
+  if (!Number.isFinite(seconds)) return null;
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes}m ${Math.round(seconds % 60)}s`;
+}
+
+function pipelineStatus(build) {
+  if (!build) return 'notRun';
+  if (String(build.status).toLowerCase() === 'inprogress') return 'inProgress';
+  const result = String(build.result || '').toLowerCase();
+  return {
+    succeeded: 'succeeded',
+    failed: 'failed',
+    partiallysucceeded: 'partiallySucceeded',
+    canceled: 'canceled'
+  }[result] || 'notRun';
+}
+
+function buildToPipeline(build, fallbackName) {
+  if (!build) return null;
+  return {
+    name: build.definition?.name || fallbackName,
+    status: pipelineStatus(build),
+    lastRun: build.finishTime || build.startTime || null,
+    duration: duration(build.startTime, build.finishTime),
+    url: build._links?.web?.href || `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_build/results?buildId=${build.id}`
+  };
+}
+
+function pipelinesFromBuilds(builds) {
+  const release = builds.find(isReleaseBuild) || null;
+  const ci = builds.find((build) => !isReleaseBuild(build)) || null;
+  return {
+    ci: buildToPipeline(ci, 'CI Pipeline'),
+    release: buildToPipeline(release, 'Release Pipeline')
+  };
+}
+
+async function fetchCommit(repoId, branch = 'develop') {
+  const data = await optionalGet(
+    `/git/repositories/${repoId}/commits`,
+    { params: apiParams({
+      'searchCriteria.itemVersion.version': branch,
+      'searchCriteria.itemVersion.versionType': 'branch',
+      ...dollarTop(1)
+    }) },
+    `Could not fetch ${branch} commit for repository ${repoId}`,
+    { value: [] }
+  );
+  return data.value?.[0] || null;
+}
+
+async function fetchLatestCommit(repoId) {
+  return (await fetchCommit(repoId, 'develop')) ||
+    (await fetchCommit(repoId, 'main')) ||
+    (await fetchCommit(repoId, 'master'));
+}
+
+async function fetchPullRequests(repoId) {
+  const data = await optionalGet(
+    `/git/repositories/${repoId}/pullrequests`,
+    { params: apiParams({ 'searchCriteria.status': 'active', ...dollarTop(50) }) },
+    `Could not fetch pull requests for repository ${repoId}`,
+    { value: [] }
+  );
+  return data.value || [];
+}
+
+async function listSourceFiles(repoId, branch) {
+  const data = await optionalGet(
+    `/git/repositories/${repoId}/items`,
+    { params: apiParams({
+      scopePath: '/',
+      recursionLevel: 'Full',
+      includeContentMetadata: true,
+      'versionDescriptor.version': branch,
+      'versionDescriptor.versionType': 'branch',
+      ...dollarTop(1000)
+    }) },
+    `Could not list source files for repository ${repoId}`,
+    { value: [] }
+  );
+  return data.value || [];
+}
+
+async function readSourceFile(repoId, itemPath, branch) {
   try {
-    // Try to find pipelines for this repository
-    const pipelinesResponse = await adoClient.get('/pipelines', {
+    const response = await adoClient.get(`/git/repositories/${repoId}/items`, {
+      params: apiParams({
+        path: itemPath,
+        includeContent: true,
+        'versionDescriptor.version': branch,
+        'versionDescriptor.versionType': 'branch'
+      })
+    });
+    return response.data.content || '';
+  } catch (_) {
+    return null;
+  }
+}
+
+function parseVersion(content, itemPath) {
+  if (!content) return null;
+  if (itemPath.toLowerCase().endsWith('package.json')) {
+    try { return JSON.parse(content).version || null; } catch (_) { return null; }
+  }
+  const matches = [
+    /(?:^|\n)\s*(?:val\s+|var\s+)?libBaseVersion\s*=\s*["']([^"']+)["']/i,
+    /(?:^|\n)\s*(?:val\s+|var\s+)?libVersion(?:Android|Ios)\s*=\s*[^\n]*?["']([0-9]+\.[0-9]+\.[0-9]+(?:[-+][^\s"']+)*)["']/i,
+    /(?:^|\n)\s*(?:VERSION_NAME|version)\s*[:=]\s*["']?([0-9]+\.[0-9]+\.[0-9]+(?:[-+][^\s"']+)*)/i,
+    /(?:^|\n)\s*version\s*=\s*["']([^"']+)["']/i
+  ];
+  for (const pattern of matches) {
+    const match = content.match(pattern);
+    if (match?.[1]) return match[1];
+  }
+  return null;
+}
+
+function parsePackage(content, itemPath) {
+  if (!content) return { npm: null, maven: null };
+  if (itemPath.toLowerCase().endsWith('package.json')) {
+    try {
+      const pkg = JSON.parse(content);
+      return { npm: pkg.name || null, maven: null };
+    } catch (_) { return { npm: null, maven: null }; }
+  }
+  const variables = Object.fromEntries(
+    [...content.matchAll(/(?:^|\n)\s*(?:val\s+|var\s+)?([A-Za-z][A-Za-z0-9_]*)\s*=\s*["']([^"']+)["']/g)]
+      .map((match) => [match[1], match[2]])
+  );
+  const group = variables.libGroupId || variables.groupId || content.match(/(?:^|\n)\s*group\s*=\s*["']([^"']+)["']/i)?.[1] || null;
+  const artifactCandidates = [
+    variables.libArtifactId,
+    ...[...content.matchAll(/artifactId\s*=\s*["']([^"']+)["']/gi)].map((match) => match[1]),
+    content.match(/artifactId\s*=\s*artifactId\.replace\(\s*["'][^"']+["']\s*,\s*["']([^"']+)["']\s*\)/i)?.[1]
+  ].filter(Boolean);
+  const artifact = artifactCandidates.find((value) => /library|plugin|capacitor|scanner|printing|beep|vibrate|authorization|camera|logger/i.test(value)) || artifactCandidates[0] || null;
+  return { npm: null, maven: group && artifact && !/[${}]/.test(artifact) ? `${group}:${artifact}` : null };
+}
+
+const ARTIFACT_FEEDS = {
+  dev: {
+    project: 'WES',
+    feed: '24dda4c8-5fdf-4aa7-8c63-a1e73bdeab56'
+  },
+  platform: {
+    project: 'Platform',
+    feed: '315a4d70-8267-47c1-a02a-b679a538e1d2'
+  }
+};
+
+const artifactClient = axios.create({
+  baseURL: `https://feeds.dev.azure.com/${ADO_ORG}`,
+  auth: { username: '', password: ADO_PAT },
+  headers: { Accept: 'application/json' },
+  timeout: 30000
+});
+const artifactVersionCache = new Map();
+let artifactAccessWarningShown = false;
+
+async function fetchArtifactVersion(feedKey, packageName, protocol) {
+  if (!packageName) return null;
+  const feed = ARTIFACT_FEEDS[feedKey];
+  if (!feed) return null;
+  const cacheKey = `${feedKey}:${protocol}:${packageName}`;
+  if (artifactVersionCache.has(cacheKey)) return artifactVersionCache.get(cacheKey);
+
+  try {
+    const packageResponse = await artifactClient.get(`/${encodeURIComponent(feed.project)}/_apis/packaging/feeds/${feed.feed}/packages`, {
       params: {
-        'api-version': '7.0'
+        protocolType: protocol,
+        packageNameQuery: packageName,
+        includeAllVersions: false,
+        isListed: true,
+        'api-version': '7.1'
       }
     });
-    
-    // Find pipeline that matches the repository name
-    const pipeline = pipelinesResponse.data.value.find(p => 
-      p.name.includes(repoName) || 
-      p.name.toLowerCase().includes(repoName.toLowerCase().split('.').pop())
-    );
-    
-    if (!pipeline) {
+    const candidate = (packageResponse.data.value || []).find((item) =>
+      String(item.name || '').toLowerCase() === String(packageName).toLowerCase()
+    ) || packageResponse.data.value?.[0];
+    if (!candidate?.id) {
+      artifactVersionCache.set(cacheKey, null);
       return null;
     }
-    
-    // Get latest run for this pipeline
-    const runsResponse = await adoClient.get(`/pipelines/${pipeline.id}/runs`, {
-      params: {
-        'api-version': '7.0',
-        '$top': 1
-      }
+
+    const versionsResponse = await artifactClient.get(`/${encodeURIComponent(feed.project)}/_apis/packaging/feeds/${feed.feed}/packages/${candidate.id}/versions`, {
+      params: { isListed: true, 'api-version': '7.1' }
     });
-    
-    const run = runsResponse.data.value[0];
-    if (!run) return null;
-    
-    // Map to build format
-    return {
-      id: run.id,
-      buildNumber: run.name,
-      result: run.result?.toLowerCase() || 'unknown',
-      status: run.state,
-      finishTime: run.finishedDate,
-      _links: {
-        web: {
-          href: run._links?.web?.href || `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_build/results?buildId=${run.id}`
-        }
-      }
-    };
+    const versions = (versionsResponse.data.value || [])
+      .filter((item) => item.version)
+      .sort((a, b) => Date.parse(b.publishDate || 0) - Date.parse(a.publishDate || 0));
+    const version = versions[0]?.version || null;
+    artifactVersionCache.set(cacheKey, version);
+    return version;
   } catch (error) {
-    // Silently ignore - build data is optional
+    if (!artifactAccessWarningShown) {
+      warn('Azure Artifacts unavailable; add Packaging Read to ADO_PAT to populate feed versions', error);
+      artifactAccessWarningShown = true;
+    }
+    artifactVersionCache.set(cacheKey, null);
     return null;
   }
 }
 
-/**
- * Fetch latest commit for a repository
- */
-async function fetchLatestCommit(repoId, branch = 'develop') {
-  try {
-    const response = await adoClient.get(`/git/repositories/${repoId}/commits`, {
-      params: {
-        'api-version': '7.0',
-        'searchCriteria.itemVersion.version': branch,
-        '$top': 1
-      }
-    });
-    return response.data.value[0] || null;
-  } catch (error) {
-    console.warn(`  ⚠️  Could not fetch commits for repo ${repoId}:`, error.message);
-    return null;
-  }
+async function fetchFeedVersions(metadata, category) {
+  const protocol = metadata.packages.npm ? 'Npm' : metadata.packages.maven ? 'Maven' : null;
+  const packageName = metadata.packages.npm || metadata.packages.maven?.split(':')[1];
+  if (!protocol || !packageName) return { devFeed: null, platformFeed: null };
+  const [devFeed, platformFeed] = await Promise.all([
+    fetchArtifactVersion('dev', packageName, protocol),
+    category === 'security' ? null : fetchArtifactVersion('platform', packageName, protocol)
+  ]);
+  return { devFeed, platformFeed };
 }
 
-/**
- * Fetch pull requests for a repository
- */
-async function fetchPullRequests(repoId) {
-  try {
-    const response = await adoClient.get(`/git/repositories/${repoId}/pullrequests`, {
-      params: {
-        'api-version': '7.0',
-        'searchCriteria.status': 'active',
-        '$top': 10
+async function fetchSourceMetadata(repoId) {
+  for (const branch of ['develop', 'main', 'master']) {
+    const files = await listSourceFiles(repoId, branch);
+    const candidates = files
+      .filter((item) => item.gitObjectType === 'blob' || item.itemType === 'file')
+      .map((item) => item.path)
+      .filter((itemPath) => /(^|\/)(package\.json|gradle\.properties|build\.gradle(?:\.kts)?|libs\.versions\.toml)$/i.test(itemPath));
+
+    for (const itemPath of candidates) {
+      const content = await readSourceFile(repoId, itemPath, branch);
+      const version = parseVersion(content, itemPath);
+      const packages = parsePackage(content, itemPath);
+      if (version || packages.npm || packages.maven) {
+        return { version, packages, branch, path: itemPath };
       }
-    });
-    return response.data.value || [];
+    }
+  }
+  return { version: null, packages: { npm: null, maven: null }, branch: null, path: null };
+}
+
+function classifyWorkItem(state) {
+  const normalized = String(state || '').toLowerCase();
+  if (['new', 'approved', 'proposed', 'to do', 'open'].includes(normalized)) return 'open';
+  if (['active', 'in progress', 'doing'].includes(normalized)) return 'inProgress';
+  if (['committed', 'resolved', 'closed', 'done', 'completed'].includes(normalized)) return 'committed';
+  return 'open';
+}
+
+async function fetchWorkItemIds(repoId, pullRequests, builds) {
+  const ids = new Set();
+
+  // Build work-item refs are the authoritative links for commits included in a build.
+  const buildLinks = await Promise.all((builds || []).slice(0, 2).map((build) => optionalGet(
+    `/build/builds/${build.id}/workitems`,
+    { params: apiParams() },
+    `Could not fetch work items for build ${build.id}`,
+    { value: [] }
+  )));
+  buildLinks.forEach((data) => (data.value || []).forEach((item) => ids.add(item.id)));
+
+  // Include work items explicitly linked to active pull requests as well.
+  const prLinks = await Promise.all((pullRequests || []).slice(0, 20).map((pr) => optionalGet(
+    `/git/repositories/${repoId}/pullrequests/${pr.pullRequestId}/workitems`,
+    { params: apiParams() },
+    `Could not fetch work-item links for PR ${pr.pullRequestId}`,
+    { value: [] }
+  )));
+  prLinks.forEach((data) => (data.value || []).forEach((item) => ids.add(item.id)));
+  return [...ids];
+}
+
+async function fetchWorkItems(repoId, pullRequests, builds) {
+  const ids = await fetchWorkItemIds(repoId, pullRequests, builds);
+  const result = { open: 0, inProgress: 0, committed: 0, url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_queries` };
+  if (!ids.length) return result;
+
+  for (let start = 0; start < ids.length; start += 200) {
+    const chunk = ids.slice(start, start + 200);
+    const data = await optionalGet(
+      '/wit/workitems',
+      { params: apiParams({ ids: chunk.join(','), fields: 'System.State,System.WorkItemType' }) },
+      `Could not fetch work-item details for repository ${repoId}`,
+      { value: [] }
+    );
+    (data.value || []).forEach((item) => { result[classifyWorkItem(item.fields?.['System.State'])]++; });
+  }
+  return result;
+}
+
+function emptySnyk() {
+  return { critical: 0, high: 0, medium: 0, low: 0, lastScan: null, url: null };
+}
+
+async function fetchSnykProjects() {
+  if (!SNYK_TOKEN || !SNYK_ORG_ID) return [];
+  try {
+    const response = await snykClient.get(`/org/${encodeURIComponent(SNYK_ORG_ID)}/projects`, { params: { limit: 1000 } });
+    return response.data.projects || [];
   } catch (error) {
-    console.warn(`  ⚠️  Could not fetch PRs for repo ${repoId}:`, error.message);
+    warn('Could not fetch Snyk projects; configure SNYK_TOKEN and SNYK_ORG_ID', error);
     return [];
   }
 }
 
-/**
- * Determine repository health status
- */
-function calculateHealth(build, prs) {
-  if (!build) return { status: 'unknown', label: 'No Data', color: '#999' };
-  
-  const hasFailedPRs = prs.some(pr => pr.mergeStatus === 'conflicts' || pr.mergeStatus === 'failure');
-  
-  if (build.result === 'succeeded' && !hasFailedPRs) {
-    return { status: 'healthy', label: 'Healthy', color: '#28a745' };
-  } else if (build.result === 'partiallySucceeded' || hasFailedPRs) {
-    return { status: 'warning', label: 'Warning', color: '#ffc107' };
-  } else if (build.result === 'failed' || build.result === 'canceled') {
-    return { status: 'unhealthy', label: 'Unhealthy', color: '#dc3545' };
+async function fetchSnykData(projects, repo) {
+  if (!projects.length) return null;
+  const names = [repo.name, repo.fullName, repo.displayName].filter(Boolean).map((value) => value.toLowerCase());
+  const project = projects.find((candidate) => {
+    const candidateName = String(candidate.name || '').toLowerCase();
+    return names.some((name) => candidateName === name || candidateName.includes(name) || name.includes(candidateName));
+  });
+  if (!project) return emptySnyk();
+
+  try {
+    const response = await snykClient.get(`/org/${encodeURIComponent(SNYK_ORG_ID)}/project/${project.id}/issues`, {
+      params: { perPage: 1000, page: 1 }
+    });
+    const issues = response.data.issues || response.data.vulnerabilities || [];
+    const counts = emptySnyk();
+    issues.forEach((issue) => {
+      const severity = String(issue.issueData?.severity || issue.severity || '').toLowerCase();
+      if (Object.prototype.hasOwnProperty.call(counts, severity)) counts[severity]++;
+    });
+    counts.lastScan = project.lastTestedDate || project.created || null;
+    counts.url = project.url || `https://app.snyk.io/org/${SNYK_ORG_ID}/project/${project.id}`;
+    return counts;
+  } catch (error) {
+    warn(`Could not fetch Snyk issues for ${repo.name}`, error);
+    return emptySnyk();
   }
-  
-  return { status: 'unknown', label: 'Unknown', color: '#6c757d' };
 }
 
-/**
- * Aggregate data for all repositories
- */
-async function aggregateData() {
-  console.log('🚀 Starting data aggregation...\n');
-  
-  // Fetch all repositories from ADO
-  const allRepos = await fetchRepositories();
-  const repoMap = new Map(allRepos.map(r => [r.name, r]));
-  
-  const dashboardData = {
-    generatedAt: new Date().toISOString(),
-    summary: {
-      total: 0,
-      healthy: 0,
-      warning: 0,
-      unhealthy: 0,
-      unknown: 0
+function calculateHealth(pipelines, snyk) {
+  const builds = Object.values(pipelines).filter(Boolean);
+  const failed = builds.some((pipeline) => ['failed', 'canceled'].includes(pipeline.status));
+  const vulnerabilities = Number(snyk?.critical || 0) + Number(snyk?.high || 0);
+  if (!builds.length) return { status: 'unknown', label: 'No Data', color: '#999' };
+  if (failed) return { status: 'unhealthy', label: 'Unhealthy', color: '#dc3545' };
+  if (vulnerabilities > 0 || builds.some((pipeline) => pipeline.status === 'partiallySucceeded')) {
+    return { status: 'warning', label: 'Warning', color: '#ffc107' };
+  }
+  return { status: 'healthy', label: 'Healthy', color: '#28a745' };
+}
+
+function repositoryData(repoDef, repo, category, commit, pullRequests, metadata, feedVersions, pipelines, workItems, snyk) {
+  const health = calculateHealth(pipelines, snyk);
+  const repoData = {
+    name: repoDef.displayName,
+    fullName: repo.name,
+    health,
+    url: repo.webUrl,
+    platforms: category === 'kmp' ? ['android', 'ios', 'jvm'] : category === 'capacitor' ? ['android', 'ios', 'web'] : [],
+    versions: {
+      source: metadata.version,
+      devFeed: feedVersions.devFeed,
+      platformFeed: feedVersions.platformFeed
     },
-    categories: [],
-    repositories: [] // Flat list for new UI
+    packages: metadata.packages,
+    pipelines,
+    snyk,
+    workItems,
+    lastBuild: null,
+    lastCommit: commit ? {
+      id: String(commit.commitId || '').substring(0, 7),
+      message: String(commit.comment || '').split('\n')[0],
+      author: commit.author?.name || commit.committer?.name || 'Unknown',
+      date: commit.author?.date || commit.committer?.date || null,
+      url: commit.remoteUrl || null
+    } : null,
+    activePRs: pullRequests.length,
+    pullRequests: pullRequests.map((pr) => ({
+      id: pr.pullRequestId,
+      title: pr.title,
+      author: pr.createdBy?.displayName || 'Unknown',
+      status: pr.status,
+      url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_git/${repo.name}/pullrequest/${pr.pullRequestId}`
+    }))
   };
-  
-  // Process each category
-  for (const [category, repos] of Object.entries(REPOSITORIES)) {
+
+  const latestBuild = Object.values(pipelines).filter(Boolean).sort((a, b) => Date.parse(b.lastRun || 0) - Date.parse(a.lastRun || 0))[0];
+  if (latestBuild) {
+    repoData.lastBuild = {
+      result: latestBuild.status,
+      status: latestBuild.status,
+      finishTime: latestBuild.lastRun,
+      url: latestBuild.url
+    };
+  }
+  return repoData;
+}
+
+async function aggregateData() {
+  console.log('🚀 Starting real data aggregation...\n');
+  const allRepos = await fetchRepositories();
+  const repoMap = new Map(allRepos.map((repo) => [repo.name, repo]));
+  const snykProjects = await fetchSnykProjects();
+  if (!SNYK_TOKEN || !SNYK_ORG_ID) console.log('ℹ️ Snyk skipped: SNYK_TOKEN and SNYK_ORG_ID are not configured.');
+
+  const generatedAt = new Date().toISOString();
+  const dashboardData = {
+    generatedAt,
+    lastUpdated: generatedAt,
+    summary: { total: 0, healthy: 0, warning: 0, unhealthy: 0, unknown: 0 },
+    categories: [],
+    repositories: []
+  };
+
+  for (const [category, definitions] of Object.entries(REPOSITORIES)) {
     console.log(`\n📁 Processing ${category.toUpperCase()} repositories...`);
-    
     const categoryData = {
       name: category,
       displayName: category.charAt(0).toUpperCase() + category.slice(1),
       repositories: []
     };
-    
-    for (const repoDef of repos) {
+
+    for (const repoDef of definitions) {
       const repo = repoMap.get(repoDef.name);
-      
       if (!repo) {
-        console.log(`  ⚠️  Repository not found: ${repoDef.name}`);
-        categoryData.repositories.push({
+        console.log(`  ⚠️ Repository not found: ${repoDef.name}`);
+        const missing = {
           name: repoDef.displayName,
           fullName: repoDef.name,
+          category,
+          type: category,
           health: { status: 'unknown', label: 'Not Found', color: '#999' },
-          url: '#',
+          platforms: category === 'kmp' ? ['android', 'ios', 'jvm'] : category === 'capacitor' ? ['android', 'ios', 'web'] : [],
+          versions: { source: null, devFeed: null, platformFeed: null },
+          packages: { npm: null, maven: null },
+          pipelines: { ci: null, release: null },
+          snyk: emptySnyk(),
+          workItems: { open: 0, inProgress: 0, committed: 0, url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_queries` },
+          url: null,
           lastBuild: null,
           lastCommit: null,
-          activePRs: 0
-        });
+          activePRs: 0,
+          pullRequests: []
+        };
+        categoryData.repositories.push(missing);
+        dashboardData.repositories.push(missing);
         dashboardData.summary.unknown++;
         continue;
       }
-      
-      console.log(`  ✓ ${repoDef.displayName}`);
-      
-      // Fetch data in parallel
-      const [build, commit, prs] = await Promise.all([
-        fetchLatestBuild(repo.name),
+
+      const [builds, commit, pullRequests, metadata] = await Promise.all([
+        fetchBuilds(repo.id),
         fetchLatestCommit(repo.id),
-        fetchPullRequests(repo.id)
+        fetchPullRequests(repo.id),
+        fetchSourceMetadata(repo.id)
       ]);
-      
-      const health = calculateHealth(build, prs);
-      
-      const repoData = {
-        name: repoDef.displayName,
-        fullName: repo.name,
-        health,
-        url: repo.webUrl,
-        lastBuild: build ? {
-          id: build.id,
-          number: build.buildNumber,
-          result: build.result,
-          status: build.status,
-          finishTime: build.finishTime,
-          url: build._links.web.href
-        } : null,
-        lastCommit: commit ? {
-          id: commit.commitId.substring(0, 7),
-          message: commit.comment.split('\n')[0],
-          author: commit.author.name,
-          date: commit.author.date,
-          url: commit.remoteUrl
-        } : null,
-        activePRs: prs.length,
-        pullRequests: prs.map(pr => ({
-          id: pr.pullRequestId,
-          title: pr.title,
-          author: pr.createdBy.displayName,
-          status: pr.status,
-          url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_git/${repo.name}/pullrequest/${pr.pullRequestId}`
-        }))
-      };
-      
+      const pipelines = pipelinesFromBuilds(builds);
+      const [feedVersions, workItems, snyk] = await Promise.all([
+        fetchFeedVersions(metadata, category),
+        fetchWorkItems(repo.id, pullRequests, builds),
+        fetchSnykData(snykProjects, { ...repoDef, fullName: repo.name })
+      ]);
+      const repoData = repositoryData(repoDef, repo, category, commit, pullRequests, metadata, feedVersions, pipelines, workItems, snyk);
+      const flatData = { ...repoData, category, type: category };
+
+      console.log(`  ✓ ${repoDef.displayName} (${metadata.version || 'source version unavailable'})`);
       categoryData.repositories.push(repoData);
-      dashboardData.summary[health.status]++;
-      
-      // Add to flat repositories array for new UI
-      dashboardData.repositories.push({
-        ...repoData,
-        category: category, // Add category for filtering
-        type: category.toUpperCase() // For type filter
-      });
+      dashboardData.repositories.push(flatData);
+      dashboardData.summary[repoData.health.status]++;
     }
-    
+
     dashboardData.categories.push(categoryData);
     dashboardData.summary.total += categoryData.repositories.length;
   }
-  
   return dashboardData;
 }
 
-/**
- * Main execution
- */
 async function main() {
   try {
     const data = await aggregateData();
-    
-    // Write to public directory
     const outputPath = path.join(__dirname, '../public/data.json');
     await fs.writeFile(outputPath, JSON.stringify(data, null, 2));
-    
-    console.log('\n✅ Data aggregation complete!');
-    console.log(`📊 Summary: ${data.summary.total} repos - ` +
-      `${data.summary.healthy} healthy, ` +
-      `${data.summary.warning} warning, ` +
-      `${data.summary.unhealthy} unhealthy, ` +
-      `${data.summary.unknown} unknown`);
+    console.log('\n✅ Real data aggregation complete!');
+    console.log(`📊 Summary: ${data.summary.total} repos - ${data.summary.healthy} healthy, ${data.summary.warning} warning, ${data.summary.unhealthy} unhealthy, ${data.summary.unknown} unknown`);
     console.log(`💾 Data written to: ${outputPath}`);
-    
   } catch (error) {
     console.error('\n❌ Error during aggregation:', error.message);
-    if (error.response) {
-      console.error('Response data:', error.response.data);
-    }
+    if (error.response) console.error('Response data:', error.response.data);
     process.exit(1);
   }
 }
 
-// Run if executed directly
-if (require.main === module) {
-  main();
-}
+if (require.main === module) main();
 
-module.exports = { aggregateData };
+module.exports = { aggregateData, classifyWorkItem, calculateHealth, parseVersion };

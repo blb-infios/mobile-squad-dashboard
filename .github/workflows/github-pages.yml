@@ -32,6 +32,9 @@ jobs:
           ADO_PAT: ${{ secrets.ADO_PAT }}
           ADO_ORG: Highjumpvso
           ADO_PROJECT: WES
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          SNYK_ORG_ID: ${{ secrets.SNYK_ORG_ID }}
+          SNYK_API: https://api.eu.snyk.io
         run: npm run aggregate
 
       - name: Deploy to GitHub Pages
