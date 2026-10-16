@@ -64,6 +64,10 @@
   /* Type badges */
   --kmp-bg: #eee8ff;  --kmp-fg: #5a2fc2;
   --cap-bg: #e0efff;  --cap-fg: #0a5fb0;
+  
+  /* KMP icon gradient */
+  --kmp-grad-1: #7F52FF;
+  --kmp-grad-2: #C811E2;
 
   --shadow:    0 1px 2px rgba(20, 28, 45, .06), 0 4px 14px rgba(20, 28, 45, .05);
   --shadow-lg: 0 2px 4px rgba(20, 28, 45, .08), 0 10px 28px rgba(20, 28, 45, .10);
@@ -97,6 +101,9 @@
 
   --kmp-bg: #2a2150;  --kmp-fg: #bfaaff;
   --cap-bg: #14304d;  --cap-fg: #8cc6ff;
+  
+  --kmp-grad-1: #A97BFF;
+  --kmp-grad-2: #E951FF;
 
   --shadow:    0 1px 2px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .25);
   --shadow-lg: 0 2px 4px rgba(0, 0, 0, .5), 0 10px 28px rgba(0, 0, 0, .35);
@@ -273,7 +280,13 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .pill.warning  { background: var(--warn-soft); color: var(--warn-text); }
 .pill.critical { background: var(--crit-soft); color: var(--crit-text); }
 
-.type-badge { font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 6px; }
+.type-badge { 
+  font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 6px;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.type-badge svg {
+  width: 14px; height: 14px; flex-shrink: 0;
+}
 .type-kmp       { background: var(--kmp-bg); color: var(--kmp-fg); }
 .type-capacitor { background: var(--cap-bg); color: var(--cap-fg); }
 .type-other     { background: var(--surface-2); color: var(--muted); }
@@ -794,6 +807,7 @@ function renderFooter(repo) {
     extLink(feedUrl, '📦 Feeds', `Open package feeds for ${repo.name}`)
   ].filter(Boolean).join('');
   if (!pkgs && !links) return '';
+
   return `<footer class="card-foot">
     ${pkgs ? `<ul class="pkgs" aria-label="Published packages">${pkgs}</ul>` : ''}
     ${links ? `<div class="foot-links">${links}</div>` : ''}
@@ -806,6 +820,7 @@ function renderCard({ repo, ev }, index) {
   const type = String(repo.type || '').toLowerCase();
   const typeLabel = type === 'kmp' ? 'KMP' : type === 'capacitor' ? 'Capacitor' : (repo.type ? String(repo.type) : 'Unknown');
   const typeCls = type === 'kmp' ? 'type-kmp' : type === 'capacitor' ? 'type-capacitor' : 'type-other';
+  const kmpIcon = type === 'kmp' ? `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="kmp-grad-${index}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--kmp-grad-1)"/><stop offset="100%" stop-color="var(--kmp-grad-2)"/></linearGradient></defs><path fill="url(#kmp-grad-${index})" d="M0 60V0h60L30 30L60 60H0z"/></svg>` : '';
 
   const statusLabel = { healthy: 'Healthy', warning: 'Warnings', critical: 'Critical' }[ev.level];
   const statusDetail = ev.reasons.length ? ev.reasons.join(', ') : 'All pipelines passing, no critical or high findings';
@@ -825,7 +840,7 @@ function renderCard({ repo, ev }, index) {
         <span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span>
       </div>
       <div class="card-meta">
-        <span class="type-badge ${typeCls}">${esc(typeLabel)}</span>
+        <span class="type-badge ${typeCls}">${kmpIcon}${esc(typeLabel)}</span>
         ${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}
       </div>
     </header>
