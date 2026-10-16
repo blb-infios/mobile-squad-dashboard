@@ -1,0 +1,13 @@
+<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Top-left to bottom-right bar (lightest blue) -->
+  <rect x="50" y="180" width="412" height="80" rx="40" transform="rotate(-45 256 256)" fill="#73B3FF"/>
+  
+  <!-- Top-right to bottom-left bar (medium-light blue) -->
+  <rect x="50" y="252" width="412" height="80" rx="40" transform="rotate(45 256 256)" fill="#53B9FF"/>
+  
+  <!-- Top-right to bottom-left bar (medium-dark blue) -->
+  <rect x="50" y="252" width="412" height="80" rx="40" transform="rotate(45 256 256)" fill="#0080FF" opacity="0.8"/>
+  
+  <!-- Top-left to bottom-right bar (darkest blue) -->
+  <rect x="50" y="180" width="412" height="80" rx="40" transform="rotate(-45 256 256)" fill="#0052CC" opacity="0.7"/>
+</svg>
