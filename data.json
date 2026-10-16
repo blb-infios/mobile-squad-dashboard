@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-16T13:52:48.336Z",
-  "lastUpdated": "2026-10-16T13:52:48.336Z",
+  "generatedAt": "2026-10-16T18:27:19.736Z",
+  "lastUpdated": "2026-10-16T18:27:19.736Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -40,9 +40,9 @@
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Dex.dev",
               "status": "succeeded",
-              "lastRun": "2026-10-09T09:35:55.8923933Z",
-              "duration": "12m 26s",
-              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022"
+              "lastRun": "2026-10-16T14:51:58.253079Z",
+              "duration": "14m 24s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544010"
             },
             "release": {
               "name": "Koerber.Mobile.Kotlin.Dex.release",
@@ -62,8 +62,8 @@
           "lastBuild": {
             "result": "succeeded",
             "status": "succeeded",
-            "finishTime": "2026-10-09T09:35:55.8923933Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022"
+            "finishTime": "2026-10-16T14:51:58.253079Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544010"
           },
           "lastCommit": {
             "id": "01efe44",
@@ -72,8 +72,16 @@
             "date": "2026-10-09T09:19:57Z",
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/commit/01efe44ac0b8c7a683a604b4e3cfe81423c55651"
           },
-          "activePRs": 0,
-          "pullRequests": []
+          "activePRs": 1,
+          "pullRequests": [
+            {
+              "id": 117023,
+              "title": "#506673: DEX Library - Add iOS coverage gate support",
+              "author": "Vijay Masal",
+              "status": "active",
+              "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/pullrequest/117023"
+            }
+          ]
         },
         {
           "name": "K1V1 Authorization",
@@ -941,9 +949,9 @@
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Dex.dev",
           "status": "succeeded",
-          "lastRun": "2026-10-09T09:35:55.8923933Z",
-          "duration": "12m 26s",
-          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022"
+          "lastRun": "2026-10-16T14:51:58.253079Z",
+          "duration": "14m 24s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544010"
         },
         "release": {
           "name": "Koerber.Mobile.Kotlin.Dex.release",
@@ -963,8 +971,8 @@
       "lastBuild": {
         "result": "succeeded",
         "status": "succeeded",
-        "finishTime": "2026-10-09T09:35:55.8923933Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022"
+        "finishTime": "2026-10-16T14:51:58.253079Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544010"
       },
       "lastCommit": {
         "id": "01efe44",
@@ -973,8 +981,16 @@
         "date": "2026-10-09T09:19:57Z",
         "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/commit/01efe44ac0b8c7a683a604b4e3cfe81423c55651"
       },
-      "activePRs": 0,
-      "pullRequests": [],
+      "activePRs": 1,
+      "pullRequests": [
+        {
+          "id": 117023,
+          "title": "#506673: DEX Library - Add iOS coverage gate support",
+          "author": "Vijay Masal",
+          "status": "active",
+          "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/pullrequest/117023"
+        }
+      ],
       "category": "kmp",
       "type": "kmp"
     },
