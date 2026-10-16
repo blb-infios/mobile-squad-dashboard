@@ -831,8 +831,8 @@ function renderCard({ repo, ev }, index) {
   // KMP icon (Kotlin Multiplatform logo - triangle)
   const kmpIcon = type === 'kmp' ? `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="kmp-grad-${index}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--kmp-grad-1)"/><stop offset="100%" stop-color="var(--kmp-grad-2)"/></linearGradient></defs><path fill="url(#kmp-grad-${index})" d="M0 60V0h60L30 30L60 60H0z"/></svg>` : '';
   
-  // Capacitor icon (crossed bars forming X)
-  const capIcon = type === 'capacitor' ? `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cap-grad-${index}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--cap-grad-1)"/><stop offset="100%" stop-color="var(--cap-grad-2)"/></linearGradient></defs><rect x="3" y="14" width="54" height="10" rx="2" transform="rotate(-45 30 30)" fill="url(#cap-grad-${index})"/><rect x="3" y="36" width="54" height="10" rx="2" transform="rotate(-135 30 30)" fill="url(#cap-grad-${index})" opacity="0.7"/></svg>` : '';
+  // Capacitor icon (crossed bars forming X shape)
+  const capIcon = type === 'capacitor' ? `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cap-grad-${index}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--cap-grad-1)"/><stop offset="100%" stop-color="var(--cap-grad-2)"/></linearGradient></defs><path fill="url(#cap-grad-${index})" d="M8 15 L15 8 L52 45 L45 52 Z"/><path fill="url(#cap-grad-${index})" opacity="0.7" d="M45 8 L52 15 L15 52 L8 45 Z"/></svg>` : '';
   
   const typeIcon = kmpIcon || capIcon;
 
