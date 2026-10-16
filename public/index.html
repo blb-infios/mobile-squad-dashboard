@@ -273,14 +273,27 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .card.is-warning  { --status: var(--warn); }
 .card.is-critical { --status: var(--crit); }
 
-.card-head { padding: 16px 18px 14px; }
-.card-title-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-.card-name { font-size: 1.12rem; font-weight: 700; line-height: 1.25; overflow-wrap: break-word; }
-.card-meta { margin-top: 10px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.card-head { padding: 20px 20px 16px; display: flex; gap: 16px; }
+
+.card-icon {
+  width: 56px; height: 56px; flex-shrink: 0;
+  border-radius: 12px; display: grid; place-items: center;
+  background: var(--surface-2); border: 1px solid var(--border);
+}
+.card-icon svg { width: 40px; height: 40px; }
+.card-icon.type-kmp { background: var(--kmp-bg); border-color: var(--kmp-fg); }
+.card-icon.type-capacitor { background: var(--cap-bg); border-color: var(--cap-fg); }
+
+.card-header-content { flex: 1; min-width: 0; }
+
+.card-title-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.card-name { font-size: 1.15rem; font-weight: 700; line-height: 1.3; overflow-wrap: break-word; }
+
+.card-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 
 .pill {
   flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px;
-  font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap;
+  font-size: .75rem; font-weight: 700; padding: 4px 11px; border-radius: 999px; white-space: nowrap;
 }
 .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 .pill.healthy  { background: var(--ok-soft);   color: var(--ok-text); }
@@ -288,22 +301,19 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .pill.critical { background: var(--crit-soft); color: var(--crit-text); }
 
 .type-badge { 
-  font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 6px;
+  font-size: .75rem; font-weight: 700; padding: 4px 10px; border-radius: 6px;
   display: inline-flex; align-items: center; gap: 5px;
-}
-.type-badge svg {
-  width: 14px; height: 14px; flex-shrink: 0;
 }
 .type-kmp       { background: var(--kmp-bg); color: var(--kmp-fg); }
 .type-capacitor { background: var(--cap-bg); color: var(--cap-fg); }
 .type-other     { background: var(--surface-2); color: var(--muted); }
 
-.platforms { display: flex; gap: 4px; }
+.platforms { display: flex; gap: 6px; }
 .platforms li {
-  width: 28px; height: 28px; display: grid; place-items: center;
-  background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; font-size: .95rem;
+  width: 32px; height: 32px; display: grid; place-items: center;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem;
 }
-.platforms li.text { width: auto; padding: 0 8px; font-size: .72rem; font-weight: 600; color: var(--muted); }
+.platforms li.text { width: auto; padding: 0 10px; font-size: .72rem; font-weight: 600; color: var(--muted); }
 
 .section { padding: 12px 18px 14px; border-top: 1px solid var(--border); }
 .section-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 9px; min-height: 22px; }
@@ -849,13 +859,18 @@ function renderCard({ repo, ev }, index) {
   return `
   <article class="card is-${ev.level}" aria-labelledby="${headingId}">
     <header class="card-head">
-      <div class="card-title-row">
-        <h2 class="card-name" id="${headingId}">${breakable(name)}</h2>
-        <span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span>
+      <div class="card-icon ${typeCls}">
+        ${typeIcon}
       </div>
-      <div class="card-meta">
-        <span class="type-badge ${typeCls}">${typeIcon}${esc(typeLabel)}</span>
-        ${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}
+      <div class="card-header-content">
+        <div class="card-title-row">
+          <h2 class="card-name" id="${headingId}">${breakable(name)}</h2>
+          <span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span>
+        </div>
+        <div class="card-meta">
+          <span class="type-badge ${typeCls}">${esc(typeLabel)}</span>
+          ${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}
+        </div>
       </div>
     </header>
     ${renderVersions(repo.versions)}
