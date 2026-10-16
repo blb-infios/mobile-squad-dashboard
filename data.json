@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T12:07:15.740Z",
+  "generatedAt": "2026-10-16T12:13:30.569Z",
   "summary": {
     "total": 14,
     "healthy": 13,
@@ -442,6 +442,453 @@
           "pullRequests": []
         }
       ]
+    }
+  ],
+  "repositories": [
+    {
+      "name": "Dex",
+      "fullName": "Koerber.Mobile.Kotlin.Dex",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex",
+      "lastBuild": {
+        "id": 539022,
+        "number": "20261009.1",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-10-09T09:35:55.8923933Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022"
+      },
+      "lastCommit": {
+        "id": "01efe44",
+        "message": "#503490: Add Android and iOS Maven publications to Koerber.Mobile.Kotlin.Dex",
+        "author": "Bhargav L",
+        "date": "2026-10-09T09:19:57Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/commit/01efe44ac0b8c7a683a604b4e3cfe81423c55651"
+      },
+      "activePRs": 0,
+      "pullRequests": [],
+      "category": "kmp",
+      "type": "KMP"
+    },
+    {
+      "name": "K1V1 Authorization",
+      "fullName": "Koerber.Mobile.Kotlin.K1V1Authorization",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.K1V1Authorization",
+      "lastBuild": {
+        "id": 539025,
+        "number": "20261009.1",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-10-09T09:38:21.5527388Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539025"
+      },
+      "lastCommit": {
+        "id": "99b5c81",
+        "message": "#503491: Add Android and iOS Maven publications to Koerber.Mobile.Kotlin.K1V1Authorization",
+        "author": "Bhargav L",
+        "date": "2026-10-09T09:24:35Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.K1V1Authorization/commit/99b5c81e4aca13154a89f7b4ec40f2ebc7f70261"
+      },
+      "activePRs": 0,
+      "pullRequests": [],
+      "category": "kmp",
+      "type": "KMP"
+    },
+    {
+      "name": "Scanner",
+      "fullName": "Koerber.Mobile.Kotlin.BarcodeScanning",
+      "health": {
+        "status": "unhealthy",
+        "label": "Unhealthy",
+        "color": "#dc3545"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.BarcodeScanning",
+      "lastBuild": {
+        "id": 542771,
+        "number": "20261015.1",
+        "result": "failed",
+        "status": "completed",
+        "finishTime": "2026-10-15T09:10:38.6403155Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542771"
+      },
+      "lastCommit": {
+        "id": "bcf8d61",
+        "message": "#503889: Fix Koerber.Mobile.Kotlin.BarcodeScanning pipelines: iOS XCFramework publishing",
+        "author": "Vijay Masal",
+        "date": "2026-10-13T16:27:56Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.BarcodeScanning/commit/bcf8d61b9e34b5b5d946fe82dddbf704fe7b6480"
+      },
+      "activePRs": 0,
+      "pullRequests": [],
+      "category": "kmp",
+      "type": "KMP"
+    },
+    {
+      "name": "Printing",
+      "fullName": "Koerber.Mobile.Kotlin.Printing",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing",
+      "lastBuild": {
+        "id": 542007,
+        "number": "20261014.1",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-10-14T13:04:47.4964824Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007"
+      },
+      "lastCommit": {
+        "id": "2fa3a6a",
+        "message": "#503492: Add Android and iOS Maven publications to Koerber.Mobile.Kotlin.Printing",
+        "author": "Bhargav L",
+        "date": "2026-10-09T14:26:41Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/commit/2fa3a6a1089438de0208f8102a85e75cb9b7699e"
+      },
+      "activePRs": 0,
+      "pullRequests": [],
+      "category": "kmp",
+      "type": "KMP"
+    },
+    {
+      "name": "Beep",
+      "fullName": "Koerber.Mobile.Kotlin.Beep",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Beep",
+      "lastBuild": {
+        "id": 529320,
+        "number": "20260923.3",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-09-23T15:29:52.8255294Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529320"
+      },
+      "lastCommit": {
+        "id": "f8872ca",
+        "message": "#503886: Fix Beep pipeline: correct pathToPublish to shared/build/libs",
+        "author": "Vijay Masal",
+        "date": "2026-10-09T14:27:08Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Beep/commit/f8872caf7ee7ba0965a0bd16ce2c3f2bb072c2a3"
+      },
+      "activePRs": 0,
+      "pullRequests": [],
+      "category": "kmp",
+      "type": "KMP"
+    },
+    {
+      "name": "Vibrate",
+      "fullName": "Koerber.Mobile.Kotlin.Vibrate",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Vibrate",
+      "lastBuild": {
+        "id": 530028,
+        "number": "20260924.5",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-09-24T12:30:03.879783Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530028"
+      },
+      "lastCommit": {
+        "id": "581ba9d",
+        "message": "Merged PR 112078: Fix Vibrate KMP library pipelines publishing to wrong Azure Artifacts feed (403 AddPackage)",
+        "author": "Vijay Masal",
+        "date": "2026-09-10T13:29:41Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Vibrate/commit/581ba9d5acbf0d0098b7426e2d5a8e2b3e101338"
+      },
+      "activePRs": 1,
+      "pullRequests": [
+        {
+          "id": 99300,
+          "title": "Create Vibrate release Pipeline for the KMP Libraries",
+          "author": "Vijay Masal",
+          "status": "active",
+          "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Vibrate/pullrequest/99300"
+        }
+      ],
+      "category": "kmp",
+      "type": "KMP"
+    },
+    {
+      "name": "K1Authorization",
+      "fullName": "Koerber.Mobile.Capacitor.K1Authorization",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.K1Authorization",
+      "lastBuild": {
+        "id": 542008,
+        "number": "20261014.1",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-10-14T13:05:21.1801306Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542008"
+      },
+      "lastCommit": {
+        "id": "b142403",
+        "message": "Feature/504632 k1authorization ios implementation",
+        "author": "Bhargav L",
+        "date": "2026-10-14T12:52:46Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.K1Authorization/commit/b142403aafa3c025843cfa69e57db439bf7060d3"
+      },
+      "activePRs": 0,
+      "pullRequests": [],
+      "category": "capacitor",
+      "type": "CAPACITOR"
+    },
+    {
+      "name": "Printing",
+      "fullName": "Koerber.Mobile.Capacitor.Printing",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing",
+      "lastBuild": {
+        "id": 542007,
+        "number": "20261014.1",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-10-14T13:04:47.4964824Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007"
+      },
+      "lastCommit": {
+        "id": "ae0af17",
+        "message": "Feature/504633 printing release pipeline",
+        "author": "Bhargav L",
+        "date": "2026-10-14T12:52:33Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing/commit/ae0af173cfb9613a501a53f7281536d1bccd1eaf"
+      },
+      "activePRs": 0,
+      "pullRequests": [],
+      "category": "capacitor",
+      "type": "CAPACITOR"
+    },
+    {
+      "name": "Camera",
+      "fullName": "Koerber.Mobile.Capacitor.Camera",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera",
+      "lastBuild": {
+        "id": 531065,
+        "number": "20260925.5",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-09-25T14:32:04.548899Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531065"
+      },
+      "lastCommit": {
+        "id": "e087e8c",
+        "message": "#498110: Add datetime/build metadata to release pipeline",
+        "author": "Bhargav L",
+        "date": "2026-09-24T14:40:18Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera/commit/e087e8c93a4d35886ec29a1cc1430f628bdb31a7"
+      },
+      "activePRs": 2,
+      "pullRequests": [
+        {
+          "id": 114052,
+          "title": "Feature/version update",
+          "author": "Bhargav L",
+          "status": "active",
+          "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera/pullrequest/114052"
+        },
+        {
+          "id": 110115,
+          "title": "Snyk issues fixed",
+          "author": "Bhargav L",
+          "status": "active",
+          "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera/pullrequest/110115"
+        }
+      ],
+      "category": "capacitor",
+      "type": "CAPACITOR"
+    },
+    {
+      "name": "Logger",
+      "fullName": "Koerber.Mobile.Capacitor.Logger",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger",
+      "lastBuild": {
+        "id": 542040,
+        "number": "20261014.1",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-10-14T13:31:04.4455552Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542040"
+      },
+      "lastCommit": {
+        "id": "a16c7eb",
+        "message": "Fix: Force Netty 4.1.138.Final to resolve SNYK-JAVA-IONETTY-20074868 and SNYK...",
+        "author": "Bhargav L",
+        "date": "2026-09-24T14:38:57Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger/commit/a16c7eb58b96f91c7f404f9cab79dcd51a18b08f"
+      },
+      "activePRs": 1,
+      "pullRequests": [
+        {
+          "id": 116614,
+          "title": "Feature/504501 logger bouncy castle security fix",
+          "author": "Bhargav L",
+          "status": "active",
+          "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger/pullrequest/116614"
+        }
+      ],
+      "category": "capacitor",
+      "type": "CAPACITOR"
+    },
+    {
+      "name": "Beep",
+      "fullName": "Koerber.Mobile.Capacitor.Beep",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Beep",
+      "lastBuild": {
+        "id": 529320,
+        "number": "20260923.3",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-09-23T15:29:52.8255294Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529320"
+      },
+      "lastCommit": {
+        "id": "e6ec35f",
+        "message": "#498110: Add datetime/build metadata to release pipeline",
+        "author": "Bhargav L",
+        "date": "2026-09-23T15:13:54Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Beep/commit/e6ec35f58b5f7acf6b32688f5b2705adbfb012d3"
+      },
+      "activePRs": 1,
+      "pullRequests": [
+        {
+          "id": 114053,
+          "title": "Feature/version update",
+          "author": "Bhargav L",
+          "status": "active",
+          "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Beep/pullrequest/114053"
+        }
+      ],
+      "category": "capacitor",
+      "type": "CAPACITOR"
+    },
+    {
+      "name": "MDM Reader",
+      "fullName": "Koerber.Mobile.Capacitor.MDMReader",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader",
+      "lastBuild": {
+        "id": 532071,
+        "number": "20260928.1",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-09-28T14:49:16.6540251Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=532071"
+      },
+      "lastCommit": {
+        "id": "13a8fee",
+        "message": "Fix: Force Netty 4.1.138.Final to resolve SNYK-JAVA-IONETTY-20074868 and SNYK...",
+        "author": "Bhargav L",
+        "date": "2026-09-28T14:42:03Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader/commit/13a8fee94ccc6e730271f8e2a3ba574a0a5dc7d7"
+      },
+      "activePRs": 0,
+      "pullRequests": [],
+      "category": "capacitor",
+      "type": "CAPACITOR"
+    },
+    {
+      "name": "Vibrate",
+      "fullName": "Koerber.Mobile.Capacitor.Vibrate",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate",
+      "lastBuild": {
+        "id": 530028,
+        "number": "20260924.5",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-09-24T12:30:03.879783Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530028"
+      },
+      "lastCommit": {
+        "id": "d73e98d",
+        "message": "#498110: Add datetime/build metadata to release pipeline",
+        "author": "Bhargav L",
+        "date": "2026-09-24T12:05:25Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate/commit/d73e98dd97697ec5c073d3af3eaa555bed6b70b9"
+      },
+      "activePRs": 0,
+      "pullRequests": [],
+      "category": "capacitor",
+      "type": "CAPACITOR"
+    },
+    {
+      "name": "Security Automation",
+      "fullName": "MobileToolKit.Maintenance",
+      "health": {
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
+      },
+      "url": "https://dev.azure.com/highjumpvso/WES/_git/MobileToolKit.Maintenance",
+      "lastBuild": {
+        "id": 539829,
+        "number": "20261010.1",
+        "result": "succeeded",
+        "status": "completed",
+        "finishTime": "2026-10-10T11:01:39.1957488Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539829"
+      },
+      "lastCommit": {
+        "id": "3b66be0",
+        "message": "Merged PR 108430: #486559: Add SBOM generation endpoint and per-library Security PBI creation",
+        "author": "Bhargav L",
+        "date": "2026-08-10T14:23:16Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/MobileToolKit.Maintenance/commit/3b66be021a6f0b3a0ba08caa1a0d7b04eece880c"
+      },
+      "activePRs": 0,
+      "pullRequests": [],
+      "category": "security",
+      "type": "SECURITY"
     }
   ]
 }
