@@ -280,7 +280,7 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
   border-radius: 12px; display: grid; place-items: center;
   background: var(--surface-2); border: 1px solid var(--border);
 }
-.card-icon svg { width: 40px; height: 40px; }
+.card-icon img { width: 40px; height: 40px; }
 .card-icon.type-kmp { background: var(--kmp-bg); border-color: var(--kmp-fg); }
 .card-icon.type-capacitor { background: var(--cap-bg); border-color: var(--cap-fg); }
 
@@ -839,10 +839,10 @@ function renderCard({ repo, ev }, index) {
   const typeCls = type === 'kmp' ? 'type-kmp' : type === 'capacitor' ? 'type-capacitor' : 'type-other';
   
   // KMP icon (Kotlin Multiplatform logo - triangle)
-  const kmpIcon = type === 'kmp' ? `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="kmp-grad-${index}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--kmp-grad-1)"/><stop offset="100%" stop-color="var(--kmp-grad-2)"/></linearGradient></defs><path fill="url(#kmp-grad-${index})" d="M0 60V0h60L30 30L60 60H0z"/></svg>` : '';
+  const kmpIcon = type === 'kmp' ? `<img src="icons/kmp.svg" alt="KMP" />` : '';
   
-  // Capacitor icon (crossed bars forming X shape)
-  const capIcon = type === 'capacitor' ? `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cap-grad-${index}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--cap-grad-1)"/><stop offset="100%" stop-color="var(--cap-grad-2)"/></linearGradient></defs><path fill="url(#cap-grad-${index})" d="M8 15 L15 8 L52 45 L45 52 Z"/><path fill="url(#cap-grad-${index})" opacity="0.7" d="M45 8 L52 15 L15 52 L8 45 Z"/></svg>` : '';
+  // Capacitor icon (official logo with overlapping bars)
+  const capIcon = type === 'capacitor' ? `<img src="icons/capacitor.svg" alt="Capacitor" />` : '';
   
   const typeIcon = kmpIcon || capIcon;
 
