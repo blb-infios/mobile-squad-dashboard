@@ -1,0 +1,9 @@
+{
+  "resourceGroup": "mobile-squad-rg",
+  "appName": "mobile-squad-dashboard",
+  "location": "eastus2",
+  "sku": "Free",
+  "githubRepo": "https://github.com/blb-infios/mobile-squad-dashboard",
+  "branch": "main",
+  "appLocation": "public"
+}
