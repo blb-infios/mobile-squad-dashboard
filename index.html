@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Squad Repository Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📊 Mobile Squad Repository Dashboard</h1>
+      <p class="subtitle">Real-time monitoring of all KMP, Capacitor, and Security repositories</p>
+      <div id="lastUpdated" class="last-updated">Loading...</div>
+    </header>
+
+    <section class="summary-cards">
+      <div class="card card-total">
+        <div class="card-value" id="totalRepos">0</div>
+        <div class="card-label">Total Repositories</div>
+      </div>
+      <div class="card card-healthy">
+        <div class="card-value" id="healthyRepos">0</div>
+        <div class="card-label">Healthy</div>
+      </div>
+      <div class="card card-warning">
+        <div class="card-value" id="warningRepos">0</div>
+        <div class="card-label">Warning</div>
+      </div>
+      <div class="card card-unhealthy">
+        <div class="card-value" id="unhealthyRepos">0</div>
+        <div class="card-label">Unhealthy</div>
+      </div>
+      <div class="card card-unknown">
+        <div class="card-value" id="unknownRepos">0</div>
+        <div class="card-label">Unknown</div>
+      </div>
+    </section>
+
+    <main id="repoCategories">
+      <!-- Repository categories will be dynamically inserted here -->
+    </main>
+
+    <footer>
+      <p>Data sourced from Azure DevOps API | Auto-refreshed every 6 hours</p>
+      <p><a href="https://highjumpvso.visualstudio.com/WES" target="_blank">View in Azure DevOps →</a></p>
+    </footer>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
