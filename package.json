@@ -1,0 +1,20 @@
+{
+  "name": "mobile-squad-dashboard",
+  "version": "1.0.0",
+  "description": "Automated repository monitoring dashboard for Mobile Squad",
+  "main": "src/aggregate.js",
+  "scripts": {
+    "aggregate": "node src/aggregate.js",
+    "serve": "npx http-server public -p 8080 -o"
+  },
+  "keywords": ["dashboard", "azure-devops", "monitoring"],
+  "author": "Mobile Squad",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
