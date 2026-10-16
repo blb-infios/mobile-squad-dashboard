@@ -195,7 +195,8 @@ async function aggregateData() {
       unhealthy: 0,
       unknown: 0
     },
-    categories: []
+    categories: [],
+    repositories: [] // Flat list for new UI
   };
   
   // Process each category
@@ -269,6 +270,13 @@ async function aggregateData() {
       
       categoryData.repositories.push(repoData);
       dashboardData.summary[health.status]++;
+      
+      // Add to flat repositories array for new UI
+      dashboardData.repositories.push({
+        ...repoData,
+        category: category, // Add category for filtering
+        type: category.toUpperCase() // For type filter
+      });
     }
     
     dashboardData.categories.push(categoryData);
