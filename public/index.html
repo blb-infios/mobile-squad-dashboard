@@ -68,6 +68,10 @@
   /* KMP icon gradient */
   --kmp-grad-1: #7F52FF;
   --kmp-grad-2: #C811E2;
+  
+  /* Capacitor icon gradient */
+  --cap-grad-1: #0080FF;
+  --cap-grad-2: #73B3FF;
 
   --shadow:    0 1px 2px rgba(20, 28, 45, .06), 0 4px 14px rgba(20, 28, 45, .05);
   --shadow-lg: 0 2px 4px rgba(20, 28, 45, .08), 0 10px 28px rgba(20, 28, 45, .10);
@@ -104,6 +108,9 @@
   
   --kmp-grad-1: #A97BFF;
   --kmp-grad-2: #E951FF;
+  
+  --cap-grad-1: #4DA3FF;
+  --cap-grad-2: #99CCFF;
 
   --shadow:    0 1px 2px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .25);
   --shadow-lg: 0 2px 4px rgba(0, 0, 0, .5), 0 10px 28px rgba(0, 0, 0, .35);
@@ -820,7 +827,14 @@ function renderCard({ repo, ev }, index) {
   const type = String(repo.type || '').toLowerCase();
   const typeLabel = type === 'kmp' ? 'KMP' : type === 'capacitor' ? 'Capacitor' : (repo.type ? String(repo.type) : 'Unknown');
   const typeCls = type === 'kmp' ? 'type-kmp' : type === 'capacitor' ? 'type-capacitor' : 'type-other';
+  
+  // KMP icon (Kotlin Multiplatform logo - triangle)
   const kmpIcon = type === 'kmp' ? `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="kmp-grad-${index}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--kmp-grad-1)"/><stop offset="100%" stop-color="var(--kmp-grad-2)"/></linearGradient></defs><path fill="url(#kmp-grad-${index})" d="M0 60V0h60L30 30L60 60H0z"/></svg>` : '';
+  
+  // Capacitor icon (crossed bars forming X)
+  const capIcon = type === 'capacitor' ? `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cap-grad-${index}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--cap-grad-1)"/><stop offset="100%" stop-color="var(--cap-grad-2)"/></linearGradient></defs><rect x="3" y="14" width="54" height="10" rx="2" transform="rotate(-45 30 30)" fill="url(#cap-grad-${index})"/><rect x="3" y="36" width="54" height="10" rx="2" transform="rotate(-135 30 30)" fill="url(#cap-grad-${index})" opacity="0.7"/></svg>` : '';
+  
+  const typeIcon = kmpIcon || capIcon;
 
   const statusLabel = { healthy: 'Healthy', warning: 'Warnings', critical: 'Critical' }[ev.level];
   const statusDetail = ev.reasons.length ? ev.reasons.join(', ') : 'All pipelines passing, no critical or high findings';
@@ -840,7 +854,7 @@ function renderCard({ repo, ev }, index) {
         <span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span>
       </div>
       <div class="card-meta">
-        <span class="type-badge ${typeCls}">${kmpIcon}${esc(typeLabel)}</span>
+        <span class="type-badge ${typeCls}">${typeIcon}${esc(typeLabel)}</span>
         ${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}
       </div>
     </header>
