@@ -1,10 +1,11 @@
 {
-  "generatedAt": "2026-10-16T13:49:04.168Z",
+  "generatedAt": "2026-10-16T13:52:48.336Z",
+  "lastUpdated": "2026-10-16T13:52:48.336Z",
   "summary": {
     "total": 14,
-    "healthy": 13,
+    "healthy": 11,
     "warning": 0,
-    "unhealthy": 1,
+    "unhealthy": 3,
     "unknown": 0
   },
   "categories": [
@@ -21,11 +22,46 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex",
+          "platforms": [
+            "android",
+            "ios",
+            "jvm"
+          ],
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092849",
+            "platformFeed": "1.0.1"
+          },
+          "packages": {
+            "npm": null,
+            "maven": "com.infios:dex-kmp-library"
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Kotlin.Dex.dev",
+              "status": "succeeded",
+              "lastRun": "2026-10-09T09:35:55.8923933Z",
+              "duration": "12m 26s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Kotlin.Dex.release",
+              "status": "succeeded",
+              "lastRun": "2026-09-10T15:31:07.2910418Z",
+              "duration": "7m 49s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521677"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 1,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 539022,
-            "number": "20261009.1",
             "result": "succeeded",
-            "status": "completed",
+            "status": "succeeded",
             "finishTime": "2026-10-09T09:35:55.8923933Z",
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022"
           },
@@ -48,11 +84,46 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.K1V1Authorization",
+          "platforms": [
+            "android",
+            "ios",
+            "jvm"
+          ],
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092654",
+            "platformFeed": "1.0.1"
+          },
+          "packages": {
+            "npm": null,
+            "maven": "com.infios:k1v1auth-kmp-library"
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Kotlin.K1V1Authorization.dev",
+              "status": "succeeded",
+              "lastRun": "2026-10-09T09:38:21.5527388Z",
+              "duration": "13m 24s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539025"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Kotlin.K1V1Authorization.release",
+              "status": "succeeded",
+              "lastRun": "2026-09-11T02:43:34.86602Z",
+              "duration": "9m 35s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=522129"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 1,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 539025,
-            "number": "20261009.1",
             "result": "succeeded",
-            "status": "completed",
+            "status": "succeeded",
             "finishTime": "2026-10-09T09:38:21.5527388Z",
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539025"
           },
@@ -75,11 +146,46 @@
             "color": "#dc3545"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.BarcodeScanning",
+          "platforms": [
+            "android",
+            "ios",
+            "jvm"
+          ],
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-202610061308",
+            "platformFeed": "1.0.0"
+          },
+          "packages": {
+            "npm": null,
+            "maven": "com.infios:barcode-scanner-kmp-library"
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Kotlin.BarcodeScanning.dev",
+              "status": "failed",
+              "lastRun": "2026-10-15T09:10:38.6403155Z",
+              "duration": "10m 29s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542771"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Kotlin.BarcodeScanning.release",
+              "status": "succeeded",
+              "lastRun": "2026-05-19T11:07:42.0126922Z",
+              "duration": "56m 26s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=466861"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 2,
+            "committed": 30,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 542771,
-            "number": "20261015.1",
             "result": "failed",
-            "status": "completed",
+            "status": "failed",
             "finishTime": "2026-10-15T09:10:38.6403155Z",
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542771"
           },
@@ -97,18 +203,53 @@
           "name": "Printing",
           "fullName": "Koerber.Mobile.Kotlin.Printing",
           "health": {
-            "status": "healthy",
-            "label": "Healthy",
-            "color": "#28a745"
+            "status": "unhealthy",
+            "label": "Unhealthy",
+            "color": "#dc3545"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing",
+          "platforms": [
+            "android",
+            "ios",
+            "jvm"
+          ],
+          "versions": {
+            "source": "2.0.1",
+            "devFeed": "2.0.0-20261008132046",
+            "platformFeed": "2.0.1-luak-vendor-test.20261016002135"
+          },
+          "packages": {
+            "npm": null,
+            "maven": "com.infios:printing-kmp-library"
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Kotlin.Printing.dev",
+              "status": "failed",
+              "lastRun": "2026-10-09T14:36:24.1120937Z",
+              "duration": "9m 32s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539255"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Kotlin.Printing.release",
+              "status": "succeeded",
+              "lastRun": "2026-10-16T00:46:53.0317887Z",
+              "duration": "25m 38s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=543481"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 25,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 542007,
-            "number": "20261014.1",
             "result": "succeeded",
-            "status": "completed",
-            "finishTime": "2026-10-14T13:04:47.4964824Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007"
+            "status": "succeeded",
+            "finishTime": "2026-10-16T00:46:53.0317887Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=543481"
           },
           "lastCommit": {
             "id": "2fa3a6a",
@@ -129,13 +270,42 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Beep",
+          "platforms": [
+            "android",
+            "ios",
+            "jvm"
+          ],
+          "versions": {
+            "source": "1.0.3",
+            "devFeed": "1.0.3-202610091437",
+            "platformFeed": "1.0.2"
+          },
+          "packages": {
+            "npm": null,
+            "maven": "com.infios:beep-kmp-library-android"
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Kotlin.Beep.dev",
+              "status": "succeeded",
+              "lastRun": "2026-10-09T15:05:58.9288216Z",
+              "duration": "38m 42s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539260"
+            },
+            "release": null
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 11,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 529320,
-            "number": "20260923.3",
             "result": "succeeded",
-            "status": "completed",
-            "finishTime": "2026-09-23T15:29:52.8255294Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529320"
+            "status": "succeeded",
+            "finishTime": "2026-10-09T15:05:58.9288216Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539260"
           },
           "lastCommit": {
             "id": "f8872ca",
@@ -156,13 +326,48 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Vibrate",
+          "platforms": [
+            "android",
+            "ios",
+            "jvm"
+          ],
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-20260902141630",
+            "platformFeed": "1.0.1"
+          },
+          "packages": {
+            "npm": null,
+            "maven": "com.infios:vibrate-kmp-library-ios"
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Kotlin.Vibrate.dev",
+              "status": "succeeded",
+              "lastRun": "2026-09-10T09:49:36.4208298Z",
+              "duration": "14m 16s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521463"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Kotlin.Vibrate.release",
+              "status": "succeeded",
+              "lastRun": "2026-09-10T14:08:27.5289692Z",
+              "duration": "26m 32s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521611"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 8,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 530028,
-            "number": "20260924.5",
             "result": "succeeded",
-            "status": "completed",
-            "finishTime": "2026-09-24T12:30:03.879783Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530028"
+            "status": "succeeded",
+            "finishTime": "2026-09-10T14:08:27.5289692Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521611"
           },
           "lastCommit": {
             "id": "581ba9d",
@@ -197,11 +402,46 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.K1Authorization",
+          "platforms": [
+            "android",
+            "ios",
+            "web"
+          ],
+          "versions": {
+            "source": "1.1.2",
+            "devFeed": "1.1.2-202610141300",
+            "platformFeed": "1.1.1"
+          },
+          "packages": {
+            "npm": "@koerber/mobile-capacitor-k1authorization",
+            "maven": null
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Capacitor.K1Authorization.Dev",
+              "status": "succeeded",
+              "lastRun": "2026-10-14T13:05:21.1801306Z",
+              "duration": "6m 46s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542008"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Capacitor.K1Authorization.Release",
+              "status": "succeeded",
+              "lastRun": "2026-09-25T13:31:38.5579563Z",
+              "duration": "6m 34s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530987"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 2,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 542008,
-            "number": "20261014.1",
             "result": "succeeded",
-            "status": "completed",
+            "status": "succeeded",
             "finishTime": "2026-10-14T13:05:21.1801306Z",
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542008"
           },
@@ -224,11 +464,40 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing",
+          "platforms": [
+            "android",
+            "ios",
+            "web"
+          ],
+          "versions": {
+            "source": "0.0.3",
+            "devFeed": "0.0.3-202610141300",
+            "platformFeed": null
+          },
+          "packages": {
+            "npm": "@koerber/mobile-capacitor-printing",
+            "maven": null
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Capacitor.Printing",
+              "status": "succeeded",
+              "lastRun": "2026-10-14T13:04:47.4964824Z",
+              "duration": "12m 5s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007"
+            },
+            "release": null
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 7,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 542007,
-            "number": "20261014.1",
             "result": "succeeded",
-            "status": "completed",
+            "status": "succeeded",
             "finishTime": "2026-10-14T13:04:47.4964824Z",
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007"
           },
@@ -251,11 +520,46 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera",
+          "platforms": [
+            "android",
+            "ios",
+            "web"
+          ],
+          "versions": {
+            "source": "0.1.0",
+            "devFeed": null,
+            "platformFeed": null
+          },
+          "packages": {
+            "npm": "example-camera-app",
+            "maven": null
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Capacitor.Camera.Dev",
+              "status": "succeeded",
+              "lastRun": "2026-09-25T14:32:04.548899Z",
+              "duration": "8m 15s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531065"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Capacitor.Camera.Release",
+              "status": "succeeded",
+              "lastRun": "2026-09-25T13:03:03.6640159Z",
+              "duration": "7m 41s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530961"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 2,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 531065,
-            "number": "20260925.5",
             "result": "succeeded",
-            "status": "completed",
+            "status": "succeeded",
             "finishTime": "2026-09-25T14:32:04.548899Z",
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531065"
           },
@@ -293,11 +597,46 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger",
+          "platforms": [
+            "android",
+            "ios",
+            "web"
+          ],
+          "versions": {
+            "source": "0.1.0",
+            "devFeed": null,
+            "platformFeed": null
+          },
+          "packages": {
+            "npm": "example",
+            "maven": null
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Capacitor.Logger.Dev",
+              "status": "succeeded",
+              "lastRun": "2026-10-14T13:31:04.4455552Z",
+              "duration": "24m 23s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542040"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Capacitor.Logger.Release",
+              "status": "succeeded",
+              "lastRun": "2026-09-25T14:11:34.9167859Z",
+              "duration": "13m 42s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531030"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 1,
+            "inProgress": 0,
+            "committed": 12,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 542040,
-            "number": "20261014.1",
             "result": "succeeded",
-            "status": "completed",
+            "status": "succeeded",
             "finishTime": "2026-10-14T13:31:04.4455552Z",
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542040"
           },
@@ -323,18 +662,53 @@
           "name": "Beep",
           "fullName": "Koerber.Mobile.Capacitor.Beep",
           "health": {
-            "status": "healthy",
-            "label": "Healthy",
-            "color": "#28a745"
+            "status": "unhealthy",
+            "label": "Unhealthy",
+            "color": "#dc3545"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Beep",
+          "platforms": [
+            "android",
+            "ios",
+            "web"
+          ],
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          },
+          "packages": {
+            "npm": "capacitor-app",
+            "maven": null
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Capacitor.Beep.Dev",
+              "status": "partiallySucceeded",
+              "lastRun": "2026-09-23T15:29:52.8255294Z",
+              "duration": "10m 5s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529320"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Capacitor.Beep.Release",
+              "status": "failed",
+              "lastRun": "2026-09-25T13:50:32.9059004Z",
+              "duration": "5m 41s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531012"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 19,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 529320,
-            "number": "20260923.3",
-            "result": "succeeded",
-            "status": "completed",
-            "finishTime": "2026-09-23T15:29:52.8255294Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529320"
+            "result": "failed",
+            "status": "failed",
+            "finishTime": "2026-09-25T13:50:32.9059004Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531012"
           },
           "lastCommit": {
             "id": "e6ec35f",
@@ -363,11 +737,46 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader",
+          "platforms": [
+            "android",
+            "ios",
+            "web"
+          ],
+          "versions": {
+            "source": "0.1.0",
+            "devFeed": null,
+            "platformFeed": null
+          },
+          "packages": {
+            "npm": "example-app",
+            "maven": null
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
+              "status": "succeeded",
+              "lastRun": "2026-09-28T14:49:16.6540251Z",
+              "duration": "7m 2s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=532071"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Capacitor.MDMReader.Release",
+              "status": "succeeded",
+              "lastRun": "2026-09-25T13:28:42.4030712Z",
+              "duration": "4m 22s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530977"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 6,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 532071,
-            "number": "20260928.1",
             "result": "succeeded",
-            "status": "completed",
+            "status": "succeeded",
             "finishTime": "2026-09-28T14:49:16.6540251Z",
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=532071"
           },
@@ -390,13 +799,48 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate",
+          "platforms": [
+            "android",
+            "ios",
+            "web"
+          ],
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          },
+          "packages": {
+            "npm": "capacitor-app",
+            "maven": null
+          },
+          "pipelines": {
+            "ci": {
+              "name": "Koerber.Mobile.Capacitor.Vibrate.Dev",
+              "status": "succeeded",
+              "lastRun": "2026-09-24T12:30:03.879783Z",
+              "duration": "11m 40s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530028"
+            },
+            "release": {
+              "name": "Koerber.Mobile.Capacitor.Vibrate.Release",
+              "status": "succeeded",
+              "lastRun": "2026-09-24T14:27:04.6953821Z",
+              "duration": "14m 41s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530264"
+            }
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 18,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 530028,
-            "number": "20260924.5",
             "result": "succeeded",
-            "status": "completed",
-            "finishTime": "2026-09-24T12:30:03.879783Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530028"
+            "status": "succeeded",
+            "finishTime": "2026-09-24T14:27:04.6953821Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530264"
           },
           "lastCommit": {
             "id": "d73e98d",
@@ -423,11 +867,36 @@
             "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/MobileToolKit.Maintenance",
+          "platforms": [],
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          },
+          "packages": {
+            "npm": "mobile-toolkit-security-automation",
+            "maven": null
+          },
+          "pipelines": {
+            "ci": {
+              "name": "MobileToolKit.Maintenance",
+              "status": "succeeded",
+              "lastRun": "2026-10-10T11:01:39.1957488Z",
+              "duration": "1m 16s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539829"
+            },
+            "release": null
+          },
+          "snyk": null,
+          "workItems": {
+            "open": 0,
+            "inProgress": 0,
+            "committed": 0,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+          },
           "lastBuild": {
-            "id": 539829,
-            "number": "20261010.1",
             "result": "succeeded",
-            "status": "completed",
+            "status": "succeeded",
             "finishTime": "2026-10-10T11:01:39.1957488Z",
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539829"
           },
@@ -454,11 +923,46 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex",
+      "platforms": [
+        "android",
+        "ios",
+        "jvm"
+      ],
+      "versions": {
+        "source": "1.0.1",
+        "devFeed": "1.0.1-20261009092849",
+        "platformFeed": "1.0.1"
+      },
+      "packages": {
+        "npm": null,
+        "maven": "com.infios:dex-kmp-library"
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Kotlin.Dex.dev",
+          "status": "succeeded",
+          "lastRun": "2026-10-09T09:35:55.8923933Z",
+          "duration": "12m 26s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Kotlin.Dex.release",
+          "status": "succeeded",
+          "lastRun": "2026-09-10T15:31:07.2910418Z",
+          "duration": "7m 49s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521677"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 1,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 539022,
-        "number": "20261009.1",
         "result": "succeeded",
-        "status": "completed",
+        "status": "succeeded",
         "finishTime": "2026-10-09T09:35:55.8923933Z",
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022"
       },
@@ -472,7 +976,7 @@
       "activePRs": 0,
       "pullRequests": [],
       "category": "kmp",
-      "type": "KMP"
+      "type": "kmp"
     },
     {
       "name": "K1V1 Authorization",
@@ -483,11 +987,46 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.K1V1Authorization",
+      "platforms": [
+        "android",
+        "ios",
+        "jvm"
+      ],
+      "versions": {
+        "source": "1.0.1",
+        "devFeed": "1.0.1-20261009092654",
+        "platformFeed": "1.0.1"
+      },
+      "packages": {
+        "npm": null,
+        "maven": "com.infios:k1v1auth-kmp-library"
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Kotlin.K1V1Authorization.dev",
+          "status": "succeeded",
+          "lastRun": "2026-10-09T09:38:21.5527388Z",
+          "duration": "13m 24s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539025"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Kotlin.K1V1Authorization.release",
+          "status": "succeeded",
+          "lastRun": "2026-09-11T02:43:34.86602Z",
+          "duration": "9m 35s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=522129"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 1,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 539025,
-        "number": "20261009.1",
         "result": "succeeded",
-        "status": "completed",
+        "status": "succeeded",
         "finishTime": "2026-10-09T09:38:21.5527388Z",
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539025"
       },
@@ -501,7 +1040,7 @@
       "activePRs": 0,
       "pullRequests": [],
       "category": "kmp",
-      "type": "KMP"
+      "type": "kmp"
     },
     {
       "name": "Scanner",
@@ -512,11 +1051,46 @@
         "color": "#dc3545"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.BarcodeScanning",
+      "platforms": [
+        "android",
+        "ios",
+        "jvm"
+      ],
+      "versions": {
+        "source": "1.0.1",
+        "devFeed": "1.0.0-202610061308",
+        "platformFeed": "1.0.0"
+      },
+      "packages": {
+        "npm": null,
+        "maven": "com.infios:barcode-scanner-kmp-library"
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Kotlin.BarcodeScanning.dev",
+          "status": "failed",
+          "lastRun": "2026-10-15T09:10:38.6403155Z",
+          "duration": "10m 29s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542771"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Kotlin.BarcodeScanning.release",
+          "status": "succeeded",
+          "lastRun": "2026-05-19T11:07:42.0126922Z",
+          "duration": "56m 26s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=466861"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 2,
+        "committed": 30,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 542771,
-        "number": "20261015.1",
         "result": "failed",
-        "status": "completed",
+        "status": "failed",
         "finishTime": "2026-10-15T09:10:38.6403155Z",
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542771"
       },
@@ -530,24 +1104,59 @@
       "activePRs": 0,
       "pullRequests": [],
       "category": "kmp",
-      "type": "KMP"
+      "type": "kmp"
     },
     {
       "name": "Printing",
       "fullName": "Koerber.Mobile.Kotlin.Printing",
       "health": {
-        "status": "healthy",
-        "label": "Healthy",
-        "color": "#28a745"
+        "status": "unhealthy",
+        "label": "Unhealthy",
+        "color": "#dc3545"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing",
+      "platforms": [
+        "android",
+        "ios",
+        "jvm"
+      ],
+      "versions": {
+        "source": "2.0.1",
+        "devFeed": "2.0.0-20261008132046",
+        "platformFeed": "2.0.1-luak-vendor-test.20261016002135"
+      },
+      "packages": {
+        "npm": null,
+        "maven": "com.infios:printing-kmp-library"
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Kotlin.Printing.dev",
+          "status": "failed",
+          "lastRun": "2026-10-09T14:36:24.1120937Z",
+          "duration": "9m 32s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539255"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Kotlin.Printing.release",
+          "status": "succeeded",
+          "lastRun": "2026-10-16T00:46:53.0317887Z",
+          "duration": "25m 38s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=543481"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 25,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 542007,
-        "number": "20261014.1",
         "result": "succeeded",
-        "status": "completed",
-        "finishTime": "2026-10-14T13:04:47.4964824Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007"
+        "status": "succeeded",
+        "finishTime": "2026-10-16T00:46:53.0317887Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=543481"
       },
       "lastCommit": {
         "id": "2fa3a6a",
@@ -559,7 +1168,7 @@
       "activePRs": 0,
       "pullRequests": [],
       "category": "kmp",
-      "type": "KMP"
+      "type": "kmp"
     },
     {
       "name": "Beep",
@@ -570,13 +1179,42 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Beep",
+      "platforms": [
+        "android",
+        "ios",
+        "jvm"
+      ],
+      "versions": {
+        "source": "1.0.3",
+        "devFeed": "1.0.3-202610091437",
+        "platformFeed": "1.0.2"
+      },
+      "packages": {
+        "npm": null,
+        "maven": "com.infios:beep-kmp-library-android"
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Kotlin.Beep.dev",
+          "status": "succeeded",
+          "lastRun": "2026-10-09T15:05:58.9288216Z",
+          "duration": "38m 42s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539260"
+        },
+        "release": null
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 11,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 529320,
-        "number": "20260923.3",
         "result": "succeeded",
-        "status": "completed",
-        "finishTime": "2026-09-23T15:29:52.8255294Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529320"
+        "status": "succeeded",
+        "finishTime": "2026-10-09T15:05:58.9288216Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539260"
       },
       "lastCommit": {
         "id": "f8872ca",
@@ -588,7 +1226,7 @@
       "activePRs": 0,
       "pullRequests": [],
       "category": "kmp",
-      "type": "KMP"
+      "type": "kmp"
     },
     {
       "name": "Vibrate",
@@ -599,13 +1237,48 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Vibrate",
+      "platforms": [
+        "android",
+        "ios",
+        "jvm"
+      ],
+      "versions": {
+        "source": "1.0.1",
+        "devFeed": "1.0.0-20260902141630",
+        "platformFeed": "1.0.1"
+      },
+      "packages": {
+        "npm": null,
+        "maven": "com.infios:vibrate-kmp-library-ios"
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Kotlin.Vibrate.dev",
+          "status": "succeeded",
+          "lastRun": "2026-09-10T09:49:36.4208298Z",
+          "duration": "14m 16s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521463"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Kotlin.Vibrate.release",
+          "status": "succeeded",
+          "lastRun": "2026-09-10T14:08:27.5289692Z",
+          "duration": "26m 32s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521611"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 8,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 530028,
-        "number": "20260924.5",
         "result": "succeeded",
-        "status": "completed",
-        "finishTime": "2026-09-24T12:30:03.879783Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530028"
+        "status": "succeeded",
+        "finishTime": "2026-09-10T14:08:27.5289692Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521611"
       },
       "lastCommit": {
         "id": "581ba9d",
@@ -625,7 +1298,7 @@
         }
       ],
       "category": "kmp",
-      "type": "KMP"
+      "type": "kmp"
     },
     {
       "name": "K1Authorization",
@@ -636,11 +1309,46 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.K1Authorization",
+      "platforms": [
+        "android",
+        "ios",
+        "web"
+      ],
+      "versions": {
+        "source": "1.1.2",
+        "devFeed": "1.1.2-202610141300",
+        "platformFeed": "1.1.1"
+      },
+      "packages": {
+        "npm": "@koerber/mobile-capacitor-k1authorization",
+        "maven": null
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Capacitor.K1Authorization.Dev",
+          "status": "succeeded",
+          "lastRun": "2026-10-14T13:05:21.1801306Z",
+          "duration": "6m 46s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542008"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Capacitor.K1Authorization.Release",
+          "status": "succeeded",
+          "lastRun": "2026-09-25T13:31:38.5579563Z",
+          "duration": "6m 34s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530987"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 2,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 542008,
-        "number": "20261014.1",
         "result": "succeeded",
-        "status": "completed",
+        "status": "succeeded",
         "finishTime": "2026-10-14T13:05:21.1801306Z",
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542008"
       },
@@ -654,7 +1362,7 @@
       "activePRs": 0,
       "pullRequests": [],
       "category": "capacitor",
-      "type": "CAPACITOR"
+      "type": "capacitor"
     },
     {
       "name": "Printing",
@@ -665,11 +1373,40 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing",
+      "platforms": [
+        "android",
+        "ios",
+        "web"
+      ],
+      "versions": {
+        "source": "0.0.3",
+        "devFeed": "0.0.3-202610141300",
+        "platformFeed": null
+      },
+      "packages": {
+        "npm": "@koerber/mobile-capacitor-printing",
+        "maven": null
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Capacitor.Printing",
+          "status": "succeeded",
+          "lastRun": "2026-10-14T13:04:47.4964824Z",
+          "duration": "12m 5s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007"
+        },
+        "release": null
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 7,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 542007,
-        "number": "20261014.1",
         "result": "succeeded",
-        "status": "completed",
+        "status": "succeeded",
         "finishTime": "2026-10-14T13:04:47.4964824Z",
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007"
       },
@@ -683,7 +1420,7 @@
       "activePRs": 0,
       "pullRequests": [],
       "category": "capacitor",
-      "type": "CAPACITOR"
+      "type": "capacitor"
     },
     {
       "name": "Camera",
@@ -694,11 +1431,46 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera",
+      "platforms": [
+        "android",
+        "ios",
+        "web"
+      ],
+      "versions": {
+        "source": "0.1.0",
+        "devFeed": null,
+        "platformFeed": null
+      },
+      "packages": {
+        "npm": "example-camera-app",
+        "maven": null
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Capacitor.Camera.Dev",
+          "status": "succeeded",
+          "lastRun": "2026-09-25T14:32:04.548899Z",
+          "duration": "8m 15s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531065"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Capacitor.Camera.Release",
+          "status": "succeeded",
+          "lastRun": "2026-09-25T13:03:03.6640159Z",
+          "duration": "7m 41s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530961"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 2,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 531065,
-        "number": "20260925.5",
         "result": "succeeded",
-        "status": "completed",
+        "status": "succeeded",
         "finishTime": "2026-09-25T14:32:04.548899Z",
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531065"
       },
@@ -727,7 +1499,7 @@
         }
       ],
       "category": "capacitor",
-      "type": "CAPACITOR"
+      "type": "capacitor"
     },
     {
       "name": "Logger",
@@ -738,11 +1510,46 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger",
+      "platforms": [
+        "android",
+        "ios",
+        "web"
+      ],
+      "versions": {
+        "source": "0.1.0",
+        "devFeed": null,
+        "platformFeed": null
+      },
+      "packages": {
+        "npm": "example",
+        "maven": null
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Capacitor.Logger.Dev",
+          "status": "succeeded",
+          "lastRun": "2026-10-14T13:31:04.4455552Z",
+          "duration": "24m 23s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542040"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Capacitor.Logger.Release",
+          "status": "succeeded",
+          "lastRun": "2026-09-25T14:11:34.9167859Z",
+          "duration": "13m 42s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531030"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 1,
+        "inProgress": 0,
+        "committed": 12,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 542040,
-        "number": "20261014.1",
         "result": "succeeded",
-        "status": "completed",
+        "status": "succeeded",
         "finishTime": "2026-10-14T13:31:04.4455552Z",
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542040"
       },
@@ -764,24 +1571,59 @@
         }
       ],
       "category": "capacitor",
-      "type": "CAPACITOR"
+      "type": "capacitor"
     },
     {
       "name": "Beep",
       "fullName": "Koerber.Mobile.Capacitor.Beep",
       "health": {
-        "status": "healthy",
-        "label": "Healthy",
-        "color": "#28a745"
+        "status": "unhealthy",
+        "label": "Unhealthy",
+        "color": "#dc3545"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Beep",
+      "platforms": [
+        "android",
+        "ios",
+        "web"
+      ],
+      "versions": {
+        "source": "1.0.0",
+        "devFeed": null,
+        "platformFeed": null
+      },
+      "packages": {
+        "npm": "capacitor-app",
+        "maven": null
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Capacitor.Beep.Dev",
+          "status": "partiallySucceeded",
+          "lastRun": "2026-09-23T15:29:52.8255294Z",
+          "duration": "10m 5s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529320"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Capacitor.Beep.Release",
+          "status": "failed",
+          "lastRun": "2026-09-25T13:50:32.9059004Z",
+          "duration": "5m 41s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531012"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 19,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 529320,
-        "number": "20260923.3",
-        "result": "succeeded",
-        "status": "completed",
-        "finishTime": "2026-09-23T15:29:52.8255294Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529320"
+        "result": "failed",
+        "status": "failed",
+        "finishTime": "2026-09-25T13:50:32.9059004Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531012"
       },
       "lastCommit": {
         "id": "e6ec35f",
@@ -801,7 +1643,7 @@
         }
       ],
       "category": "capacitor",
-      "type": "CAPACITOR"
+      "type": "capacitor"
     },
     {
       "name": "MDM Reader",
@@ -812,11 +1654,46 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader",
+      "platforms": [
+        "android",
+        "ios",
+        "web"
+      ],
+      "versions": {
+        "source": "0.1.0",
+        "devFeed": null,
+        "platformFeed": null
+      },
+      "packages": {
+        "npm": "example-app",
+        "maven": null
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
+          "status": "succeeded",
+          "lastRun": "2026-09-28T14:49:16.6540251Z",
+          "duration": "7m 2s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=532071"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Capacitor.MDMReader.Release",
+          "status": "succeeded",
+          "lastRun": "2026-09-25T13:28:42.4030712Z",
+          "duration": "4m 22s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530977"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 6,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 532071,
-        "number": "20260928.1",
         "result": "succeeded",
-        "status": "completed",
+        "status": "succeeded",
         "finishTime": "2026-09-28T14:49:16.6540251Z",
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=532071"
       },
@@ -830,7 +1707,7 @@
       "activePRs": 0,
       "pullRequests": [],
       "category": "capacitor",
-      "type": "CAPACITOR"
+      "type": "capacitor"
     },
     {
       "name": "Vibrate",
@@ -841,13 +1718,48 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate",
+      "platforms": [
+        "android",
+        "ios",
+        "web"
+      ],
+      "versions": {
+        "source": "1.0.0",
+        "devFeed": null,
+        "platformFeed": null
+      },
+      "packages": {
+        "npm": "capacitor-app",
+        "maven": null
+      },
+      "pipelines": {
+        "ci": {
+          "name": "Koerber.Mobile.Capacitor.Vibrate.Dev",
+          "status": "succeeded",
+          "lastRun": "2026-09-24T12:30:03.879783Z",
+          "duration": "11m 40s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530028"
+        },
+        "release": {
+          "name": "Koerber.Mobile.Capacitor.Vibrate.Release",
+          "status": "succeeded",
+          "lastRun": "2026-09-24T14:27:04.6953821Z",
+          "duration": "14m 41s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530264"
+        }
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 18,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 530028,
-        "number": "20260924.5",
         "result": "succeeded",
-        "status": "completed",
-        "finishTime": "2026-09-24T12:30:03.879783Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530028"
+        "status": "succeeded",
+        "finishTime": "2026-09-24T14:27:04.6953821Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530264"
       },
       "lastCommit": {
         "id": "d73e98d",
@@ -859,7 +1771,7 @@
       "activePRs": 0,
       "pullRequests": [],
       "category": "capacitor",
-      "type": "CAPACITOR"
+      "type": "capacitor"
     },
     {
       "name": "Security Automation",
@@ -870,11 +1782,36 @@
         "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/MobileToolKit.Maintenance",
+      "platforms": [],
+      "versions": {
+        "source": "1.0.0",
+        "devFeed": null,
+        "platformFeed": null
+      },
+      "packages": {
+        "npm": "mobile-toolkit-security-automation",
+        "maven": null
+      },
+      "pipelines": {
+        "ci": {
+          "name": "MobileToolKit.Maintenance",
+          "status": "succeeded",
+          "lastRun": "2026-10-10T11:01:39.1957488Z",
+          "duration": "1m 16s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539829"
+        },
+        "release": null
+      },
+      "snyk": null,
+      "workItems": {
+        "open": 0,
+        "inProgress": 0,
+        "committed": 0,
+        "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
+      },
       "lastBuild": {
-        "id": 539829,
-        "number": "20261010.1",
         "result": "succeeded",
-        "status": "completed",
+        "status": "succeeded",
         "finishTime": "2026-10-10T11:01:39.1957488Z",
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539829"
       },
@@ -888,7 +1825,7 @@
       "activePRs": 0,
       "pullRequests": [],
       "category": "security",
-      "type": "SECURITY"
+      "type": "security"
     }
   ]
 }
