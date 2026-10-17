@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-16T18:27:19.736Z",
-  "lastUpdated": "2026-10-16T18:27:19.736Z",
+  "generatedAt": "2026-10-17T00:31:51.005Z",
+  "lastUpdated": "2026-10-17T00:31:51.005Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -224,7 +224,7 @@
           "versions": {
             "source": "2.0.1",
             "devFeed": "2.0.0-20261008132046",
-            "platformFeed": "2.0.1-luak-vendor-test.20261016002135"
+            "platformFeed": "2.0.1-20261016231736"
           },
           "packages": {
             "npm": null,
@@ -241,23 +241,23 @@
             "release": {
               "name": "Koerber.Mobile.Kotlin.Printing.release",
               "status": "succeeded",
-              "lastRun": "2026-10-16T00:46:53.0317887Z",
-              "duration": "25m 38s",
-              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=543481"
+              "lastRun": "2026-10-16T23:32:18.9011747Z",
+              "duration": "14m 50s",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544463"
             }
           },
           "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
-            "committed": 25,
+            "committed": 26,
             "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
           },
           "lastBuild": {
             "result": "succeeded",
             "status": "succeeded",
-            "finishTime": "2026-10-16T00:46:53.0317887Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=543481"
+            "finishTime": "2026-10-16T23:32:18.9011747Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544463"
           },
           "lastCommit": {
             "id": "2fa3a6a",
@@ -266,8 +266,16 @@
             "date": "2026-10-09T14:26:41Z",
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/commit/2fa3a6a1089438de0208f8102a85e75cb9b7699e"
           },
-          "activePRs": 0,
-          "pullRequests": []
+          "activePRs": 1,
+          "pullRequests": [
+            {
+              "id": 117118,
+              "title": "#506783: Remove manual XCFramework publishing from pipelines",
+              "author": "Marcus Choi",
+              "status": "active",
+              "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/pullrequest/117118"
+            }
+          ]
         },
         {
           "name": "Beep",
@@ -1139,7 +1147,7 @@
       "versions": {
         "source": "2.0.1",
         "devFeed": "2.0.0-20261008132046",
-        "platformFeed": "2.0.1-luak-vendor-test.20261016002135"
+        "platformFeed": "2.0.1-20261016231736"
       },
       "packages": {
         "npm": null,
@@ -1156,23 +1164,23 @@
         "release": {
           "name": "Koerber.Mobile.Kotlin.Printing.release",
           "status": "succeeded",
-          "lastRun": "2026-10-16T00:46:53.0317887Z",
-          "duration": "25m 38s",
-          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=543481"
+          "lastRun": "2026-10-16T23:32:18.9011747Z",
+          "duration": "14m 50s",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544463"
         }
       },
       "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
-        "committed": 25,
+        "committed": 26,
         "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
       },
       "lastBuild": {
         "result": "succeeded",
         "status": "succeeded",
-        "finishTime": "2026-10-16T00:46:53.0317887Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=543481"
+        "finishTime": "2026-10-16T23:32:18.9011747Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544463"
       },
       "lastCommit": {
         "id": "2fa3a6a",
@@ -1181,8 +1189,16 @@
         "date": "2026-10-09T14:26:41Z",
         "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/commit/2fa3a6a1089438de0208f8102a85e75cb9b7699e"
       },
-      "activePRs": 0,
-      "pullRequests": [],
+      "activePRs": 1,
+      "pullRequests": [
+        {
+          "id": 117118,
+          "title": "#506783: Remove manual XCFramework publishing from pipelines",
+          "author": "Marcus Choi",
+          "status": "active",
+          "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/pullrequest/117118"
+        }
+      ],
       "category": "kmp",
       "type": "kmp"
     },
