@@ -22,8 +22,9 @@ const SNYK_TOKEN = process.env.SNYK_TOKEN;
 const SNYK_ORG_ID = process.env.SNYK_ORG_ID;
 const SNYK_API = process.env.SNYK_API || 'https://api.eu.snyk.io';
 const SNYK_API_VERSION = process.env.SNYK_API_VERSION || '2024-10-15';
+const SKIP_SNYK = process.env.SKIP_SNYK === 'true';
 
-if (!ADO_PAT) {
+if (!ADO_PAT && require.main === module) {
   console.error('❌ Error: ADO_PAT or AZURE_DEVOPS_EXT_PAT environment variable is required');
   process.exit(1);
 }
@@ -432,10 +433,11 @@ async function fetchSnykProjects() {
   try {
     const projects = [];
     let nextUrl = `/orgs/${encodeURIComponent(SNYK_ORG_ID)}/projects`;
+    let params = { version: SNYK_API_VERSION, limit: 100 };
     let page = 0;
     while (nextUrl && page < 20) {
       const response = await snykClient.get(nextUrl, {
-        params: { version: SNYK_API_VERSION, limit: 100 },
+        params,
         headers: { 'Content-Type': 'application/vnd.api+json' }
       });
       const items = response.data.data || [];
@@ -446,8 +448,10 @@ async function fetchSnykProjects() {
         url: item.links?.self || null
       })));
       nextUrl = response.data.links?.next || null;
+      params = undefined;
       page++;
     }
+    if (nextUrl) logSnyk(`project pagination stopped at ${page} pages; more pages remain`);
     logSnyk(`project lookup succeeded: ${projects.length} project(s) returned`);
     return projects;
   } catch (error) {
@@ -469,16 +473,19 @@ async function fetchSnykIssues() {
     try {
       const issues = [];
       let nextUrl = `/orgs/${encodeURIComponent(SNYK_ORG_ID)}/issues`;
+      let params = { version, limit: 100 };
       let page = 0;
       while (nextUrl && page < 50) {
         const response = await endpoint.client.get(nextUrl, {
-          params: { version, limit: 100 },
+          params,
           headers: { 'Content-Type': 'application/vnd.api+json' }
         });
         issues.push(...(response.data.data || []));
         nextUrl = response.data.links?.next || null;
+        params = undefined;
         page++;
       }
+      if (nextUrl) logSnyk(`issue pagination stopped at ${page} pages; more pages remain`);
 
       const byProject = new Map();
       let unassociated = 0;
@@ -583,8 +590,8 @@ async function fetchSnykData(projects, issuesResult, repo) {
   }
   const project = findSnykProject(projects, repo);
   if (!project) {
-    logSnyk(`${repo.name}: no matching Snyk project found`);
-    return emptySnyk();
+    logSnyk(`${repo.name}: no matching Snyk project found; not reporting zero vulnerabilities`);
+    return null;
   }
 
   const issues = issuesResult.byProject.get(project.id) || [];
@@ -662,9 +669,12 @@ async function aggregateData() {
   console.log('🚀 Starting real data aggregation...\n');
   const allRepos = await fetchRepositories();
   const repoMap = new Map(allRepos.map((repo) => [repo.name, repo]));
-  const snykProjects = await fetchSnykProjects();
-  const snykIssues = await fetchSnykIssues();
-  if (!SNYK_TOKEN || !SNYK_ORG_ID) console.log('ℹ️ Snyk skipped: SNYK_TOKEN and SNYK_ORG_ID are not configured.');
+  const snykProjects = SKIP_SNYK ? [] : await fetchSnykProjects();
+  const snykIssues = SKIP_SNYK
+    ? { available: false, byProject: new Map() }
+    : await fetchSnykIssues();
+  if (SKIP_SNYK) console.log('ℹ️ Snyk deferred to the separate Snyk aggregation step.');
+  else if (!SNYK_TOKEN || !SNYK_ORG_ID) console.log('ℹ️ Snyk skipped: SNYK_TOKEN and SNYK_ORG_ID are not configured.');
 
   const generatedAt = new Date().toISOString();
   const dashboardData = {
@@ -755,4 +765,13 @@ async function main() {
 
 if (require.main === module) main();
 
-module.exports = { aggregateData, classifyWorkItem, calculateHealth, parseVersion };
+module.exports = {
+  aggregateData,
+  calculateHealth,
+  classifyWorkItem,
+  emptySnyk,
+  fetchSnykData,
+  fetchSnykIssues,
+  fetchSnykProjects,
+  parseVersion
+};

@@ -5,6 +5,7 @@
   "main": "src/aggregate.js",
   "scripts": {
     "aggregate": "node src/aggregate.js",
+    "aggregate:snyk": "node src/snyk.js",
     "serve": "npx http-server public -p 8080 -o"
   },
   "keywords": ["dashboard", "azure-devops", "monitoring"],
