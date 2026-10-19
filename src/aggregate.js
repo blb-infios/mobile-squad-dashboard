@@ -434,7 +434,7 @@ async function fetchSnykProjects() {
       projects.push(...items.map((item) => ({
         id: item.id,
         name: item.attributes?.name || item.id,
-        lastTestedDate: item.attributes?.lastTestedDate || null,
+        lastTestedDate: item.attributes?.lastTestedDate || item.attributes?.last_tested_date || null,
         url: item.links?.self || null
       })));
       nextUrl = response.data.links?.next || null;
@@ -449,58 +449,113 @@ async function fetchSnykProjects() {
   }
 }
 
-async function fetchSnykData(projects, repo) {
-  if (!projects.length) {
-    logSnyk(`${repo.name}: no project data available`);
-    return null;
-  }
-  const names = [repo.name, repo.fullName, repo.displayName].filter(Boolean).map((value) => value.toLowerCase());
-  const project = projects.find((candidate) => {
-    const candidateName = String(candidate.name || '').toLowerCase();
-    return names.some((name) => name === candidateName || candidateName.includes(name) || name.includes(candidateName));
-  });
-  if (!project) {
-    logSnyk(`${repo.name}: no matching Snyk project found`);
-    return emptySnyk();
-  }
-
-  logSnyk(`${repo.name}: matched project "${project.name}" (${masked(project.id)})`);
+async function fetchSnykIssues() {
+  if (!SNYK_TOKEN || !SNYK_ORG_ID) return new Map();
   try {
     const issues = [];
     let nextUrl = `/orgs/${encodeURIComponent(SNYK_ORG_ID)}/issues`;
     let page = 0;
-    while (nextUrl && page < 20) {
+    while (nextUrl && page < 50) {
       const response = await snykClient.get(nextUrl, {
-        params: {
-          version: SNYK_API_VERSION,
-          limit: 100,
-          project_id: project.id
-        },
+        params: { version: SNYK_API_VERSION, limit: 100 },
         headers: { 'Content-Type': 'application/vnd.api+json' }
       });
       issues.push(...(response.data.data || []));
       nextUrl = response.data.links?.next || null;
       page++;
     }
-    const counts = emptySnyk();
+
+    const byProject = new Map();
+    let unassociated = 0;
     issues.forEach((issue) => {
-      const severity = String(
-        issue.attributes?.effectiveSeverityLevel ||
-        issue.attributes?.severity ||
-        issue.attributes?.issueData?.severity ||
-        ''
-      ).toLowerCase();
-      if (Object.prototype.hasOwnProperty.call(counts, severity)) counts[severity]++;
+      const relationships = issue.relationships || {};
+      const projectId = relationships.scan_item?.data?.id ||
+        relationships.project?.data?.id ||
+        issue.attributes?.project_id ||
+        issue.attributes?.projectId;
+      if (!projectId) {
+        unassociated++;
+        return;
+      }
+      if (!byProject.has(projectId)) byProject.set(projectId, []);
+      byProject.get(projectId).push(issue);
     });
-    counts.lastScan = project.lastTestedDate || null;
-    counts.url = `https://app.snyk.io/org/${SNYK_ORG_ID}/project/${project.id}`;
-    logSnyk(`${repo.name}: ${issues.length} issue(s) - critical=${counts.critical}, high=${counts.high}, medium=${counts.medium}, low=${counts.low}`);
-    return counts;
+    logSnyk(`issue lookup succeeded: ${issues.length} issue(s) across ${byProject.size} project(s), ${unassociated} unassociated`);
+    return byProject;
   } catch (error) {
-    warn(`Could not fetch Snyk issues for ${repo.name}`, error);
-    logSnyk(`${repo.name}: issue lookup failed: ${error.response?.data?.errors?.[0]?.detail || error.response?.data?.message || error.message}`);
+    warn('Could not fetch Snyk organization issues', error);
+    logSnyk(`issue lookup failed: ${error.response?.data?.errors?.[0]?.detail || error.response?.data?.message || error.message}`);
+    return new Map();
+  }
+}
+
+function normalizeName(value) {
+  return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+}
+
+function snykProjectAliases(repo) {
+  const suffix = String(repo.fullName || '').split('.').pop().toLowerCase();
+  const aliases = [repo.fullName, repo.packageName];
+  if (repo.category === 'capacitor') {
+    aliases.push(`@koerber/mobile-capacitor-${suffix}`);
+  } else if (repo.category === 'kmp') {
+    aliases.push(`${suffix}-kmp-library`, `${suffix}kmp`);
+  }
+  return aliases.filter(Boolean).map(normalizeName);
+}
+
+function findSnykProject(projects, repo) {
+  const aliases = snykProjectAliases(repo);
+  let best = null;
+  let bestScore = 0;
+  projects.forEach((candidate) => {
+    const candidateName = normalizeName(candidate.name);
+    aliases.forEach((alias, index) => {
+      if (!alias) return;
+      let score = 0;
+      if (candidateName === alias) score = 120 - index;
+      else if (candidateName.includes(alias)) score = 90 - index;
+      else if (alias.includes(candidateName) && candidateName.length > 6) score = 70 - index;
+      if (score > bestScore) {
+        best = candidate;
+        bestScore = score;
+      }
+    });
+  });
+  return bestScore >= 70 ? best : null;
+}
+
+function severityFromSnykIssue(issue) {
+  return String(
+    issue.attributes?.effective_severity_level ||
+    issue.attributes?.effectiveSeverityLevel ||
+    issue.attributes?.severity ||
+    issue.attributes?.issueData?.severity ||
+    ''
+  ).toLowerCase();
+}
+
+async function fetchSnykData(projects, issuesByProject, repo) {
+  if (!projects.length) {
+    logSnyk(`${repo.name}: no project data available`);
+    return null;
+  }
+  const project = findSnykProject(projects, repo);
+  if (!project) {
+    logSnyk(`${repo.name}: no matching Snyk project found`);
     return emptySnyk();
   }
+
+  const issues = issuesByProject.get(project.id) || [];
+  const counts = emptySnyk();
+  issues.forEach((issue) => {
+    const severity = severityFromSnykIssue(issue);
+    if (Object.prototype.hasOwnProperty.call(counts, severity)) counts[severity]++;
+  });
+  counts.lastScan = project.lastTestedDate || null;
+  counts.url = `https://app.snyk.io/org/${SNYK_ORG_ID}/project/${project.id}`;
+  logSnyk(`${repo.name}: matched project "${project.name}" (${masked(project.id)}), ${issues.length} issue(s) - critical=${counts.critical}, high=${counts.high}, medium=${counts.medium}, low=${counts.low}`);
+  return counts;
 }
 
 function calculateHealth(pipelines, snyk) {
@@ -567,6 +622,7 @@ async function aggregateData() {
   const allRepos = await fetchRepositories();
   const repoMap = new Map(allRepos.map((repo) => [repo.name, repo]));
   const snykProjects = await fetchSnykProjects();
+  const snykIssues = await fetchSnykIssues();
   if (!SNYK_TOKEN || !SNYK_ORG_ID) console.log('ℹ️ Snyk skipped: SNYK_TOKEN and SNYK_ORG_ID are not configured.');
 
   const generatedAt = new Date().toISOString();
@@ -624,7 +680,7 @@ async function aggregateData() {
       const [feedVersions, workItems, snyk] = await Promise.all([
         fetchFeedVersions(metadata, category),
         fetchWorkItems(repo.id, pullRequests, builds),
-        fetchSnykData(snykProjects, { ...repoDef, fullName: repo.name })
+        fetchSnykData(snykProjects, snykIssues, { ...repoDef, fullName: repo.name, category, packageName: metadata.packages.npm || metadata.packages.maven })
       ]);
       const repoData = repositoryData(repoDef, repo, category, commit, pullRequests, metadata, feedVersions, pipelines, workItems, snyk);
       const flatData = { ...repoData, category, type: category };
