@@ -562,10 +562,20 @@ function projectMatchScore(candidateName, alias, repo, aliasIndex) {
   return 0;
 }
 
+function adoRepoNameFromProject(projectName) {
+  const match = String(projectName || '').match(/WES\/Koerber\.Mobile\.\w+\.(\w+)\s*\(/i);
+  return match ? match[1].toLowerCase() : null;
+}
+
 function findSnykProjects(projects, repo) {
   const aliases = snykProjectAliases(repo);
+  const repoSuffix = String(repo.fullName || '').split('.').pop().toLowerCase();
   const matched = [];
   projects.forEach((candidate) => {
+    // ADO-monitored projects (WES/Koerber.Mobile.X.RepoName(develop):...) must match this repo
+    const adoRepo = adoRepoNameFromProject(candidate.name);
+    if (adoRepo && adoRepo !== repoSuffix) return;
+
     const candidateName = normalizeName(candidate.name);
     const score = aliases.reduce((best, alias, index) =>
       Math.max(best, projectMatchScore(candidateName, alias, repo, index)), 0);
