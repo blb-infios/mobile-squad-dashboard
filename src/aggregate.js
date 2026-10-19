@@ -562,21 +562,17 @@ function projectMatchScore(candidateName, alias, repo, aliasIndex) {
   return 0;
 }
 
-function findSnykProject(projects, repo) {
+function findSnykProjects(projects, repo) {
   const aliases = snykProjectAliases(repo);
-  let best = null;
-  let bestScore = 0;
+  const matched = [];
   projects.forEach((candidate) => {
     const candidateName = normalizeName(candidate.name);
-    aliases.forEach((alias, index) => {
-      const score = projectMatchScore(candidateName, alias, repo, index);
-      if (score > bestScore) {
-        best = candidate;
-        bestScore = score;
-      }
-    });
+    const score = aliases.reduce((best, alias, index) =>
+      Math.max(best, projectMatchScore(candidateName, alias, repo, index)), 0);
+    if (score >= 60) matched.push({ project: candidate, score });
   });
-  return bestScore >= 60 ? best : null;
+  matched.sort((a, b) => b.score - a.score);
+  return matched.map((item) => item.project);
 }
 
 function relationshipId(relationship) {
@@ -624,28 +620,38 @@ async function fetchSnykData(projects, issuesResult, repo) {
     logSnyk(`${repo.name}: no project data available`);
     return null;
   }
-  const project = findSnykProject(projects, repo);
-  if (!project) {
-    logSnyk(`${repo.name}: no matching Snyk project found; not reporting zero vulnerabilities`);
+  if (!issuesResult.available) {
+    logSnyk(`${repo.name}: issue lookup failed; not reporting zero vulnerabilities`);
+    return null;
+  }
+  const matchedProjects = findSnykProjects(projects, repo);
+  if (!matchedProjects.length) {
+    logSnyk(`${repo.name}: no matching Snyk project found`);
     return null;
   }
 
-  const issues = issuesResult.available ? (issuesResult.byProject.get(project.id) || []) : [];
   const counts = emptySnyk();
-  let source = 'issue records';
-  issues.forEach((issue) => {
-    const severity = severityFromSnykIssue(issue);
-    if (Object.prototype.hasOwnProperty.call(counts, severity)) counts[severity]++;
-  });
-  const summaryApplied = !issues.length && applySeverityCounts(counts, project.issueCounts);
-  if (summaryApplied) source = 'project summary';
-  if (!issuesResult.available || (!issues.length && issuesResult.totalIssues > 0 && !summaryApplied)) {
-    logSnyk(`${repo.name}: issue data unavailable or unmapped; not reporting zero vulnerabilities`);
-    return null;
+  let totalMatched = 0;
+  let latestScan = null;
+  let primaryUrl = null;
+
+  for (const project of matchedProjects) {
+    const projectIssues = (issuesResult.byProject.get(project.id) || []).filter(isActiveSnykIssue);
+    projectIssues.forEach((issue) => {
+      const severity = severityFromSnykIssue(issue);
+      if (Object.prototype.hasOwnProperty.call(counts, severity)) counts[severity]++;
+    });
+    totalMatched += projectIssues.length;
+    if (project.lastTestedDate && (!latestScan || project.lastTestedDate > latestScan)) {
+      latestScan = project.lastTestedDate;
+    }
+    if (!primaryUrl) primaryUrl = `https://app.snyk.io/org/${SNYK_ORG_ID}/project/${project.id}`;
   }
-  counts.lastScan = project.lastTestedDate || null;
-  counts.url = `https://app.snyk.io/org/${SNYK_ORG_ID}/project/${project.id}`;
-  logSnyk(`${repo.name}: matched project "${project.name}" (${masked(project.id)}), source=${source}, ${issues.length} issue(s) - critical=${counts.critical}, high=${counts.high}, medium=${counts.medium}, low=${counts.low}`);
+
+  const projectNames = matchedProjects.map((project) => `"${project.name}"`).join(', ');
+  logSnyk(`${repo.name}: matched ${matchedProjects.length} project(s) [${projectNames}], ${totalMatched} active issue(s) - critical=${counts.critical}, high=${counts.high}, medium=${counts.medium}, low=${counts.low}`);
+  counts.lastScan = latestScan;
+  counts.url = primaryUrl;
   return counts;
 }
 
