@@ -455,12 +455,16 @@ async function fetchSnykProjects() {
         headers: { 'Content-Type': 'application/vnd.api+json' }
       });
       const items = response.data.data || [];
-      projects.push(...items.map((item) => ({
-        id: item.id,
-        name: item.attributes?.name || item.id,
-        lastTestedDate: item.attributes?.lastTestedDate || item.attributes?.last_tested_date || null,
-        url: item.links?.self || null
-      })));
+      projects.push(...items.map((item) => {
+        const attributes = item.attributes || {};
+        return {
+          id: item.id,
+          name: attributes.name || item.id,
+          lastTestedDate: attributes.lastTestedDate || attributes.last_tested_date || attributes.lastTestedAt || attributes.last_tested_at || null,
+          issueCounts: attributes.issueCountsBySeverity || attributes.issue_counts_by_severity || attributes.issueCounts || attributes.issue_counts || null,
+          url: item.links?.self || null
+        };
+      }));
       nextUrl = response.data.links?.next || null;
       params = undefined;
       page++;
@@ -498,10 +502,12 @@ async function fetchSnykIssues() {
     let unassociated = 0;
     issues.forEach((issue) => {
       const relationships = issue.relationships || {};
-      const projectId = relationships.scan_item?.data?.id ||
-        relationships.project?.data?.id ||
+      const projectId = relationshipId(relationships.scan_item) ||
+        relationshipId(relationships.project) ||
         issue.attributes?.project_id ||
-        issue.attributes?.projectId;
+        issue.attributes?.projectId ||
+        issue.attributes?.scan_item_id ||
+        issue.attributes?.scanItemId;
       if (!projectId) {
         unassociated++;
         return;
@@ -570,6 +576,11 @@ function findSnykProject(projects, repo) {
   return bestScore >= 60 ? best : null;
 }
 
+function relationshipId(relationship) {
+  const data = relationship?.data;
+  return Array.isArray(data) ? data[0]?.id : data?.id;
+}
+
 function severityFromSnykIssue(issue) {
   return String(
     issue.attributes?.effective_severity_level ||
@@ -580,13 +591,22 @@ function severityFromSnykIssue(issue) {
   ).toLowerCase();
 }
 
+function applySeverityCounts(target, source) {
+  if (!source || typeof source !== 'object') return false;
+  let applied = false;
+  for (const severity of ['critical', 'high', 'medium', 'low']) {
+    const value = Number(source[severity] ?? source[severity.toUpperCase()]);
+    if (Number.isFinite(value)) {
+      target[severity] = value;
+      applied = true;
+    }
+  }
+  return applied;
+}
+
 async function fetchSnykData(projects, issuesResult, repo) {
   if (!projects.length) {
     logSnyk(`${repo.name}: no project data available`);
-    return null;
-  }
-  if (!issuesResult.available) {
-    logSnyk(`${repo.name}: issue data unavailable; not reporting zero vulnerabilities`);
     return null;
   }
   const project = findSnykProject(projects, repo);
@@ -595,15 +615,21 @@ async function fetchSnykData(projects, issuesResult, repo) {
     return null;
   }
 
-  const issues = issuesResult.byProject.get(project.id) || [];
+  const issues = issuesResult.available ? (issuesResult.byProject.get(project.id) || []) : [];
   const counts = emptySnyk();
+  let source = 'issue records';
   issues.forEach((issue) => {
     const severity = severityFromSnykIssue(issue);
     if (Object.prototype.hasOwnProperty.call(counts, severity)) counts[severity]++;
   });
+  if (!issues.length && applySeverityCounts(counts, project.issueCounts)) source = 'project summary';
+  if (!issuesResult.available && source !== 'project summary') {
+    logSnyk(`${repo.name}: issue data unavailable; not reporting zero vulnerabilities`);
+    return null;
+  }
   counts.lastScan = project.lastTestedDate || null;
   counts.url = `https://app.snyk.io/org/${SNYK_ORG_ID}/project/${project.id}`;
-  logSnyk(`${repo.name}: matched project "${project.name}" (${masked(project.id)}), ${issues.length} issue(s) - critical=${counts.critical}, high=${counts.high}, medium=${counts.medium}, low=${counts.low}`);
+  logSnyk(`${repo.name}: matched project "${project.name}" (${masked(project.id)}), source=${source}, ${issues.length} issue(s) - critical=${counts.critical}, high=${counts.high}, medium=${counts.medium}, low=${counts.low}`);
   return counts;
 }
 
