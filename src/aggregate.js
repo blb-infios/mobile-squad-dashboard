@@ -421,6 +421,14 @@ function logSnyk(message) {
   console.log(`  🔐 Snyk: ${message}`);
 }
 
+function snykErrorDetail(error) {
+  const status = error.response?.status || 'network';
+  const body = error.response?.data;
+  let detail = body ? (typeof body === 'string' ? body : JSON.stringify(body)) : error.message;
+  if (SNYK_TOKEN) detail = detail.split(SNYK_TOKEN).join('[REDACTED]');
+  return `status=${status}, response=${detail}`;
+}
+
 async function fetchSnykProjects() {
   const tokenConfigured = Boolean(SNYK_TOKEN);
   const orgConfigured = Boolean(SNYK_ORG_ID);
@@ -456,7 +464,7 @@ async function fetchSnykProjects() {
     return projects;
   } catch (error) {
     warn('Could not fetch Snyk projects; check SNYK_TOKEN, SNYK_ORG_ID, and API region', error);
-    logSnyk(`project lookup failed: ${error.response?.data?.errors?.[0]?.detail || error.response?.data?.message || error.message}`);
+    logSnyk(`project lookup failed: ${snykErrorDetail(error)}`);
     return [];
   }
 }
@@ -507,13 +515,13 @@ async function fetchSnykIssues() {
     } catch (error) {
       lastError = error;
       if (error.response?.status !== 404) break;
-      logSnyk(`issue endpoint returned 404 for ${endpoint.name} API version ${version}; trying fallback`);
+      logSnyk(`issue endpoint returned 404 for ${endpoint.name} API version ${version}; ${snykErrorDetail(error)}; trying fallback`);
     }
     }
   }
 
   warn('Could not fetch Snyk organization issues', lastError);
-  logSnyk(`issue lookup failed: ${lastError?.response?.data?.errors?.[0]?.detail || lastError?.response?.data?.message || lastError?.message}`);
+  logSnyk(`issue lookup failed: ${snykErrorDetail(lastError)}`);
   return { available: false, byProject: new Map() };
 }
 
