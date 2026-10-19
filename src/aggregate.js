@@ -67,14 +67,6 @@ const snykClient = axios.create({
   } : {},
   timeout: 30000
 });
-const snykGlobalClient = axios.create({
-  baseURL: 'https://api.snyk.io/rest',
-  headers: SNYK_TOKEN ? {
-    Accept: 'application/vnd.api+json',
-    Authorization: `token ${SNYK_TOKEN}`
-  } : {},
-  timeout: 30000
-});
 
 const apiParams = (extra = {}) => ({ 'api-version': ADO_API_VERSION, ...extra });
 const dollarTop = (value) => ({ [String.fromCharCode(36) + 'top']: value });
@@ -471,58 +463,45 @@ async function fetchSnykProjects() {
 
 async function fetchSnykIssues() {
   if (!SNYK_TOKEN || !SNYK_ORG_ID) return { available: false, byProject: new Map() };
-  const versions = [...new Set([SNYK_API_VERSION, '2024-02-28', '2023-11-15~beta'])];
-  const issueClients = [{ name: SNYK_API, client: snykClient }];
-  if (SNYK_API !== 'https://api.snyk.io') issueClients.push({ name: 'https://api.snyk.io', client: snykGlobalClient });
-  let lastError = null;
-
-  for (const endpoint of issueClients) {
-    for (const version of versions) {
-    try {
-      const issues = [];
-      let nextUrl = `/orgs/${encodeURIComponent(SNYK_ORG_ID)}/issues`;
-      let params = { version, limit: 100 };
-      let page = 0;
-      while (nextUrl && page < 50) {
-        const response = await endpoint.client.get(nextUrl, {
-          params,
-          headers: { 'Content-Type': 'application/vnd.api+json' }
-        });
-        issues.push(...(response.data.data || []));
-        nextUrl = response.data.links?.next || null;
-        params = undefined;
-        page++;
-      }
-      if (nextUrl) logSnyk(`issue pagination stopped at ${page} pages; more pages remain`);
-
-      const byProject = new Map();
-      let unassociated = 0;
-      issues.forEach((issue) => {
-        const relationships = issue.relationships || {};
-        const projectId = relationships.scan_item?.data?.id ||
-          relationships.project?.data?.id ||
-          issue.attributes?.project_id ||
-          issue.attributes?.projectId;
-        if (!projectId) {
-          unassociated++;
-          return;
-        }
-        if (!byProject.has(projectId)) byProject.set(projectId, []);
-        byProject.get(projectId).push(issue);
+  try {
+    const issues = [];
+    let nextUrl = `/orgs/${encodeURIComponent(SNYK_ORG_ID)}/issues`;
+    let params = { version: SNYK_API_VERSION, limit: 100 };
+    let page = 0;
+    while (nextUrl && page < 50) {
+      const response = await snykClient.get(nextUrl, {
+        params,
+        headers: { 'Content-Type': 'application/vnd.api+json' }
       });
-      logSnyk(`issue lookup succeeded with API version ${version}: ${issues.length} issue(s) across ${byProject.size} project(s), ${unassociated} unassociated`);
-      return { available: true, byProject };
-    } catch (error) {
-      lastError = error;
-      if (error.response?.status !== 404) break;
-      logSnyk(`issue endpoint returned 404 for ${endpoint.name} API version ${version}; ${snykErrorDetail(error)}; trying fallback`);
+      issues.push(...(response.data.data || []));
+      nextUrl = response.data.links?.next || null;
+      params = undefined;
+      page++;
     }
-    }
-  }
+    if (nextUrl) logSnyk(`issue pagination stopped at ${page} pages; more pages remain`);
 
-  warn('Could not fetch Snyk organization issues', lastError);
-  logSnyk(`issue lookup failed: ${snykErrorDetail(lastError)}`);
-  return { available: false, byProject: new Map() };
+    const byProject = new Map();
+    let unassociated = 0;
+    issues.forEach((issue) => {
+      const relationships = issue.relationships || {};
+      const projectId = relationships.scan_item?.data?.id ||
+        relationships.project?.data?.id ||
+        issue.attributes?.project_id ||
+        issue.attributes?.projectId;
+      if (!projectId) {
+        unassociated++;
+        return;
+      }
+      if (!byProject.has(projectId)) byProject.set(projectId, []);
+      byProject.get(projectId).push(issue);
+    });
+    logSnyk(`issue lookup succeeded with API version ${SNYK_API_VERSION}: ${issues.length} issue(s) across ${byProject.size} project(s), ${unassociated} unassociated`);
+    return { available: true, byProject };
+  } catch (error) {
+    warn('Could not fetch Snyk organization issues', error);
+    logSnyk(`issue lookup failed: ${snykErrorDetail(error)}`);
+    return { available: false, byProject: new Map() };
+  }
 }
 
 function normalizeName(value) {
