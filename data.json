@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-19T12:54:24.248Z",
-  "lastUpdated": "2026-10-19T12:54:24.248Z",
+  "generatedAt": "2026-10-19T13:06:16.169Z",
+  "lastUpdated": "2026-10-19T13:06:16.169Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -184,7 +184,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=466861"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 2,
+            "high": 19,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/1af6f5f7-b1b5-47ba-be87-fdc6d40196bc"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 2,
@@ -246,7 +253,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544463"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/399dac06-bd48-4240-9474-5715c8782892"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -310,7 +324,14 @@
             },
             "release": null
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/c0782d47-a226-4d52-b6bb-8ee804aa234d"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -372,7 +393,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521611"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/64b61493-0d00-4e25-a496-2f0b3e5b31d6"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -448,7 +476,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530987"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/5b0c36ec-55f7-47e0-9557-8f3c8eae889a"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -504,7 +539,14 @@
             },
             "release": null
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/ba764a01-2c29-4d51-bde5-c23024c7279c"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -566,7 +608,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530961"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/305f626e-4119-4b87-81bb-9687c27e8649"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -643,7 +692,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531030"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/fd140469-61cf-4f7c-9611-8d9d391a318b"
+          },
           "workItems": {
             "open": 1,
             "inProgress": 0,
@@ -713,7 +769,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531012"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/62f9076f-542d-4f5d-ad73-1e5252a201d8"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -783,7 +846,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530977"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/402626e7-c9d5-4434-a46c-49bbb2ce9b69"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -845,7 +915,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530264"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/f4f43270-20fc-4d68-b83c-94b0b7c5d62d"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -1105,7 +1182,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=466861"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 2,
+        "high": 19,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/1af6f5f7-b1b5-47ba-be87-fdc6d40196bc"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 2,
@@ -1169,7 +1253,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544463"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/399dac06-bd48-4240-9474-5715c8782892"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1235,7 +1326,14 @@
         },
         "release": null
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/c0782d47-a226-4d52-b6bb-8ee804aa234d"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1299,7 +1397,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521611"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/64b61493-0d00-4e25-a496-2f0b3e5b31d6"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1371,7 +1476,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530987"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/5b0c36ec-55f7-47e0-9557-8f3c8eae889a"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1429,7 +1541,14 @@
         },
         "release": null
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/ba764a01-2c29-4d51-bde5-c23024c7279c"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1493,7 +1612,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530961"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/305f626e-4119-4b87-81bb-9687c27e8649"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1572,7 +1698,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531030"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/fd140469-61cf-4f7c-9611-8d9d391a318b"
+      },
       "workItems": {
         "open": 1,
         "inProgress": 0,
@@ -1644,7 +1777,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531012"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/62f9076f-542d-4f5d-ad73-1e5252a201d8"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1716,7 +1856,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530977"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/402626e7-c9d5-4434-a46c-49bbb2ce9b69"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1780,7 +1927,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530264"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/f4f43270-20fc-4d68-b83c-94b0b7c5d62d"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
