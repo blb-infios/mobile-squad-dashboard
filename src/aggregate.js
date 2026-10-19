@@ -486,7 +486,8 @@ async function fetchSnykIssues() {
     let nextUrl = `/orgs/${encodeURIComponent(SNYK_ORG_ID)}/issues`;
     let params = { version: SNYK_API_VERSION };
     let page = 0;
-    while (nextUrl && page < 50) {
+    while (nextUrl) {
+      if (page >= 1000) throw new Error('Snyk issue pagination exceeded 1000 pages');
       const response = await snykClient.get(resolveSnykUrl(nextUrl), {
         params,
         headers: { 'Content-Type': 'application/vnd.api+json' }
@@ -496,11 +497,10 @@ async function fetchSnykIssues() {
       params = undefined;
       page++;
     }
-    if (nextUrl) logSnyk(`issue pagination stopped at ${page} pages; more pages remain`);
-
+    const activeIssues = issues.filter(isActiveSnykIssue);
     const byProject = new Map();
     let unassociated = 0;
-    issues.forEach((issue) => {
+    activeIssues.forEach((issue) => {
       const relationships = issue.relationships || {};
       const projectId = relationshipId(relationships.scan_item) ||
         relationshipId(relationships.project) ||
@@ -515,8 +515,11 @@ async function fetchSnykIssues() {
       if (!byProject.has(projectId)) byProject.set(projectId, []);
       byProject.get(projectId).push(issue);
     });
-    logSnyk(`issue lookup succeeded with API version ${SNYK_API_VERSION}: ${issues.length} issue(s) across ${byProject.size} project(s), ${unassociated} unassociated`);
-    return { available: true, byProject };
+    logSnyk(`issue lookup succeeded with API version ${SNYK_API_VERSION}: ${activeIssues.length} active issue(s) from ${issues.length} total across ${byProject.size} project(s), ${unassociated} unassociated`);
+    if (issues[0]) {
+      logSnyk(`issue shape: attributes=${Object.keys(issues[0].attributes || {}).join(',') || 'none'}, relationships=${Object.keys(issues[0].relationships || {}).join(',') || 'none'}`);
+    }
+    return { available: true, byProject, totalIssues: activeIssues.length, unassociated };
   } catch (error) {
     warn('Could not fetch Snyk organization issues', error);
     logSnyk(`issue lookup failed: ${snykErrorDetail(error)}`);
@@ -581,6 +584,18 @@ function relationshipId(relationship) {
   return Array.isArray(data) ? data[0]?.id : data?.id;
 }
 
+function isActiveSnykIssue(issue) {
+  const attributes = issue.attributes || {};
+  const status = String(attributes.status || '').toLowerCase();
+  if (attributes.ignored === true || ['resolved', 'ignored', 'closed'].includes(status)) return false;
+  if (status) return ['open', 'active', 'new'].includes(status);
+  const coordinates = Array.isArray(attributes.coordinates) ? attributes.coordinates : [];
+  return coordinates.length === 0 || coordinates.some((coordinate) => {
+    const state = String(coordinate.state || '').toLowerCase();
+    return !['resolved', 'ignored', 'closed'].includes(state);
+  });
+}
+
 function severityFromSnykIssue(issue) {
   return String(
     issue.attributes?.effective_severity_level ||
@@ -622,9 +637,10 @@ async function fetchSnykData(projects, issuesResult, repo) {
     const severity = severityFromSnykIssue(issue);
     if (Object.prototype.hasOwnProperty.call(counts, severity)) counts[severity]++;
   });
-  if (!issues.length && applySeverityCounts(counts, project.issueCounts)) source = 'project summary';
-  if (!issuesResult.available && source !== 'project summary') {
-    logSnyk(`${repo.name}: issue data unavailable; not reporting zero vulnerabilities`);
+  const summaryApplied = !issues.length && applySeverityCounts(counts, project.issueCounts);
+  if (summaryApplied) source = 'project summary';
+  if (!issuesResult.available || (!issues.length && issuesResult.totalIssues > 0 && !summaryApplied)) {
+    logSnyk(`${repo.name}: issue data unavailable or unmapped; not reporting zero vulnerabilities`);
     return null;
   }
   counts.lastScan = project.lastTestedDate || null;
