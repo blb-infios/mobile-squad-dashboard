@@ -34,21 +34,21 @@ if (!ADO_PAT && require.main === module) {
 
 const REPOSITORIES = {
   kmp: [
-    { name: 'Koerber.Mobile.Kotlin.Dex', displayName: 'Dex' },
-    { name: 'Koerber.Mobile.Kotlin.K1V1Authorization', displayName: 'K1V1 Authorization' },
-    { name: 'Koerber.Mobile.Kotlin.BarcodeScanning', displayName: 'Scanner' },
-    { name: 'Koerber.Mobile.Kotlin.Printing', displayName: 'Printing' },
-    { name: 'Koerber.Mobile.Kotlin.Beep', displayName: 'Beep' },
-    { name: 'Koerber.Mobile.Kotlin.Vibrate', displayName: 'Vibrate' }
+    { name: 'Koerber.Mobile.Kotlin.Dex',              displayName: 'Dex',              snykNames: ['KMP-App-Template-Native'] },
+    { name: 'Koerber.Mobile.Kotlin.K1V1Authorization', displayName: 'K1V1 Authorization', snykNames: ['CommunicationApp3', 'KotlinUtilityApp'] },
+    { name: 'Koerber.Mobile.Kotlin.BarcodeScanning',  displayName: 'Scanner' },
+    { name: 'Koerber.Mobile.Kotlin.Printing',          displayName: 'Printing' },
+    { name: 'Koerber.Mobile.Kotlin.Beep',              displayName: 'Beep' },
+    { name: 'Koerber.Mobile.Kotlin.Vibrate',           displayName: 'Vibrate' }
   ],
   capacitor: [
     { name: 'Koerber.Mobile.Capacitor.K1Authorization', displayName: 'K1Authorization' },
-    { name: 'Koerber.Mobile.Capacitor.Printing', displayName: 'Printing' },
-    { name: 'Koerber.Mobile.Capacitor.Camera', displayName: 'Camera' },
-    { name: 'Koerber.Mobile.Capacitor.Logger', displayName: 'Logger' },
-    { name: 'Koerber.Mobile.Capacitor.Beep', displayName: 'Beep' },
-    { name: 'Koerber.Mobile.Capacitor.MDMReader', displayName: 'MDM Reader' },
-    { name: 'Koerber.Mobile.Capacitor.Vibrate', displayName: 'Vibrate' }
+    { name: 'Koerber.Mobile.Capacitor.Printing',        displayName: 'Printing' },
+    { name: 'Koerber.Mobile.Capacitor.Camera',          displayName: 'Camera' },
+    { name: 'Koerber.Mobile.Capacitor.Logger',          displayName: 'Logger' },
+    { name: 'Koerber.Mobile.Capacitor.Beep',            displayName: 'Beep' },
+    { name: 'Koerber.Mobile.Capacitor.MDMReader',       displayName: 'MDM Reader' },
+    { name: 'Koerber.Mobile.Capacitor.Vibrate',         displayName: 'Vibrate' }
   ],
   security: [
     { name: 'MobileToolKit.Maintenance', displayName: 'Security Automation' }
@@ -536,6 +536,12 @@ function snykProjectAliases(repo) {
   const suffix = String(repo.fullName || '').split('.').pop().toLowerCase();
   const display = String(repo.displayName || '').toLowerCase();
   const aliases = [repo.fullName, repo.packageName, repo.displayName];
+
+  // Explicit Snyk project name overrides defined in REPOSITORIES
+  if (Array.isArray(repo.snykNames)) {
+    aliases.push(...repo.snykNames);
+  }
+
   const synonyms = {
     scanner: ['barcode-scanner', 'barcode-scanning'],
     'k1v1 authorization': ['k1v1authorization'],
