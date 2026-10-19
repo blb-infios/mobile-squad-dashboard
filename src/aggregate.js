@@ -484,7 +484,7 @@ async function fetchSnykIssues() {
   try {
     const issues = [];
     let nextUrl = `/orgs/${encodeURIComponent(SNYK_ORG_ID)}/issues`;
-    let params = { version: SNYK_API_VERSION, status: 'open', ignored: false };
+    let params = { version: SNYK_API_VERSION };
     let page = 0;
     while (nextUrl) {
       if (page >= 1000) throw new Error('Snyk issue pagination exceeded 1000 pages');
