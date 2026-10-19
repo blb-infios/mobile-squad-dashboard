@@ -20,7 +20,10 @@ const ADO_PAT = process.env.ADO_PAT || process.env.AZURE_DEVOPS_EXT_PAT;
 const ADO_API_VERSION = '7.1';
 const SNYK_TOKEN = process.env.SNYK_TOKEN;
 const SNYK_ORG_ID = process.env.SNYK_ORG_ID;
-const SNYK_API = process.env.SNYK_API || 'https://api.eu.snyk.io';
+const SNYK_API = (process.env.SNYK_API || 'https://api.eu.snyk.io')
+  .replace(/\/rest\/?$/, '')
+  .replace(/\/$/, '');
+const SNYK_REST_API = `${SNYK_API}/rest`;
 const SNYK_API_VERSION = process.env.SNYK_API_VERSION || '2024-10-15';
 const SKIP_SNYK = process.env.SKIP_SNYK === 'true';
 
@@ -60,7 +63,7 @@ const adoClient = axios.create({
 });
 
 const snykClient = axios.create({
-  baseURL: `${SNYK_API}/rest`,
+  baseURL: SNYK_REST_API,
   headers: SNYK_TOKEN ? {
     Accept: 'application/vnd.api+json',
     Authorization: `token ${SNYK_TOKEN}`
@@ -409,6 +412,12 @@ function masked(value) {
   return `${text.slice(0, 4)}…${text.slice(-4)}`;
 }
 
+function resolveSnykUrl(url) {
+  if (!url || /^https?:\/\//i.test(url)) return url;
+  if (url.startsWith('/rest/')) return `${SNYK_API}${url}`;
+  return url;
+}
+
 function logSnyk(message) {
   console.log(`  🔐 Snyk: ${message}`);
 }
@@ -429,7 +438,7 @@ function snykErrorDetail(error) {
 async function fetchSnykProjects() {
   const tokenConfigured = Boolean(SNYK_TOKEN);
   const orgConfigured = Boolean(SNYK_ORG_ID);
-  logSnyk(`configuration token=${tokenConfigured ? 'present' : 'missing'}, org=${orgConfigured ? masked(SNYK_ORG_ID) : 'missing'}, api=${SNYK_API}/rest`);
+  logSnyk(`configuration token=${tokenConfigured ? 'present' : 'missing'}, org=${orgConfigured ? masked(SNYK_ORG_ID) : 'missing'}, api=${SNYK_REST_API}`);
   if (!tokenConfigured || !orgConfigured) {
     logSnyk('skipped because SNYK_TOKEN and SNYK_ORG_ID are required');
     return [];
@@ -441,7 +450,7 @@ async function fetchSnykProjects() {
     let params = { version: SNYK_API_VERSION, limit: 100 };
     let page = 0;
     while (nextUrl && page < 20) {
-      const response = await snykClient.get(nextUrl, {
+      const response = await snykClient.get(resolveSnykUrl(nextUrl), {
         params,
         headers: { 'Content-Type': 'application/vnd.api+json' }
       });
@@ -474,7 +483,7 @@ async function fetchSnykIssues() {
     let params = { version: SNYK_API_VERSION };
     let page = 0;
     while (nextUrl && page < 50) {
-      const response = await snykClient.get(nextUrl, {
+      const response = await snykClient.get(resolveSnykUrl(nextUrl), {
         params,
         headers: { 'Content-Type': 'application/vnd.api+json' }
       });
