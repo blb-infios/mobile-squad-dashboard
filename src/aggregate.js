@@ -418,7 +418,12 @@ function snykErrorDetail(error) {
   const body = error.response?.data;
   let detail = body ? (typeof body === 'string' ? body : JSON.stringify(body)) : error.message;
   if (SNYK_TOKEN) detail = detail.split(SNYK_TOKEN).join('[REDACTED]');
-  return `status=${status}, response=${detail}`;
+  const config = error.config || {};
+  const baseUrl = String(config.baseURL || '');
+  const requestUrl = String(config.url || '');
+  const fullUrl = /^https?:\/\//i.test(requestUrl) ? requestUrl : `${baseUrl}${requestUrl}`;
+  const params = config.params ? JSON.stringify(config.params) : '{}';
+  return `status=${status}, url=${fullUrl}, params=${params}, response=${detail}`;
 }
 
 async function fetchSnykProjects() {
