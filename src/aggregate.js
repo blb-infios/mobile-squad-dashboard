@@ -21,6 +21,7 @@ const ADO_API_VERSION = '7.1';
 const SNYK_TOKEN = process.env.SNYK_TOKEN;
 const SNYK_ORG_ID = process.env.SNYK_ORG_ID;
 const SNYK_API = process.env.SNYK_API || 'https://api.eu.snyk.io';
+const SNYK_API_VERSION = process.env.SNYK_API_VERSION || '2024-10-15';
 
 if (!ADO_PAT) {
   console.error('❌ Error: ADO_PAT or AZURE_DEVOPS_EXT_PAT environment variable is required');
@@ -58,8 +59,11 @@ const adoClient = axios.create({
 });
 
 const snykClient = axios.create({
-  baseURL: `${SNYK_API}/v1`,
-  headers: SNYK_TOKEN ? { Authorization: `token ${SNYK_TOKEN}` } : {},
+  baseURL: `${SNYK_API}/rest`,
+  headers: SNYK_TOKEN ? {
+    Accept: 'application/vnd.api+json',
+    Authorization: `token ${SNYK_TOKEN}`
+  } : {},
   timeout: 30000
 });
 
@@ -411,20 +415,36 @@ function logSnyk(message) {
 async function fetchSnykProjects() {
   const tokenConfigured = Boolean(SNYK_TOKEN);
   const orgConfigured = Boolean(SNYK_ORG_ID);
-  logSnyk(`configuration token=${tokenConfigured ? 'present' : 'missing'}, org=${orgConfigured ? masked(SNYK_ORG_ID) : 'missing'}, api=${SNYK_API}`);
+  logSnyk(`configuration token=${tokenConfigured ? 'present' : 'missing'}, org=${orgConfigured ? masked(SNYK_ORG_ID) : 'missing'}, api=${SNYK_API}/rest`);
   if (!tokenConfigured || !orgConfigured) {
     logSnyk('skipped because SNYK_TOKEN and SNYK_ORG_ID are required');
     return [];
   }
 
   try {
-    const response = await snykClient.get(`/org/${encodeURIComponent(SNYK_ORG_ID)}/projects`, { params: { limit: 1000 } });
-    const projects = response.data.projects || [];
+    const projects = [];
+    let nextUrl = `/orgs/${encodeURIComponent(SNYK_ORG_ID)}/projects`;
+    let page = 0;
+    while (nextUrl && page < 20) {
+      const response = await snykClient.get(nextUrl, {
+        params: { version: SNYK_API_VERSION, limit: 100 },
+        headers: { 'Content-Type': 'application/vnd.api+json' }
+      });
+      const items = response.data.data || [];
+      projects.push(...items.map((item) => ({
+        id: item.id,
+        name: item.attributes?.name || item.id,
+        lastTestedDate: item.attributes?.lastTestedDate || null,
+        url: item.links?.self || null
+      })));
+      nextUrl = response.data.links?.next || null;
+      page++;
+    }
     logSnyk(`project lookup succeeded: ${projects.length} project(s) returned`);
     return projects;
   } catch (error) {
     warn('Could not fetch Snyk projects; check SNYK_TOKEN, SNYK_ORG_ID, and API region', error);
-    logSnyk(`project lookup failed: ${error.response?.data?.message || error.message}`);
+    logSnyk(`project lookup failed: ${error.response?.data?.errors?.[0]?.detail || error.response?.data?.message || error.message}`);
     return [];
   }
 }
@@ -446,22 +466,39 @@ async function fetchSnykData(projects, repo) {
 
   logSnyk(`${repo.name}: matched project "${project.name}" (${masked(project.id)})`);
   try {
-    const response = await snykClient.get(`/org/${encodeURIComponent(SNYK_ORG_ID)}/project/${project.id}/issues`, {
-      params: { perPage: 1000, page: 1 }
-    });
-    const issues = response.data.issues || response.data.vulnerabilities || [];
+    const issues = [];
+    let nextUrl = `/orgs/${encodeURIComponent(SNYK_ORG_ID)}/issues`;
+    let page = 0;
+    while (nextUrl && page < 20) {
+      const response = await snykClient.get(nextUrl, {
+        params: {
+          version: SNYK_API_VERSION,
+          limit: 100,
+          project_id: project.id
+        },
+        headers: { 'Content-Type': 'application/vnd.api+json' }
+      });
+      issues.push(...(response.data.data || []));
+      nextUrl = response.data.links?.next || null;
+      page++;
+    }
     const counts = emptySnyk();
     issues.forEach((issue) => {
-      const severity = String(issue.issueData?.severity || issue.severity || '').toLowerCase();
+      const severity = String(
+        issue.attributes?.effectiveSeverityLevel ||
+        issue.attributes?.severity ||
+        issue.attributes?.issueData?.severity ||
+        ''
+      ).toLowerCase();
       if (Object.prototype.hasOwnProperty.call(counts, severity)) counts[severity]++;
     });
-    counts.lastScan = project.lastTestedDate || project.created || null;
-    counts.url = project.url || `https://app.snyk.io/org/${SNYK_ORG_ID}/project/${project.id}`;
+    counts.lastScan = project.lastTestedDate || null;
+    counts.url = `https://app.snyk.io/org/${SNYK_ORG_ID}/project/${project.id}`;
     logSnyk(`${repo.name}: ${issues.length} issue(s) - critical=${counts.critical}, high=${counts.high}, medium=${counts.medium}, low=${counts.low}`);
     return counts;
   } catch (error) {
     warn(`Could not fetch Snyk issues for ${repo.name}`, error);
-    logSnyk(`${repo.name}: issue lookup failed: ${error.response?.data?.message || error.message}`);
+    logSnyk(`${repo.name}: issue lookup failed: ${error.response?.data?.errors?.[0]?.detail || error.response?.data?.message || error.message}`);
     return emptySnyk();
   }
 }
