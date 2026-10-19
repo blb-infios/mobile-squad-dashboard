@@ -471,6 +471,7 @@ async function fetchSnykProjects() {
     }
     if (nextUrl) logSnyk(`project pagination stopped at ${page} pages; more pages remain`);
     logSnyk(`project lookup succeeded: ${projects.length} project(s) returned`);
+    logSnyk('all project names:\n' + projects.map((p, i) => `  ${i + 1}. [${masked(p.id)}] ${p.name}`).join('\n'));
     return projects;
   } catch (error) {
     warn('Could not fetch Snyk projects; check SNYK_TOKEN, SNYK_ORG_ID, and API region', error);
