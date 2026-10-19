@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-19T15:20:06.937Z",
-  "lastUpdated": "2026-10-19T15:20:06.937Z",
+  "generatedAt": "2026-10-19T15:38:07.464Z",
+  "lastUpdated": "2026-10-19T15:38:07.464Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -479,7 +479,7 @@
           "snyk": {
             "critical": 0,
             "high": 0,
-            "medium": 0,
+            "medium": 1,
             "low": 0,
             "lastScan": null,
             "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/5b0c36ec-55f7-47e0-9557-8f3c8eae889a"
@@ -542,8 +542,8 @@
           "snyk": {
             "critical": 0,
             "high": 0,
-            "medium": 0,
-            "low": 0,
+            "medium": 1,
+            "low": 1,
             "lastScan": null,
             "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/ba764a01-2c29-4d51-bde5-c23024c7279c"
           },
@@ -573,9 +573,9 @@
           "name": "Camera",
           "fullName": "Koerber.Mobile.Capacitor.Camera",
           "health": {
-            "status": "healthy",
-            "label": "Healthy",
-            "color": "#28a745"
+            "status": "warning",
+            "label": "Warning",
+            "color": "#ffc107"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera",
           "platforms": [
@@ -610,8 +610,8 @@
           },
           "snyk": {
             "critical": 0,
-            "high": 0,
-            "medium": 0,
+            "high": 3,
+            "medium": 4,
             "low": 0,
             "lastScan": null,
             "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/305f626e-4119-4b87-81bb-9687c27e8649"
@@ -695,7 +695,7 @@
           "snyk": {
             "critical": 0,
             "high": 0,
-            "medium": 0,
+            "medium": 1,
             "low": 0,
             "lastScan": null,
             "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/fd140469-61cf-4f7c-9611-8d9d391a318b"
@@ -771,8 +771,8 @@
           },
           "snyk": {
             "critical": 0,
-            "high": 0,
-            "medium": 0,
+            "high": 3,
+            "medium": 4,
             "low": 0,
             "lastScan": null,
             "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/62f9076f-542d-4f5d-ad73-1e5252a201d8"
@@ -811,9 +811,9 @@
           "name": "MDM Reader",
           "fullName": "Koerber.Mobile.Capacitor.MDMReader",
           "health": {
-            "status": "healthy",
-            "label": "Healthy",
-            "color": "#28a745"
+            "status": "warning",
+            "label": "Warning",
+            "color": "#ffc107"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader",
           "platforms": [
@@ -848,8 +848,8 @@
           },
           "snyk": {
             "critical": 0,
-            "high": 0,
-            "medium": 0,
+            "high": 3,
+            "medium": 4,
             "low": 0,
             "lastScan": null,
             "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/402626e7-c9d5-4434-a46c-49bbb2ce9b69"
@@ -880,9 +880,9 @@
           "name": "Vibrate",
           "fullName": "Koerber.Mobile.Capacitor.Vibrate",
           "health": {
-            "status": "healthy",
-            "label": "Healthy",
-            "color": "#28a745"
+            "status": "warning",
+            "label": "Warning",
+            "color": "#ffc107"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate",
           "platforms": [
@@ -917,8 +917,8 @@
           },
           "snyk": {
             "critical": 0,
-            "high": 0,
-            "medium": 0,
+            "high": 3,
+            "medium": 4,
             "low": 0,
             "lastScan": null,
             "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/f4f43270-20fc-4d68-b83c-94b0b7c5d62d"
@@ -1479,7 +1479,7 @@
       "snyk": {
         "critical": 0,
         "high": 0,
-        "medium": 0,
+        "medium": 1,
         "low": 0,
         "lastScan": null,
         "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/5b0c36ec-55f7-47e0-9557-8f3c8eae889a"
@@ -1544,8 +1544,8 @@
       "snyk": {
         "critical": 0,
         "high": 0,
-        "medium": 0,
-        "low": 0,
+        "medium": 1,
+        "low": 1,
         "lastScan": null,
         "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/ba764a01-2c29-4d51-bde5-c23024c7279c"
       },
@@ -1577,9 +1577,9 @@
       "name": "Camera",
       "fullName": "Koerber.Mobile.Capacitor.Camera",
       "health": {
-        "status": "healthy",
-        "label": "Healthy",
-        "color": "#28a745"
+        "status": "warning",
+        "label": "Warning",
+        "color": "#ffc107"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera",
       "platforms": [
@@ -1614,8 +1614,8 @@
       },
       "snyk": {
         "critical": 0,
-        "high": 0,
-        "medium": 0,
+        "high": 3,
+        "medium": 4,
         "low": 0,
         "lastScan": null,
         "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/305f626e-4119-4b87-81bb-9687c27e8649"
@@ -1701,7 +1701,7 @@
       "snyk": {
         "critical": 0,
         "high": 0,
-        "medium": 0,
+        "medium": 1,
         "low": 0,
         "lastScan": null,
         "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/fd140469-61cf-4f7c-9611-8d9d391a318b"
@@ -1779,8 +1779,8 @@
       },
       "snyk": {
         "critical": 0,
-        "high": 0,
-        "medium": 0,
+        "high": 3,
+        "medium": 4,
         "low": 0,
         "lastScan": null,
         "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/62f9076f-542d-4f5d-ad73-1e5252a201d8"
@@ -1821,9 +1821,9 @@
       "name": "MDM Reader",
       "fullName": "Koerber.Mobile.Capacitor.MDMReader",
       "health": {
-        "status": "healthy",
-        "label": "Healthy",
-        "color": "#28a745"
+        "status": "warning",
+        "label": "Warning",
+        "color": "#ffc107"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader",
       "platforms": [
@@ -1858,8 +1858,8 @@
       },
       "snyk": {
         "critical": 0,
-        "high": 0,
-        "medium": 0,
+        "high": 3,
+        "medium": 4,
         "low": 0,
         "lastScan": null,
         "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/402626e7-c9d5-4434-a46c-49bbb2ce9b69"
@@ -1892,9 +1892,9 @@
       "name": "Vibrate",
       "fullName": "Koerber.Mobile.Capacitor.Vibrate",
       "health": {
-        "status": "healthy",
-        "label": "Healthy",
-        "color": "#28a745"
+        "status": "warning",
+        "label": "Warning",
+        "color": "#ffc107"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate",
       "platforms": [
@@ -1929,8 +1929,8 @@
       },
       "snyk": {
         "critical": 0,
-        "high": 0,
-        "medium": 0,
+        "high": 3,
+        "medium": 4,
         "low": 0,
         "lastScan": null,
         "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/f4f43270-20fc-4d68-b83c-94b0b7c5d62d"
