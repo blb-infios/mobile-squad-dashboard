@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-19T10:20:22.127Z",
-  "lastUpdated": "2026-10-19T10:20:22.127Z",
+  "generatedAt": "2026-10-19T10:29:20.344Z",
+  "lastUpdated": "2026-10-19T10:29:20.344Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -344,7 +344,7 @@
             "medium": 0,
             "low": 0,
             "lastScan": null,
-            "url": null
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/c0782d47-a226-4d52-b6bb-8ee804aa234d"
           },
           "workItems": {
             "open": 0,
@@ -496,7 +496,7 @@
             "medium": 0,
             "low": 0,
             "lastScan": null,
-            "url": null
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/5b0c36ec-55f7-47e0-9557-8f3c8eae889a"
           },
           "workItems": {
             "open": 0,
@@ -559,7 +559,7 @@
             "medium": 0,
             "low": 0,
             "lastScan": null,
-            "url": null
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/ba764a01-2c29-4d51-bde5-c23024c7279c"
           },
           "workItems": {
             "open": 0,
@@ -628,7 +628,7 @@
             "medium": 0,
             "low": 0,
             "lastScan": null,
-            "url": null
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/305f626e-4119-4b87-81bb-9687c27e8649"
           },
           "workItems": {
             "open": 0,
@@ -712,7 +712,7 @@
             "medium": 0,
             "low": 0,
             "lastScan": null,
-            "url": null
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/fd140469-61cf-4f7c-9611-8d9d391a318b"
           },
           "workItems": {
             "open": 1,
@@ -789,7 +789,7 @@
             "medium": 0,
             "low": 0,
             "lastScan": null,
-            "url": null
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/62f9076f-542d-4f5d-ad73-1e5252a201d8"
           },
           "workItems": {
             "open": 0,
@@ -866,7 +866,7 @@
             "medium": 0,
             "low": 0,
             "lastScan": null,
-            "url": null
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/402626e7-c9d5-4434-a46c-49bbb2ce9b69"
           },
           "workItems": {
             "open": 0,
@@ -935,7 +935,7 @@
             "medium": 0,
             "low": 0,
             "lastScan": null,
-            "url": null
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/f4f43270-20fc-4d68-b83c-94b0b7c5d62d"
           },
           "workItems": {
             "open": 0,
@@ -1367,7 +1367,7 @@
         "medium": 0,
         "low": 0,
         "lastScan": null,
-        "url": null
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/c0782d47-a226-4d52-b6bb-8ee804aa234d"
       },
       "workItems": {
         "open": 0,
@@ -1517,7 +1517,7 @@
         "medium": 0,
         "low": 0,
         "lastScan": null,
-        "url": null
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/5b0c36ec-55f7-47e0-9557-8f3c8eae889a"
       },
       "workItems": {
         "open": 0,
@@ -1582,7 +1582,7 @@
         "medium": 0,
         "low": 0,
         "lastScan": null,
-        "url": null
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/ba764a01-2c29-4d51-bde5-c23024c7279c"
       },
       "workItems": {
         "open": 0,
@@ -1653,7 +1653,7 @@
         "medium": 0,
         "low": 0,
         "lastScan": null,
-        "url": null
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/305f626e-4119-4b87-81bb-9687c27e8649"
       },
       "workItems": {
         "open": 0,
@@ -1739,7 +1739,7 @@
         "medium": 0,
         "low": 0,
         "lastScan": null,
-        "url": null
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/fd140469-61cf-4f7c-9611-8d9d391a318b"
       },
       "workItems": {
         "open": 1,
@@ -1818,7 +1818,7 @@
         "medium": 0,
         "low": 0,
         "lastScan": null,
-        "url": null
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/62f9076f-542d-4f5d-ad73-1e5252a201d8"
       },
       "workItems": {
         "open": 0,
@@ -1897,7 +1897,7 @@
         "medium": 0,
         "low": 0,
         "lastScan": null,
-        "url": null
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/402626e7-c9d5-4434-a46c-49bbb2ce9b69"
       },
       "workItems": {
         "open": 0,
@@ -1968,7 +1968,7 @@
         "medium": 0,
         "low": 0,
         "lastScan": null,
-        "url": null
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/f4f43270-20fc-4d68-b83c-94b0b7c5d62d"
       },
       "workItems": {
         "open": 0,
