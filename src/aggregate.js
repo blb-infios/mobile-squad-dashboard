@@ -435,6 +435,32 @@ function snykErrorDetail(error) {
   return `status=${status}, url=${fullUrl}, params=${params}, response=${detail}`;
 }
 
+async function fetchSnykTargets() {
+  if (!SNYK_TOKEN || !SNYK_ORG_ID) return new Map();
+  try {
+    const targets = new Map();
+    let nextUrl = `/orgs/${encodeURIComponent(SNYK_ORG_ID)}/targets`;
+    let params = { version: SNYK_API_VERSION, limit: 100 };
+    while (nextUrl) {
+      const response = await snykClient.get(resolveSnykUrl(nextUrl), {
+        params,
+        headers: { 'Content-Type': 'application/vnd.api+json' }
+      });
+      (response.data.data || []).forEach((t) => {
+        const name = t.attributes?.display_name || t.attributes?.displayName || null;
+        if (t.id && name) targets.set(t.id, name);
+      });
+      nextUrl = response.data.links?.next || null;
+      params = undefined;
+    }
+    logSnyk(`target lookup succeeded: ${targets.size} target(s)`);
+    return targets;
+  } catch (error) {
+    warn('Could not fetch Snyk targets', error);
+    return new Map();
+  }
+}
+
 async function fetchSnykProjects() {
   const tokenConfigured = Boolean(SNYK_TOKEN);
   const orgConfigured = Boolean(SNYK_ORG_ID);
@@ -460,6 +486,8 @@ async function fetchSnykProjects() {
         return {
           id: item.id,
           name: attributes.name || item.id,
+          targetId: item.relationships?.target?.data?.id || null,
+          targetDisplayName: null,
           lastTestedDate: attributes.lastTestedDate || attributes.last_tested_date || attributes.lastTestedAt || attributes.last_tested_at || null,
           issueCounts: attributes.issueCountsBySeverity || attributes.issue_counts_by_severity || attributes.issueCounts || attributes.issue_counts || null,
           url: item.links?.self || null
@@ -470,8 +498,19 @@ async function fetchSnykProjects() {
       page++;
     }
     if (nextUrl) logSnyk(`project pagination stopped at ${page} pages; more pages remain`);
+
+    // Enrich generic-named projects (e.g. "android") with their target display name
+    const targetMap = await fetchSnykTargets();
+    projects.forEach((p) => {
+      if (p.targetId && targetMap.has(p.targetId)) {
+        p.targetDisplayName = targetMap.get(p.targetId);
+      }
+    });
+
     logSnyk(`project lookup succeeded: ${projects.length} project(s) returned`);
-    logSnyk('all project names:\n' + projects.map((p, i) => `  ${i + 1}. [${masked(p.id)}] ${p.name}`).join('\n'));
+    logSnyk('all project names:\n' + projects.map((p, i) =>
+      `  ${i + 1}. [${masked(p.id)}] ${p.name}${p.targetDisplayName ? ` (target: ${p.targetDisplayName})` : ''}`
+    ).join('\n'));
     return projects;
   } catch (error) {
     warn('Could not fetch Snyk projects; check SNYK_TOKEN, SNYK_ORG_ID, and API region', error);
@@ -574,18 +613,30 @@ function adoRepoNameFromProject(projectName) {
   return match ? match[1].toLowerCase() : null;
 }
 
+function adoRepoNameFromTarget(targetDisplayName) {
+  if (!targetDisplayName) return null;
+  // e.g. "WES/_git/Koerber.Mobile.Capacitor.Camera" or "Koerber.Mobile.Capacitor.Camera"
+  const match = String(targetDisplayName).match(/Koerber\.Mobile\.\w+\.(\w+)/i);
+  return match ? match[1].toLowerCase() : null;
+}
+
 function findSnykProjects(projects, repo) {
   const aliases = snykProjectAliases(repo);
   const repoSuffix = String(repo.fullName || '').split('.').pop().toLowerCase();
   const matched = [];
   projects.forEach((candidate) => {
     // ADO-monitored projects (WES/Koerber.Mobile.X.RepoName(develop):...) must match this repo
-    const adoRepo = adoRepoNameFromProject(candidate.name);
+    const adoRepo = adoRepoNameFromProject(candidate.name)
+      || adoRepoNameFromTarget(candidate.targetDisplayName);
     if (adoRepo && adoRepo !== repoSuffix) return;
 
     const candidateName = normalizeName(candidate.name);
+    // For generic project names ("android", "ios"), use target display name for matching instead
+    const effectiveCandidateName = ['android', 'ios'].includes(candidateName) && candidate.targetDisplayName
+      ? normalizeName(candidate.targetDisplayName)
+      : candidateName;
     const score = aliases.reduce((best, alias, index) =>
-      Math.max(best, projectMatchScore(candidateName, alias, repo, index)), 0);
+      Math.max(best, projectMatchScore(effectiveCandidateName, alias, repo, index)), 0);
     if (score >= 60) matched.push({ project: candidate, score });
   });
   matched.sort((a, b) => b.score - a.score);
