@@ -339,15 +339,25 @@ async function fetchSourceMetadata(repoId) {
       .filter((item) => item.gitObjectType === 'blob' || item.itemType === 'file')
       .map((item) => item.path)
       .filter((itemPath) => /(^|\/)(package\.json|gradle\.properties|build\.gradle(?:\.kts)?|libs\.versions\.toml)$/i.test(itemPath));
+    const parsed = [];
 
     for (const itemPath of candidates) {
       const content = await readSourceFile(repoId, itemPath, branch);
       const version = parseVersion(content, itemPath);
       const packages = parsePackage(content, itemPath);
-      if (version || packages.npm || packages.maven) {
-        return { version, packages, branch, path: itemPath };
-      }
+      if (version || packages.npm || packages.maven) parsed.push({ version, packages, branch, path: itemPath });
     }
+
+    // Prefer the published plugin/library manifest over example apps and build tooling.
+    const officialPackage = parsed.find((item) =>
+      String(item.packages.npm || '').startsWith('@koerber/mobile-capacitor-')
+    );
+    const publishedMaven = parsed.find((item) => {
+      const artifact = String(item.packages.maven || '').split(':')[1] || '';
+      return /(?:library|scanner|printing|beep|vibrate|authorization|camera|logger)/i.test(artifact);
+    });
+    const selected = officialPackage || publishedMaven || parsed[0];
+    if (selected) return selected;
   }
   return { version: null, packages: { npm: null, maven: null }, branch: null, path: null };
 }
