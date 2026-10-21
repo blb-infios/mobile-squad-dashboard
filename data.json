@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-21T06:33:31.913Z",
-  "lastUpdated": "2026-10-21T06:33:31.913Z",
+  "generatedAt": "2026-10-21T07:55:17.763Z",
+  "lastUpdated": "2026-10-21T07:55:17.763Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -584,12 +584,12 @@
             "web"
           ],
           "versions": {
-            "source": "0.1.0",
-            "devFeed": null,
-            "platformFeed": null
+            "source": "1.1.0",
+            "devFeed": "1.0.7-202608211032",
+            "platformFeed": "1.1.0"
           },
           "packages": {
-            "npm": "example-camera-app",
+            "npm": "@koerber/mobile-capacitor-camera",
             "maven": null
           },
           "pipelines": {
@@ -668,12 +668,12 @@
             "web"
           ],
           "versions": {
-            "source": "0.1.0",
-            "devFeed": null,
-            "platformFeed": null
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202609241443",
+            "platformFeed": "1.0.2"
           },
           "packages": {
-            "npm": "example",
+            "npm": "@koerber/mobile-capacitor-logger",
             "maven": null
           },
           "pipelines": {
@@ -745,12 +745,12 @@
             "web"
           ],
           "versions": {
-            "source": "1.0.0",
-            "devFeed": null,
-            "platformFeed": null
+            "source": "1.0.7",
+            "devFeed": "1.0.7-202609231520",
+            "platformFeed": "1.0.7"
           },
           "packages": {
-            "npm": "capacitor-app",
+            "npm": "@koerber/mobile-capacitor-beep",
             "maven": null
           },
           "pipelines": {
@@ -822,12 +822,12 @@
             "web"
           ],
           "versions": {
-            "source": "0.1.0",
-            "devFeed": null,
-            "platformFeed": null
+            "source": "1.0.5",
+            "devFeed": "1.0.5-202609281443",
+            "platformFeed": "1.0.5"
           },
           "packages": {
-            "npm": "example-app",
+            "npm": "@koerber/mobile-capacitor-mdm-reader",
             "maven": null
           },
           "pipelines": {
@@ -891,12 +891,12 @@
             "web"
           ],
           "versions": {
-            "source": "1.0.0",
-            "devFeed": null,
-            "platformFeed": null
+            "source": "1.0.6",
+            "devFeed": "1.0.6-202609241219",
+            "platformFeed": "1.0.6"
           },
           "packages": {
-            "npm": "capacitor-app",
+            "npm": "@koerber/mobile-capacitor-vibrate",
             "maven": null
           },
           "pipelines": {
@@ -1588,12 +1588,12 @@
         "web"
       ],
       "versions": {
-        "source": "0.1.0",
-        "devFeed": null,
-        "platformFeed": null
+        "source": "1.1.0",
+        "devFeed": "1.0.7-202608211032",
+        "platformFeed": "1.1.0"
       },
       "packages": {
-        "npm": "example-camera-app",
+        "npm": "@koerber/mobile-capacitor-camera",
         "maven": null
       },
       "pipelines": {
@@ -1674,12 +1674,12 @@
         "web"
       ],
       "versions": {
-        "source": "0.1.0",
-        "devFeed": null,
-        "platformFeed": null
+        "source": "1.0.2",
+        "devFeed": "1.0.2-202609241443",
+        "platformFeed": "1.0.2"
       },
       "packages": {
-        "npm": "example",
+        "npm": "@koerber/mobile-capacitor-logger",
         "maven": null
       },
       "pipelines": {
@@ -1753,12 +1753,12 @@
         "web"
       ],
       "versions": {
-        "source": "1.0.0",
-        "devFeed": null,
-        "platformFeed": null
+        "source": "1.0.7",
+        "devFeed": "1.0.7-202609231520",
+        "platformFeed": "1.0.7"
       },
       "packages": {
-        "npm": "capacitor-app",
+        "npm": "@koerber/mobile-capacitor-beep",
         "maven": null
       },
       "pipelines": {
@@ -1832,12 +1832,12 @@
         "web"
       ],
       "versions": {
-        "source": "0.1.0",
-        "devFeed": null,
-        "platformFeed": null
+        "source": "1.0.5",
+        "devFeed": "1.0.5-202609281443",
+        "platformFeed": "1.0.5"
       },
       "packages": {
-        "npm": "example-app",
+        "npm": "@koerber/mobile-capacitor-mdm-reader",
         "maven": null
       },
       "pipelines": {
@@ -1903,12 +1903,12 @@
         "web"
       ],
       "versions": {
-        "source": "1.0.0",
-        "devFeed": null,
-        "platformFeed": null
+        "source": "1.0.6",
+        "devFeed": "1.0.6-202609241219",
+        "platformFeed": "1.0.6"
       },
       "packages": {
-        "npm": "capacitor-app",
+        "npm": "@koerber/mobile-capacitor-vibrate",
         "maven": null
       },
       "pipelines": {

@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Health overview of Mobile Squad repositories: versions, pipelines, Snyk findings and work items.">
 <title>Mobile Squad Repository Dashboard</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 
 <!--
   =====================================================================
@@ -64,6 +71,7 @@
   /* Type badges */
   --kmp-bg: #eee8ff;  --kmp-fg: #5a2fc2;
   --cap-bg: #e0efff;  --cap-fg: #0a5fb0;
+  --plat-android: #2aa866;  --plat-jvm: #d96a00;
   
   /* KMP icon gradient */
   --kmp-grad-1: #7F52FF;
@@ -311,8 +319,13 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .platforms { display: flex; gap: 6px; }
 .platforms li {
   width: 32px; height: 32px; display: grid; place-items: center;
-  background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
 }
+.platforms li svg { display: block; width: 18px; height: 18px; }
+.plat-android { color: var(--plat-android); }
+.plat-apple   { color: var(--text); }
+.plat-jvm     { color: var(--plat-jvm); }
+.plat-web     { color: var(--accent); }
 .platforms li.text { width: auto; padding: 0 10px; font-size: .72rem; font-weight: 600; color: var(--muted); }
 
 .section { padding: 12px 18px 14px; border-top: 1px solid var(--border); }
@@ -416,6 +429,13 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 <noscript>
   <p style="padding:24px;font-family:sans-serif">This dashboard needs JavaScript enabled to load repository data.</p>
 </noscript>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="icon-android" viewBox="0 0 24 24"><path fill="currentColor" d="M18.44 5.56 16.41 9.06a10.8 10.8 0 0 0-4.42-.84c-1.86.02-3.35.46-4.26.82L5.71 5.56a1.15 1.15 0 0 0-.14-.19c-.33-.36-.91-.49-1.38-.2-.48.28-.71.94-.39 1.5l1.95 3.36c-.02.03-.5.26-1.39 1.02C2.9 12.18.45 14.77 0 18.99h24c-.12-1.11-.37-2.1-.75-3.07-.74-1.91-1.84-3.29-2.74-4.18a12.1 12.1 0 0 0-2.13-1.69l1.97-3.38c.21-.36.19-.8-.01-1.12a1.1 1.1 0 0 0-.85-.53c-.52-.05-.94.31-1.05.54ZM7.21 13.53c.48.32.55 1.06.16 1.65-.4.59-1.1.81-1.58.49-.48-.32-.55-1.06-.16-1.65.4-.6 1.11-.81 1.58-.49Zm11.19 0c.39.59.32 1.33-.16 1.65-.48.32-1.19.1-1.58-.49-.4-.59-.32-1.33.16-1.65.47-.32 1.18-.11 1.58.49Z"/></symbol>
+  <symbol id="icon-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.61 1.09ZM15.53 3.83c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.8-3.53 1.82-.78.9-1.45 2.34-1.27 3.71 1.34.1 2.72-.69 3.56-1.7Z"/></symbol>
+  <symbol id="icon-jvm" viewBox="0 0 24 24"><path fill="currentColor" d="m11.92 0-.22.22C9.52 2.4 7.47 6.39 6.05 10.48c-1.06 1.02-3.63 2.81-3.71 3.55-.09.87 1.75 2.61 1.55 3.24-.2.62-1.3 1.41-1.01 1.94.1.19.82.01 1.28-.49a13.4 13.4 0 0 0-.02 2.14c.08.91.27 1.67.64 2.23.37.56.96.91 1.67.91.4 0 .73-.11 1.02-.26.3-.15.57-.33.91-.5.68-.34 1.63-.67 3.53-.6 1.9.06 2.87.39 3.56.7.69.31 1.15.66 1.92.66.77 0 1.4-.34 1.81-.9.41-.56.63-1.33.72-2.24.06-.62.05-1.32 0-2.07.45.45 1.12.6 1.21.42.29-.53-.82-1.31-1.01-1.94-.2-.62 1.64-2.37 1.55-3.23-.08-.75-2.71-2.57-3.75-3.59C16.43 6.37 14.31 2.39 12.13.22Zm.18 6.04a2.95 2.95 0 0 1 2.94 2.94 2.95 2.95 0 0 1-2.94 2.95A2.95 2.95 0 0 1 9.15 8.98a2.95 2.95 0 0 1 2.95-2.94Z"/></symbol>
+  <symbol id="icon-web" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9.2"/><ellipse cx="12" cy="12" rx="4" ry="9.2"/><path d="M2.8 12h18.4M4.4 7.2h15.2M4.4 16.8h15.2"/></g></symbol>
+</svg>
 
 <!-- ===================== HEADER: title, filters, search, sort, theme ===================== -->
 <header class="app-header">
@@ -701,7 +721,7 @@ function analyzeVersions(v) {
    F. CARD RENDERING
    =================================================================== */
 const PLATFORMS = {
-  android: ['🤖', 'Android'], ios: ['🍎', 'iOS'], jvm: ['☕', 'JVM'], web: ['🌐', 'Web']
+  android: ['android', 'Android'], ios: ['apple', 'iOS'], jvm: ['jvm', 'JVM'], web: ['web', 'Web']
 };
 
 const section = (title, right, body) =>
@@ -852,7 +872,7 @@ function renderCard({ repo, ev }, index) {
   const platforms = (repo.platforms || []).map((p) => {
     const known = PLATFORMS[String(p).toLowerCase()];
     return known
-      ? `<li role="img" aria-label="${known[1]}" title="${known[1]}">${known[0]}</li>`
+      ? `<li class="plat plat-${known[0]}" role="img" aria-label="${known[1]}" title="${known[1]}"><svg aria-hidden="true" focusable="false"><use href="#icon-${known[0]}"/></svg></li>`
       : `<li class="text" title="${esc(p)}">${esc(p)}</li>`;
   }).join('');
 
