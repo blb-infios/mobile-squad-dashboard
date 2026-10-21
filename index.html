@@ -821,6 +821,12 @@ function renderPipelines(pipelines) {
   return section('🔁 Pipelines', '', `<ul class="pipes">${rows}</ul>`);
 }
 
+function renderCoverage(coverage) {
+  if (!coverage) return section('📊 Code coverage', '', '<p class="empty-note">No coverage data</p>');
+  const metric = (label, value) => `<li class="tile"><span class="num">${value == null ? '—' : `${value.toFixed(1)}%`}</span><span class="lbl">${label}</span></li>`;
+  return section('📊 Code coverage', '', `<ul class="tiles three">${metric('Lines', coverage.lines?.percent)}${metric('Blocks', coverage.blocks?.percent)}<li class="tile"><span class="num">${coverage.modules || 0}</span><span class="lbl">Modules</span></li></ul>`);
+}
+
 function renderSnyk(s) {
   if (!s) return section('🛡️ Security (Snyk)', '', '<p class="empty-note">No scan data</p>');
   const sev = [
@@ -925,6 +931,7 @@ function renderCard({ repo, ev }, index) {
     </header>
     ${renderVersions(repo.versions)}
     ${renderPipelines(repo.pipelines)}
+    ${renderCoverage(repo.coverage)}
     ${renderSnyk(repo.snyk)}
     ${renderWorkItems(repo.workItems)}
     ${renderFooter(repo)}
@@ -957,7 +964,7 @@ function renderStats(items) {
 
 function renderInsights(data) {
   const sources = data.dataSources || {};
-  const sourceLabels = { repositories: 'Repositories', sourceCode: 'Source code', pipelines: 'Pipelines', artifacts: 'Package feeds', workItems: 'Work items', snyk: 'Snyk' };
+  const sourceLabels = { repositories: 'Repositories', sourceCode: 'Source code', pipelines: 'Pipelines', coverage: 'Code coverage', artifacts: 'Package feeds', workItems: 'Work items', snyk: 'Snyk' };
   const sourceRows = Object.entries(sourceLabels).map(([key, label]) => {
     const status = sources[key]?.status || 'unknown';
     const cls = status === 'connected' ? 'source-ok' : status === 'noData' ? 'source-muted' : 'source-bad';
@@ -986,6 +993,7 @@ function openRepoDetail(repo) {
     <div class="section"><div class="section-head"><h3>Release readiness</h3>${readinessBadge(repo)}</div><p class="empty-note">${esc((repo.releaseReadiness?.reasons || ['All release checks passed']).join('. '))}</p></div>
     ${renderVersions(repo.versions)}
     ${renderPipelines(repo.pipelines)}
+    ${renderCoverage(repo.coverage)}
     ${renderSnyk(repo.snyk)}
     ${renderWorkItems(repo.workItems)}
     <section class="section"><div class="section-head"><h3>Repository activity</h3></div><p class="empty-note">Active pull requests: ${num(repo.activePRs)}${repo.lastCommit?.message ? ` · Latest commit: ${esc(repo.lastCommit.message)}` : ''}</p></section>`;
