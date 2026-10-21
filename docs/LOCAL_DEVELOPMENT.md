@@ -52,7 +52,7 @@ Create your PAT at https://dev.azure.com/highjumpvso/_usersSettings/tokens with 
 | Work Items | Read |
 | Packaging | Read |
 
-Packaging Read is required to populate the dev feed and platform feed version columns. Without it, those columns show `—` but the rest of the dashboard still works.
+Packaging Read is required to populate feed versions. Test Management Read is required to populate Azure DevOps code coverage. Without those scopes, the affected dashboard sections show no data while the rest of the dashboard still works.
 
 ### 4. Snyk credentials
 

@@ -110,6 +110,46 @@ async function fetchBuilds(repoId) {
   return data.value || [];
 }
 
+let coverageAccessWarningShown = false;
+
+function summarizeCoverage(data, buildId) {
+  const records = data?.value || [];
+  const modules = records.flatMap((record) => record.modules || []);
+  const totals = modules.reduce((summary, module) => {
+    const stats = module.statistics || {};
+    summary.linesCovered += Number(stats.linesCovered || 0);
+    summary.linesNotCovered += Number(stats.linesNotCovered || 0);
+    summary.blocksCovered += Number(stats.blocksCovered || 0);
+    summary.blocksNotCovered += Number(stats.blocksNotCovered || 0);
+    return summary;
+  }, { linesCovered: 0, linesNotCovered: 0, blocksCovered: 0, blocksNotCovered: 0 });
+  const lineTotal = totals.linesCovered + totals.linesNotCovered;
+  const blockTotal = totals.blocksCovered + totals.blocksNotCovered;
+  if (!lineTotal && !blockTotal) return null;
+  return {
+    buildId,
+    lines: { covered: totals.linesCovered, total: lineTotal, percent: lineTotal ? (totals.linesCovered / lineTotal) * 100 : null },
+    blocks: { covered: totals.blocksCovered, total: blockTotal, percent: blockTotal ? (totals.blocksCovered / blockTotal) * 100 : null },
+    modules: modules.length
+  };
+}
+
+async function fetchBuildCoverage(buildId) {
+  if (!buildId) return null;
+  try {
+    const data = await adoClient.get('/test/codecoverage', {
+      params: apiParams({ buildId, flags: 7 })
+    });
+    return summarizeCoverage(data.data, buildId);
+  } catch (error) {
+    if (!coverageAccessWarningShown) {
+      warn('Code coverage unavailable; add Test Management: Read to ADO_PAT', error);
+      coverageAccessWarningShown = true;
+    }
+    return null;
+  }
+}
+
 function isReleaseBuild(build) {
   const name = String(build.definition?.name || '').toLowerCase();
   return /(^|[.\-_ ])(release|prod|production|publish)([.\-_ ]|$)/i.test(name);
@@ -786,6 +826,7 @@ function buildDataSources(repositories, snykState) {
     sourceCode: { status: repositories.some((repo) => repo.versions?.source) ? 'connected' : 'unavailable', checkedAt },
     pipelines: { status: hasPipelines ? 'connected' : 'unavailable', checkedAt },
     artifacts: { status: hasArtifacts ? 'connected' : 'unavailable', checkedAt },
+    coverage: { status: repositories.some((repo) => repo.coverage) ? 'connected' : 'unavailable', checkedAt },
     workItems: { status: hasWorkItems ? 'connected' : 'noData', checkedAt },
     snyk: { status: snykState.available ? 'connected' : snykState.configured ? 'unavailable' : 'notConfigured', checkedAt }
   };
@@ -813,7 +854,7 @@ function createSnykState() {
   };
 }
 
-function repositoryData(repoDef, repo, category, commit, pullRequests, metadata, feedVersions, pipelines, workItems, snyk) {
+function repositoryData(repoDef, repo, category, commit, pullRequests, metadata, feedVersions, pipelines, coverage, workItems, snyk) {
   const health = calculateHealth(pipelines, snyk);
   const repoData = {
     name: repoDef.displayName,
@@ -829,6 +870,7 @@ function repositoryData(repoDef, repo, category, commit, pullRequests, metadata,
     packages: metadata.packages,
     snykNames: repoDef.snykNames || [],
     pipelines,
+    coverage,
     snyk,
     workItems,
     lastBuild: null,
@@ -910,6 +952,7 @@ async function aggregateData() {
           versions: { source: null, devFeed: null, platformFeed: null },
           packages: { npm: null, maven: null },
           pipelines: { ci: null, release: null },
+          coverage: null,
           snyk: emptySnyk(),
           workItems: { open: 0, inProgress: 0, committed: 0, url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_queries` },
           url: null,
@@ -931,12 +974,14 @@ async function aggregateData() {
         fetchSourceMetadata(repo.id)
       ]);
       const pipelines = pipelinesFromBuilds(builds);
-      const [feedVersions, workItems, snyk] = await Promise.all([
+      const coverageBuild = builds.find((build) => !isReleaseBuild(build)) || builds[0];
+      const [coverage, feedVersions, workItems, snyk] = await Promise.all([
+        fetchBuildCoverage(coverageBuild?.id),
         fetchFeedVersions(metadata, category),
         fetchWorkItems(repo.id, pullRequests, builds),
         fetchSnykData(snykProjects, snykIssues, { ...repoDef, fullName: repo.name, category, packageName: metadata.packages.npm || metadata.packages.maven })
       ]);
-      const repoData = repositoryData(repoDef, repo, category, commit, pullRequests, metadata, feedVersions, pipelines, workItems, snyk);
+      const repoData = repositoryData(repoDef, repo, category, commit, pullRequests, metadata, feedVersions, pipelines, coverage, workItems, snyk);
       const flatData = { ...repoData, category, type: category };
 
       console.log(`  ✓ ${repoDef.displayName} (${metadata.version || 'source version unavailable'})`);

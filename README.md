@@ -8,6 +8,8 @@ Automated monitoring dashboard for all Mobile Squad repositories (KMP, Capacitor
 - 🏗️ Build status tracking (latest build result, build number, finish time)
 - 📝 Latest commit information (commit ID, author, message, time)
 - 🔀 Active pull request count
+- 🛡️ Active Snyk vulnerability tracking
+- 📊 Azure DevOps code coverage tracking
 - 🔄 Auto-refreshes every 6 hours via GitHub Actions
 - 📱 Responsive design for mobile and desktop
 
@@ -43,6 +45,7 @@ Automated monitoring dashboard for all Mobile Squad repositories (KMP, Capacitor
   - Build (read)
   - Work Items (read)
   - Packaging (read) - required for Azure Artifacts feed versions
+  - Test Management (read) - required for Azure DevOps code coverage data
 - Optional Snyk API token and organization ID for Snyk findings
 
 ### Local Development
