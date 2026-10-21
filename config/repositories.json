@@ -1,0 +1,35 @@
+{
+  "Koerber.Mobile.Kotlin.Dex": {
+    "snykNames": ["KMP-App-Template-Native"]
+  },
+  "Koerber.Mobile.Kotlin.K1V1Authorization": {
+    "snykNames": ["CommunicationApp3", "KotlinUtilityApp"]
+  },
+  "Koerber.Mobile.Kotlin.BarcodeScanning": {
+    "snykNames": ["barcode-scanner-kmp-library"]
+  },
+  "Koerber.Mobile.Kotlin.Printing": {
+    "snykNames": ["KMPPrintingDemoApp", "printing-kmp-library"]
+  },
+  "Koerber.Mobile.Capacitor.Camera": {
+    "snykNames": ["@koerber/mobile-capacitor-camera"]
+  },
+  "Koerber.Mobile.Capacitor.Beep": {
+    "snykNames": ["@koerber/mobile-capacitor-beep"]
+  },
+  "Koerber.Mobile.Capacitor.Logger": {
+    "snykNames": ["@koerber/mobile-capacitor-logger"]
+  },
+  "Koerber.Mobile.Capacitor.MDMReader": {
+    "snykNames": ["@koerber/mobile-capacitor-mdm-reader"]
+  },
+  "Koerber.Mobile.Capacitor.Vibrate": {
+    "snykNames": ["@koerber/mobile-capacitor-vibrate"]
+  },
+  "Koerber.Mobile.Capacitor.K1Authorization": {
+    "snykNames": ["@koerber/mobile-capacitor-k1authorization"]
+  },
+  "Koerber.Mobile.Capacitor.Printing": {
+    "snykNames": ["@koerber/mobile-capacitor-printing"]
+  }
+}

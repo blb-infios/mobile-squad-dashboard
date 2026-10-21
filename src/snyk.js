@@ -9,6 +9,8 @@ const fs = require('fs').promises;
 const path = require('path');
 const {
   calculateHealth,
+  calculateReleaseReadiness,
+  createHistorySnapshot,
   fetchSnykData,
   fetchSnykIssues,
   fetchSnykProjects
@@ -26,10 +28,12 @@ async function main() {
       displayName: repo.name,
       fullName: repo.fullName,
       category: repo.category,
+      snykNames: repo.snykNames || [],
       packageName: repo.packages?.npm || repo.packages?.maven || null
     });
     repo.snyk = snyk;
     repo.health = calculateHealth(repo.pipelines || {}, snyk);
+    repo.releaseReadiness = calculateReleaseReadiness(repo);
   }
 
   for (const category of data.categories || []) {
@@ -38,8 +42,28 @@ async function main() {
       if (flatRepo) {
         repo.snyk = flatRepo.snyk;
         repo.health = flatRepo.health;
+        repo.releaseReadiness = flatRepo.releaseReadiness;
       }
     }
+  }
+
+  const checkedAt = new Date().toISOString();
+  data.dataSources = data.dataSources || {};
+  data.dataSources.snyk = {
+    status: issues.available ? 'connected' : 'unavailable',
+    checkedAt
+  };
+  const historyPath = path.join(__dirname, '../public/history.json');
+  try {
+    const history = JSON.parse(await fs.readFile(historyPath, 'utf8'));
+    const snapshots = Array.isArray(history.snapshots) ? history.snapshots : [];
+    const snapshot = createHistorySnapshot(data);
+    if (snapshots.at(-1)?.timestamp === data.generatedAt) snapshots[snapshots.length - 1] = snapshot;
+    else snapshots.push(snapshot);
+    await fs.writeFile(historyPath, JSON.stringify({ snapshots: snapshots.slice(-90) }, null, 2));
+    data.history = snapshots.slice(-90);
+  } catch (_) {
+    // The ADO step creates history; a missing file should not block Snyk data.
   }
 
   await fs.writeFile(dataPath, JSON.stringify(data, null, 2));

@@ -46,6 +46,11 @@ jobs:
             rm -f "$response_file"
           done
 
+      - name: Restore dashboard history
+        run: |
+          mkdir -p public
+          curl -fsSL "https://blb-infios.github.io/mobile-squad-dashboard/history.json" -o public/history.json || echo '{"snapshots":[]}' > public/history.json
+
       - name: Fetch Azure DevOps data
         env:
           ADO_PAT: ${{ secrets.ADO_PAT }}

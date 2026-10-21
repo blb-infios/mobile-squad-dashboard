@@ -26,6 +26,7 @@ const SNYK_API = (process.env.SNYK_API || 'https://api.eu.snyk.io')
 const SNYK_REST_API = `${SNYK_API}/rest`;
 const SNYK_API_VERSION = process.env.SNYK_API_VERSION || '2024-10-15';
 const SKIP_SNYK = process.env.SKIP_SNYK === 'true';
+const REPOSITORY_CONFIG = require('../config/repositories.json');
 
 if (!ADO_PAT && require.main === module) {
   console.error('❌ Error: ADO_PAT or AZURE_DEVOPS_EXT_PAT environment variable is required');
@@ -745,6 +746,73 @@ function calculateHealth(pipelines, snyk) {
   return { status: 'healthy', label: 'Healthy', color: '#28a745' };
 }
 
+function baseVersion(value) {
+  return String(value || '').trim().replace(/^v/i, '').split(/[-+]/)[0];
+}
+
+function calculateReleaseReadiness(repo) {
+  const reasons = [];
+  const versions = repo.versions || {};
+  const pipelines = repo.pipelines || {};
+  const snyk = repo.snyk;
+  if (!versions.source) reasons.push('Source version unavailable');
+  if (!versions.devFeed || !versions.platformFeed) reasons.push('Published feed version unavailable');
+  if (versions.source && versions.devFeed && baseVersion(versions.source) !== baseVersion(versions.devFeed)) reasons.push('Dev feed differs from source');
+  if (versions.source && versions.platformFeed && baseVersion(versions.source) !== baseVersion(versions.platformFeed)) reasons.push('Platform feed differs from source');
+  if (!pipelines.ci) reasons.push('CI pipeline unavailable');
+  else if (['failed', 'canceled'].includes(pipelines.ci.status)) reasons.push('CI pipeline failed');
+  if (!pipelines.release) reasons.push('Release pipeline unavailable');
+  else if (['failed', 'canceled'].includes(pipelines.release.status)) reasons.push('Release pipeline failed');
+  if (snyk === null) reasons.push('Snyk data unavailable');
+  else if (Number(snyk?.critical || 0) + Number(snyk?.high || 0) > 0) reasons.push('Critical/high vulnerabilities found');
+
+  let status = 'ready';
+  if (reasons.some((reason) => /vulnerabilit|pipeline failed/.test(reason))) status = 'blocked';
+  else if (reasons.some((reason) => /differs/.test(reason))) status = 'versionDrift';
+  else if (reasons.length) status = 'dataUnavailable';
+  return { status, label: { ready: 'Ready', blocked: 'Blocked', versionDrift: 'Version drift', dataUnavailable: 'Data unavailable' }[status], reasons };
+}
+
+function buildDataSources(repositories, snykState) {
+  const checkedAt = new Date().toISOString();
+  const hasPipelines = repositories.some((repo) => repo.pipelines?.ci || repo.pipelines?.release);
+  const hasWorkItems = repositories.some((repo) => {
+    const work = repo.workItems || {};
+    return work.open + work.inProgress + work.committed > 0;
+  });
+  const hasArtifacts = repositories.some((repo) => repo.versions?.devFeed || repo.versions?.platformFeed);
+  return {
+    repositories: { status: repositories.length ? 'connected' : 'unavailable', checkedAt },
+    sourceCode: { status: repositories.some((repo) => repo.versions?.source) ? 'connected' : 'unavailable', checkedAt },
+    pipelines: { status: hasPipelines ? 'connected' : 'unavailable', checkedAt },
+    artifacts: { status: hasArtifacts ? 'connected' : 'unavailable', checkedAt },
+    workItems: { status: hasWorkItems ? 'connected' : 'noData', checkedAt },
+    snyk: { status: snykState.available ? 'connected' : snykState.configured ? 'unavailable' : 'notConfigured', checkedAt }
+  };
+}
+
+function createHistorySnapshot(data) {
+  return {
+    timestamp: data.generatedAt,
+    summary: data.summary,
+    repositories: data.repositories.map((repo) => ({
+      name: repo.name,
+      fullName: repo.fullName,
+      health: repo.health?.status || 'unknown',
+      releaseReadiness: repo.releaseReadiness?.status || 'dataUnavailable',
+      snyk: repo.snyk ? { critical: repo.snyk.critical, high: repo.snyk.high, medium: repo.snyk.medium, low: repo.snyk.low } : null,
+      versions: repo.versions
+    }))
+  };
+}
+
+function createSnykState() {
+  return {
+    configured: Boolean(SNYK_TOKEN && SNYK_ORG_ID),
+    available: Boolean(!SKIP_SNYK && SNYK_TOKEN && SNYK_ORG_ID)
+  };
+}
+
 function repositoryData(repoDef, repo, category, commit, pullRequests, metadata, feedVersions, pipelines, workItems, snyk) {
   const health = calculateHealth(pipelines, snyk);
   const repoData = {
@@ -759,6 +827,7 @@ function repositoryData(repoDef, repo, category, commit, pullRequests, metadata,
       platformFeed: feedVersions.platformFeed
     },
     packages: metadata.packages,
+    snykNames: repoDef.snykNames || [],
     pipelines,
     snyk,
     workItems,
@@ -780,6 +849,7 @@ function repositoryData(repoDef, repo, category, commit, pullRequests, metadata,
     }))
   };
 
+  repoData.releaseReadiness = calculateReleaseReadiness(repoData);
   const latestBuild = Object.values(pipelines).filter(Boolean).sort((a, b) => Date.parse(b.lastRun || 0) - Date.parse(a.lastRun || 0))[0];
   if (latestBuild) {
     repoData.lastBuild = {
@@ -800,6 +870,10 @@ async function aggregateData() {
   const snykIssues = SKIP_SNYK
     ? { available: false, byProject: new Map() }
     : await fetchSnykIssues();
+  const snykState = {
+    configured: Boolean(SNYK_TOKEN && SNYK_ORG_ID),
+    available: !SKIP_SNYK && Boolean(SNYK_TOKEN && SNYK_ORG_ID) && snykIssues.available
+  };
   if (SKIP_SNYK) console.log('ℹ️ Snyk deferred to the separate Snyk aggregation step.');
   else if (!SNYK_TOKEN || !SNYK_ORG_ID) console.log('ℹ️ Snyk skipped: SNYK_TOKEN and SNYK_ORG_ID are not configured.');
 
@@ -820,7 +894,8 @@ async function aggregateData() {
       repositories: []
     };
 
-    for (const repoDef of definitions) {
+    for (const repoDefinition of definitions) {
+      const repoDef = { ...repoDefinition, ...(REPOSITORY_CONFIG[repoDefinition.name] || {}) };
       const repo = repoMap.get(repoDef.name);
       if (!repo) {
         console.log(`  ⚠️ Repository not found: ${repoDef.name}`);
@@ -830,6 +905,7 @@ async function aggregateData() {
           category,
           type: category,
           health: { status: 'unknown', label: 'Not Found', color: '#999' },
+          releaseReadiness: { status: 'dataUnavailable', label: 'Data unavailable', reasons: ['Repository not found'] },
           platforms: category === 'kmp' ? ['android', 'ios', 'jvm'] : category === 'capacitor' ? ['android', 'ios', 'web'] : [],
           versions: { source: null, devFeed: null, platformFeed: null },
           packages: { npm: null, maven: null },
@@ -872,13 +948,33 @@ async function aggregateData() {
     dashboardData.categories.push(categoryData);
     dashboardData.summary.total += categoryData.repositories.length;
   }
+  dashboardData.dataSources = buildDataSources(dashboardData.repositories, snykState);
   return dashboardData;
+}
+
+async function loadHistory(historyPath) {
+  try {
+    const saved = JSON.parse(await fs.readFile(historyPath, 'utf8'));
+    return Array.isArray(saved.snapshots) ? saved.snapshots : [];
+  } catch (_) {
+    return [];
+  }
+}
+
+async function writeHistory(data, historyPath) {
+  const snapshots = await loadHistory(historyPath);
+  snapshots.push(createHistorySnapshot(data));
+  const trimmed = snapshots.slice(-90);
+  await fs.writeFile(historyPath, JSON.stringify({ snapshots: trimmed }, null, 2));
+  data.history = trimmed;
 }
 
 async function main() {
   try {
     const data = await aggregateData();
     const outputPath = path.join(__dirname, '../public/data.json');
+    const historyPath = path.join(__dirname, '../public/history.json');
+    await writeHistory(data, historyPath);
     await fs.writeFile(outputPath, JSON.stringify(data, null, 2));
     console.log('\n✅ Real data aggregation complete!');
     console.log(`📊 Summary: ${data.summary.total} repos - ${data.summary.healthy} healthy, ${data.summary.warning} warning, ${data.summary.unhealthy} unhealthy, ${data.summary.unknown} unknown`);
@@ -895,7 +991,9 @@ if (require.main === module) main();
 module.exports = {
   aggregateData,
   calculateHealth,
+  calculateReleaseReadiness,
   classifyWorkItem,
+  createHistorySnapshot,
   emptySnyk,
   fetchSnykData,
   fetchSnykIssues,
