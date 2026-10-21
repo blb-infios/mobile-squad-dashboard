@@ -398,6 +398,25 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .pkgs code { overflow-wrap: anywhere; }
 .foot-links { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .8rem; font-weight: 600; }
 
+/* --- Release readiness, source health, history, and detail view --- */
+.readiness { display: inline-flex; align-items: center; gap: 4px; font-size: .7rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
+.readiness-ready { background: var(--ok-soft); color: var(--ok-text); }
+.readiness-blocked, .readiness-versionDrift { background: var(--warn-soft); color: var(--warn-text); }
+.readiness-dataUnavailable { background: var(--surface-2); color: var(--muted); }
+.insights { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0 4px; }
+.insight { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow); }
+.insight h3 { font-size: .78rem; color: var(--muted); margin-bottom: 8px; }
+.insight-row { display: flex; justify-content: space-between; gap: 8px; font-size: .8rem; }
+.source-ok { color: var(--ok-text); } .source-bad { color: var(--crit-text); } .source-muted { color: var(--muted); }
+.detail-dialog { width: min(860px, calc(100% - 32px)); max-height: min(90vh, 900px); padding: 0; color: var(--text); background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+.detail-dialog::backdrop { background: rgba(8, 12, 22, .66); }
+.detail-dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+.detail-dialog-head h2 { font-size: 1.15rem; overflow-wrap: anywhere; }
+.detail-dialog-body { padding: 0 2px 12px; overflow: auto; max-height: calc(90vh - 80px); }
+.detail-close { border: 1px solid var(--border-strong); background: var(--surface-2); border-radius: 8px; padding: 5px 9px; cursor: pointer; }
+.card { cursor: pointer; }
+.card a, .card button, .card select { cursor: pointer; }
+
 /* ===================================================================
    6. LOADING SKELETONS
    =================================================================== */
@@ -490,6 +509,7 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 <main class="page" id="main">
   <h2 class="sr-only">Summary</h2>
   <section class="stats" id="stats" aria-label="Summary statistics"></section>
+  <section class="insights" id="insights" aria-label="Data source health and trends"></section>
 
   <div id="notice"></div>
 
@@ -498,6 +518,14 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
   <h2 class="sr-only">Repositories</h2>
   <section class="grid" id="grid" aria-label="Repositories" aria-busy="true"></section>
 </main>
+
+<dialog class="detail-dialog" id="repoDialog" aria-labelledby="detailTitle">
+  <div class="detail-dialog-head">
+    <h2 id="detailTitle">Repository details</h2>
+    <button type="button" class="detail-close" id="detailClose" aria-label="Close repository details">✕</button>
+  </div>
+  <div class="detail-dialog-body" id="detailBody"></div>
+</dialog>
 
 <footer class="page-foot">Data loaded from <code>data.json</code> · health is derived from pipeline results and Snyk findings</footer>
 
@@ -579,9 +607,9 @@ const DEFAULT_DIR = { name: 'asc', lastRun: 'desc', vulns: 'desc' };   // what a
 
 const $ = (id) => document.getElementById(id);
 const els = {
-  grid: $('grid'), stats: $('stats'), notice: $('notice'), count: $('resultCount'),
+  grid: $('grid'), stats: $('stats'), insights: $('insights'), notice: $('notice'), count: $('resultCount'),
   updated: $('lastUpdated'), search: $('search'), type: $('typeFilter'), status: $('statusFilter'),
-  theme: $('themeToggle'), refresh: $('refreshBtn')
+  theme: $('themeToggle'), refresh: $('refreshBtn'), dialog: $('repoDialog'), detailTitle: $('detailTitle'), detailBody: $('detailBody'), detailClose: $('detailClose')
 };
 
 /* ===================================================================
@@ -877,7 +905,7 @@ function renderCard({ repo, ev }, index) {
   }).join('');
 
   return `
-  <article class="card is-${ev.level}" aria-labelledby="${headingId}">
+  <article class="card is-${ev.level}" data-repo-key="${esc(repo.fullName || name)}" aria-labelledby="${headingId}">
     <header class="card-head">
       <div class="card-icon ${typeCls}">
         ${typeIcon}
@@ -889,6 +917,7 @@ function renderCard({ repo, ev }, index) {
         </div>
         <div class="card-meta">
           <span class="type-badge ${typeCls}">${esc(typeLabel)}</span>
+          ${readinessBadge(repo)}
           ${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}
         </div>
       </div>
@@ -923,6 +952,49 @@ function renderStats(items) {
       <span class="stat-icon" aria-hidden="true">${t.icon}</span>
       <div><div class="stat-value">${t.value}</div><div class="stat-label">${t.label}</div>${t.sub ? `<div class="stat-sub">${t.sub}</div>` : ''}</div>
     </div>`).join('');
+}
+
+function renderInsights(data) {
+  const sources = data.dataSources || {};
+  const sourceLabels = { repositories: 'Repositories', sourceCode: 'Source code', pipelines: 'Pipelines', artifacts: 'Package feeds', workItems: 'Work items', snyk: 'Snyk' };
+  const sourceRows = Object.entries(sourceLabels).map(([key, label]) => {
+    const status = sources[key]?.status || 'unknown';
+    const cls = status === 'connected' ? 'source-ok' : status === 'noData' ? 'source-muted' : 'source-bad';
+    return `<div class="insight-row"><span>${label}</span><strong class="${cls}">${esc(status)}</strong></div>`;
+  }).join('');
+  const snapshots = Array.isArray(data.history) ? data.history : [];
+  const latest = snapshots.at(-1);
+  const previous = snapshots.at(-2);
+  const latestIssues = latest?.summary?.warning + latest?.summary?.unhealthy || 0;
+  const previousIssues = previous?.summary?.warning + previous?.summary?.unhealthy || 0;
+  const trend = snapshots.length > 1 ? `${latestIssues} with issues (${latestIssues <= previousIssues ? 'improving or stable' : 'increasing'})` : 'Collecting baseline snapshots';
+  els.insights.innerHTML = `
+    <div class="insight"><h3>Data sources</h3>${sourceRows}</div>
+    <div class="insight"><h3>History</h3><div class="insight-row"><span>Snapshots retained</span><strong>${snapshots.length}</strong></div><div class="insight-row"><span>Health trend</span><strong>${esc(trend)}</strong></div></div>`;
+}
+
+function readinessBadge(repo) {
+  const readiness = repo.releaseReadiness || { status: 'dataUnavailable', label: 'Data unavailable', reasons: [] };
+  const detail = readiness.reasons?.length ? readiness.reasons.join(', ') : 'Repository release checks passed';
+  return `<span class="readiness readiness-${esc(readiness.status)}" title="${esc(detail)}">Release: ${esc(readiness.label)}</span>`;
+}
+
+function openRepoDetail(repo) {
+  els.detailTitle.textContent = repo.fullName || repo.name || 'Repository details';
+  els.detailBody.innerHTML = `
+    <div class="section"><div class="section-head"><h3>Release readiness</h3>${readinessBadge(repo)}</div><p class="empty-note">${esc((repo.releaseReadiness?.reasons || ['All release checks passed']).join('. '))}</p></div>
+    ${renderVersions(repo.versions)}
+    ${renderPipelines(repo.pipelines)}
+    ${renderSnyk(repo.snyk)}
+    ${renderWorkItems(repo.workItems)}
+    <section class="section"><div class="section-head"><h3>Repository activity</h3></div><p class="empty-note">Active pull requests: ${num(repo.activePRs)}${repo.lastCommit?.message ? ` · Latest commit: ${esc(repo.lastCommit.message)}` : ''}</p></section>`;
+  if (typeof els.dialog.showModal === 'function') els.dialog.showModal();
+  else els.dialog.setAttribute('open', '');
+}
+
+function closeRepoDetail() {
+  if (typeof els.dialog.close === 'function') els.dialog.close();
+  else els.dialog.removeAttribute('open');
 }
 
 function getVisible() {
@@ -981,6 +1053,7 @@ function renderLastUpdated() {
 function showSkeleton() {
   els.grid.setAttribute('aria-busy', 'true');
   els.notice.innerHTML = '';
+  els.insights.innerHTML = '';
   els.count.textContent = 'Loading repositories…';
   els.updated.textContent = 'Loading data…';
   els.stats.innerHTML = Array.from({ length: 4 }, () => `
@@ -1002,6 +1075,7 @@ function showError(err) {
   els.grid.setAttribute('aria-busy', 'false');
   els.grid.innerHTML = '';
   els.stats.innerHTML = '';
+  els.insights.innerHTML = '';
   els.count.textContent = '';
   els.updated.textContent = 'Data unavailable';
 
@@ -1064,6 +1138,7 @@ async function loadData({ demo = false } = {}) {
 
     renderLastUpdated();
     renderStats(state.items);
+    renderInsights(json);
     render();
   } catch (err) {
     showError(err);
@@ -1125,6 +1200,19 @@ document.addEventListener('click', (e) => {
   if (a === 'retry') loadData({ demo: false });
   if (a === 'demo') loadData({ demo: true });
   if (a === 'clear-filters') clearFilters();
+});
+
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('.card[data-repo-key]');
+  if (!card || e.target.closest('a, button, input, select')) return;
+  const key = card.dataset.repoKey;
+  const item = state.items.find(({ repo }) => (repo.fullName || repo.name) === key);
+  if (item) openRepoDetail(item.repo);
+});
+
+els.detailClose.addEventListener('click', closeRepoDetail);
+els.dialog.addEventListener('click', (e) => {
+  if (e.target === els.dialog) closeRepoDetail();
 });
 
 // "/" jumps to search (unless you're already typing in a field).

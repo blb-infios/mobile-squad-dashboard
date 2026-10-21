@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-21T07:55:17.763Z",
-  "lastUpdated": "2026-10-21T07:55:17.763Z",
+  "generatedAt": "2026-10-21T08:58:12.007Z",
+  "lastUpdated": "2026-10-21T08:58:12.007Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -36,6 +36,9 @@
             "npm": null,
             "maven": "com.infios:dex-kmp-library"
           },
+          "snykNames": [
+            "KMP-App-Template-Native"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Dex.dev",
@@ -52,7 +55,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521677"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/14355463-abe0-4a73-b304-ddd8ed545e4a"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -81,7 +91,12 @@
               "status": "active",
               "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/pullrequest/117023"
             }
-          ]
+          ],
+          "releaseReadiness": {
+            "status": "ready",
+            "label": "Ready",
+            "reasons": []
+          }
         },
         {
           "name": "K1V1 Authorization",
@@ -106,6 +121,10 @@
             "npm": null,
             "maven": "com.infios:k1v1auth-kmp-library"
           },
+          "snykNames": [
+            "CommunicationApp3",
+            "KotlinUtilityApp"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.K1V1Authorization.dev",
@@ -122,7 +141,14 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=522129"
             }
           },
-          "snyk": null,
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "lastScan": null,
+            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/726420c6-b4a5-40e8-82e7-a626b8ae6f0e"
+          },
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -143,7 +169,12 @@
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.K1V1Authorization/commit/99b5c81e4aca13154a89f7b4ec40f2ebc7f70261"
           },
           "activePRs": 0,
-          "pullRequests": []
+          "pullRequests": [],
+          "releaseReadiness": {
+            "status": "ready",
+            "label": "Ready",
+            "reasons": []
+          }
         },
         {
           "name": "Scanner",
@@ -168,6 +199,9 @@
             "npm": null,
             "maven": "com.infios:barcode-scanner-kmp-library"
           },
+          "snykNames": [
+            "barcode-scanner-kmp-library"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.BarcodeScanning.dev",
@@ -212,7 +246,16 @@
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.BarcodeScanning/commit/bcf8d61b9e34b5b5d946fe82dddbf704fe7b6480"
           },
           "activePRs": 0,
-          "pullRequests": []
+          "pullRequests": [],
+          "releaseReadiness": {
+            "status": "blocked",
+            "label": "Blocked",
+            "reasons": [
+              "Dev feed differs from source",
+              "Platform feed differs from source",
+              "CI pipeline failed"
+            ]
+          }
         },
         {
           "name": "Printing",
@@ -237,6 +280,10 @@
             "npm": null,
             "maven": "com.infios:printing-kmp-library"
           },
+          "snykNames": [
+            "KMPPrintingDemoApp",
+            "printing-kmp-library"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Printing.dev",
@@ -289,7 +336,15 @@
               "status": "active",
               "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/pullrequest/117118"
             }
-          ]
+          ],
+          "releaseReadiness": {
+            "status": "blocked",
+            "label": "Blocked",
+            "reasons": [
+              "Dev feed differs from source",
+              "CI pipeline failed"
+            ]
+          }
         },
         {
           "name": "Beep",
@@ -314,6 +369,7 @@
             "npm": null,
             "maven": "com.infios:beep-kmp-library-android"
           },
+          "snykNames": [],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Beep.dev",
@@ -352,7 +408,15 @@
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Beep/commit/f8872caf7ee7ba0965a0bd16ce2c3f2bb072c2a3"
           },
           "activePRs": 0,
-          "pullRequests": []
+          "pullRequests": [],
+          "releaseReadiness": {
+            "status": "versionDrift",
+            "label": "Version drift",
+            "reasons": [
+              "Platform feed differs from source",
+              "Release pipeline unavailable"
+            ]
+          }
         },
         {
           "name": "Vibrate",
@@ -377,6 +441,7 @@
             "npm": null,
             "maven": "com.infios:vibrate-kmp-library-ios"
           },
+          "snykNames": [],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Vibrate.dev",
@@ -429,7 +494,14 @@
               "status": "active",
               "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Vibrate/pullrequest/99300"
             }
-          ]
+          ],
+          "releaseReadiness": {
+            "status": "versionDrift",
+            "label": "Version drift",
+            "reasons": [
+              "Dev feed differs from source"
+            ]
+          }
         }
       ]
     },
@@ -460,6 +532,9 @@
             "npm": "@koerber/mobile-capacitor-k1authorization",
             "maven": null
           },
+          "snykNames": [
+            "@koerber/mobile-capacitor-k1authorization"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.K1Authorization.Dev",
@@ -504,7 +579,14 @@
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.K1Authorization/commit/b142403aafa3c025843cfa69e57db439bf7060d3"
           },
           "activePRs": 0,
-          "pullRequests": []
+          "pullRequests": [],
+          "releaseReadiness": {
+            "status": "versionDrift",
+            "label": "Version drift",
+            "reasons": [
+              "Platform feed differs from source"
+            ]
+          }
         },
         {
           "name": "Printing",
@@ -529,6 +611,9 @@
             "npm": "@koerber/mobile-capacitor-printing",
             "maven": null
           },
+          "snykNames": [
+            "@koerber/mobile-capacitor-printing"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Printing",
@@ -567,7 +652,15 @@
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing/commit/ae0af173cfb9613a501a53f7281536d1bccd1eaf"
           },
           "activePRs": 0,
-          "pullRequests": []
+          "pullRequests": [],
+          "releaseReadiness": {
+            "status": "dataUnavailable",
+            "label": "Data unavailable",
+            "reasons": [
+              "Published feed version unavailable",
+              "Release pipeline unavailable"
+            ]
+          }
         },
         {
           "name": "Camera",
@@ -592,6 +685,9 @@
             "npm": "@koerber/mobile-capacitor-camera",
             "maven": null
           },
+          "snykNames": [
+            "@koerber/mobile-capacitor-camera"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Camera.Dev",
@@ -651,7 +747,15 @@
               "status": "active",
               "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera/pullrequest/110115"
             }
-          ]
+          ],
+          "releaseReadiness": {
+            "status": "blocked",
+            "label": "Blocked",
+            "reasons": [
+              "Dev feed differs from source",
+              "Critical/high vulnerabilities found"
+            ]
+          }
         },
         {
           "name": "Logger",
@@ -676,6 +780,9 @@
             "npm": "@koerber/mobile-capacitor-logger",
             "maven": null
           },
+          "snykNames": [
+            "@koerber/mobile-capacitor-logger"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Logger.Dev",
@@ -728,7 +835,12 @@
               "status": "active",
               "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger/pullrequest/116614"
             }
-          ]
+          ],
+          "releaseReadiness": {
+            "status": "ready",
+            "label": "Ready",
+            "reasons": []
+          }
         },
         {
           "name": "Beep",
@@ -753,6 +865,9 @@
             "npm": "@koerber/mobile-capacitor-beep",
             "maven": null
           },
+          "snykNames": [
+            "@koerber/mobile-capacitor-beep"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Beep.Dev",
@@ -805,7 +920,15 @@
               "status": "active",
               "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Beep/pullrequest/114053"
             }
-          ]
+          ],
+          "releaseReadiness": {
+            "status": "blocked",
+            "label": "Blocked",
+            "reasons": [
+              "Release pipeline failed",
+              "Critical/high vulnerabilities found"
+            ]
+          }
         },
         {
           "name": "MDM Reader",
@@ -830,6 +953,9 @@
             "npm": "@koerber/mobile-capacitor-mdm-reader",
             "maven": null
           },
+          "snykNames": [
+            "@koerber/mobile-capacitor-mdm-reader"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
@@ -874,7 +1000,14 @@
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader/commit/13a8fee94ccc6e730271f8e2a3ba574a0a5dc7d7"
           },
           "activePRs": 0,
-          "pullRequests": []
+          "pullRequests": [],
+          "releaseReadiness": {
+            "status": "blocked",
+            "label": "Blocked",
+            "reasons": [
+              "Critical/high vulnerabilities found"
+            ]
+          }
         },
         {
           "name": "Vibrate",
@@ -899,6 +1032,9 @@
             "npm": "@koerber/mobile-capacitor-vibrate",
             "maven": null
           },
+          "snykNames": [
+            "@koerber/mobile-capacitor-vibrate"
+          ],
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Vibrate.Dev",
@@ -943,7 +1079,14 @@
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate/commit/d73e98dd97697ec5c073d3af3eaa555bed6b70b9"
           },
           "activePRs": 0,
-          "pullRequests": []
+          "pullRequests": [],
+          "releaseReadiness": {
+            "status": "blocked",
+            "label": "Blocked",
+            "reasons": [
+              "Critical/high vulnerabilities found"
+            ]
+          }
         }
       ]
     },
@@ -970,6 +1113,7 @@
             "npm": "mobile-toolkit-security-automation",
             "maven": null
           },
+          "snykNames": [],
           "pipelines": {
             "ci": {
               "name": "MobileToolKit.Maintenance",
@@ -1001,7 +1145,16 @@
             "url": "https://dev.azure.com/highjumpvso/WES/_git/MobileToolKit.Maintenance/commit/3b66be021a6f0b3a0ba08caa1a0d7b04eece880c"
           },
           "activePRs": 0,
-          "pullRequests": []
+          "pullRequests": [],
+          "releaseReadiness": {
+            "status": "dataUnavailable",
+            "label": "Data unavailable",
+            "reasons": [
+              "Published feed version unavailable",
+              "Release pipeline unavailable",
+              "Snyk data unavailable"
+            ]
+          }
         }
       ]
     }
@@ -1030,6 +1183,9 @@
         "npm": null,
         "maven": "com.infios:dex-kmp-library"
       },
+      "snykNames": [
+        "KMP-App-Template-Native"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Dex.dev",
@@ -1046,7 +1202,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521677"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/14355463-abe0-4a73-b304-ddd8ed545e4a"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1076,6 +1239,11 @@
           "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/pullrequest/117023"
         }
       ],
+      "releaseReadiness": {
+        "status": "ready",
+        "label": "Ready",
+        "reasons": []
+      },
       "category": "kmp",
       "type": "kmp"
     },
@@ -1102,6 +1270,10 @@
         "npm": null,
         "maven": "com.infios:k1v1auth-kmp-library"
       },
+      "snykNames": [
+        "CommunicationApp3",
+        "KotlinUtilityApp"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.K1V1Authorization.dev",
@@ -1118,7 +1290,14 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=522129"
         }
       },
-      "snyk": null,
+      "snyk": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "lastScan": null,
+        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/726420c6-b4a5-40e8-82e7-a626b8ae6f0e"
+      },
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1140,6 +1319,11 @@
       },
       "activePRs": 0,
       "pullRequests": [],
+      "releaseReadiness": {
+        "status": "ready",
+        "label": "Ready",
+        "reasons": []
+      },
       "category": "kmp",
       "type": "kmp"
     },
@@ -1166,6 +1350,9 @@
         "npm": null,
         "maven": "com.infios:barcode-scanner-kmp-library"
       },
+      "snykNames": [
+        "barcode-scanner-kmp-library"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.BarcodeScanning.dev",
@@ -1211,6 +1398,15 @@
       },
       "activePRs": 0,
       "pullRequests": [],
+      "releaseReadiness": {
+        "status": "blocked",
+        "label": "Blocked",
+        "reasons": [
+          "Dev feed differs from source",
+          "Platform feed differs from source",
+          "CI pipeline failed"
+        ]
+      },
       "category": "kmp",
       "type": "kmp"
     },
@@ -1237,6 +1433,10 @@
         "npm": null,
         "maven": "com.infios:printing-kmp-library"
       },
+      "snykNames": [
+        "KMPPrintingDemoApp",
+        "printing-kmp-library"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Printing.dev",
@@ -1290,6 +1490,14 @@
           "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/pullrequest/117118"
         }
       ],
+      "releaseReadiness": {
+        "status": "blocked",
+        "label": "Blocked",
+        "reasons": [
+          "Dev feed differs from source",
+          "CI pipeline failed"
+        ]
+      },
       "category": "kmp",
       "type": "kmp"
     },
@@ -1316,6 +1524,7 @@
         "npm": null,
         "maven": "com.infios:beep-kmp-library-android"
       },
+      "snykNames": [],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Beep.dev",
@@ -1355,6 +1564,14 @@
       },
       "activePRs": 0,
       "pullRequests": [],
+      "releaseReadiness": {
+        "status": "versionDrift",
+        "label": "Version drift",
+        "reasons": [
+          "Platform feed differs from source",
+          "Release pipeline unavailable"
+        ]
+      },
       "category": "kmp",
       "type": "kmp"
     },
@@ -1381,6 +1598,7 @@
         "npm": null,
         "maven": "com.infios:vibrate-kmp-library-ios"
       },
+      "snykNames": [],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Vibrate.dev",
@@ -1434,6 +1652,13 @@
           "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Vibrate/pullrequest/99300"
         }
       ],
+      "releaseReadiness": {
+        "status": "versionDrift",
+        "label": "Version drift",
+        "reasons": [
+          "Dev feed differs from source"
+        ]
+      },
       "category": "kmp",
       "type": "kmp"
     },
@@ -1460,6 +1685,9 @@
         "npm": "@koerber/mobile-capacitor-k1authorization",
         "maven": null
       },
+      "snykNames": [
+        "@koerber/mobile-capacitor-k1authorization"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.K1Authorization.Dev",
@@ -1505,6 +1733,13 @@
       },
       "activePRs": 0,
       "pullRequests": [],
+      "releaseReadiness": {
+        "status": "versionDrift",
+        "label": "Version drift",
+        "reasons": [
+          "Platform feed differs from source"
+        ]
+      },
       "category": "capacitor",
       "type": "capacitor"
     },
@@ -1531,6 +1766,9 @@
         "npm": "@koerber/mobile-capacitor-printing",
         "maven": null
       },
+      "snykNames": [
+        "@koerber/mobile-capacitor-printing"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Printing",
@@ -1570,6 +1808,14 @@
       },
       "activePRs": 0,
       "pullRequests": [],
+      "releaseReadiness": {
+        "status": "dataUnavailable",
+        "label": "Data unavailable",
+        "reasons": [
+          "Published feed version unavailable",
+          "Release pipeline unavailable"
+        ]
+      },
       "category": "capacitor",
       "type": "capacitor"
     },
@@ -1596,6 +1842,9 @@
         "npm": "@koerber/mobile-capacitor-camera",
         "maven": null
       },
+      "snykNames": [
+        "@koerber/mobile-capacitor-camera"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Camera.Dev",
@@ -1656,6 +1905,14 @@
           "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera/pullrequest/110115"
         }
       ],
+      "releaseReadiness": {
+        "status": "blocked",
+        "label": "Blocked",
+        "reasons": [
+          "Dev feed differs from source",
+          "Critical/high vulnerabilities found"
+        ]
+      },
       "category": "capacitor",
       "type": "capacitor"
     },
@@ -1682,6 +1939,9 @@
         "npm": "@koerber/mobile-capacitor-logger",
         "maven": null
       },
+      "snykNames": [
+        "@koerber/mobile-capacitor-logger"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Logger.Dev",
@@ -1735,6 +1995,11 @@
           "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger/pullrequest/116614"
         }
       ],
+      "releaseReadiness": {
+        "status": "ready",
+        "label": "Ready",
+        "reasons": []
+      },
       "category": "capacitor",
       "type": "capacitor"
     },
@@ -1761,6 +2026,9 @@
         "npm": "@koerber/mobile-capacitor-beep",
         "maven": null
       },
+      "snykNames": [
+        "@koerber/mobile-capacitor-beep"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Beep.Dev",
@@ -1814,6 +2082,14 @@
           "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Beep/pullrequest/114053"
         }
       ],
+      "releaseReadiness": {
+        "status": "blocked",
+        "label": "Blocked",
+        "reasons": [
+          "Release pipeline failed",
+          "Critical/high vulnerabilities found"
+        ]
+      },
       "category": "capacitor",
       "type": "capacitor"
     },
@@ -1840,6 +2116,9 @@
         "npm": "@koerber/mobile-capacitor-mdm-reader",
         "maven": null
       },
+      "snykNames": [
+        "@koerber/mobile-capacitor-mdm-reader"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
@@ -1885,6 +2164,13 @@
       },
       "activePRs": 0,
       "pullRequests": [],
+      "releaseReadiness": {
+        "status": "blocked",
+        "label": "Blocked",
+        "reasons": [
+          "Critical/high vulnerabilities found"
+        ]
+      },
       "category": "capacitor",
       "type": "capacitor"
     },
@@ -1911,6 +2197,9 @@
         "npm": "@koerber/mobile-capacitor-vibrate",
         "maven": null
       },
+      "snykNames": [
+        "@koerber/mobile-capacitor-vibrate"
+      ],
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Vibrate.Dev",
@@ -1956,6 +2245,13 @@
       },
       "activePRs": 0,
       "pullRequests": [],
+      "releaseReadiness": {
+        "status": "blocked",
+        "label": "Blocked",
+        "reasons": [
+          "Critical/high vulnerabilities found"
+        ]
+      },
       "category": "capacitor",
       "type": "capacitor"
     },
@@ -1978,6 +2274,7 @@
         "npm": "mobile-toolkit-security-automation",
         "maven": null
       },
+      "snykNames": [],
       "pipelines": {
         "ci": {
           "name": "MobileToolKit.Maintenance",
@@ -2010,8 +2307,290 @@
       },
       "activePRs": 0,
       "pullRequests": [],
+      "releaseReadiness": {
+        "status": "dataUnavailable",
+        "label": "Data unavailable",
+        "reasons": [
+          "Published feed version unavailable",
+          "Release pipeline unavailable",
+          "Snyk data unavailable"
+        ]
+      },
       "category": "security",
       "type": "security"
+    }
+  ],
+  "dataSources": {
+    "repositories": {
+      "status": "connected",
+      "checkedAt": "2026-10-21T08:58:21.604Z"
+    },
+    "sourceCode": {
+      "status": "connected",
+      "checkedAt": "2026-10-21T08:58:21.604Z"
+    },
+    "pipelines": {
+      "status": "connected",
+      "checkedAt": "2026-10-21T08:58:21.604Z"
+    },
+    "artifacts": {
+      "status": "connected",
+      "checkedAt": "2026-10-21T08:58:21.604Z"
+    },
+    "workItems": {
+      "status": "connected",
+      "checkedAt": "2026-10-21T08:58:21.604Z"
+    },
+    "snyk": {
+      "status": "connected",
+      "checkedAt": "2026-10-21T08:58:46.455Z"
+    }
+  },
+  "history": [
+    {
+      "timestamp": "2026-10-21T08:58:12.007Z",
+      "summary": {
+        "total": 14,
+        "healthy": 11,
+        "warning": 0,
+        "unhealthy": 3,
+        "unknown": 0
+      },
+      "repositories": [
+        {
+          "name": "Dex",
+          "fullName": "Koerber.Mobile.Kotlin.Dex",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092849",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1V1 Authorization",
+          "fullName": "Koerber.Mobile.Kotlin.K1V1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092654",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "Scanner",
+          "fullName": "Koerber.Mobile.Kotlin.BarcodeScanning",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 4,
+            "low": 1
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-202610061308",
+            "platformFeed": "1.0.0"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Kotlin.Printing",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "2.0.1",
+            "devFeed": "2.0.0-20261008132046",
+            "platformFeed": "2.0.1-20261016231736"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Kotlin.Beep",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.3",
+            "devFeed": "1.0.3-202610091437",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Kotlin.Vibrate",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-20260902141630",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1Authorization",
+          "fullName": "Koerber.Mobile.Capacitor.K1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.1.2",
+            "devFeed": "1.1.2-202610141300",
+            "platformFeed": "1.1.1"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Capacitor.Printing",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 1
+          },
+          "versions": {
+            "source": "0.0.3",
+            "devFeed": "0.0.3-202610141300",
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Camera",
+          "fullName": "Koerber.Mobile.Capacitor.Camera",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.1.0",
+            "devFeed": "1.0.7-202608211032",
+            "platformFeed": "1.1.0"
+          }
+        },
+        {
+          "name": "Logger",
+          "fullName": "Koerber.Mobile.Capacitor.Logger",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202609241443",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Capacitor.Beep",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.7",
+            "devFeed": "1.0.7-202609231520",
+            "platformFeed": "1.0.7"
+          }
+        },
+        {
+          "name": "MDM Reader",
+          "fullName": "Koerber.Mobile.Capacitor.MDMReader",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.5",
+            "devFeed": "1.0.5-202609281443",
+            "platformFeed": "1.0.5"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Capacitor.Vibrate",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.6",
+            "devFeed": "1.0.6-202609241219",
+            "platformFeed": "1.0.6"
+          }
+        },
+        {
+          "name": "Security Automation",
+          "fullName": "MobileToolKit.Maintenance",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        }
+      ]
     }
   ]
 }
