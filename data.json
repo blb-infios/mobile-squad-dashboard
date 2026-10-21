@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-21T15:37:37.242Z",
-  "lastUpdated": "2026-10-21T15:37:37.242Z",
+  "generatedAt": "2026-10-21T18:29:30.966Z",
+  "lastUpdated": "2026-10-21T18:29:30.966Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -331,8 +331,15 @@
             "date": "2026-10-09T14:26:41Z",
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/commit/2fa3a6a1089438de0208f8102a85e75cb9b7699e"
           },
-          "activePRs": 1,
+          "activePRs": 2,
           "pullRequests": [
+            {
+              "id": 117644,
+              "title": "#504306: Add ZXing-based PDF417 barcode support",
+              "author": "Vijay Masal",
+              "status": "active",
+              "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/pullrequest/117644"
+            },
             {
               "id": 117118,
               "title": "#506783: Remove manual XCFramework publishing from pipelines",
@@ -1498,8 +1505,15 @@
         "date": "2026-10-09T14:26:41Z",
         "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/commit/2fa3a6a1089438de0208f8102a85e75cb9b7699e"
       },
-      "activePRs": 1,
+      "activePRs": 2,
       "pullRequests": [
+        {
+          "id": 117644,
+          "title": "#504306: Add ZXing-based PDF417 barcode support",
+          "author": "Vijay Masal",
+          "status": "active",
+          "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Printing/pullrequest/117644"
+        },
         {
           "id": 117118,
           "title": "#506783: Remove manual XCFramework publishing from pipelines",
@@ -2351,31 +2365,31 @@
   "dataSources": {
     "repositories": {
       "status": "connected",
-      "checkedAt": "2026-10-21T15:37:52.172Z"
+      "checkedAt": "2026-10-21T18:29:51.079Z"
     },
     "sourceCode": {
       "status": "connected",
-      "checkedAt": "2026-10-21T15:37:52.172Z"
+      "checkedAt": "2026-10-21T18:29:51.079Z"
     },
     "pipelines": {
       "status": "connected",
-      "checkedAt": "2026-10-21T15:37:52.172Z"
+      "checkedAt": "2026-10-21T18:29:51.079Z"
     },
     "artifacts": {
       "status": "connected",
-      "checkedAt": "2026-10-21T15:37:52.172Z"
+      "checkedAt": "2026-10-21T18:29:51.079Z"
     },
     "coverage": {
       "status": "unavailable",
-      "checkedAt": "2026-10-21T15:37:52.172Z"
+      "checkedAt": "2026-10-21T18:29:51.079Z"
     },
     "workItems": {
       "status": "connected",
-      "checkedAt": "2026-10-21T15:37:52.172Z"
+      "checkedAt": "2026-10-21T18:29:51.079Z"
     },
     "snyk": {
       "status": "connected",
-      "checkedAt": "2026-10-21T15:38:20.720Z"
+      "checkedAt": "2026-10-21T18:30:20.378Z"
     }
   },
   "history": [
@@ -3116,6 +3130,251 @@
     },
     {
       "timestamp": "2026-10-21T15:37:37.242Z",
+      "summary": {
+        "total": 14,
+        "healthy": 11,
+        "warning": 0,
+        "unhealthy": 3,
+        "unknown": 0
+      },
+      "repositories": [
+        {
+          "name": "Dex",
+          "fullName": "Koerber.Mobile.Kotlin.Dex",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092849",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1V1 Authorization",
+          "fullName": "Koerber.Mobile.Kotlin.K1V1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092654",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "Scanner",
+          "fullName": "Koerber.Mobile.Kotlin.BarcodeScanning",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 4,
+            "low": 1
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-202610061308",
+            "platformFeed": "1.0.0"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Kotlin.Printing",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "2.0.1",
+            "devFeed": "2.0.0-20261008132046",
+            "platformFeed": "2.0.1-20261016231736"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Kotlin.Beep",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.3",
+            "devFeed": "1.0.3-202610091437",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Kotlin.Vibrate",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-20260902141630",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1Authorization",
+          "fullName": "Koerber.Mobile.Capacitor.K1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.1.2",
+            "devFeed": "1.1.2-202610141300",
+            "platformFeed": "1.1.1"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Capacitor.Printing",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 1
+          },
+          "versions": {
+            "source": "0.0.3",
+            "devFeed": "0.0.3-202610141300",
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Camera",
+          "fullName": "Koerber.Mobile.Capacitor.Camera",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.1.0",
+            "devFeed": "1.0.7-202608211032",
+            "platformFeed": "1.1.0"
+          }
+        },
+        {
+          "name": "Logger",
+          "fullName": "Koerber.Mobile.Capacitor.Logger",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202609241443",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Capacitor.Beep",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.7",
+            "devFeed": "1.0.7-202609231520",
+            "platformFeed": "1.0.7"
+          }
+        },
+        {
+          "name": "MDM Reader",
+          "fullName": "Koerber.Mobile.Capacitor.MDMReader",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.5",
+            "devFeed": "1.0.5-202609281443",
+            "platformFeed": "1.0.5"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Capacitor.Vibrate",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.6",
+            "devFeed": "1.0.6-202609241219",
+            "platformFeed": "1.0.6"
+          }
+        },
+        {
+          "name": "Security Automation",
+          "fullName": "MobileToolKit.Maintenance",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-10-21T18:29:30.966Z",
       "summary": {
         "total": 14,
         "healthy": 11,
