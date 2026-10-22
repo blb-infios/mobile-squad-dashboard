@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-21T18:29:30.966Z",
-  "lastUpdated": "2026-10-21T18:29:30.966Z",
+  "generatedAt": "2026-10-22T00:33:10.647Z",
+  "lastUpdated": "2026-10-22T00:33:10.647Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -56,14 +56,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/14355463-abe0-4a73-b304-ddd8ed545e4a"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -94,9 +87,11 @@
             }
           ],
           "releaseReadiness": {
-            "status": "ready",
-            "label": "Ready",
-            "reasons": []
+            "status": "dataUnavailable",
+            "label": "Data unavailable",
+            "reasons": [
+              "Snyk data unavailable"
+            ]
           }
         },
         {
@@ -143,14 +138,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/726420c6-b4a5-40e8-82e7-a626b8ae6f0e"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -173,9 +161,11 @@
           "activePRs": 0,
           "pullRequests": [],
           "releaseReadiness": {
-            "status": "ready",
-            "label": "Ready",
-            "reasons": []
+            "status": "dataUnavailable",
+            "label": "Data unavailable",
+            "reasons": [
+              "Snyk data unavailable"
+            ]
           }
         },
         {
@@ -221,14 +211,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 4,
-            "low": 1,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/1af6f5f7-b1b5-47ba-be87-fdc6d40196bc"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 2,
@@ -256,7 +239,8 @@
             "reasons": [
               "Dev feed differs from source",
               "Platform feed differs from source",
-              "CI pipeline failed"
+              "CI pipeline failed",
+              "Snyk data unavailable"
             ]
           }
         },
@@ -304,14 +288,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/399dac06-bd48-4240-9474-5715c8782892"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -353,7 +330,8 @@
             "label": "Blocked",
             "reasons": [
               "Dev feed differs from source",
-              "CI pipeline failed"
+              "CI pipeline failed",
+              "Snyk data unavailable"
             ]
           }
         },
@@ -392,14 +370,7 @@
             "release": null
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/c0782d47-a226-4d52-b6bb-8ee804aa234d"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -426,7 +397,8 @@
             "label": "Version drift",
             "reasons": [
               "Platform feed differs from source",
-              "Release pipeline unavailable"
+              "Release pipeline unavailable",
+              "Snyk data unavailable"
             ]
           }
         },
@@ -471,14 +443,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/64b61493-0d00-4e25-a496-2f0b3e5b31d6"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -512,7 +477,8 @@
             "status": "versionDrift",
             "label": "Version drift",
             "reasons": [
-              "Dev feed differs from source"
+              "Dev feed differs from source",
+              "Snyk data unavailable"
             ]
           }
         }
@@ -565,14 +531,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 1,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/5b0c36ec-55f7-47e0-9557-8f3c8eae889a"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -598,7 +557,8 @@
             "status": "versionDrift",
             "label": "Version drift",
             "reasons": [
-              "Platform feed differs from source"
+              "Platform feed differs from source",
+              "Snyk data unavailable"
             ]
           }
         },
@@ -639,14 +599,7 @@
             "release": null
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 1,
-            "low": 1,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/ba764a01-2c29-4d51-bde5-c23024c7279c"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -673,7 +626,8 @@
             "label": "Data unavailable",
             "reasons": [
               "Published feed version unavailable",
-              "Release pipeline unavailable"
+              "Release pipeline unavailable",
+              "Snyk data unavailable"
             ]
           }
         },
@@ -681,9 +635,9 @@
           "name": "Camera",
           "fullName": "Koerber.Mobile.Capacitor.Camera",
           "health": {
-            "status": "warning",
-            "label": "Warning",
-            "color": "#ffc107"
+            "status": "healthy",
+            "label": "Healthy",
+            "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera",
           "platforms": [
@@ -720,14 +674,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 3,
-            "medium": 4,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/305f626e-4119-4b87-81bb-9687c27e8649"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -765,11 +712,11 @@
             }
           ],
           "releaseReadiness": {
-            "status": "blocked",
-            "label": "Blocked",
+            "status": "versionDrift",
+            "label": "Version drift",
             "reasons": [
               "Dev feed differs from source",
-              "Critical/high vulnerabilities found"
+              "Snyk data unavailable"
             ]
           }
         },
@@ -816,14 +763,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 1,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/fd140469-61cf-4f7c-9611-8d9d391a318b"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -854,9 +794,11 @@
             }
           ],
           "releaseReadiness": {
-            "status": "ready",
-            "label": "Ready",
-            "reasons": []
+            "status": "dataUnavailable",
+            "label": "Data unavailable",
+            "reasons": [
+              "Snyk data unavailable"
+            ]
           }
         },
         {
@@ -902,14 +844,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 3,
-            "medium": 4,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/62f9076f-542d-4f5d-ad73-1e5252a201d8"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -944,7 +879,7 @@
             "label": "Blocked",
             "reasons": [
               "Release pipeline failed",
-              "Critical/high vulnerabilities found"
+              "Snyk data unavailable"
             ]
           }
         },
@@ -952,9 +887,9 @@
           "name": "MDM Reader",
           "fullName": "Koerber.Mobile.Capacitor.MDMReader",
           "health": {
-            "status": "warning",
-            "label": "Warning",
-            "color": "#ffc107"
+            "status": "healthy",
+            "label": "Healthy",
+            "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader",
           "platforms": [
@@ -991,14 +926,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 3,
-            "medium": 4,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/402626e7-c9d5-4434-a46c-49bbb2ce9b69"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -1021,10 +949,10 @@
           "activePRs": 0,
           "pullRequests": [],
           "releaseReadiness": {
-            "status": "blocked",
-            "label": "Blocked",
+            "status": "dataUnavailable",
+            "label": "Data unavailable",
             "reasons": [
-              "Critical/high vulnerabilities found"
+              "Snyk data unavailable"
             ]
           }
         },
@@ -1032,9 +960,9 @@
           "name": "Vibrate",
           "fullName": "Koerber.Mobile.Capacitor.Vibrate",
           "health": {
-            "status": "warning",
-            "label": "Warning",
-            "color": "#ffc107"
+            "status": "healthy",
+            "label": "Healthy",
+            "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate",
           "platforms": [
@@ -1071,14 +999,7 @@
             }
           },
           "coverage": null,
-          "snyk": {
-            "critical": 0,
-            "high": 3,
-            "medium": 4,
-            "low": 0,
-            "lastScan": null,
-            "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/f4f43270-20fc-4d68-b83c-94b0b7c5d62d"
-          },
+          "snyk": null,
           "workItems": {
             "open": 0,
             "inProgress": 0,
@@ -1101,10 +1022,10 @@
           "activePRs": 0,
           "pullRequests": [],
           "releaseReadiness": {
-            "status": "blocked",
-            "label": "Blocked",
+            "status": "dataUnavailable",
+            "label": "Data unavailable",
             "reasons": [
-              "Critical/high vulnerabilities found"
+              "Snyk data unavailable"
             ]
           }
         }
@@ -1224,14 +1145,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/14355463-abe0-4a73-b304-ddd8ed545e4a"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1262,9 +1176,11 @@
         }
       ],
       "releaseReadiness": {
-        "status": "ready",
-        "label": "Ready",
-        "reasons": []
+        "status": "dataUnavailable",
+        "label": "Data unavailable",
+        "reasons": [
+          "Snyk data unavailable"
+        ]
       },
       "category": "kmp",
       "type": "kmp"
@@ -1313,14 +1229,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/726420c6-b4a5-40e8-82e7-a626b8ae6f0e"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1343,9 +1252,11 @@
       "activePRs": 0,
       "pullRequests": [],
       "releaseReadiness": {
-        "status": "ready",
-        "label": "Ready",
-        "reasons": []
+        "status": "dataUnavailable",
+        "label": "Data unavailable",
+        "reasons": [
+          "Snyk data unavailable"
+        ]
       },
       "category": "kmp",
       "type": "kmp"
@@ -1393,14 +1304,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 0,
-        "medium": 4,
-        "low": 1,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/1af6f5f7-b1b5-47ba-be87-fdc6d40196bc"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 2,
@@ -1428,7 +1332,8 @@
         "reasons": [
           "Dev feed differs from source",
           "Platform feed differs from source",
-          "CI pipeline failed"
+          "CI pipeline failed",
+          "Snyk data unavailable"
         ]
       },
       "category": "kmp",
@@ -1478,14 +1383,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/399dac06-bd48-4240-9474-5715c8782892"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1527,7 +1425,8 @@
         "label": "Blocked",
         "reasons": [
           "Dev feed differs from source",
-          "CI pipeline failed"
+          "CI pipeline failed",
+          "Snyk data unavailable"
         ]
       },
       "category": "kmp",
@@ -1568,14 +1467,7 @@
         "release": null
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/c0782d47-a226-4d52-b6bb-8ee804aa234d"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1602,7 +1494,8 @@
         "label": "Version drift",
         "reasons": [
           "Platform feed differs from source",
-          "Release pipeline unavailable"
+          "Release pipeline unavailable",
+          "Snyk data unavailable"
         ]
       },
       "category": "kmp",
@@ -1649,14 +1542,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/64b61493-0d00-4e25-a496-2f0b3e5b31d6"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1690,7 +1576,8 @@
         "status": "versionDrift",
         "label": "Version drift",
         "reasons": [
-          "Dev feed differs from source"
+          "Dev feed differs from source",
+          "Snyk data unavailable"
         ]
       },
       "category": "kmp",
@@ -1739,14 +1626,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 0,
-        "medium": 1,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/5b0c36ec-55f7-47e0-9557-8f3c8eae889a"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1772,7 +1652,8 @@
         "status": "versionDrift",
         "label": "Version drift",
         "reasons": [
-          "Platform feed differs from source"
+          "Platform feed differs from source",
+          "Snyk data unavailable"
         ]
       },
       "category": "capacitor",
@@ -1815,14 +1696,7 @@
         "release": null
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 0,
-        "medium": 1,
-        "low": 1,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/ba764a01-2c29-4d51-bde5-c23024c7279c"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1849,7 +1723,8 @@
         "label": "Data unavailable",
         "reasons": [
           "Published feed version unavailable",
-          "Release pipeline unavailable"
+          "Release pipeline unavailable",
+          "Snyk data unavailable"
         ]
       },
       "category": "capacitor",
@@ -1859,9 +1734,9 @@
       "name": "Camera",
       "fullName": "Koerber.Mobile.Capacitor.Camera",
       "health": {
-        "status": "warning",
-        "label": "Warning",
-        "color": "#ffc107"
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera",
       "platforms": [
@@ -1898,14 +1773,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 3,
-        "medium": 4,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/305f626e-4119-4b87-81bb-9687c27e8649"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -1943,11 +1811,11 @@
         }
       ],
       "releaseReadiness": {
-        "status": "blocked",
-        "label": "Blocked",
+        "status": "versionDrift",
+        "label": "Version drift",
         "reasons": [
           "Dev feed differs from source",
-          "Critical/high vulnerabilities found"
+          "Snyk data unavailable"
         ]
       },
       "category": "capacitor",
@@ -1996,14 +1864,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 0,
-        "medium": 1,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/fd140469-61cf-4f7c-9611-8d9d391a318b"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -2034,9 +1895,11 @@
         }
       ],
       "releaseReadiness": {
-        "status": "ready",
-        "label": "Ready",
-        "reasons": []
+        "status": "dataUnavailable",
+        "label": "Data unavailable",
+        "reasons": [
+          "Snyk data unavailable"
+        ]
       },
       "category": "capacitor",
       "type": "capacitor"
@@ -2084,14 +1947,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 3,
-        "medium": 4,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/62f9076f-542d-4f5d-ad73-1e5252a201d8"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -2126,7 +1982,7 @@
         "label": "Blocked",
         "reasons": [
           "Release pipeline failed",
-          "Critical/high vulnerabilities found"
+          "Snyk data unavailable"
         ]
       },
       "category": "capacitor",
@@ -2136,9 +1992,9 @@
       "name": "MDM Reader",
       "fullName": "Koerber.Mobile.Capacitor.MDMReader",
       "health": {
-        "status": "warning",
-        "label": "Warning",
-        "color": "#ffc107"
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader",
       "platforms": [
@@ -2175,14 +2031,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 3,
-        "medium": 4,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/402626e7-c9d5-4434-a46c-49bbb2ce9b69"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -2205,10 +2054,10 @@
       "activePRs": 0,
       "pullRequests": [],
       "releaseReadiness": {
-        "status": "blocked",
-        "label": "Blocked",
+        "status": "dataUnavailable",
+        "label": "Data unavailable",
         "reasons": [
-          "Critical/high vulnerabilities found"
+          "Snyk data unavailable"
         ]
       },
       "category": "capacitor",
@@ -2218,9 +2067,9 @@
       "name": "Vibrate",
       "fullName": "Koerber.Mobile.Capacitor.Vibrate",
       "health": {
-        "status": "warning",
-        "label": "Warning",
-        "color": "#ffc107"
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate",
       "platforms": [
@@ -2257,14 +2106,7 @@
         }
       },
       "coverage": null,
-      "snyk": {
-        "critical": 0,
-        "high": 3,
-        "medium": 4,
-        "low": 0,
-        "lastScan": null,
-        "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/f4f43270-20fc-4d68-b83c-94b0b7c5d62d"
-      },
+      "snyk": null,
       "workItems": {
         "open": 0,
         "inProgress": 0,
@@ -2287,10 +2129,10 @@
       "activePRs": 0,
       "pullRequests": [],
       "releaseReadiness": {
-        "status": "blocked",
-        "label": "Blocked",
+        "status": "dataUnavailable",
+        "label": "Data unavailable",
         "reasons": [
-          "Critical/high vulnerabilities found"
+          "Snyk data unavailable"
         ]
       },
       "category": "capacitor",
@@ -2365,31 +2207,31 @@
   "dataSources": {
     "repositories": {
       "status": "connected",
-      "checkedAt": "2026-10-21T18:29:51.079Z"
+      "checkedAt": "2026-10-22T00:33:28.249Z"
     },
     "sourceCode": {
       "status": "connected",
-      "checkedAt": "2026-10-21T18:29:51.079Z"
+      "checkedAt": "2026-10-22T00:33:28.249Z"
     },
     "pipelines": {
       "status": "connected",
-      "checkedAt": "2026-10-21T18:29:51.079Z"
+      "checkedAt": "2026-10-22T00:33:28.249Z"
     },
     "artifacts": {
       "status": "connected",
-      "checkedAt": "2026-10-21T18:29:51.079Z"
+      "checkedAt": "2026-10-22T00:33:28.249Z"
     },
     "coverage": {
       "status": "unavailable",
-      "checkedAt": "2026-10-21T18:29:51.079Z"
+      "checkedAt": "2026-10-22T00:33:28.249Z"
     },
     "workItems": {
       "status": "connected",
-      "checkedAt": "2026-10-21T18:29:51.079Z"
+      "checkedAt": "2026-10-22T00:33:28.249Z"
     },
     "snyk": {
-      "status": "connected",
-      "checkedAt": "2026-10-21T18:30:20.378Z"
+      "status": "unavailable",
+      "checkedAt": "2026-10-22T00:34:13.192Z"
     }
   },
   "history": [
@@ -3598,6 +3440,186 @@
             "medium": 4,
             "low": 0
           },
+          "versions": {
+            "source": "1.0.6",
+            "devFeed": "1.0.6-202609241219",
+            "platformFeed": "1.0.6"
+          }
+        },
+        {
+          "name": "Security Automation",
+          "fullName": "MobileToolKit.Maintenance",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-10-22T00:33:10.647Z",
+      "summary": {
+        "total": 14,
+        "healthy": 11,
+        "warning": 0,
+        "unhealthy": 3,
+        "unknown": 0
+      },
+      "repositories": [
+        {
+          "name": "Dex",
+          "fullName": "Koerber.Mobile.Kotlin.Dex",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092849",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1V1 Authorization",
+          "fullName": "Koerber.Mobile.Kotlin.K1V1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092654",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "Scanner",
+          "fullName": "Koerber.Mobile.Kotlin.BarcodeScanning",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-202610061308",
+            "platformFeed": "1.0.0"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Kotlin.Printing",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": null,
+          "versions": {
+            "source": "2.0.1",
+            "devFeed": "2.0.0-20261008132046",
+            "platformFeed": "2.0.1-20261016231736"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Kotlin.Beep",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.3",
+            "devFeed": "1.0.3-202610091437",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Kotlin.Vibrate",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-20260902141630",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1Authorization",
+          "fullName": "Koerber.Mobile.Capacitor.K1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": null,
+          "versions": {
+            "source": "1.1.2",
+            "devFeed": "1.1.2-202610141300",
+            "platformFeed": "1.1.1"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Capacitor.Printing",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "0.0.3",
+            "devFeed": "0.0.3-202610141300",
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Camera",
+          "fullName": "Koerber.Mobile.Capacitor.Camera",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": null,
+          "versions": {
+            "source": "1.1.0",
+            "devFeed": "1.0.7-202608211032",
+            "platformFeed": "1.1.0"
+          }
+        },
+        {
+          "name": "Logger",
+          "fullName": "Koerber.Mobile.Capacitor.Logger",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202609241443",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Capacitor.Beep",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.7",
+            "devFeed": "1.0.7-202609231520",
+            "platformFeed": "1.0.7"
+          }
+        },
+        {
+          "name": "MDM Reader",
+          "fullName": "Koerber.Mobile.Capacitor.MDMReader",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.5",
+            "devFeed": "1.0.5-202609281443",
+            "platformFeed": "1.0.5"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Capacitor.Vibrate",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
           "versions": {
             "source": "1.0.6",
             "devFeed": "1.0.6-202609241219",
