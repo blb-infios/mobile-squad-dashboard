@@ -138,16 +138,27 @@ async function fetchBuildCoverage(buildId) {
   if (!buildId) return null;
   try {
     const data = await adoClient.get('/test/codecoverage', {
-      params: apiParams({ buildId, flags: 7 })
+      params: { buildId, flags: 7, 'api-version': '7.0' }
     });
     return summarizeCoverage(data.data, buildId);
   } catch (error) {
     if (!coverageAccessWarningShown) {
-      warn('Code coverage unavailable; add Test Management: Read to ADO_PAT', error);
+      warn(`Code coverage unavailable for build ${buildId}; add Test Management: Read to ADO_PAT`, error);
       coverageAccessWarningShown = true;
     }
     return null;
   }
+}
+
+async function fetchLatestCoverage(builds) {
+  const candidates = (builds || [])
+    .filter((build) => !isReleaseBuild(build))
+    .slice(0, 10);
+  for (const build of candidates) {
+    const coverage = await fetchBuildCoverage(build.id);
+    if (coverage) return coverage;
+  }
+  return null;
 }
 
 function isReleaseBuild(build) {
@@ -974,9 +985,8 @@ async function aggregateData() {
         fetchSourceMetadata(repo.id)
       ]);
       const pipelines = pipelinesFromBuilds(builds);
-      const coverageBuild = builds.find((build) => !isReleaseBuild(build)) || builds[0];
       const [coverage, feedVersions, workItems, snyk] = await Promise.all([
-        fetchBuildCoverage(coverageBuild?.id),
+        fetchLatestCoverage(builds),
         fetchFeedVersions(metadata, category),
         fetchWorkItems(repo.id, pullRequests, builds),
         fetchSnykData(snykProjects, snykIssues, { ...repoDef, fullName: repo.name, category, packageName: metadata.packages.npm || metadata.packages.maven })
