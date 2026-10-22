@@ -264,6 +264,17 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .card-toggle:hover { border-color: var(--accent); background: var(--accent-soft); }
 .card-toggle .chev { width: 14px; height: 14px; transition: transform .25s ease; }
 .card.is-open .card-toggle .chev { transform: rotate(180deg); }
+.title-right { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.icon-btn { width:30px; height:30px; display:grid; place-items:center; flex-shrink:0; background:transparent; border:1px solid var(--border-strong); border-radius:8px; color:var(--muted); cursor:pointer; }
+.icon-btn:hover { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
+.icon-btn svg { width:16px; height:16px; }
+.body-actions { padding:12px 18px 14px; border-top:1px solid var(--border); display:flex; justify-content:flex-end; }
+.title-right { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.icon-btn { width:30px; height:30px; display:grid; place-items:center; flex-shrink:0; background:transparent; border:1px solid var(--border-strong); border-radius:8px; color:var(--muted); cursor:pointer; }
+.icon-btn:hover { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
+.icon-btn svg { width:16px; height:16px; }
+.body-actions { padding:12px 18px 14px; border-top:1px solid var(--border); display:flex; justify-content:flex-end; }
+
 .card-body { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .28s ease, visibility 0s linear .28s; }
 .card.is-open .card-body { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .28s ease, visibility 0s; }
 .card-body-inner { overflow: hidden; min-height: 0; }
@@ -453,16 +464,35 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .source-ok { color: var(--ok-text); } .source-bad { color: var(--crit-text); } .source-muted { color: var(--muted); }
 .detail-dialog { width: min(860px, calc(100% - 32px)); max-height: min(90vh, 900px); padding: 0; color: var(--text); background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius); box-shadow: var(--shadow-lg); }
 .detail-dialog::backdrop { background: rgba(8, 12, 22, .66); }
-.detail-dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 18px 20px; border-bottom: 1px solid var(--border); }
-.detail-dialog-head h2 { font-size: 1.15rem; overflow-wrap: anywhere; }
-.detail-dialog-body { padding: 0 2px 12px; overflow: auto; max-height: calc(90vh - 80px); }
-.detail-close { border: 1px solid var(--border-strong); background: var(--surface-2); border-radius: 8px; padding: 5px 9px; cursor: pointer; }
+.detail-dialog-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px; background:var(--surface); border-bottom:1px solid var(--border); }
+.detail-dialog-body { overflow:auto; max-height:calc(100dvh - 90px); }
+.detail-close { width:30px; height:30px; border:1px solid var(--border-strong); background:transparent; border-radius:8px; cursor:pointer; }
+.detail-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+.detail-table th { text-align:left; color:var(--muted); background:var(--surface-2); padding:7px 10px; white-space:nowrap; }
+.detail-table td { padding:7px 10px; border-top:1px solid var(--border); vertical-align:top; }
+
 .card { cursor: pointer; }
 .card a, .card button, .card select { cursor: pointer; }
 
-/* ===================================================================
-   6. LOADING SKELETONS
-   =================================================================== */
+.dialog { padding: 0; border: 2px solid var(--border-strong); border-radius: 16px; width: min(1000px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); background: var(--bg); color: var(--text); box-shadow: 0 30px 80px rgba(0,0,0,.5); overflow: hidden; }
+.dialog::backdrop { background: rgba(8,12,22,.66); backdrop-filter: blur(2px); }
+.dlg-shell { display: flex; flex-direction: column; max-height: calc(100dvh - 28px); }
+.dlg-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px; background:var(--surface); border-bottom:1px solid var(--border); }
+.dlg-head h2 { font-size:1.2rem; overflow-wrap:anywhere; }
+.dlg-actions { display:flex; align-items:center; gap:8px; }
+.dlg-body { overflow:auto; padding:18px; display:grid; gap:16px; }
+.dlg-block { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px 16px; min-width:0; }
+.dlg-grid { display:grid; gap:16px; grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media (max-width:820px) { .dlg-grid { grid-template-columns:1fr; } }
+.dlg-block h3, .block-title { font-size:.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.dlg-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+.dlg-table th { text-align:left; font-weight:700; color:var(--muted); background:var(--surface-2); padding:7px 10px; white-space:nowrap; }
+.dlg-table td { padding:7px 10px; border-top:1px solid var(--border); vertical-align:top; }
+.dlg-table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:10px; }
+.dlg-raw { max-height:260px; overflow:auto; background:var(--surface-2); padding:10px; font: .75rem/1.45 var(--mono); white-space:pre-wrap; }
+html.dlg-open { overflow:hidden; }
+
+
 .skeleton { pointer-events: none; border-color: var(--border); }
 .sk {
   display: block; border-radius: 6px;
@@ -999,10 +1029,10 @@ function renderCard({ repo, ev }, index) {
     const known = PLATFORMS[String(p).toLowerCase()];
     return known ? `<li class="plat plat-${known[0]}" role="img" aria-label="${known[1]}" title="${known[1]}"><svg aria-hidden="true" focusable="false"><use href="#icon-${known[0]}"/></svg></li>` : `<li class="text" title="${esc(p)}">${esc(p)}</li>`;
   }).join('');
-  return `<article class="card is-${ev.level}${open ? ' is-open' : ''}" data-key="${esc(name)}" data-name="${esc(name)}" aria-labelledby="${headingId}">
+  return `<article class="card is-${ev.level}${open ? ' is-open' : ''}" data-key="${esc(name)}" data-name="${esc(name)}" data-repo-key="${esc(repo.fullName || name)}" aria-labelledby="${headingId}">
     <div class="card-top">
       <header class="card-head">
-        <div class="card-title-row"><div class="title-left"><div class="card-icon ${typeCls}">${typeIcon}</div><h2 class="card-name" id="${headingId}">${breakable(name)}</h2></div><span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span></div>
+        <div class="card-title-row"><div class="title-left"><div class="card-icon ${typeCls}">${typeIcon}</div><h2 class="card-name" id="${headingId}">${breakable(name)}</h2></div><div class="title-right"><span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span><button type="button" class="icon-btn" data-open-detail aria-label="Open full details for ${esc(name)}" title="Open full details"><span aria-hidden="true">⤢</span></button></div></div>
         <div class="card-meta"><span class="type-badge ${typeCls}">${esc(typeLabel)}</span>${readinessBadge(repo)}${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}</div>
       </header>
       ${renderSummary(repo, open, bodyId, name)}
@@ -1014,6 +1044,7 @@ function renderCard({ repo, ev }, index) {
       ${renderSnyk(repo.snyk)}
       ${renderWorkItems(repo.workItems)}
       ${renderFooter(repo)}
+      <div class="body-actions"><button type="button" class="btn btn-sm" data-open-detail>Open full details <span aria-hidden="true">⤢</span></button></div>
     </div></div>
   </article>`;
 }
@@ -1073,23 +1104,25 @@ function readinessBadge(repo) {
   return `<span class="readiness readiness-${esc(readiness.status)}" title="${esc(detail)}">Release: ${esc(readiness.label)}</span>`;
 }
 
+function renderOptionalDetailTables(repo) {
+  const issueRows = (repo.snyk?.issues || []).map((issue) => `<tr><td>${esc(issue.severity || '—')}</td><td>${esc(issue.title || '—')}</td><td><code>${esc(issue.package || '—')}</code></td><td>${esc(issue.fixedIn || '—')}</td></tr>`).join('');
+  const workRows = (repo.workItems?.items || []).map((item) => `<tr><td>${item.url ? extLink(item.url, '#' + item.id, 'Open work item') : esc(item.id)}</td><td>${esc(item.title || '—')}</td><td>${esc(item.state || '—')}</td><td>${esc(item.assignedTo || 'Unassigned')}</td></tr>`).join('');
+  return `${issueRows ? `<section class="section"><h3>Security issues</h3><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>Severity</th><th>Issue</th><th>Package</th><th>Fixed in</th></tr></thead><tbody>${issueRows}</tbody></table></div></section>` : ''}${workRows ? `<section class="section"><h3>Work item details</h3><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>ID</th><th>Title</th><th>State</th><th>Assigned to</th></tr></thead><tbody>${workRows}</tbody></table></div></section>` : ''}`;
+}
+
 function openRepoDetail(repo) {
   els.detailTitle.textContent = repo.fullName || repo.name || 'Repository details';
-  els.detailBody.innerHTML = `
-    <div class="section"><div class="section-head"><h3>Release readiness</h3>${readinessBadge(repo)}</div><p class="empty-note">${esc((repo.releaseReadiness?.reasons || ['All release checks passed']).join('. '))}</p></div>
-    ${renderVersions(repo.versions)}
-    ${renderPipelines(repo.pipelines)}
-    ${renderCoverage(repo.coverage)}
-    ${renderSnyk(repo.snyk)}
-    ${renderWorkItems(repo.workItems)}
-    <section class="section"><div class="section-head"><h3>Repository activity</h3></div><p class="empty-note">Active pull requests: ${num(repo.activePRs)}${repo.lastCommit?.message ? ` · Latest commit: ${esc(repo.lastCommit.message)}` : ''}</p></section>`;
+  els.detailBody.innerHTML = `<div class="section"><div class="section-head"><h3>Release readiness</h3>${readinessBadge(repo)}</div><p class="empty-note">${esc((repo.releaseReadiness?.reasons || ['All release checks passed']).join('. '))}</p></div>${renderVersions(repo.versions)}${renderCoverage(repo.coverage)}${renderPipelines(repo.pipelines)}${renderSnyk(repo.snyk)}${renderWorkItems(repo.workItems)}${renderOptionalDetailTables(repo)}${renderFooter(repo)}<div class="body-actions"><button type="button" class="btn btn-sm" data-copy-detail-link>🔗 Copy link</button></div>`;
+  const hash = `#repo=${encodeURIComponent(repo.fullName || repo.name)}`;
+  history.pushState({ detail: hash }, '', hash);
   if (typeof els.dialog.showModal === 'function') els.dialog.showModal();
   else els.dialog.setAttribute('open', '');
 }
 
-function closeRepoDetail() {
+function closeRepoDetail(fromPopState = false) {
   if (typeof els.dialog.close === 'function') els.dialog.close();
   else els.dialog.removeAttribute('open');
+  if (!fromPopState && location.hash.startsWith('#repo=')) history.back();
 }
 
 function getVisible() {
@@ -1308,8 +1341,22 @@ document.addEventListener('click', (e) => {
 });
 
 els.detailClose.addEventListener('click', closeRepoDetail);
-els.dialog.addEventListener('click', (e) => {
-  if (e.target === els.dialog) closeRepoDetail();
+els.dialog.addEventListener('click', async (event) => {
+  if (event.target === els.dialog) { closeRepoDetail(); return; }
+  const copy = event.target.closest('[data-copy-detail-link]');
+  if (!copy) return;
+  const url = location.href;
+  try { await navigator.clipboard.writeText(url); copy.textContent = '✓ Copied'; setTimeout(() => { copy.textContent = '🔗 Copy link'; }, 1500); } catch (_) { /* clipboard unavailable */ }
+});
+window.addEventListener('popstate', () => {
+  if (!location.hash.startsWith('#repo=')) closeRepoDetail(true);
+});
+window.addEventListener('hashchange', () => {
+  const match = location.hash.match(/^#repo=(.+)$/);
+  if (!match) return;
+  const name = decodeURIComponent(match[1]);
+  const item = state.items.find(({ repo }) => (repo.fullName || repo.name) === name);
+  if (item) openRepoDetail(item.repo);
 });
 
 function setCardOpen(card, open) {
@@ -1331,6 +1378,13 @@ function updateExpandAll() {
 }
 
 els.grid.addEventListener('click', (event) => {
+  const detailButton = event.target.closest('[data-open-detail]');
+  if (detailButton) {
+    const card = detailButton.closest('.card');
+    const item = state.items.find(({ repo }) => (repo.fullName || repo.name) === card?.dataset.repoKey);
+    if (item) openRepoDetail(item.repo);
+    return;
+  }
   const button = event.target.closest('.card-toggle');
   const top = event.target.closest('.card-top');
   if (button) {
