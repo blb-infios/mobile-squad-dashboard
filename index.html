@@ -1098,7 +1098,7 @@ function readinessBadge(repo) {
 }
 
 function renderPipelineHistory(repo) {
-  const groups = Object.entries(repo.pipelines || {}).filter(([, pipeline]) => Array.isArray(pipeline.history) && pipeline.history.length).map(([key, pipeline]) => {
+  const groups = Object.entries(repo.pipelines || {}).filter(([, pipeline]) => pipeline && Array.isArray(pipeline.history) && pipeline.history.length).map(([key, pipeline]) => {
     const rows = pipeline.history.slice(0, 10).map((run) => `<tr><td>${esc(pipelineInfo(run.status).label)}</td><td>${timeEl(run.lastRun)}</td><td>${esc(run.duration || '—')}</td><td>${esc(run.branch || '—')}</td><td>${extLink(run.url, 'Open run', 'Open pipeline run')}</td></tr>`).join('');
     return `<section class="section"><h3>${esc(key.toUpperCase())} history</h3><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>Result</th><th>Run</th><th>Duration</th><th>Branch</th><th>Link</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
   }).join('');
