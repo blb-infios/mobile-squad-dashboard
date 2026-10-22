@@ -239,7 +239,34 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .stat.is-warn .stat-value { color: var(--warn-text); }
 .stat.is-crit .stat-value { color: var(--crit-text); }
 
-.result-count { margin: 20px 0 12px; font-size: .85rem; color: var(--muted); }
+.result-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 20px 0 12px; }
+.result-count { font-size: .85rem; color: var(--muted); }
+.btn-sm { padding: 5px 12px; font-size: .8rem; border-radius: 999px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.card-top { padding: 16px 18px 14px; cursor: pointer; transition: background-color .15s ease; }
+.card-top:hover { background: var(--surface-2); }
+.card-top .card-head { padding: 0; }
+.summary { display: grid; gap: 8px; margin-top: 12px; }
+.sum-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.mini { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; font-size: .78rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text); }
+.mini code { font-size: .74rem; }
+.mini.pipe-bad { background: var(--crit-soft); border-color: var(--crit); color: var(--crit-text); }
+.mini.pipe-warn { background: var(--warn-soft); border-color: var(--warn); color: var(--warn-text); }
+.mini.pipe-idle, .mini.is-muted { color: var(--muted); }
+.mini.is-clean { color: var(--ok-text); background: var(--ok-soft); border-color: transparent; }
+.mini-group { display: inline-flex; gap: 4px; }
+.mini-sev { display: inline-flex; align-items: center; gap: 4px; font-size: .78rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+.mini-sev.sev-critical { background: var(--sev-critical-bg); color: var(--sev-critical-fg); }
+.mini-sev.sev-high { background: var(--sev-high-bg); color: var(--sev-high-fg); }
+.mini-sev.sev-medium { background: var(--sev-medium-bg); color: var(--sev-medium-fg); }
+.card-toggle { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; background: transparent; border: 1px solid var(--border-strong); color: var(--accent); border-radius: 999px; padding: 3px 10px 3px 12px; font-size: .78rem; font-weight: 700; cursor: pointer; }
+.card-toggle:hover { border-color: var(--accent); background: var(--accent-soft); }
+.card-toggle .chev { width: 14px; height: 14px; transition: transform .25s ease; }
+.card.is-open .card-toggle .chev { transform: rotate(180deg); }
+.card-body { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .28s ease, visibility 0s linear .28s; }
+.card.is-open .card-body { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .28s ease, visibility 0s; }
+.card-body-inner { overflow: hidden; min-height: 0; }
 
 .notice {
   margin-top: 16px; padding: 14px 16px; border-radius: 12px;
@@ -255,7 +282,8 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 
 .grid {
   display: grid; gap: 18px;
-  grid-template-columns: minmax(0, 1fr);            /* mobile: 1 column  */
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;            /* mobile: 1 column  */
 }
 @media (min-width: 720px)  { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }  /* tablet: 2 */
 @media (min-width: 1100px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }  /* desktop: 3 */
@@ -528,7 +556,10 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 
   <div id="notice"></div>
 
-  <p class="result-count" id="resultCount" role="status" aria-live="polite"></p>
+  <div class="result-row">
+    <p class="result-count" id="resultCount" role="status" aria-live="polite"></p>
+    <button type="button" class="btn btn-sm" id="expandAll" data-state="closed">Expand all</button>
+  </div>
 
   <h2 class="sr-only">Repositories</h2>
   <section class="grid" id="grid" aria-label="Repositories" aria-busy="true"></section>
@@ -619,7 +650,8 @@ const state = {
   q: '',
   type: 'all',
   status: 'all',
-  sort: { key: 'name', dir: 'asc' }
+  sort: { key: 'name', dir: 'asc' },
+  open: new Set()
 };
 
 const SORT_LABELS = { name: 'name', lastRun: 'last run', vulns: 'vulnerabilities', coverage: 'coverage' };
@@ -629,7 +661,7 @@ const $ = (id) => document.getElementById(id);
 const els = {
   grid: $('grid'), stats: $('stats'), insights: $('insights'), notice: $('notice'), count: $('resultCount'),
   updated: $('lastUpdated'), search: $('search'), type: $('typeFilter'), status: $('statusFilter'),
-  theme: $('themeToggle'), refresh: $('refreshBtn'), dialog: $('repoDialog'), detailTitle: $('detailTitle'), detailBody: $('detailBody'), detailClose: $('detailClose')
+  theme: $('themeToggle'), refresh: $('refreshBtn'), expandAll: $('expandAll'), dialog: $('repoDialog'), detailTitle: $('detailTitle'), detailBody: $('detailBody'), detailClose: $('detailClose')
 };
 
 /* ===================================================================
@@ -931,55 +963,58 @@ function renderFooter(repo) {
   </footer>`;
 }
 
+function renderSummary(repo, open, bodyId, name) {
+  const v = repo.versions || {};
+  const sync = analyzeVersions(v);
+  const ver = v.source ? `<span class="mini" title="${esc(sync.outOfSync ? sync.notes.join('. ') : 'Source version')}">📝 <code>${esc(v.source)}</code>${sync.outOfSync ? ' ⚠️' : ''}</span>` : '';
+  const pipes = Object.entries(repo.pipelines || {}).filter(([, pipeline]) => pipeline).map(([key, pipeline]) => {
+    const info = pipelineInfo(pipeline.status);
+    const label = key === 'ci' ? 'CI' : key === 'release' ? 'Release' : key;
+    return `<span class="mini pipe-${info.cls}" title="${esc(pipeline.name || label)}: ${esc(info.label)}">${info.icon} ${esc(label)}</span>`;
+  }).join('');
+  const coverage = coverageInfo(repo);
+  const covChip = coverage ? `<span class="mini ${coverage.level === 'ok' ? 'cov-ok' : coverage.level === 'warn' ? 'cov-warn' : 'cov-bad'}" title="Coverage ${fmtPct(coverage.pct)}%, threshold ${fmtPct(coverage.threshold)}%">🧪 ${fmtPct(coverage.pct)}%</span>` : '';
+  const snyk = repo.snyk ? (() => {
+    const parts = [['critical', '🔴'], ['high', '🟠'], ['medium', '🟡']].filter(([key]) => num(repo.snyk[key]) > 0).map(([key, icon]) => `<span class="mini-sev sev-${key}">${icon}${num(repo.snyk[key])}</span>`);
+    return parts.length ? `<span class="mini-group">${parts.join('')}</span>` : '<span class="mini is-clean">🛡️ Clean</span>';
+  })() : '<span class="mini is-muted">🛡️ No scan</span>';
+  const work = repo.workItems ? `<span class="mini">📋 ${num(repo.workItems.open)} open</span>` : '';
+  return `<div class="summary"><div class="sum-row">${ver}${pipes}${covChip}</div><div class="sum-row">${snyk}${work}<button type="button" class="card-toggle" aria-expanded="${open}" aria-controls="${bodyId}"><span class="toggle-text">${open ? 'Hide' : 'Details'}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>`;
+}
+
 function renderCard({ repo, ev }, index) {
   const name = repo.name || 'Unnamed repository';
   const headingId = `repo-${slug(name)}-${index}`;
+  const bodyId = `${headingId}-body`;
+  const open = state.open.has(name);
   const type = String(repo.type || '').toLowerCase();
   const typeLabel = type === 'kmp' ? 'KMP' : type === 'capacitor' ? 'Capacitor' : (repo.type ? String(repo.type) : 'Unknown');
   const typeCls = type === 'kmp' ? 'type-kmp' : type === 'capacitor' ? 'type-capacitor' : 'type-other';
-  
-  // KMP icon (Kotlin Multiplatform logo - triangle)
   const kmpIcon = type === 'kmp' ? `<img src="icons/kmp.svg" alt="KMP" />` : '';
-  
-  // Capacitor icon (official logo with overlapping bars)
   const capIcon = type === 'capacitor' ? `<img src="icons/Capacitor.svg" alt="Capacitor" />` : '';
-  
   const typeIcon = kmpIcon || capIcon;
-
   const statusLabel = { healthy: 'Healthy', warning: 'Warnings', critical: 'Critical' }[ev.level];
   const statusDetail = ev.reasons.length ? ev.reasons.join(', ') : 'All pipelines passing, no critical or high findings';
-
   const platforms = (repo.platforms || []).map((p) => {
     const known = PLATFORMS[String(p).toLowerCase()];
-    return known
-      ? `<li class="plat plat-${known[0]}" role="img" aria-label="${known[1]}" title="${known[1]}"><svg aria-hidden="true" focusable="false"><use href="#icon-${known[0]}"/></svg></li>`
-      : `<li class="text" title="${esc(p)}">${esc(p)}</li>`;
+    return known ? `<li class="plat plat-${known[0]}" role="img" aria-label="${known[1]}" title="${known[1]}"><svg aria-hidden="true" focusable="false"><use href="#icon-${known[0]}"/></svg></li>` : `<li class="text" title="${esc(p)}">${esc(p)}</li>`;
   }).join('');
-
-  return `
-  <article class="card is-${ev.level}" data-repo-key="${esc(repo.fullName || name)}" aria-labelledby="${headingId}">
-    <header class="card-head">
-      <div class="card-icon ${typeCls}">
-        ${typeIcon}
-      </div>
-      <div class="card-header-content">
-        <div class="card-title-row">
-          <h2 class="card-name" id="${headingId}">${breakable(name)}</h2>
-          <span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span>
-        </div>
-        <div class="card-meta">
-          <span class="type-badge ${typeCls}">${esc(typeLabel)}</span>
-          ${readinessBadge(repo)}
-          ${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}
-        </div>
-      </div>
-    </header>
-    ${renderVersions(repo.versions)}
-    ${renderPipelines(repo.pipelines)}
-    ${renderCoverage(repo.coverage)}
-    ${renderSnyk(repo.snyk)}
-    ${renderWorkItems(repo.workItems)}
-    ${renderFooter(repo)}
+  return `<article class="card is-${ev.level}${open ? ' is-open' : ''}" data-key="${esc(name)}" data-name="${esc(name)}" aria-labelledby="${headingId}">
+    <div class="card-top">
+      <header class="card-head">
+        <div class="card-title-row"><div class="title-left"><div class="card-icon ${typeCls}">${typeIcon}</div><h2 class="card-name" id="${headingId}">${breakable(name)}</h2></div><span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span></div>
+        <div class="card-meta"><span class="type-badge ${typeCls}">${esc(typeLabel)}</span>${readinessBadge(repo)}${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}</div>
+      </header>
+      ${renderSummary(repo, open, bodyId, name)}
+    </div>
+    <div class="card-body" id="${bodyId}"><div class="card-body-inner">
+      ${renderVersions(repo.versions)}
+      ${renderPipelines(repo.pipelines)}
+      ${renderCoverage(repo.coverage)}
+      ${renderSnyk(repo.snyk)}
+      ${renderWorkItems(repo.workItems)}
+      ${renderFooter(repo)}
+    </div></div>
   </article>`;
 }
 
@@ -1097,6 +1132,7 @@ function render() {
   }
   els.count.textContent = `Showing ${visible.length} of ${state.items.length} repositories`;
   updateSortButtons();
+  updateExpandAll();
 }
 
 function renderLastUpdated() {
@@ -1274,6 +1310,54 @@ document.addEventListener('click', (e) => {
 els.detailClose.addEventListener('click', closeRepoDetail);
 els.dialog.addEventListener('click', (e) => {
   if (e.target === els.dialog) closeRepoDetail();
+});
+
+function setCardOpen(card, open) {
+  card.classList.toggle('is-open', open);
+  const button = card.querySelector('.card-toggle');
+  if (!button) return;
+  button.setAttribute('aria-expanded', String(open));
+  button.setAttribute('aria-label', `${open ? 'Collapse' : 'Expand'} details for ${card.dataset.name}`);
+  button.querySelector('.toggle-text').textContent = open ? 'Hide' : 'Details';
+  if (open) state.open.add(card.dataset.key); else state.open.delete(card.dataset.key);
+}
+
+function updateExpandAll() {
+  const cards = [...els.grid.querySelectorAll('.card[data-key]')];
+  const allOpen = cards.length > 0 && cards.every((card) => card.classList.contains('is-open'));
+  els.expandAll.disabled = cards.length === 0;
+  els.expandAll.dataset.state = allOpen ? 'open' : 'closed';
+  els.expandAll.textContent = allOpen ? 'Collapse all' : 'Expand all';
+}
+
+els.grid.addEventListener('click', (event) => {
+  const button = event.target.closest('.card-toggle');
+  const top = event.target.closest('.card-top');
+  if (button) {
+    const card = button.closest('.card');
+    setCardOpen(card, !card.classList.contains('is-open'));
+    updateExpandAll();
+    return;
+  }
+  if (!top || event.target.closest('a')) return;
+  const card = top.closest('.card');
+  setCardOpen(card, !card.classList.contains('is-open'));
+  updateExpandAll();
+});
+
+els.grid.addEventListener('keydown', (event) => {
+  const button = event.target.closest('.card-toggle');
+  if (!button || !['Enter', ' '].includes(event.key)) return;
+  event.preventDefault();
+  const card = button.closest('.card');
+  setCardOpen(card, !card.classList.contains('is-open'));
+  updateExpandAll();
+});
+
+els.expandAll.addEventListener('click', () => {
+  const open = els.expandAll.dataset.state !== 'open';
+  els.grid.querySelectorAll('.card[data-key]').forEach((card) => setCardOpen(card, open));
+  updateExpandAll();
 });
 
 // "/" jumps to search (unless you're already typing in a field).
