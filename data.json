@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-22T11:24:06.864Z",
-  "lastUpdated": "2026-10-22T11:24:06.864Z",
+  "generatedAt": "2026-10-22T11:34:36.014Z",
+  "lastUpdated": "2026-10-22T11:34:36.014Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -42,11 +42,11 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Dex.dev",
-              "buildId": 544010,
-              "status": "succeeded",
-              "lastRun": "2026-10-16T14:51:58.253079Z",
-              "duration": "14m 24s",
-              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544010"
+              "buildId": 547498,
+              "status": "inProgress",
+              "lastRun": "2026-10-22T11:28:24.2806681Z",
+              "duration": null,
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498"
             },
             "release": {
               "name": "Koerber.Mobile.Kotlin.Dex.release",
@@ -73,28 +73,20 @@
             "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
           },
           "lastBuild": {
-            "result": "succeeded",
-            "status": "succeeded",
-            "finishTime": "2026-10-16T14:51:58.253079Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544010"
+            "result": "inProgress",
+            "status": "inProgress",
+            "finishTime": "2026-10-22T11:28:24.2806681Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498"
           },
           "lastCommit": {
-            "id": "01efe44",
-            "message": "#503490: Add Android and iOS Maven publications to Koerber.Mobile.Kotlin.Dex",
-            "author": "Bhargav L",
-            "date": "2026-10-09T09:19:57Z",
-            "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/commit/01efe44ac0b8c7a683a604b4e3cfe81423c55651"
+            "id": "84e8b54",
+            "message": "#506673: DEX Library - Add iOS coverage gate support",
+            "author": "Vijay Masal",
+            "date": "2026-10-22T11:24:24Z",
+            "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/commit/84e8b5412b4bf67aa4715ef903af4068cda94714"
           },
-          "activePRs": 1,
-          "pullRequests": [
-            {
-              "id": 117023,
-              "title": "#506673: DEX Library - Add iOS coverage gate support",
-              "author": "Vijay Masal",
-              "status": "active",
-              "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/pullrequest/117023"
-            }
-          ],
+          "activePRs": 0,
+          "pullRequests": [],
           "releaseReadiness": {
             "status": "ready",
             "label": "Ready",
@@ -1235,11 +1227,11 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Dex.dev",
-          "buildId": 544010,
-          "status": "succeeded",
-          "lastRun": "2026-10-16T14:51:58.253079Z",
-          "duration": "14m 24s",
-          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544010"
+          "buildId": 547498,
+          "status": "inProgress",
+          "lastRun": "2026-10-22T11:28:24.2806681Z",
+          "duration": null,
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498"
         },
         "release": {
           "name": "Koerber.Mobile.Kotlin.Dex.release",
@@ -1266,28 +1258,20 @@
         "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
       },
       "lastBuild": {
-        "result": "succeeded",
-        "status": "succeeded",
-        "finishTime": "2026-10-16T14:51:58.253079Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544010"
+        "result": "inProgress",
+        "status": "inProgress",
+        "finishTime": "2026-10-22T11:28:24.2806681Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498"
       },
       "lastCommit": {
-        "id": "01efe44",
-        "message": "#503490: Add Android and iOS Maven publications to Koerber.Mobile.Kotlin.Dex",
-        "author": "Bhargav L",
-        "date": "2026-10-09T09:19:57Z",
-        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/commit/01efe44ac0b8c7a683a604b4e3cfe81423c55651"
+        "id": "84e8b54",
+        "message": "#506673: DEX Library - Add iOS coverage gate support",
+        "author": "Vijay Masal",
+        "date": "2026-10-22T11:24:24Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/commit/84e8b5412b4bf67aa4715ef903af4068cda94714"
       },
-      "activePRs": 1,
-      "pullRequests": [
-        {
-          "id": 117023,
-          "title": "#506673: DEX Library - Add iOS coverage gate support",
-          "author": "Vijay Masal",
-          "status": "active",
-          "url": "https://dev.azure.com/Highjumpvso/WES/_git/Koerber.Mobile.Kotlin.Dex/pullrequest/117023"
-        }
-      ],
+      "activePRs": 0,
+      "pullRequests": [],
       "releaseReadiness": {
         "status": "ready",
         "label": "Ready",
@@ -2415,31 +2399,31 @@
   "dataSources": {
     "repositories": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:24:23.265Z"
+      "checkedAt": "2026-10-22T11:34:58.602Z"
     },
     "sourceCode": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:24:23.265Z"
+      "checkedAt": "2026-10-22T11:34:58.602Z"
     },
     "pipelines": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:24:23.265Z"
+      "checkedAt": "2026-10-22T11:34:58.602Z"
     },
     "artifacts": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:24:23.265Z"
+      "checkedAt": "2026-10-22T11:34:58.602Z"
     },
     "coverage": {
       "status": "unavailable",
-      "checkedAt": "2026-10-22T11:24:24.348Z"
+      "checkedAt": "2026-10-22T11:35:00.301Z"
     },
     "workItems": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:24:23.265Z"
+      "checkedAt": "2026-10-22T11:34:58.602Z"
     },
     "snyk": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:24:45.843Z"
+      "checkedAt": "2026-10-22T11:35:30.307Z"
     }
   },
   "history": [
@@ -4340,6 +4324,251 @@
     },
     {
       "timestamp": "2026-10-22T11:24:06.864Z",
+      "summary": {
+        "total": 14,
+        "healthy": 11,
+        "warning": 0,
+        "unhealthy": 3,
+        "unknown": 0
+      },
+      "repositories": [
+        {
+          "name": "Dex",
+          "fullName": "Koerber.Mobile.Kotlin.Dex",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092849",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1V1 Authorization",
+          "fullName": "Koerber.Mobile.Kotlin.K1V1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092654",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "Scanner",
+          "fullName": "Koerber.Mobile.Kotlin.BarcodeScanning",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 4,
+            "low": 1
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-202610061308",
+            "platformFeed": "1.0.0"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Kotlin.Printing",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "2.0.1",
+            "devFeed": "2.0.0-20261008132046",
+            "platformFeed": "2.0.1-20261016231736"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Kotlin.Beep",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.3",
+            "devFeed": "1.0.3-202610091437",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Kotlin.Vibrate",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-20260902141630",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1Authorization",
+          "fullName": "Koerber.Mobile.Capacitor.K1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.1.2",
+            "devFeed": "1.1.2-202610141300",
+            "platformFeed": "1.1.1"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Capacitor.Printing",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 1
+          },
+          "versions": {
+            "source": "0.0.3",
+            "devFeed": "0.0.3-202610141300",
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Camera",
+          "fullName": "Koerber.Mobile.Capacitor.Camera",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.1.0",
+            "devFeed": "1.0.7-202608211032",
+            "platformFeed": "1.1.0"
+          }
+        },
+        {
+          "name": "Logger",
+          "fullName": "Koerber.Mobile.Capacitor.Logger",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202609241443",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Capacitor.Beep",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.7",
+            "devFeed": "1.0.7-202609231520",
+            "platformFeed": "1.0.7"
+          }
+        },
+        {
+          "name": "MDM Reader",
+          "fullName": "Koerber.Mobile.Capacitor.MDMReader",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.5",
+            "devFeed": "1.0.5-202609281443",
+            "platformFeed": "1.0.5"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Capacitor.Vibrate",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.6",
+            "devFeed": "1.0.6-202609241219",
+            "platformFeed": "1.0.6"
+          }
+        },
+        {
+          "name": "Security Automation",
+          "fullName": "MobileToolKit.Maintenance",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-10-22T11:34:36.014Z",
       "summary": {
         "total": 14,
         "healthy": 11,

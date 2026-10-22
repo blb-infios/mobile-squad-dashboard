@@ -69,6 +69,7 @@
   --sev-low-bg:      #dde1ea;  --sev-low-fg:      #3a4357;
 
   /* Type badges */
+  --plat-android: #2aa866;  --plat-jvm: #d96a00;
   --kmp-bg: #eee8ff;  --kmp-fg: #5a2fc2;
   --cap-bg: #e0efff;  --cap-fg: #0a5fb0;
   --plat-android: #2aa866;  --plat-jvm: #d96a00;
@@ -111,6 +112,7 @@
   --sev-medium-bg:   #d9bd3a;  --sev-medium-fg:   #231d00;
   --sev-low-bg:      #2c3448;  --sev-low-fg:      #b7c0d6;
 
+  --plat-android: #3ddc84;  --plat-jvm: #f89820;
   --kmp-bg: #2a2150;  --kmp-fg: #bfaaff;
   --cap-bg: #14304d;  --cap-fg: #8cc6ff;
   
@@ -384,6 +386,19 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .tile.sev-low      { background: var(--sev-low-bg);      color: var(--sev-low-fg);      border-color: transparent; }
 .scan-meta { margin-top: 8px; font-size: .78rem; color: var(--muted); }
 
+.cov-top { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 8px; }
+.cov-big { font-size: 1.5rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.cov-note { font-size: .78rem; font-weight: 600; }
+.cov-big.ok, .cov-note.ok { color: var(--ok-text); }
+.cov-big.warn, .cov-note.warn { color: var(--warn-text); }
+.cov-big.bad, .cov-note.bad { color: var(--crit-text); }
+.bar { position: relative; display: block; height: 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
+.bar-fill { position: absolute; inset: 0 auto 0 0; border-radius: 999px; background: var(--ok); }
+.bar-fill.warn { background: var(--warn); }
+.bar-fill.bad { background: var(--crit); }
+.bar-mark { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; background: var(--text); border-radius: 2px; opacity: .75; }
+.cov-meta { display: flex; flex-wrap: wrap; gap: 2px 14px; }
+
 /* --- Footer --- */
 .card-foot {
   margin-top: auto; padding: 12px 18px 14px; border-top: 1px solid var(--border);
@@ -501,6 +516,7 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
         <button type="button" class="sort-btn" data-sort="name">Name <span class="arrow" aria-hidden="true"></span></button>
         <button type="button" class="sort-btn" data-sort="lastRun">Last run <span class="arrow" aria-hidden="true"></span></button>
         <button type="button" class="sort-btn" data-sort="vulns">Vulnerabilities <span class="arrow" aria-hidden="true"></span></button>
+        <button type="button" class="sort-btn" data-sort="coverage">Coverage <span class="arrow" aria-hidden="true"></span></button>
       </div>
     </div>
   </div>
@@ -559,6 +575,7 @@ const SAMPLE_DATA = {
       },
       snyk: { critical: 0, high: 0, medium: 0, low: 2, lastScan: '2026-10-14T06:00:12Z', url: 'https://app.eu.snyk.io/org/mobile-sdk/project/barcode-001' },
       workItems: { open: 4, inProgress: 2, committed: 5, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
+      coverage: { percent: 92.6, threshold: 90, lastRun: '2026-10-14T08:12:00Z', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12401&view=codecoverage-tab', lines: { covered: 3708, total: 4004 }, targets: { common: 94.1, android: 91.3, ios: 90.2 } },
       packages: { npm: null, maven: 'com.infios:barcode-scanner-kmp-library' }
     },
     {   // 2) Capacitor plugin with Snyk findings (orange) + platform feed behind source
@@ -572,6 +589,7 @@ const SAMPLE_DATA = {
       },
       snyk: { critical: 0, high: 3, medium: 5, low: 2, lastScan: '2026-10-13T11:03:37Z', url: 'https://app.eu.snyk.io/org/mobile-sdk/project/abc123' },
       workItems: { open: 2, inProgress: 1, committed: 3, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
+      coverage: { percent: 74.8, threshold: 80, lastRun: '2026-10-13T15:30:00Z', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12345&view=codecoverage-tab', lines: { covered: 1871, total: 2501 }, targets: { web: 71.5, android: 77.9, ios: 75.0 } },
       packages: { npm: '@koerber/mobile-capacitor-printing', maven: null }
     },
     {   // 3) Failed pipeline AND critical/high findings (red)
@@ -585,6 +603,7 @@ const SAMPLE_DATA = {
       },
       snyk: { critical: 1, high: 2, medium: 4, low: 6, lastScan: '2026-10-14T06:00:40Z', url: 'https://app.eu.snyk.io/org/mobile-sdk/project/dex-002' },
       workItems: { open: 6, inProgress: 3, committed: 2, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
+      coverage: { percent: 85.3, threshold: 90, lastRun: '2026-10-14T07:55:00Z', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12410&view=codecoverage-tab', lines: { covered: 5122, total: 6005 }, targets: { common: 88.0, android: 84.1, ios: 83.9, jvm: 87.5 } },
       packages: { npm: null, maven: 'com.infios:dex-kmp-library' }
     }
   ]
@@ -603,8 +622,8 @@ const state = {
   sort: { key: 'name', dir: 'asc' }
 };
 
-const SORT_LABELS = { name: 'name', lastRun: 'last run', vulns: 'vulnerabilities' };
-const DEFAULT_DIR = { name: 'asc', lastRun: 'desc', vulns: 'desc' };   // what a first click does
+const SORT_LABELS = { name: 'name', lastRun: 'last run', vulns: 'vulnerabilities', coverage: 'coverage' };
+const DEFAULT_DIR = { name: 'asc', lastRun: 'desc', vulns: 'desc', coverage: 'asc' };
 
 const $ = (id) => document.getElementById(id);
 const els = {
@@ -670,6 +689,19 @@ function timeEl(iso) {
    ORANGE – anything in between: failed pipeline alone, partial/cancelled
             runs, critical/high findings alone, or medium findings
    =================================================================== */
+const DEFAULT_COVERAGE_THRESHOLD = 80;
+const COVERAGE_AFFECTS_STATUS = true;
+const fmtPct = (n) => String(Math.round(Number(n) * 10) / 10);
+function coverageInfo(repo) {
+  const c = repo?.coverage;
+  if (!c) return null;
+  const pct = Number(c.percent ?? c.lines?.percent);
+  if (!Number.isFinite(pct)) return null;
+  const threshold = Number.isFinite(Number(c.threshold)) ? Number(c.threshold) : DEFAULT_COVERAGE_THRESHOLD;
+  const gap = pct - threshold;
+  return { pct, threshold, gap, level: gap >= 0 ? 'ok' : gap >= -10 ? 'warn' : 'bad', raw: c };
+}
+
 const PIPELINE_STATUS = {
   succeeded:          { icon: '✅',  label: 'Succeeded',           cls: 'ok'   },
   failed:             { icon: '❌',  label: 'Failed',              cls: 'bad'  },
@@ -686,10 +718,12 @@ function evaluate(repo) {
   const softWarn = pipes.filter((p) => p.status === 'partiallySucceeded' || p.status === 'canceled').length;
   const s = repo.snyk || {};
   const crit = num(s.critical), high = num(s.high), med = num(s.medium);
+  const cov = coverageInfo(repo);
+  const coverageBelow = COVERAGE_AFFECTS_STATUS && cov && cov.level !== 'ok';
 
   let level = 'healthy';
   if (failed > 0 && crit + high > 0) level = 'critical';
-  else if (failed > 0 || softWarn > 0 || crit + high > 0 || med > 0) level = 'warning';
+  else if (failed > 0 || softWarn > 0 || crit + high > 0 || med > 0 || coverageBelow) level = 'warning';
 
   // Human-readable reasons, used for the status pill's tooltip + screen-reader label.
   const reasons = [];
@@ -698,8 +732,9 @@ function evaluate(repo) {
   if (crit) reasons.push(`${crit} critical vulnerabilit${crit > 1 ? 'ies' : 'y'}`);
   if (high) reasons.push(`${high} high vulnerabilit${high > 1 ? 'ies' : 'y'}`);
   if (med) reasons.push(`${med} medium vulnerabilit${med > 1 ? 'ies' : 'y'}`);
+  if (coverageBelow) reasons.push(`coverage ${fmtPct(cov.pct)}% is below ${fmtPct(cov.threshold)}% threshold`);
 
-  return { level, failed, crit, high, med, reasons };
+  return { level, failed, crit, high, med, cov, reasons };
 }
 
 // Most recent pipeline run across the repo (used for the "Last run" sort).
@@ -822,9 +857,19 @@ function renderPipelines(pipelines) {
 }
 
 function renderCoverage(coverage) {
-  if (!coverage) return section('📊 Code coverage', '', '<p class="empty-note">No coverage data</p>');
-  const metric = (label, value) => `<li class="tile"><span class="num">${value == null ? '—' : `${value.toFixed(1)}%`}</span><span class="lbl">${label}</span></li>`;
-  return section('📊 Code coverage', '', `<ul class="tiles three">${metric('Lines', coverage.lines?.percent)}${metric('Blocks', coverage.blocks?.percent)}<li class="tile"><span class="num">${coverage.modules || 0}</span><span class="lbl">Modules</span></li></ul>`);
+  const cov = coverageInfo({ coverage });
+  if (!cov) return section('📊 Code coverage', '', '<p class="empty-note">No coverage data</p>');
+  const c = cov.raw;
+  const verdict = cov.gap >= 0 ? `Meets the ${fmtPct(cov.threshold)}% threshold (+${fmtPct(cov.gap)} pts)` : `${fmtPct(Math.abs(cov.gap))} pts below the ${fmtPct(cov.threshold)}% threshold`;
+  const targetOrder = ['common', 'android', 'ios', 'jvm', 'desktop', 'web'];
+  const targetLabels = { common: 'Common', android: 'Android', ios: 'iOS', jvm: 'JVM', desktop: 'Desktop', web: 'Web' };
+  const targets = Object.entries(c.targets || {}).filter(([, value]) => Number.isFinite(+value)).sort(([a], [b]) => (targetOrder.indexOf(a) < 0 ? 99 : targetOrder.indexOf(a)) - (targetOrder.indexOf(b) < 0 ? 99 : targetOrder.indexOf(b))).map(([name, value]) => {
+    const pct = Math.min(100, Math.max(0, +value));
+    const level = pct >= cov.threshold ? 'ok' : pct >= cov.threshold - 10 ? 'warn' : 'bad';
+    return `<li class="cov-target"><span class="t-name">${esc(targetLabels[name] || name)}</span><span class="bar bar-sm"><span class="bar-fill ${level}" style="width:${pct}%"></span></span><span class="t-val ${level}">${fmtPct(pct)}%</span></li>`;
+  }).join('');
+  const lines = c.lines?.covered != null && c.lines?.total != null ? `${Number(c.lines.covered).toLocaleString()} / ${Number(c.lines.total).toLocaleString()} lines` : '';
+  return section('📊 Code coverage', c.url ? extLink(c.url, 'View report', 'Open code coverage report') : '', `<div class="cov-top"><span class="cov-big ${cov.level}">${fmtPct(cov.pct)}%</span><span class="cov-note ${cov.level}">${esc(verdict)}</span></div><div class="bar" role="progressbar" aria-label="Overall code coverage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${fmtPct(cov.pct)}"><span class="bar-fill ${cov.level}" style="width:${cov.pct}%"></span><span class="bar-mark" style="left:${cov.threshold}%" title="Threshold ${fmtPct(cov.threshold)}%"></span></div>${targets ? `<ul class="cov-targets">${targets}</ul>` : ''}<p class="scan-meta cov-meta"><span>🕒 Last run: ${timeEl(c.lastRun)}</span>${lines ? `<span>📄 ${esc(lines)}</span>` : ''}${c.modules ? `<span>📦 ${num(c.modules)} modules</span>` : ''}</p>`);
 }
 
 function renderSnyk(s) {
@@ -955,6 +1000,12 @@ function renderStats(items) {
     { icon: '🛡️', value: crit + high, label: 'Critical / high vulnerabilities',  sub: `${crit} critical · ${high} high`,      cls: crit > 0 ? 'is-crit' : tone(high, 'warn') },
     { icon: '❌', value: failedPipes, label: 'Failed pipelines',                 sub: '',                                    cls: tone(failedPipes) }
   ];
+  const coverages = items.map((item) => coverageInfo(item.repo)).filter(Boolean);
+  if (coverages.length) {
+    const average = coverages.reduce((sum, coverage) => sum + coverage.pct, 0) / coverages.length;
+    const meeting = coverages.filter((coverage) => coverage.level === 'ok').length;
+    tiles.push({ icon: '🧪', value: `${fmtPct(average)}%`, label: 'Average code coverage', sub: `${meeting} of ${coverages.length} meet threshold`, cls: meeting === coverages.length ? 'is-ok' : 'is-warn' });
+  }
   els.stats.innerHTML = tiles.map((t) => `
     <div class="stat ${t.cls}">
       <span class="stat-icon" aria-hidden="true">${t.icon}</span>
@@ -1025,7 +1076,8 @@ function getVisible() {
       const sa = a.repo.snyk || {}, sb = b.repo.snyk || {};
       return (num(sa.critical) - num(sb.critical)) || (num(sa.high) - num(sb.high)) ||
              (num(sa.medium) - num(sb.medium)) || (num(sa.low) - num(sb.low));
-    }
+    },
+    coverage: (a, b) => (coverageInfo(a.repo)?.pct ?? -1) - (coverageInfo(b.repo)?.pct ?? -1)
   };
   list.sort((a, b) => (sorters[state.sort.key](a, b) * dir) ||
     String(a.repo.name || '').localeCompare(String(b.repo.name || '')));   // stable tie-breaker
