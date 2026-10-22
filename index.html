@@ -151,7 +151,19 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 2px; }
 button, select, input { font: inherit; color: inherit; }
 
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.help-tip {
+  display: inline-grid; place-items: center; width: 15px; height: 15px; margin-left: 4px;
+  border: 1px solid currentColor; border-radius: 50%; font-size: .62rem; font-weight: 800;
+  color: var(--muted); cursor: help; vertical-align: 1px; position: relative;
+}
+.help-tip::after {
+  content: attr(data-help); position: absolute; z-index: 20; left: 50%; bottom: calc(100% + 8px);
+  width: max-content; max-width: 280px; padding: 8px 10px; border-radius: 8px;
+  background: var(--text); color: var(--surface); font-size: .75rem; font-weight: 500; line-height: 1.35;
+  text-align: left; box-shadow: var(--shadow-lg); opacity: 0; pointer-events: none;
+  transform: translate(-50%, 4px); transition: opacity .15s ease, transform .15s ease;
+}
+.help-tip:hover::after, .help-tip:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
 
 .sr-only {
   position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
@@ -531,8 +543,8 @@ html.dlg-open { overflow:hidden; }
         <p class="last-updated" id="lastUpdated">Loading data…</p>
       </div>
       <div class="header-actions">
-        <button type="button" class="btn" id="refreshBtn" aria-label="Reload data">↻ Refresh</button>
-        <button type="button" class="btn" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">🌙 Dark mode</button>
+        <button type="button" class="btn" id="refreshBtn" title="Fetch the latest dashboard data" aria-label="Reload data">↻ Refresh</button>
+        <button type="button" class="btn" id="themeToggle" title="Switch between light and dark themes" aria-pressed="false" aria-label="Toggle dark mode">🌙 Dark mode</button>
       </div>
     </div>
 
@@ -540,11 +552,11 @@ html.dlg-open { overflow:hidden; }
       <div class="field field-search">
         <label for="search" class="sr-only">Search repositories by name</label>
         <span class="search-icon" aria-hidden="true">🔍</span>
-        <input id="search" type="search" placeholder="Search repositories…  ( press / )" autocomplete="off" spellcheck="false">
+        <input id="search" type="search" title="Search by repository name" placeholder="Search repositories…  ( press / )" autocomplete="off" spellcheck="false">
       </div>
 
       <div class="field">
-        <label for="typeFilter">Type</label>
+        <label for="typeFilter">Type${helpTip('Filter repositories by framework type: KMP or Capacitor.')}</label>
         <select id="typeFilter">
           <option value="all">All</option>
           <option value="kmp">KMP</option>
@@ -553,7 +565,7 @@ html.dlg-open { overflow:hidden; }
       </div>
 
       <div class="field">
-        <label for="statusFilter">Status</label>
+        <label for="statusFilter">Status${helpTip('Filter repositories by overall calculated health.')}</label>
         <select id="statusFilter">
           <option value="all">All</option>
           <option value="issues">Issues</option>
@@ -563,7 +575,7 @@ html.dlg-open { overflow:hidden; }
 
       <!-- Cards have no table columns, so these buttons act as the "column headers" for sorting -->
       <div class="sort" role="group" aria-label="Sort repositories">
-        <span class="sort-label">Sort by</span>
+        <span class="sort-label">Sort by${helpTip('Sort the visible repositories by name, latest pipeline run, vulnerability count, or coverage.')}</span>
         <button type="button" class="sort-btn" data-sort="name">Name <span class="arrow" aria-hidden="true"></span></button>
         <button type="button" class="sort-btn" data-sort="lastRun">Last run <span class="arrow" aria-hidden="true"></span></button>
         <button type="button" class="sort-btn" data-sort="vulns">Vulnerabilities <span class="arrow" aria-hidden="true"></span></button>
@@ -843,8 +855,18 @@ const PLATFORMS = {
   android: ['android', 'Android'], ios: ['apple', 'iOS'], jvm: ['jvm', 'JVM'], web: ['web', 'Web']
 };
 
+const helpTip = (text) => text ? `<span class="help-tip" tabindex="0" role="img" aria-label="${esc(text)}" data-help="${esc(text)}">?</span>` : '';
+const sectionHelp = (title) => {
+  const text = String(title).toLowerCase();
+  if (text.includes('version')) return 'Source comes from repository code; feed values come from Azure Artifacts. Differences indicate release drift.';
+  if (text.includes('pipeline')) return 'Shows the latest CI and release pipeline result, run time, duration, and links to Azure DevOps.';
+  if (text.includes('coverage')) return 'Code coverage is read from Azure DevOps test coverage results. The threshold controls the status color.';
+  if (text.includes('security')) return 'Snyk vulnerability counts include active findings associated with the repository\'s matched Snyk projects.';
+  if (text.includes('work')) return 'Work items are linked to recent builds and active pull requests for this repository.';
+  return '';
+};
 const section = (title, right, body) =>
-  `<section class="section"><div class="section-head"><h3>${title}</h3>${right || ''}</div>${body}</section>`;
+  `<section class="section"><div class="section-head"><h3>${title}${helpTip(sectionHelp(title))}</h3>${right || ''}</div>${body}</section>`;
 
 const extLink = (url, text, label) => {
   const href = safeUrl(url);
@@ -911,6 +933,12 @@ function renderPipelines(pipelines) {
   return section('🔁 Pipelines', '', `<ul class="pipes">${rows}</ul>`);
 }
 
+function coverageTargetPercent(value) {
+  if (value == null || value === '') return NaN;
+  if (value && typeof value === 'object') return Number(value.percent ?? value.lines?.percent);
+  return Number(value);
+}
+
 function renderCoverage(coverage) {
   const cov = coverageInfo({ coverage });
   if (!cov) return section('📊 Code coverage', '', '<p class="empty-note">No coverage data</p>');
@@ -918,13 +946,13 @@ function renderCoverage(coverage) {
   const verdict = cov.gap >= 0 ? `Meets the ${fmtPct(cov.threshold)}% threshold (+${fmtPct(cov.gap)} pts)` : `${fmtPct(Math.abs(cov.gap))} pts below the ${fmtPct(cov.threshold)}% threshold`;
   const targetOrder = ['common', 'android', 'ios', 'jvm', 'desktop', 'web'];
   const targetLabels = { common: 'Common', android: 'Android', ios: 'iOS', jvm: 'JVM', desktop: 'Desktop', web: 'Web' };
-  const targets = Object.entries(c.targets || {}).filter(([, value]) => Number.isFinite(+value)).sort(([a], [b]) => (targetOrder.indexOf(a) < 0 ? 99 : targetOrder.indexOf(a)) - (targetOrder.indexOf(b) < 0 ? 99 : targetOrder.indexOf(b))).map(([name, value]) => {
-    const pct = Math.min(100, Math.max(0, +value));
+  const targets = Object.entries(c.targets || {}).filter(([, value]) => Number.isFinite(coverageTargetPercent(value))).sort(([a], [b]) => (targetOrder.indexOf(a) < 0 ? 99 : targetOrder.indexOf(a)) - (targetOrder.indexOf(b) < 0 ? 99 : targetOrder.indexOf(b))).map(([name, value]) => {
+    const pct = Math.min(100, Math.max(0, coverageTargetPercent(value)));
     const level = pct >= cov.threshold ? 'ok' : pct >= cov.threshold - 10 ? 'warn' : 'bad';
     return `<li class="cov-target"><span class="t-name">${esc(targetLabels[name] || name)}</span><span class="bar bar-sm"><span class="bar-fill ${level}" style="width:${pct}%"></span></span><span class="t-val ${level}">${fmtPct(pct)}%</span></li>`;
   }).join('');
   const lines = c.lines?.covered != null && c.lines?.total != null ? `${Number(c.lines.covered).toLocaleString()} / ${Number(c.lines.total).toLocaleString()} lines` : '';
-  return section('📊 Code coverage', c.url ? extLink(c.url, 'View report', 'Open code coverage report') : '', `<div class="cov-top"><span class="cov-big ${cov.level}">${fmtPct(cov.pct)}%</span><span class="cov-note ${cov.level}">${esc(verdict)}</span></div><div class="bar" role="progressbar" aria-label="Overall code coverage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${fmtPct(cov.pct)}"><span class="bar-fill ${cov.level}" style="width:${cov.pct}%"></span><span class="bar-mark" style="left:${cov.threshold}%" title="Threshold ${fmtPct(cov.threshold)}%"></span></div>${targets ? `<ul class="cov-targets">${targets}</ul>` : ''}<p class="scan-meta cov-meta"><span>🕒 Last run: ${timeEl(c.lastRun)}</span>${lines ? `<span>📄 ${esc(lines)}</span>` : ''}${c.modules ? `<span>📦 ${num(c.modules)} modules</span>` : ''}</p>`);
+  return section('📊 Code coverage', c.url ? extLink(c.url, 'View report', 'Open code coverage report') : '', `<div class="cov-top"><span class="cov-big ${cov.level}">${fmtPct(cov.pct)}%</span><span class="cov-note ${cov.level}">${esc(verdict)}</span></div><div class="bar" role="progressbar" aria-label="Overall code coverage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${fmtPct(cov.pct)}"><span class="bar-fill ${cov.level}" style="width:${cov.pct}%"></span><span class="bar-mark" style="left:${cov.threshold}%" title="Threshold ${fmtPct(cov.threshold)}%"></span></div>${targets ? `<ul class="cov-targets">${targets}</ul>` : ''}<p class="scan-meta cov-meta"><span>🕒 Last run: ${timeEl(c.lastRun || c.timestamp)}</span>${lines ? `<span>📄 ${esc(lines)}</span>` : ''}${c.modules ? `<span>📦 ${num(c.modules)} modules</span>` : ''}</p>`);
 }
 
 function renderSnyk(s) {
@@ -1046,7 +1074,14 @@ function renderCard({ repo, ev }, index) {
    G. STATS, FILTER/SORT PIPELINE, MAIN RENDER
    =================================================================== */
 function renderStats(items) {
-  const total = items.length;
+  const statHelp = {
+    'Total repositories': 'All repositories configured in the dashboard aggregation list.',
+    'Repositories with issues': 'Repositories with a warning or critical pipeline, security, or coverage condition.',
+    'Critical / high vulnerabilities': 'Total active critical and high Snyk findings across repositories.',
+    'Failed pipelines': 'Count of CI or release pipelines whose latest result failed.',
+    'Average code coverage': 'Average line coverage across repositories with available coverage data.'
+  };
+    const total = items.length;
   const withIssues = items.filter((i) => i.ev.level !== 'healthy').length;
   const crit = items.reduce((n, i) => n + i.ev.crit, 0);
   const high = items.reduce((n, i) => n + i.ev.high, 0);
@@ -1068,7 +1103,7 @@ function renderStats(items) {
   els.stats.innerHTML = tiles.map((t) => `
     <div class="stat ${t.cls}">
       <span class="stat-icon" aria-hidden="true">${t.icon}</span>
-      <div><div class="stat-value">${t.value}</div><div class="stat-label">${t.label}</div>${t.sub ? `<div class="stat-sub">${t.sub}</div>` : ''}</div>
+      <div><div class="stat-value">${t.value}</div><div class="stat-label">${t.label}${helpTip(statHelp[t.label])}</div>${t.sub ? `<div class="stat-sub">${t.sub}</div>` : ''}</div>
     </div>`).join('');
 }
 
@@ -1098,24 +1133,50 @@ function readinessBadge(repo) {
 }
 
 function renderPipelineHistory(repo) {
-  const groups = Object.entries(repo.pipelines || {}).filter(([, pipeline]) => pipeline && Array.isArray(pipeline.history) && pipeline.history.length).map(([key, pipeline]) => {
-    const rows = pipeline.history.slice(0, 10).map((run) => `<tr><td>${esc(pipelineInfo(run.status).label)}</td><td>${timeEl(run.lastRun)}</td><td>${esc(run.duration || '—')}</td><td>${esc(run.branch || '—')}</td><td>${extLink(run.url, 'Open run', 'Open pipeline run')}</td></tr>`).join('');
-    return `<section class="section"><h3>${esc(key.toUpperCase())} history</h3><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>Result</th><th>Run</th><th>Duration</th><th>Branch</th><th>Link</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
+  const groups = Object.entries(repo?.pipelines || {}).filter(([, pipeline]) => pipeline && Array.isArray(pipeline.history) && pipeline.history.length).map(([key, pipeline]) => {
+    const success = Number.isFinite(Number(pipeline.successRate)) ? `${fmtPct(pipeline.successRate)}%` : '—';
+    const rows = pipeline.history.slice(0, 10).map((run) => `<tr><td>${esc(pipelineInfo(run?.status).label)}</td><td>${timeEl(run?.lastRun)}</td><td>${esc(run?.duration || '—')}</td><td>${esc(run?.branch || '—')}</td><td>${run?.url ? extLink(run.url, 'Open run', 'Open pipeline run') : '—'}</td></tr>`).join('');
+    return `<section class="section"><div class="section-head"><h3>${esc(key.toUpperCase())} history</h3><span class="empty-note">${esc(success)} success · ${num(pipeline.failedRuns)} failed</span></div><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>Result</th><th>Run</th><th>Duration</th><th>Branch</th><th>Link</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
   }).join('');
   return groups;
 }
 
+function renderCoverageDetails(coverage) {
+  if (!coverage) return '';
+  const c = coverage;
+  const metric = (value) => Number.isFinite(Number(value?.percent)) ? `${fmtPct(value.percent)}%` : '—';
+  const targetRows = Object.entries(c.targets || {}).map(([name, target]) => {
+    const targetPercent = coverageTargetPercent(target);
+    const lineValue = target?.lines || (typeof target === 'number' ? { percent: target } : null);
+    return `<tr><td>${esc(name)}</td><td>${metric(lineValue)}</td><td>${metric(target?.blocks)}</td><td>${Number.isFinite(targetPercent) ? `${fmtPct(targetPercent)}%` : '—'}</td></tr>`;
+  }).join('');
+  const historyRows = (Array.isArray(c.history) ? c.history : []).map((snapshot) => `<tr><td>${timeEl(snapshot?.timestamp)}</td><td>${esc(snapshot?.buildId ?? '—')}</td><td>${metric(snapshot?.lines)}</td><td>${metric(snapshot?.blocks)}</td><td>${snapshot?.url ? extLink(snapshot.url, 'Open run', 'Open coverage build') : '—'}</td></tr>`).join('');
+  const comparison = c.previous ? `<p class="scan-meta">Previous snapshot: ${metric(c.previous)}${Number.isFinite(Number(c.change)) ? ` · Change: ${c.change >= 0 ? '+' : ''}${fmtPct(c.change)} pts` : ''}</p>` : '<p class="empty-note">No previous coverage snapshot</p>';
+  return `<section class="section"><h3>Coverage details</h3><p class="scan-meta">Line coverage: ${metric(c.lines)} · Block coverage: ${metric(c.blocks)} · Target: ${Number.isFinite(Number(c.threshold)) ? `${fmtPct(c.threshold)}%` : '—'} · Threshold: ${esc(c.thresholdStatus || 'unknown')}</p>${comparison}${targetRows ? `<div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>Target</th><th>Lines</th><th>Blocks</th><th>Overall</th></tr></thead><tbody>${targetRows}</tbody></table></div>` : ''}${historyRows ? `<h4>Historical snapshots</h4><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>Snapshot</th><th>Build</th><th>Lines</th><th>Blocks</th><th>Link</th></tr></thead><tbody>${historyRows}</tbody></table></div>` : ''}</section>`;
+}
+
 function renderOptionalDetailTables(repo) {
-  const issueRows = (repo.snyk?.issues || []).map((issue) => `<tr><td>${esc(issue.severity || '—')}</td><td>${esc(issue.title || '—')}</td><td><code>${esc(issue.package || '—')}</code></td><td>${esc(issue.fixedIn || '—')}</td></tr>`).join('');
-  const workRows = (repo.workItems?.items || []).map((item) => `<tr><td>${item.url ? extLink(item.url, '#' + item.id, 'Open work item') : esc(item.id)}</td><td>${esc(item.title || '—')}</td><td>${esc(item.state || '—')}</td><td>${esc(item.assignedTo || 'Unassigned')}</td></tr>`).join('');
-  return `${issueRows ? `<section class="section"><h3>Security issues</h3><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>Severity</th><th>Issue</th><th>Package</th><th>Fixed in</th></tr></thead><tbody>${issueRows}</tbody></table></div></section>` : ''}${workRows ? `<section class="section"><h3>Work item details</h3><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>ID</th><th>Title</th><th>State</th><th>Assigned to</th></tr></thead><tbody>${workRows}</tbody></table></div></section>` : ''}`;
+  const snykIssues = Array.isArray(repo?.snyk?.issues) ? repo.snyk.issues : [];
+  const issueRows = snykIssues.map((issue) => `<tr><td>${esc(issue?.severity || '—')}</td><td>${esc([issue?.cve, issue?.id].filter(Boolean).join(' / ') || '—')}</td><td>${esc(issue?.title || '—')}</td><td><code>${esc([issue?.package, issue?.version].filter(Boolean).join('@') || '—')}</code></td><td>${esc(issue?.fixedVersion || '—')}</td><td>${esc(issue?.status || '—')}</td><td>${issue?.url ? extLink(issue.url, 'Open', 'Open Snyk issue') : '—'}</td></tr>`).join('');
+  const workItems = Array.isArray(repo?.workItems?.items) ? repo.workItems.items : [];
+  const workRows = workItems.map((item) => `<tr><td>${item?.url ? extLink(item.url, item?.id != null ? '#' + item.id : 'Open', 'Open work item') : esc(item?.id ?? '—')}</td><td>${esc(item?.title || '—')}</td><td>${esc(item?.type || '—')}</td><td>${esc(item?.state || '—')}</td><td>${esc(item?.assignedTo || 'Unassigned')}</td><td>${item?.ageDays != null ? esc(`${item.ageDays}d`) : '—'}</td></tr>`).join('');
+  const snykSection = repo?.snyk && (issueRows || Array.isArray(repo.snyk.issues)) ? `<section class="section"><h3>Security issues</h3>${issueRows ? `<div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>Severity</th><th>CVE / Snyk ID</th><th>Issue</th><th>Package / version</th><th>Fixed version</th><th>Status</th><th>Link</th></tr></thead><tbody>${issueRows}</tbody></table></div>` : '<p class="empty-note">No issue detail data</p>'}</section>` : '';
+  const workSection = repo?.workItems && (workRows || Array.isArray(repo.workItems.items)) ? `<section class="section"><h3>Work item details</h3>${workRows ? `<div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>ID</th><th>Title</th><th>Type</th><th>State</th><th>Assigned to</th><th>Age</th></tr></thead><tbody>${workRows}</tbody></table></div>` : '<p class="empty-note">No work-item detail data</p>'}</section>` : '';
+  return `${snykSection}${workSection}`;
+}
+
+function renderPullRequests(repo) {
+  const pullRequests = Array.isArray(repo?.pullRequests) ? repo.pullRequests : [];
+  if (!pullRequests.length) return repo?.pullRequests ? '<section class="section"><h3>Pull requests</h3><p class="empty-note">No active pull requests</p></section>' : '';
+  const rows = pullRequests.map((pr) => `<tr><td>${pr?.url ? extLink(pr.url, pr?.id != null ? '#' + pr.id : 'Open', 'Open pull request') : esc(pr?.id ?? '—')}</td><td>${esc(pr?.title || '—')}</td><td>${pr?.ageDays != null ? esc(`${pr.ageDays}d`) : '—'}</td><td>${pr?.isDraft == null ? '—' : pr.isDraft ? 'Draft' : 'Ready'}</td><td>${esc((pr?.reviewers || []).map((reviewer) => reviewer?.name).filter(Boolean).join(', ') || '—')}</td><td>${esc(pr?.approvalState || '—')}</td><td>${pr?.mergeConflicts == null ? '—' : pr.mergeConflicts ? 'Yes' : 'No'}</td><td>${esc(pr?.buildStatus || '—')}</td></tr>`).join('');
+  return `<section class="section"><h3>Pull requests</h3><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>PR</th><th>Title</th><th>Age</th><th>Draft</th><th>Reviewers</th><th>Approval</th><th>Conflicts</th><th>Build</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
 }
 
 function openRepoDetail(repo, fromHash = false) {
   els.detailTitle.textContent = repo.fullName || repo.name || 'Repository details';
   const overview = `<section class="section"><div class="section-head"><h3>Overview</h3>${readinessBadge(repo)}</div>${repo.owner ? `<p class="empty-note">Owner: ${esc(repo.owner)}</p>` : ''}${repo.description ? `<p class="empty-note">${esc(repo.description)}</p>` : ''}<p class="empty-note">${esc((repo.releaseReadiness?.reasons || ['All release checks passed']).join('. '))}</p></section>`;
   const raw = `<details class="section"><summary>Raw data (JSON)</summary><pre>${esc(JSON.stringify(repo, null, 2))}</pre></details>`;
-  els.detailBody.innerHTML = `${overview}${renderVersions(repo.versions)}${renderCoverage(repo.coverage)}${renderPipelines(repo.pipelines)}${renderPipelineHistory(repo)}${renderSnyk(repo.snyk)}${renderWorkItems(repo.workItems)}${renderOptionalDetailTables(repo)}${renderFooter(repo)}${raw}<div class="body-actions"><button type="button" class="btn btn-sm" data-copy-detail-link>🔗 Copy link</button></div>`;
+  els.detailBody.innerHTML = `${overview}${renderVersions(repo.versions)}${renderCoverage(repo.coverage)}${renderCoverageDetails(repo.coverage)}${renderPipelines(repo.pipelines)}${renderPipelineHistory(repo)}${renderSnyk(repo.snyk)}${renderWorkItems(repo.workItems)}${renderOptionalDetailTables(repo)}${renderPullRequests(repo)}${renderFooter(repo)}${raw}<div class="body-actions"><button type="button" class="btn btn-sm" data-copy-detail-link>🔗 Copy link</button></div>`;
   const hash = `#repo=${encodeURIComponent(repo.fullName || repo.name)}`;
   if (!fromHash && location.hash !== hash) history.pushState({ detail: hash }, '', hash);
   if (typeof els.dialog.showModal === 'function' && !els.dialog.open) els.dialog.showModal();
