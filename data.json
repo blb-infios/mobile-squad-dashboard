@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-22T11:42:59.569Z",
-  "lastUpdated": "2026-10-22T11:42:59.569Z",
+  "generatedAt": "2026-10-22T11:47:50.580Z",
+  "lastUpdated": "2026-10-22T11:47:50.580Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -29,7 +29,7 @@
           ],
           "versions": {
             "source": "1.0.1",
-            "devFeed": "1.0.1-20261009092849",
+            "devFeed": "1.0.1-20261022113613",
             "platformFeed": "1.0.1"
           },
           "packages": {
@@ -43,9 +43,9 @@
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Dex.dev",
               "buildId": 547498,
-              "status": "inProgress",
-              "lastRun": "2026-10-22T11:28:24.2806681Z",
-              "duration": null,
+              "status": "succeeded",
+              "lastRun": "2026-10-22T11:45:11.4695507Z",
+              "duration": "16m 47s",
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498"
             },
             "release": {
@@ -57,7 +57,24 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521677"
             }
           },
-          "coverage": null,
+          "coverage": {
+            "buildId": 547498,
+            "lines": {
+              "covered": 621,
+              "total": 690,
+              "percent": 90
+            },
+            "blocks": {
+              "covered": 0,
+              "total": 0,
+              "percent": null
+            },
+            "modules": 8,
+            "percent": 90,
+            "threshold": 80,
+            "lastRun": "2026-10-22T11:45:11.4695507Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498&view=codecoverage-tab"
+          },
           "snyk": {
             "critical": 0,
             "high": 0,
@@ -73,9 +90,9 @@
             "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
           },
           "lastBuild": {
-            "result": "inProgress",
-            "status": "inProgress",
-            "finishTime": "2026-10-22T11:28:24.2806681Z",
+            "result": "succeeded",
+            "status": "succeeded",
+            "finishTime": "2026-10-22T11:45:11.4695507Z",
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498"
           },
           "lastCommit": {
@@ -138,7 +155,24 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=522129"
             }
           },
-          "coverage": null,
+          "coverage": {
+            "buildId": 539025,
+            "lines": {
+              "covered": 586,
+              "total": 651,
+              "percent": 90.01536098310292
+            },
+            "blocks": {
+              "covered": 0,
+              "total": 0,
+              "percent": null
+            },
+            "modules": 7,
+            "percent": 90.01536098310292,
+            "threshold": 80,
+            "lastRun": "2026-10-09T09:38:21.5527388Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539025&view=codecoverage-tab"
+          },
           "snyk": {
             "critical": 0,
             "high": 0,
@@ -303,7 +337,24 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544463"
             }
           },
-          "coverage": null,
+          "coverage": {
+            "buildId": 539255,
+            "lines": {
+              "covered": 1007,
+              "total": 1121,
+              "percent": 89.83050847457628
+            },
+            "blocks": {
+              "covered": 0,
+              "total": 0,
+              "percent": null
+            },
+            "modules": 20,
+            "percent": 89.83050847457628,
+            "threshold": 80,
+            "lastRun": "2026-10-09T14:36:24.1120937Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539255&view=codecoverage-tab"
+          },
           "snyk": {
             "critical": 0,
             "high": 0,
@@ -392,7 +443,24 @@
             },
             "release": null
           },
-          "coverage": null,
+          "coverage": {
+            "buildId": 539260,
+            "lines": {
+              "covered": 57,
+              "total": 63,
+              "percent": 90.47619047619048
+            },
+            "blocks": {
+              "covered": 0,
+              "total": 0,
+              "percent": null
+            },
+            "modules": 6,
+            "percent": 90.47619047619048,
+            "threshold": 80,
+            "lastRun": "2026-10-09T15:05:58.9288216Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539260&view=codecoverage-tab"
+          },
           "snyk": {
             "critical": 0,
             "high": 0,
@@ -473,7 +541,24 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521611"
             }
           },
-          "coverage": null,
+          "coverage": {
+            "buildId": 521463,
+            "lines": {
+              "covered": 17,
+              "total": 36,
+              "percent": 47.22222222222222
+            },
+            "blocks": {
+              "covered": 0,
+              "total": 0,
+              "percent": null
+            },
+            "modules": 5,
+            "percent": 47.22222222222222,
+            "threshold": 80,
+            "lastRun": "2026-09-10T09:49:36.4208298Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521463&view=codecoverage-tab"
+          },
           "snyk": {
             "critical": 0,
             "high": 0,
@@ -727,7 +812,24 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530961"
             }
           },
-          "coverage": null,
+          "coverage": {
+            "buildId": 531065,
+            "lines": {
+              "covered": 11,
+              "total": 11,
+              "percent": 100
+            },
+            "blocks": {
+              "covered": 0,
+              "total": 0,
+              "percent": null
+            },
+            "modules": 2,
+            "percent": 100,
+            "threshold": 80,
+            "lastRun": "2026-09-25T14:32:04.548899Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531065&view=codecoverage-tab"
+          },
           "snyk": {
             "critical": 0,
             "high": 3,
@@ -825,7 +927,24 @@
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531030"
             }
           },
-          "coverage": null,
+          "coverage": {
+            "buildId": 542040,
+            "lines": {
+              "covered": 142,
+              "total": 152,
+              "percent": 93.42105263157895
+            },
+            "blocks": {
+              "covered": 0,
+              "total": 0,
+              "percent": null
+            },
+            "modules": 4,
+            "percent": 93.42105263157895,
+            "threshold": 80,
+            "lastRun": "2026-10-14T13:31:04.4455552Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542040&view=codecoverage-tab"
+          },
           "snyk": {
             "critical": 0,
             "high": 0,
@@ -1214,7 +1333,7 @@
       ],
       "versions": {
         "source": "1.0.1",
-        "devFeed": "1.0.1-20261009092849",
+        "devFeed": "1.0.1-20261022113613",
         "platformFeed": "1.0.1"
       },
       "packages": {
@@ -1228,9 +1347,9 @@
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Dex.dev",
           "buildId": 547498,
-          "status": "inProgress",
-          "lastRun": "2026-10-22T11:28:24.2806681Z",
-          "duration": null,
+          "status": "succeeded",
+          "lastRun": "2026-10-22T11:45:11.4695507Z",
+          "duration": "16m 47s",
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498"
         },
         "release": {
@@ -1242,7 +1361,24 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521677"
         }
       },
-      "coverage": null,
+      "coverage": {
+        "buildId": 547498,
+        "lines": {
+          "covered": 621,
+          "total": 690,
+          "percent": 90
+        },
+        "blocks": {
+          "covered": 0,
+          "total": 0,
+          "percent": null
+        },
+        "modules": 8,
+        "percent": 90,
+        "threshold": 80,
+        "lastRun": "2026-10-22T11:45:11.4695507Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498&view=codecoverage-tab"
+      },
       "snyk": {
         "critical": 0,
         "high": 0,
@@ -1258,9 +1394,9 @@
         "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
       },
       "lastBuild": {
-        "result": "inProgress",
-        "status": "inProgress",
-        "finishTime": "2026-10-22T11:28:24.2806681Z",
+        "result": "succeeded",
+        "status": "succeeded",
+        "finishTime": "2026-10-22T11:45:11.4695507Z",
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498"
       },
       "lastCommit": {
@@ -1325,7 +1461,24 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=522129"
         }
       },
-      "coverage": null,
+      "coverage": {
+        "buildId": 539025,
+        "lines": {
+          "covered": 586,
+          "total": 651,
+          "percent": 90.01536098310292
+        },
+        "blocks": {
+          "covered": 0,
+          "total": 0,
+          "percent": null
+        },
+        "modules": 7,
+        "percent": 90.01536098310292,
+        "threshold": 80,
+        "lastRun": "2026-10-09T09:38:21.5527388Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539025&view=codecoverage-tab"
+      },
       "snyk": {
         "critical": 0,
         "high": 0,
@@ -1494,7 +1647,24 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544463"
         }
       },
-      "coverage": null,
+      "coverage": {
+        "buildId": 539255,
+        "lines": {
+          "covered": 1007,
+          "total": 1121,
+          "percent": 89.83050847457628
+        },
+        "blocks": {
+          "covered": 0,
+          "total": 0,
+          "percent": null
+        },
+        "modules": 20,
+        "percent": 89.83050847457628,
+        "threshold": 80,
+        "lastRun": "2026-10-09T14:36:24.1120937Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539255&view=codecoverage-tab"
+      },
       "snyk": {
         "critical": 0,
         "high": 0,
@@ -1585,7 +1755,24 @@
         },
         "release": null
       },
-      "coverage": null,
+      "coverage": {
+        "buildId": 539260,
+        "lines": {
+          "covered": 57,
+          "total": 63,
+          "percent": 90.47619047619048
+        },
+        "blocks": {
+          "covered": 0,
+          "total": 0,
+          "percent": null
+        },
+        "modules": 6,
+        "percent": 90.47619047619048,
+        "threshold": 80,
+        "lastRun": "2026-10-09T15:05:58.9288216Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539260&view=codecoverage-tab"
+      },
       "snyk": {
         "critical": 0,
         "high": 0,
@@ -1668,7 +1855,24 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521611"
         }
       },
-      "coverage": null,
+      "coverage": {
+        "buildId": 521463,
+        "lines": {
+          "covered": 17,
+          "total": 36,
+          "percent": 47.22222222222222
+        },
+        "blocks": {
+          "covered": 0,
+          "total": 0,
+          "percent": null
+        },
+        "modules": 5,
+        "percent": 47.22222222222222,
+        "threshold": 80,
+        "lastRun": "2026-09-10T09:49:36.4208298Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521463&view=codecoverage-tab"
+      },
       "snyk": {
         "critical": 0,
         "high": 0,
@@ -1922,7 +2126,24 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=530961"
         }
       },
-      "coverage": null,
+      "coverage": {
+        "buildId": 531065,
+        "lines": {
+          "covered": 11,
+          "total": 11,
+          "percent": 100
+        },
+        "blocks": {
+          "covered": 0,
+          "total": 0,
+          "percent": null
+        },
+        "modules": 2,
+        "percent": 100,
+        "threshold": 80,
+        "lastRun": "2026-09-25T14:32:04.548899Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531065&view=codecoverage-tab"
+      },
       "snyk": {
         "critical": 0,
         "high": 3,
@@ -2022,7 +2243,24 @@
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531030"
         }
       },
-      "coverage": null,
+      "coverage": {
+        "buildId": 542040,
+        "lines": {
+          "covered": 142,
+          "total": 152,
+          "percent": 93.42105263157895
+        },
+        "blocks": {
+          "covered": 0,
+          "total": 0,
+          "percent": null
+        },
+        "modules": 4,
+        "percent": 93.42105263157895,
+        "threshold": 80,
+        "lastRun": "2026-10-14T13:31:04.4455552Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542040&view=codecoverage-tab"
+      },
       "snyk": {
         "critical": 0,
         "high": 0,
@@ -2399,31 +2637,31 @@
   "dataSources": {
     "repositories": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:43:15.027Z"
+      "checkedAt": "2026-10-22T11:48:12.128Z"
     },
     "sourceCode": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:43:15.027Z"
+      "checkedAt": "2026-10-22T11:48:12.128Z"
     },
     "pipelines": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:43:15.027Z"
+      "checkedAt": "2026-10-22T11:48:12.128Z"
     },
     "artifacts": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:43:15.027Z"
+      "checkedAt": "2026-10-22T11:48:12.128Z"
     },
     "coverage": {
-      "status": "unavailable",
-      "checkedAt": "2026-10-22T11:43:16.018Z"
+      "status": "connected",
+      "checkedAt": "2026-10-22T11:48:14.320Z"
     },
     "workItems": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:43:15.027Z"
+      "checkedAt": "2026-10-22T11:48:12.128Z"
     },
     "snyk": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:43:38.914Z"
+      "checkedAt": "2026-10-22T11:48:37.286Z"
     }
   },
   "history": [
@@ -4836,6 +5074,251 @@
           "versions": {
             "source": "1.0.1",
             "devFeed": "1.0.1-20261009092849",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1V1 Authorization",
+          "fullName": "Koerber.Mobile.Kotlin.K1V1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092654",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "Scanner",
+          "fullName": "Koerber.Mobile.Kotlin.BarcodeScanning",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 4,
+            "low": 1
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-202610061308",
+            "platformFeed": "1.0.0"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Kotlin.Printing",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "2.0.1",
+            "devFeed": "2.0.0-20261008132046",
+            "platformFeed": "2.0.1-20261016231736"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Kotlin.Beep",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.3",
+            "devFeed": "1.0.3-202610091437",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Kotlin.Vibrate",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-20260902141630",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1Authorization",
+          "fullName": "Koerber.Mobile.Capacitor.K1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.1.2",
+            "devFeed": "1.1.2-202610141300",
+            "platformFeed": "1.1.1"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Capacitor.Printing",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 1
+          },
+          "versions": {
+            "source": "0.0.3",
+            "devFeed": "0.0.3-202610141300",
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Camera",
+          "fullName": "Koerber.Mobile.Capacitor.Camera",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.1.0",
+            "devFeed": "1.0.7-202608211032",
+            "platformFeed": "1.1.0"
+          }
+        },
+        {
+          "name": "Logger",
+          "fullName": "Koerber.Mobile.Capacitor.Logger",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202609241443",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Capacitor.Beep",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.7",
+            "devFeed": "1.0.7-202609231520",
+            "platformFeed": "1.0.7"
+          }
+        },
+        {
+          "name": "MDM Reader",
+          "fullName": "Koerber.Mobile.Capacitor.MDMReader",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.5",
+            "devFeed": "1.0.5-202609281443",
+            "platformFeed": "1.0.5"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Capacitor.Vibrate",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.6",
+            "devFeed": "1.0.6-202609241219",
+            "platformFeed": "1.0.6"
+          }
+        },
+        {
+          "name": "Security Automation",
+          "fullName": "MobileToolKit.Maintenance",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-10-22T11:47:50.580Z",
+      "summary": {
+        "total": 14,
+        "healthy": 11,
+        "warning": 0,
+        "unhealthy": 3,
+        "unknown": 0
+      },
+      "repositories": [
+        {
+          "name": "Dex",
+          "fullName": "Koerber.Mobile.Kotlin.Dex",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261022113613",
             "platformFeed": "1.0.1"
           }
         },
