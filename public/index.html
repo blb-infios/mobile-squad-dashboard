@@ -1332,14 +1332,6 @@ document.addEventListener('click', (e) => {
   if (a === 'clear-filters') clearFilters();
 });
 
-document.addEventListener('click', (e) => {
-  const card = e.target.closest('.card[data-repo-key]');
-  if (!card || e.target.closest('a, button, input, select')) return;
-  const key = card.dataset.repoKey;
-  const item = state.items.find(({ repo }) => (repo.fullName || repo.name) === key);
-  if (item) openRepoDetail(item.repo);
-});
-
 els.detailClose.addEventListener('click', closeRepoDetail);
 els.dialog.addEventListener('click', async (event) => {
   if (event.target === els.dialog) { closeRepoDetail(); return; }
@@ -1380,6 +1372,8 @@ function updateExpandAll() {
 els.grid.addEventListener('click', (event) => {
   const detailButton = event.target.closest('[data-open-detail]');
   if (detailButton) {
+    event.preventDefault();
+    event.stopPropagation();
     const card = detailButton.closest('.card');
     const item = state.items.find(({ repo }) => (repo.fullName || repo.name) === card?.dataset.repoKey);
     if (item) openRepoDetail(item.repo);
