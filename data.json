@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-22T11:14:44.346Z",
-  "lastUpdated": "2026-10-22T11:14:44.346Z",
+  "generatedAt": "2026-10-22T11:24:06.864Z",
+  "lastUpdated": "2026-10-22T11:24:06.864Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -42,6 +42,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Dex.dev",
+              "buildId": 544010,
               "status": "succeeded",
               "lastRun": "2026-10-16T14:51:58.253079Z",
               "duration": "14m 24s",
@@ -49,6 +50,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Kotlin.Dex.release",
+              "buildId": 521677,
               "status": "succeeded",
               "lastRun": "2026-09-10T15:31:07.2910418Z",
               "duration": "7m 49s",
@@ -129,6 +131,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.K1V1Authorization.dev",
+              "buildId": 539025,
               "status": "succeeded",
               "lastRun": "2026-10-09T09:38:21.5527388Z",
               "duration": "13m 24s",
@@ -136,6 +139,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Kotlin.K1V1Authorization.release",
+              "buildId": 522129,
               "status": "succeeded",
               "lastRun": "2026-09-11T02:43:34.86602Z",
               "duration": "9m 35s",
@@ -207,6 +211,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.BarcodeScanning.dev",
+              "buildId": 542771,
               "status": "failed",
               "lastRun": "2026-10-15T09:10:38.6403155Z",
               "duration": "10m 29s",
@@ -214,6 +219,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Kotlin.BarcodeScanning.release",
+              "buildId": 466861,
               "status": "succeeded",
               "lastRun": "2026-05-19T11:07:42.0126922Z",
               "duration": "56m 26s",
@@ -290,6 +296,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Printing.dev",
+              "buildId": 539255,
               "status": "failed",
               "lastRun": "2026-10-09T14:36:24.1120937Z",
               "duration": "9m 32s",
@@ -297,6 +304,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Kotlin.Printing.release",
+              "buildId": 544463,
               "status": "succeeded",
               "lastRun": "2026-10-16T23:32:18.9011747Z",
               "duration": "14m 50s",
@@ -384,6 +392,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Beep.dev",
+              "buildId": 539260,
               "status": "succeeded",
               "lastRun": "2026-10-09T15:05:58.9288216Z",
               "duration": "38m 42s",
@@ -457,6 +466,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Kotlin.Vibrate.dev",
+              "buildId": 521463,
               "status": "succeeded",
               "lastRun": "2026-09-10T09:49:36.4208298Z",
               "duration": "14m 16s",
@@ -464,6 +474,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Kotlin.Vibrate.release",
+              "buildId": 521611,
               "status": "succeeded",
               "lastRun": "2026-09-10T14:08:27.5289692Z",
               "duration": "26m 32s",
@@ -551,6 +562,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.K1Authorization.Dev",
+              "buildId": 542008,
               "status": "succeeded",
               "lastRun": "2026-10-14T13:05:21.1801306Z",
               "duration": "6m 46s",
@@ -558,6 +570,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Capacitor.K1Authorization.Release",
+              "buildId": 530987,
               "status": "succeeded",
               "lastRun": "2026-09-25T13:31:38.5579563Z",
               "duration": "6m 34s",
@@ -631,6 +644,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Printing",
+              "buildId": 542007,
               "status": "succeeded",
               "lastRun": "2026-10-14T13:04:47.4964824Z",
               "duration": "12m 5s",
@@ -706,6 +720,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Camera.Dev",
+              "buildId": 531065,
               "status": "succeeded",
               "lastRun": "2026-09-25T14:32:04.548899Z",
               "duration": "8m 15s",
@@ -713,6 +728,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Capacitor.Camera.Release",
+              "buildId": 530961,
               "status": "succeeded",
               "lastRun": "2026-09-25T13:03:03.6640159Z",
               "duration": "7m 41s",
@@ -802,6 +818,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Logger.Dev",
+              "buildId": 542040,
               "status": "succeeded",
               "lastRun": "2026-10-14T13:31:04.4455552Z",
               "duration": "24m 23s",
@@ -809,6 +826,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Capacitor.Logger.Release",
+              "buildId": 531030,
               "status": "succeeded",
               "lastRun": "2026-09-25T14:11:34.9167859Z",
               "duration": "13m 42s",
@@ -888,6 +906,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Beep.Dev",
+              "buildId": 529320,
               "status": "partiallySucceeded",
               "lastRun": "2026-09-23T15:29:52.8255294Z",
               "duration": "10m 5s",
@@ -895,6 +914,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Capacitor.Beep.Release",
+              "buildId": 531012,
               "status": "failed",
               "lastRun": "2026-09-25T13:50:32.9059004Z",
               "duration": "5m 41s",
@@ -977,6 +997,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
+              "buildId": 532071,
               "status": "succeeded",
               "lastRun": "2026-09-28T14:49:16.6540251Z",
               "duration": "7m 2s",
@@ -984,6 +1005,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Capacitor.MDMReader.Release",
+              "buildId": 530977,
               "status": "succeeded",
               "lastRun": "2026-09-25T13:28:42.4030712Z",
               "duration": "4m 22s",
@@ -1057,6 +1079,7 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Vibrate.Dev",
+              "buildId": 530028,
               "status": "succeeded",
               "lastRun": "2026-09-24T12:30:03.879783Z",
               "duration": "11m 40s",
@@ -1064,6 +1087,7 @@
             },
             "release": {
               "name": "Koerber.Mobile.Capacitor.Vibrate.Release",
+              "buildId": 530264,
               "status": "succeeded",
               "lastRun": "2026-09-24T14:27:04.6953821Z",
               "duration": "14m 41s",
@@ -1137,6 +1161,7 @@
           "pipelines": {
             "ci": {
               "name": "MobileToolKit.Maintenance",
+              "buildId": 544559,
               "status": "succeeded",
               "lastRun": "2026-10-17T11:06:11.4206239Z",
               "duration": "1m 16s",
@@ -1210,6 +1235,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Dex.dev",
+          "buildId": 544010,
           "status": "succeeded",
           "lastRun": "2026-10-16T14:51:58.253079Z",
           "duration": "14m 24s",
@@ -1217,6 +1243,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Kotlin.Dex.release",
+          "buildId": 521677,
           "status": "succeeded",
           "lastRun": "2026-09-10T15:31:07.2910418Z",
           "duration": "7m 49s",
@@ -1299,6 +1326,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.K1V1Authorization.dev",
+          "buildId": 539025,
           "status": "succeeded",
           "lastRun": "2026-10-09T09:38:21.5527388Z",
           "duration": "13m 24s",
@@ -1306,6 +1334,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Kotlin.K1V1Authorization.release",
+          "buildId": 522129,
           "status": "succeeded",
           "lastRun": "2026-09-11T02:43:34.86602Z",
           "duration": "9m 35s",
@@ -1379,6 +1408,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.BarcodeScanning.dev",
+          "buildId": 542771,
           "status": "failed",
           "lastRun": "2026-10-15T09:10:38.6403155Z",
           "duration": "10m 29s",
@@ -1386,6 +1416,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Kotlin.BarcodeScanning.release",
+          "buildId": 466861,
           "status": "succeeded",
           "lastRun": "2026-05-19T11:07:42.0126922Z",
           "duration": "56m 26s",
@@ -1464,6 +1495,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Printing.dev",
+          "buildId": 539255,
           "status": "failed",
           "lastRun": "2026-10-09T14:36:24.1120937Z",
           "duration": "9m 32s",
@@ -1471,6 +1503,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Kotlin.Printing.release",
+          "buildId": 544463,
           "status": "succeeded",
           "lastRun": "2026-10-16T23:32:18.9011747Z",
           "duration": "14m 50s",
@@ -1560,6 +1593,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Beep.dev",
+          "buildId": 539260,
           "status": "succeeded",
           "lastRun": "2026-10-09T15:05:58.9288216Z",
           "duration": "38m 42s",
@@ -1635,6 +1669,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Kotlin.Vibrate.dev",
+          "buildId": 521463,
           "status": "succeeded",
           "lastRun": "2026-09-10T09:49:36.4208298Z",
           "duration": "14m 16s",
@@ -1642,6 +1677,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Kotlin.Vibrate.release",
+          "buildId": 521611,
           "status": "succeeded",
           "lastRun": "2026-09-10T14:08:27.5289692Z",
           "duration": "26m 32s",
@@ -1725,6 +1761,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.K1Authorization.Dev",
+          "buildId": 542008,
           "status": "succeeded",
           "lastRun": "2026-10-14T13:05:21.1801306Z",
           "duration": "6m 46s",
@@ -1732,6 +1769,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Capacitor.K1Authorization.Release",
+          "buildId": 530987,
           "status": "succeeded",
           "lastRun": "2026-09-25T13:31:38.5579563Z",
           "duration": "6m 34s",
@@ -1807,6 +1845,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Printing",
+          "buildId": 542007,
           "status": "succeeded",
           "lastRun": "2026-10-14T13:04:47.4964824Z",
           "duration": "12m 5s",
@@ -1884,6 +1923,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Camera.Dev",
+          "buildId": 531065,
           "status": "succeeded",
           "lastRun": "2026-09-25T14:32:04.548899Z",
           "duration": "8m 15s",
@@ -1891,6 +1931,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Capacitor.Camera.Release",
+          "buildId": 530961,
           "status": "succeeded",
           "lastRun": "2026-09-25T13:03:03.6640159Z",
           "duration": "7m 41s",
@@ -1982,6 +2023,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Logger.Dev",
+          "buildId": 542040,
           "status": "succeeded",
           "lastRun": "2026-10-14T13:31:04.4455552Z",
           "duration": "24m 23s",
@@ -1989,6 +2031,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Capacitor.Logger.Release",
+          "buildId": 531030,
           "status": "succeeded",
           "lastRun": "2026-09-25T14:11:34.9167859Z",
           "duration": "13m 42s",
@@ -2070,6 +2113,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Beep.Dev",
+          "buildId": 529320,
           "status": "partiallySucceeded",
           "lastRun": "2026-09-23T15:29:52.8255294Z",
           "duration": "10m 5s",
@@ -2077,6 +2121,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Capacitor.Beep.Release",
+          "buildId": 531012,
           "status": "failed",
           "lastRun": "2026-09-25T13:50:32.9059004Z",
           "duration": "5m 41s",
@@ -2161,6 +2206,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
+          "buildId": 532071,
           "status": "succeeded",
           "lastRun": "2026-09-28T14:49:16.6540251Z",
           "duration": "7m 2s",
@@ -2168,6 +2214,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Capacitor.MDMReader.Release",
+          "buildId": 530977,
           "status": "succeeded",
           "lastRun": "2026-09-25T13:28:42.4030712Z",
           "duration": "4m 22s",
@@ -2243,6 +2290,7 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Vibrate.Dev",
+          "buildId": 530028,
           "status": "succeeded",
           "lastRun": "2026-09-24T12:30:03.879783Z",
           "duration": "11m 40s",
@@ -2250,6 +2298,7 @@
         },
         "release": {
           "name": "Koerber.Mobile.Capacitor.Vibrate.Release",
+          "buildId": 530264,
           "status": "succeeded",
           "lastRun": "2026-09-24T14:27:04.6953821Z",
           "duration": "14m 41s",
@@ -2319,6 +2368,7 @@
       "pipelines": {
         "ci": {
           "name": "MobileToolKit.Maintenance",
+          "buildId": 544559,
           "status": "succeeded",
           "lastRun": "2026-10-17T11:06:11.4206239Z",
           "duration": "1m 16s",
@@ -2365,31 +2415,31 @@
   "dataSources": {
     "repositories": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:15:16.196Z"
+      "checkedAt": "2026-10-22T11:24:23.265Z"
     },
     "sourceCode": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:15:16.196Z"
+      "checkedAt": "2026-10-22T11:24:23.265Z"
     },
     "pipelines": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:15:16.196Z"
+      "checkedAt": "2026-10-22T11:24:23.265Z"
     },
     "artifacts": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:15:16.196Z"
+      "checkedAt": "2026-10-22T11:24:23.265Z"
     },
     "coverage": {
       "status": "unavailable",
-      "checkedAt": "2026-10-22T11:15:16.196Z"
+      "checkedAt": "2026-10-22T11:24:24.348Z"
     },
     "workItems": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:15:16.196Z"
+      "checkedAt": "2026-10-22T11:24:23.265Z"
     },
     "snyk": {
       "status": "connected",
-      "checkedAt": "2026-10-22T11:15:48.396Z"
+      "checkedAt": "2026-10-22T11:24:45.843Z"
     }
   },
   "history": [
@@ -4045,6 +4095,251 @@
     },
     {
       "timestamp": "2026-10-22T11:14:44.346Z",
+      "summary": {
+        "total": 14,
+        "healthy": 11,
+        "warning": 0,
+        "unhealthy": 3,
+        "unknown": 0
+      },
+      "repositories": [
+        {
+          "name": "Dex",
+          "fullName": "Koerber.Mobile.Kotlin.Dex",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092849",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1V1 Authorization",
+          "fullName": "Koerber.Mobile.Kotlin.K1V1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092654",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "Scanner",
+          "fullName": "Koerber.Mobile.Kotlin.BarcodeScanning",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 4,
+            "low": 1
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-202610061308",
+            "platformFeed": "1.0.0"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Kotlin.Printing",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "2.0.1",
+            "devFeed": "2.0.0-20261008132046",
+            "platformFeed": "2.0.1-20261016231736"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Kotlin.Beep",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.3",
+            "devFeed": "1.0.3-202610091437",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Kotlin.Vibrate",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-20260902141630",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1Authorization",
+          "fullName": "Koerber.Mobile.Capacitor.K1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.1.2",
+            "devFeed": "1.1.2-202610141300",
+            "platformFeed": "1.1.1"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Capacitor.Printing",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 1
+          },
+          "versions": {
+            "source": "0.0.3",
+            "devFeed": "0.0.3-202610141300",
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Camera",
+          "fullName": "Koerber.Mobile.Capacitor.Camera",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.1.0",
+            "devFeed": "1.0.7-202608211032",
+            "platformFeed": "1.1.0"
+          }
+        },
+        {
+          "name": "Logger",
+          "fullName": "Koerber.Mobile.Capacitor.Logger",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202609241443",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Capacitor.Beep",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.7",
+            "devFeed": "1.0.7-202609231520",
+            "platformFeed": "1.0.7"
+          }
+        },
+        {
+          "name": "MDM Reader",
+          "fullName": "Koerber.Mobile.Capacitor.MDMReader",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.5",
+            "devFeed": "1.0.5-202609281443",
+            "platformFeed": "1.0.5"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Capacitor.Vibrate",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "versions": {
+            "source": "1.0.6",
+            "devFeed": "1.0.6-202609241219",
+            "platformFeed": "1.0.6"
+          }
+        },
+        {
+          "name": "Security Automation",
+          "fullName": "MobileToolKit.Maintenance",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-10-22T11:24:06.864Z",
       "summary": {
         "total": 14,
         "healthy": 11,
