@@ -113,24 +113,51 @@ async function fetchBuilds(repoId) {
 
 let coverageAccessWarningShown = false;
 
-function summarizeCoverage(data, buildId) {
-  const records = data?.value || [];
-  const modules = records.flatMap((record) => record.modules || []);
-  const totals = modules.reduce((summary, module) => {
-    const stats = module.statistics || {};
+function coverageTotals(modules) {
+  return modules.reduce((summary, module) => {
+    const stats = module?.statistics || module || {};
     summary.linesCovered += Number(stats.linesCovered || 0);
     summary.linesNotCovered += Number(stats.linesNotCovered || 0);
     summary.blocksCovered += Number(stats.blocksCovered || 0);
     summary.blocksNotCovered += Number(stats.blocksNotCovered || 0);
     return summary;
   }, { linesCovered: 0, linesNotCovered: 0, blocksCovered: 0, blocksNotCovered: 0 });
+}
+
+function coverageMetrics(totals) {
   const lineTotal = totals.linesCovered + totals.linesNotCovered;
   const blockTotal = totals.blocksCovered + totals.blocksNotCovered;
-  if (!lineTotal && !blockTotal) return null;
+  return {
+    lines: { covered: totals.linesCovered, total: lineTotal, percent: lineTotal ? (totals.linesCovered / lineTotal) * 100 : null },
+    blocks: { covered: totals.blocksCovered, total: blockTotal, percent: blockTotal ? (totals.blocksCovered / blockTotal) * 100 : null }
+  };
+}
+
+function summarizeCoverage(data, buildId) {
+  const records = Array.isArray(data?.value) ? data.value : [];
+  const modules = records.flatMap((record) => Array.isArray(record?.modules) ? record.modules : []);
+  const totals = coverageTotals(modules);
+  const metrics = coverageMetrics(totals);
+  if (!metrics.lines.total && !metrics.blocks.total) return null;
+
+  const targets = {};
+  records.forEach((record) => {
+    const targetName = record?.label || record?.name || record?.targetName || record?.target;
+    if (!targetName) return;
+    const targetModules = Array.isArray(record.modules) && record.modules.length ? record.modules : [record];
+    const targetMetrics = coverageMetrics(coverageTotals(targetModules));
+    if (targetMetrics.lines.total || targetMetrics.blocks.total) targets[String(targetName)] = {
+      percent: targetMetrics.lines.percent,
+      lines: targetMetrics.lines,
+      blocks: targetMetrics.blocks
+    };
+  });
+
   return {
     buildId,
-    lines: { covered: totals.linesCovered, total: lineTotal, percent: lineTotal ? (totals.linesCovered / lineTotal) * 100 : null },
-    blocks: { covered: totals.blocksCovered, total: blockTotal, percent: blockTotal ? (totals.blocksCovered / blockTotal) * 100 : null },
+    ...metrics,
+    percent: metrics.lines.percent,
+    targets: Object.keys(targets).length ? targets : null,
     modules: modules.length
   };
 }
@@ -151,23 +178,47 @@ async function fetchBuildCoverage(buildId) {
   }
 }
 
+function coverageSnapshot(coverage, build) {
+  if (!coverage) return null;
+  const runUrl = buildUrl(build);
+  const url = runUrl ? `${runUrl}${runUrl.includes('?') ? '&' : '?'}view=codecoverage-tab` : null;
+  return {
+    buildId: coverage.buildId,
+    timestamp: build.finishTime || build.startTime || null,
+    percent: coverage.percent,
+    lines: coverage.lines,
+    blocks: coverage.blocks,
+    targets: coverage.targets,
+    url
+  };
+}
+
 async function fetchLatestCoverage(builds) {
-  const candidates = (builds || [])
+  const candidates = [...(builds || [])]
     .filter((build) => !isReleaseBuild(build))
+    .sort((a, b) => Date.parse(b.finishTime || b.startTime || 0) - Date.parse(a.finishTime || a.startTime || 0))
     .slice(0, 10);
+  const snapshots = [];
   for (const build of candidates) {
     const coverage = await fetchBuildCoverage(build.id);
-    if (coverage) {
-      coverage.percent = coverage.lines?.percent ?? null;
-      coverage.threshold = Number(process.env.COVERAGE_THRESHOLD || 80);
-      coverage.lastRun = build.finishTime || build.startTime || null;
-      coverage.url = build._links?.web?.href
-        ? `${build._links.web.href}&view=codecoverage-tab`
-        : `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_build/results?buildId=${build.id}&view=codecoverage-tab`;
-      return coverage;
-    }
+    if (coverage) snapshots.push(coverageSnapshot(coverage, build));
   }
-  return null;
+  const latest = snapshots[0];
+  if (!latest) return null;
+  const threshold = Number(process.env.COVERAGE_THRESHOLD || 80);
+  const previous = snapshots[1] || null;
+  const change = previous && Number.isFinite(Number(latest.percent)) && Number.isFinite(Number(previous.percent))
+    ? Number(latest.percent) - Number(previous.percent)
+    : null;
+  return {
+    ...latest,
+    lastRun: latest.timestamp,
+    threshold,
+    thresholdStatus: Number.isFinite(Number(latest.percent)) ? (latest.percent >= threshold ? 'passing' : 'failing') : null,
+    previous: previous ? { timestamp: previous.timestamp, percent: previous.percent, lines: previous.lines, blocks: previous.blocks } : null,
+    change,
+    history: snapshots
+  };
 }
 
 function isReleaseBuild(build) {
@@ -195,24 +246,55 @@ function pipelineStatus(build) {
   }[result] || 'notRun';
 }
 
-function buildToPipeline(build, fallbackName) {
+function buildUrl(build) {
+  return build?._links?.web?.href || (build?.id
+    ? `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_build/results?buildId=${build.id}`
+    : null);
+}
+
+function buildBranch(build) {
+  const branch = build?.sourceBranch || build?.branchName || null;
+  return branch ? String(branch).replace(/^refs\/heads\//, '') : null;
+}
+
+function buildToRun(build, fallbackName) {
   if (!build) return null;
   return {
     name: build.definition?.name || fallbackName,
-    buildId: build.id,
+    buildId: build.id ?? null,
     status: pipelineStatus(build),
     lastRun: build.finishTime || build.startTime || null,
     duration: duration(build.startTime, build.finishTime),
-    url: build._links?.web?.href || `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_build/results?buildId=${build.id}`
+    branch: buildBranch(build),
+    url: buildUrl(build)
+  };
+}
+
+function pipelineSummary(history) {
+  const completed = history.filter((run) => !['inProgress', 'notRun'].includes(run.status));
+  const succeeded = completed.filter((run) => run.status === 'succeeded').length;
+  return {
+    successRate: completed.length ? (succeeded / completed.length) * 100 : null,
+    failedRuns: completed.filter((run) => run.status === 'failed').length,
+    totalRuns: completed.length
   };
 }
 
 function pipelinesFromBuilds(builds) {
-  const release = builds.find(isReleaseBuild) || null;
-  const ci = builds.find((build) => !isReleaseBuild(build)) || null;
+  const ordered = [...(builds || [])].sort((a, b) =>
+    Date.parse(b.finishTime || b.startTime || 0) - Date.parse(a.finishTime || a.startTime || 0));
+  const createPipeline = (release, fallbackName) => {
+    const history = ordered
+      .filter((build) => isReleaseBuild(build) === release)
+      .slice(0, 10)
+      .map((build) => buildToRun(build, fallbackName));
+    if (!history.length) return null;
+    const latest = history[0];
+    return { ...latest, ...pipelineSummary(history), history };
+  };
   return {
-    ci: buildToPipeline(ci, 'CI Pipeline'),
-    release: buildToPipeline(release, 'Release Pipeline')
+    ci: createPipeline(false, 'CI Pipeline'),
+    release: createPipeline(true, 'Release Pipeline')
   };
 }
 
@@ -236,6 +318,16 @@ async function fetchLatestCommit(repoId) {
     (await fetchCommit(repoId, 'master'));
 }
 
+async function fetchPullRequestStatuses(repoId, pullRequestId) {
+  const data = await optionalGet(
+    `/git/repositories/${repoId}/pullrequests/${pullRequestId}/statuses`,
+    { params: apiParams() },
+    `Could not fetch statuses for pull request ${pullRequestId}`,
+    { value: [] }
+  );
+  return data.value || [];
+}
+
 async function fetchPullRequests(repoId) {
   const data = await optionalGet(
     `/git/repositories/${repoId}/pullrequests`,
@@ -243,7 +335,56 @@ async function fetchPullRequests(repoId) {
     `Could not fetch pull requests for repository ${repoId}`,
     { value: [] }
   );
-  return data.value || [];
+  return Promise.all((data.value || []).map(async (pullRequest) => ({
+    ...pullRequest,
+    statuses: await fetchPullRequestStatuses(repoId, pullRequest.pullRequestId)
+  })));
+}
+
+function approvalState(reviewers) {
+  const votes = (reviewers || []).map((reviewer) => Number(reviewer.vote)).filter(Number.isFinite);
+  if (!votes.length) return reviewers?.length ? 'pending' : null;
+  if (votes.some((vote) => vote <= -10)) return 'rejected';
+  if (votes.some((vote) => vote >= 10)) return 'approved';
+  if (votes.some((vote) => vote < 0)) return 'changesRequested';
+  return 'pending';
+}
+
+function pullRequestBuildStatus(statuses) {
+  const values = (statuses || []).filter((status) => {
+    const context = `${status?.context?.name || ''} ${status?.context?.genre || ''}`.toLowerCase();
+    return !context || /build|ci|continuous integration/.test(context);
+  });
+  const state = values.map((status) => String(status?.state || '').toLowerCase());
+  if (state.some((value) => ['failed', 'error'].includes(value))) return 'failed';
+  if (state.some((value) => ['pending', 'notset', 'queued', 'inprogress'].includes(value))) return 'pending';
+  if (state.some((value) => ['succeeded', 'approved'].includes(value))) return 'succeeded';
+  if (state.some((value) => ['canceled', 'notapplicable'].includes(value))) return 'canceled';
+  return null;
+}
+
+function pullRequestDetails(pullRequest, repositoryName) {
+  const reviewers = Array.isArray(pullRequest?.reviewers) ? pullRequest.reviewers.filter(Boolean).map((reviewer) => ({
+    name: reviewer.displayName || reviewer.uniqueName || null,
+    vote: Number.isFinite(Number(reviewer.vote)) ? Number(reviewer.vote) : null
+  })) : [];
+  const hasConflicts = typeof pullRequest?.hasConflicts === 'boolean'
+    ? pullRequest.hasConflicts
+    : pullRequest?.mergeStatus ? String(pullRequest.mergeStatus).toLowerCase() === 'conflicts' : null;
+  return {
+    id: pullRequest.pullRequestId ?? null,
+    title: pullRequest.title || null,
+    author: pullRequest.createdBy?.displayName || null,
+    status: pullRequest.status || null,
+    createdDate: pullRequest.creationDate || null,
+    ageDays: ageInDays(pullRequest.creationDate),
+    isDraft: typeof pullRequest.isDraft === 'boolean' ? pullRequest.isDraft : null,
+    reviewers,
+    approvalState: approvalState(reviewers),
+    mergeConflicts: hasConflicts,
+    buildStatus: pullRequestBuildStatus(pullRequest.statuses),
+    url: pullRequest.url || `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_git/${encodeURIComponent(repositoryName || '')}/pullrequest/${pullRequest.pullRequestId}`
+  };
 }
 
 async function listSourceFiles(repoId, branch) {
@@ -455,26 +596,52 @@ async function fetchWorkItemIds(repoId, pullRequests, builds) {
   return [...ids];
 }
 
+function ageInDays(date) {
+  const timestamp = Date.parse(date || '');
+  if (!Number.isFinite(timestamp)) return null;
+  return Math.max(0, Math.floor((Date.now() - timestamp) / 864e5));
+}
+
+function workItemUrl(itemId, item) {
+  return item?._links?.html?.href || (itemId
+    ? `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_workitems/edit/${itemId}`
+    : null);
+}
+
 async function fetchWorkItems(repoId, pullRequests, builds) {
   const ids = await fetchWorkItemIds(repoId, pullRequests, builds);
-  const result = { open: 0, inProgress: 0, committed: 0, url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_queries` };
+  const result = { open: 0, inProgress: 0, committed: 0, items: [], url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_queries` };
   if (!ids.length) return result;
 
   for (let start = 0; start < ids.length; start += 200) {
     const chunk = ids.slice(start, start + 200);
     const data = await optionalGet(
       '/wit/workitems',
-      { params: apiParams({ ids: chunk.join(','), fields: 'System.State,System.WorkItemType' }) },
+      { params: apiParams({ ids: chunk.join(','), fields: 'System.Title,System.State,System.WorkItemType,System.AssignedTo,System.CreatedDate' }) },
       `Could not fetch work-item details for repository ${repoId}`,
       { value: [] }
     );
-    (data.value || []).forEach((item) => { result[classifyWorkItem(item.fields?.['System.State'])]++; });
+    (data.value || []).forEach((item) => {
+      const fields = item.fields || {};
+      const state = fields['System.State'] || null;
+      result[classifyWorkItem(state)]++;
+      result.items.push({
+        id: item.id ?? null,
+        title: fields['System.Title'] || null,
+        type: fields['System.WorkItemType'] || null,
+        state,
+        assignedTo: fields['System.AssignedTo']?.displayName || fields['System.AssignedTo']?.uniqueName || fields['System.AssignedTo'] || null,
+        createdDate: fields['System.CreatedDate'] || null,
+        ageDays: ageInDays(fields['System.CreatedDate']),
+        url: workItemUrl(item.id, item)
+      });
+    });
   }
   return result;
 }
 
 function emptySnyk() {
-  return { critical: 0, high: 0, medium: 0, low: 0, lastScan: null, url: null };
+  return { critical: 0, high: 0, medium: 0, low: 0, lastScan: null, url: null, issues: [] };
 }
 
 function masked(value) {
@@ -755,6 +922,36 @@ function applySeverityCounts(target, source) {
   return applied;
 }
 
+function firstSnykValue(...values) {
+  return values.find((value) => value !== undefined && value !== null && value !== '') ?? null;
+}
+
+function firstSnykString(value) {
+  if (Array.isArray(value)) return firstSnykString(value[0]);
+  if (value && typeof value === 'object') return firstSnykString(value.version || value.name || value.id);
+  return value === undefined || value === null || value === '' ? null : String(value);
+}
+
+function normalizeSnykIssue(issue) {
+  const attributes = issue?.attributes || {};
+  const issueData = attributes.issueData || attributes.issue_data || {};
+  const coordinate = Array.isArray(attributes.coordinates) ? attributes.coordinates[0] || {} : {};
+  const identifiers = issueData.identifiers || attributes.identifiers || {};
+  const cves = identifiers.CVE || identifiers.cve || [];
+  const fixedIn = firstSnykValue(issueData.fixedIn, issueData.fixed_in, attributes.fixedIn, attributes.fixed_in, coordinate.fixedIn, coordinate.fixed_in);
+  return {
+    id: firstSnykValue(issue?.id, issueData.id),
+    cve: firstSnykString(cves),
+    title: firstSnykValue(issueData.title, attributes.title, attributes.problem),
+    severity: firstSnykValue(severityFromSnykIssue(issue), null),
+    package: firstSnykValue(issueData.packageName, issueData.package_name, attributes.packageName, coordinate.packageName, coordinate.package_name, coordinate.package),
+    version: firstSnykValue(issueData.version, attributes.version, coordinate.version),
+    fixedVersion: firstSnykString(fixedIn),
+    status: firstSnykValue(attributes.status, coordinate.state),
+    url: firstSnykValue(issue?.links?.self, issueData.url, attributes.url)
+  };
+}
+
 async function fetchSnykData(projects, issuesResult, repo) {
   if (!projects.length) {
     logSnyk(`${repo.name}: no project data available`);
@@ -771,6 +968,7 @@ async function fetchSnykData(projects, issuesResult, repo) {
   }
 
   const counts = emptySnyk();
+  const issueDetails = [];
   let totalMatched = 0;
   let latestScan = null;
   let primaryUrl = null;
@@ -780,6 +978,7 @@ async function fetchSnykData(projects, issuesResult, repo) {
     projectIssues.forEach((issue) => {
       const severity = severityFromSnykIssue(issue);
       if (Object.prototype.hasOwnProperty.call(counts, severity)) counts[severity]++;
+      issueDetails.push(normalizeSnykIssue(issue));
     });
     totalMatched += projectIssues.length;
     if (project.lastTestedDate && (!latestScan || project.lastTestedDate > latestScan)) {
@@ -792,6 +991,7 @@ async function fetchSnykData(projects, issuesResult, repo) {
   logSnyk(`${repo.name}: matched ${matchedProjects.length} project(s) [${projectNames}], ${totalMatched} active issue(s) - critical=${counts.critical}, high=${counts.high}, medium=${counts.medium}, low=${counts.low}`);
   counts.lastScan = latestScan;
   counts.url = primaryUrl;
+  counts.issues = issueDetails;
   return counts;
 }
 
@@ -862,7 +1062,20 @@ function createHistorySnapshot(data) {
       fullName: repo.fullName,
       health: repo.health?.status || 'unknown',
       releaseReadiness: repo.releaseReadiness?.status || 'dataUnavailable',
-      snyk: repo.snyk ? { critical: repo.snyk.critical, high: repo.snyk.high, medium: repo.snyk.medium, low: repo.snyk.low } : null,
+      snyk: repo.snyk ? {
+        critical: repo.snyk.critical,
+        high: repo.snyk.high,
+        medium: repo.snyk.medium,
+        low: repo.snyk.low
+      } : null,
+      coverage: repo.coverage ? {
+        percent: repo.coverage.percent,
+        threshold: repo.coverage.threshold,
+        thresholdStatus: repo.coverage.thresholdStatus,
+        change: repo.coverage.change,
+        previous: repo.coverage.previous,
+        history: repo.coverage.history
+      } : null,
       versions: repo.versions
     }))
   };
@@ -903,13 +1116,7 @@ function repositoryData(repoDef, repo, category, commit, pullRequests, metadata,
       url: commit.remoteUrl || null
     } : null,
     activePRs: pullRequests.length,
-    pullRequests: pullRequests.map((pr) => ({
-      id: pr.pullRequestId,
-      title: pr.title,
-      author: pr.createdBy?.displayName || 'Unknown',
-      status: pr.status,
-      url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_git/${repo.name}/pullrequest/${pr.pullRequestId}`
-    }))
+    pullRequests: pullRequests.map((pr) => pullRequestDetails(pr, repo.name))
   };
 
   repoData.releaseReadiness = calculateReleaseReadiness(repoData);
@@ -975,7 +1182,7 @@ async function aggregateData() {
           pipelines: { ci: null, release: null },
           coverage: null,
           snyk: emptySnyk(),
-          workItems: { open: 0, inProgress: 0, committed: 0, url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_queries` },
+          workItems: { open: 0, inProgress: 0, committed: 0, items: [], url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_queries` },
           url: null,
           lastBuild: null,
           lastCommit: null,
@@ -1061,6 +1268,7 @@ module.exports = {
   createHistorySnapshot,
   emptySnyk,
   fetchBuildCoverage,
+  fetchLatestCoverage,
   fetchSnykData,
   fetchSnykIssues,
   fetchSnykProjects,

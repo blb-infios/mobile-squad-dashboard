@@ -31,7 +31,9 @@ async function main() {
       snykNames: repo.snykNames || [],
       packageName: repo.packages?.npm || repo.packages?.maven || null
     });
-    repo.snyk = snyk;
+    repo.snyk = snyk
+      ? { ...snyk, issues: Array.isArray(snyk.issues) ? snyk.issues : [] }
+      : null;
     repo.health = calculateHealth(repo.pipelines || {}, snyk);
     repo.releaseReadiness = calculateReleaseReadiness(repo);
   }

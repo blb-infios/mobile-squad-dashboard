@@ -9,7 +9,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const {
   calculateReleaseReadiness,
-  fetchBuildCoverage
+  fetchLatestCoverage
 } = require('./aggregate');
 
 async function main() {
@@ -23,17 +23,24 @@ async function main() {
   let attempted = 0;
 
   for (const repo of data.repositories || []) {
-    const buildId = repo.pipelines?.ci?.buildId || repo.pipelines?.release?.buildId;
     attempted++;
-    repo.coverage = await fetchBuildCoverage(buildId);
-    if (repo.coverage) {
-      repo.coverage.percent = repo.coverage.lines?.percent ?? null;
-      repo.coverage.threshold = Number(process.env.COVERAGE_THRESHOLD || 80);
-      repo.coverage.lastRun = repo.pipelines?.ci?.lastRun || repo.pipelines?.release?.lastRun || null;
-      repo.coverage.url = repo.pipelines?.ci?.url
-        ? `${repo.pipelines.ci.url}&view=codecoverage-tab`
-        : repo.pipelines?.release?.url || null;
-    }
+    const history = Array.isArray(repo.pipelines?.ci?.history)
+      ? repo.pipelines.ci.history
+      : Array.isArray(repo.pipelines?.release?.history) ? repo.pipelines.release.history : [];
+    const builds = history.length
+      ? history.map((run) => ({
+        id: run.buildId,
+        finishTime: run.lastRun,
+        startTime: run.lastRun,
+        _links: run.url ? { web: { href: run.url } } : undefined
+      }))
+      : [{
+        id: repo.pipelines?.ci?.buildId || repo.pipelines?.release?.buildId,
+        finishTime: repo.pipelines?.ci?.lastRun || repo.pipelines?.release?.lastRun,
+        startTime: repo.pipelines?.ci?.lastRun || repo.pipelines?.release?.lastRun,
+        _links: repo.pipelines?.ci?.url ? { web: { href: repo.pipelines.ci.url } } : undefined
+      }];
+    repo.coverage = await fetchLatestCoverage(builds);
     repo.releaseReadiness = calculateReleaseReadiness(repo);
     if (repo.coverage) coverageCount++;
   }

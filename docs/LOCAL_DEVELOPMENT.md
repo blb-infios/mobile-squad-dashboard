@@ -147,6 +147,18 @@ Never commit this setting. It disables TLS verification on your machine. This is
 
 The GitHub Actions workflow runs these steps automatically every six hours and deploys the result to GitHub Pages.
 
+## Detail-modal data contract
+
+The compact repository cards use only summary values. The full-details modal consumes optional detail fields produced by the aggregation steps:
+
+- `pipelines.ci` and `pipelines.release`: current run fields plus `history`, `successRate`, `failedRuns`, and recent run `branch`/`url` values.
+- `snyk.issues`: active issues with nullable `severity`, `cve`, `id`, `title`, `package`, `version`, `fixedVersion`, `status`, and `url` fields.
+- `workItems.items`: linked work items with nullable `id`, `title`, `type`, `state`, `assignedTo`, `createdDate`, `ageDays`, and `url` fields.
+- `pullRequests`: active PRs with nullable age, draft, reviewer, approval, conflict, build-status, and URL fields.
+- `coverage`: current line/block metrics, optional target metrics, `thresholdStatus`, `previous`, `change`, and `history` snapshots.
+
+These fields are source-derived and optional. A missing API permission or unavailable source produces `null`, an empty array, or an empty modal section; the aggregation never creates placeholder findings, runs, work items, PRs, or coverage values. `public/history.json` snapshots retain the coverage trend shape so the next generated snapshot can compare against the previous one.
+
 ## GitHub Actions vs local
 
 | | GitHub Actions | Local |
