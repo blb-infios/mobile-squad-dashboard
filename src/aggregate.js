@@ -26,6 +26,7 @@ const SNYK_API = (process.env.SNYK_API || 'https://api.eu.snyk.io')
 const SNYK_REST_API = `${SNYK_API}/rest`;
 const SNYK_API_VERSION = process.env.SNYK_API_VERSION || '2024-10-15';
 const SKIP_SNYK = process.env.SKIP_SNYK === 'true';
+const SKIP_COVERAGE = process.env.SKIP_COVERAGE === 'true';
 const REPOSITORY_CONFIG = require('../config/repositories.json');
 
 if (!ADO_PAT && require.main === module) {
@@ -190,6 +191,7 @@ function buildToPipeline(build, fallbackName) {
   if (!build) return null;
   return {
     name: build.definition?.name || fallbackName,
+    buildId: build.id,
     status: pipelineStatus(build),
     lastRun: build.finishTime || build.startTime || null,
     duration: duration(build.startTime, build.finishTime),
@@ -986,7 +988,7 @@ async function aggregateData() {
       ]);
       const pipelines = pipelinesFromBuilds(builds);
       const [coverage, feedVersions, workItems, snyk] = await Promise.all([
-        fetchLatestCoverage(builds),
+        SKIP_COVERAGE ? null : fetchLatestCoverage(builds),
         fetchFeedVersions(metadata, category),
         fetchWorkItems(repo.id, pullRequests, builds),
         fetchSnykData(snykProjects, snykIssues, { ...repoDef, fullName: repo.name, category, packageName: metadata.packages.npm || metadata.packages.maven })
@@ -1050,6 +1052,7 @@ module.exports = {
   classifyWorkItem,
   createHistorySnapshot,
   emptySnyk,
+  fetchBuildCoverage,
   fetchSnykData,
   fetchSnykIssues,
   fetchSnykProjects,

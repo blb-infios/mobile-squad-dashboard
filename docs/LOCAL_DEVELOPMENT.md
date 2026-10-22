@@ -50,7 +50,7 @@ Create your PAT at https://dev.azure.com/highjumpvso/_usersSettings/tokens with 
 | Code | Read |
 | Build | Read |
 | Work Items | Read |
-| Packaging | Read |
+| Test Management | Read |
 
 Packaging Read is required to populate feed versions. Test Management Read is required to populate Azure DevOps code coverage. Without those scopes, the affected dashboard sections show no data while the rest of the dashboard still works.
 
@@ -72,7 +72,15 @@ npm run aggregate
 
 This calls the Azure DevOps REST API for all 14 tracked repositories and writes `public/data.json`. It takes about 30–60 seconds.
 
-### Step 2 — Fetch Snyk data (optional)
+### Step 2 — Fetch code coverage data
+
+```bash
+npm run aggregate:coverage
+```
+
+This fetches coverage from recent Azure DevOps CI builds and merges line, block, and module coverage into `public/data.json`. The ADO PAT needs **Test Management: Read**.
+
+### Step 3 — Fetch Snyk data (optional)
 
 ```bash
 npm run aggregate:snyk
@@ -80,7 +88,7 @@ npm run aggregate:snyk
 
 This calls the Snyk REST API, matches projects to repositories, fetches active vulnerability counts, and merges the results into `public/data.json`. It takes about 30–90 seconds depending on the number of issues returned.
 
-### Step 3 — Open the dashboard
+### Step 4 — Open the dashboard
 
 ```bash
 npm run serve
@@ -91,7 +99,7 @@ Opens http://localhost:8080 in your browser.
 ### Combined run
 
 ```bash
-npm run aggregate && npm run aggregate:snyk && npm run serve
+npm run aggregate && npm run aggregate:coverage && npm run aggregate:snyk && npm run serve
 ```
 
 ## Troubleshooting
@@ -128,15 +136,16 @@ Never commit this setting. It disables TLS verification on your machine. This is
 
 `public/data.json` is not tracked in git. If the file is missing or empty, run `npm run aggregate` first.
 
-## How the two-step aggregation works
+## How the three-step aggregation works
 
 | Step | Command | What it does |
 |---|---|---|
 | ADO | `npm run aggregate` | Fetches repositories, builds, commits, pull requests, work items, and package feed versions from Azure DevOps. Writes `public/data.json`. |
-| Snyk | `npm run aggregate:snyk` | Reads `public/data.json`, calls the Snyk REST API, matches Snyk projects to ADO repositories using project names and target display names, counts active (non-resolved) vulnerabilities, and merges the counts back into `public/data.json`. |
-| Serve | `npm run serve` | Starts a local HTTP server on port 8080 and opens the dashboard. |
+| Coverage | `npm run aggregate:coverage` | Fetches line, block, and module coverage from recent Azure DevOps CI builds and merges it into `public/data.json`. |
+| Snyk | `npm run aggregate:snyk` | Reads `public/data.json`, calls the Snyk REST API, matches Snyk projects to ADO repositories using project names and target display names, counts active vulnerabilities, and merges the counts back into `public/data.json`. |
+| Serve | `npm run serve` | Starts an HTTP server on port 8080 and opens the dashboard. |
 
-The GitHub Actions workflow runs the same two steps automatically every six hours and deploys the result to GitHub Pages. The only difference is that `NODE_TLS_REJECT_UNAUTHORIZED` is never set in the workflow.
+The GitHub Actions workflow runs these steps automatically every six hours and deploys the result to GitHub Pages.
 
 ## GitHub Actions vs local
 
@@ -153,5 +162,6 @@ The GitHub Actions workflow runs the same two steps automatically every six hour
 | Script | Description |
 |---|---|
 | `npm run aggregate` | Fetch ADO data and write `public/data.json` |
+| `npm run aggregate:coverage` | Fetch Azure DevOps code coverage and merge into `public/data.json` |
 | `npm run aggregate:snyk` | Fetch Snyk data and merge into `public/data.json` |
 | `npm run serve` | Serve `public/` at http://localhost:8080 |

@@ -57,7 +57,16 @@ jobs:
           ADO_ORG: Highjumpvso
           ADO_PROJECT: WES
           SKIP_SNYK: true
+          SKIP_COVERAGE: true
         run: npm run aggregate
+
+      - name: Fetch code coverage data
+        continue-on-error: true
+        env:
+          ADO_PAT: ${{ secrets.ADO_PAT }}
+          ADO_ORG: Highjumpvso
+          ADO_PROJECT: WES
+        run: npm run aggregate:coverage
 
       - name: Fetch Snyk data
         continue-on-error: true
