@@ -26,6 +26,14 @@ async function main() {
     const buildId = repo.pipelines?.ci?.buildId || repo.pipelines?.release?.buildId;
     attempted++;
     repo.coverage = await fetchBuildCoverage(buildId);
+    if (repo.coverage) {
+      repo.coverage.percent = repo.coverage.lines?.percent ?? null;
+      repo.coverage.threshold = Number(process.env.COVERAGE_THRESHOLD || 80);
+      repo.coverage.lastRun = repo.pipelines?.ci?.lastRun || repo.pipelines?.release?.lastRun || null;
+      repo.coverage.url = repo.pipelines?.ci?.url
+        ? `${repo.pipelines.ci.url}&view=codecoverage-tab`
+        : repo.pipelines?.release?.url || null;
+    }
     repo.releaseReadiness = calculateReleaseReadiness(repo);
     if (repo.coverage) coverageCount++;
   }

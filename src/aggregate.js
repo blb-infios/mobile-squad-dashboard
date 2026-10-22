@@ -157,7 +157,15 @@ async function fetchLatestCoverage(builds) {
     .slice(0, 10);
   for (const build of candidates) {
     const coverage = await fetchBuildCoverage(build.id);
-    if (coverage) return coverage;
+    if (coverage) {
+      coverage.percent = coverage.lines?.percent ?? null;
+      coverage.threshold = Number(process.env.COVERAGE_THRESHOLD || 80);
+      coverage.lastRun = build.finishTime || build.startTime || null;
+      coverage.url = build._links?.web?.href
+        ? `${build._links.web.href}&view=codecoverage-tab`
+        : `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_build/results?buildId=${build.id}&view=codecoverage-tab`;
+      return coverage;
+    }
   }
   return null;
 }
