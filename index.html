@@ -1097,18 +1097,28 @@ function readinessBadge(repo) {
   return `<span class="readiness readiness-${esc(readiness.status)}" title="${esc(detail)}">Release: ${esc(readiness.label)}</span>`;
 }
 
+function renderPipelineHistory(repo) {
+  const groups = Object.entries(repo.pipelines || {}).filter(([, pipeline]) => Array.isArray(pipeline.history) && pipeline.history.length).map(([key, pipeline]) => {
+    const rows = pipeline.history.slice(0, 10).map((run) => `<tr><td>${esc(pipelineInfo(run.status).label)}</td><td>${timeEl(run.lastRun)}</td><td>${esc(run.duration || '—')}</td><td>${esc(run.branch || '—')}</td><td>${extLink(run.url, 'Open run', 'Open pipeline run')}</td></tr>`).join('');
+    return `<section class="section"><h3>${esc(key.toUpperCase())} history</h3><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>Result</th><th>Run</th><th>Duration</th><th>Branch</th><th>Link</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
+  }).join('');
+  return groups;
+}
+
 function renderOptionalDetailTables(repo) {
   const issueRows = (repo.snyk?.issues || []).map((issue) => `<tr><td>${esc(issue.severity || '—')}</td><td>${esc(issue.title || '—')}</td><td><code>${esc(issue.package || '—')}</code></td><td>${esc(issue.fixedIn || '—')}</td></tr>`).join('');
   const workRows = (repo.workItems?.items || []).map((item) => `<tr><td>${item.url ? extLink(item.url, '#' + item.id, 'Open work item') : esc(item.id)}</td><td>${esc(item.title || '—')}</td><td>${esc(item.state || '—')}</td><td>${esc(item.assignedTo || 'Unassigned')}</td></tr>`).join('');
   return `${issueRows ? `<section class="section"><h3>Security issues</h3><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>Severity</th><th>Issue</th><th>Package</th><th>Fixed in</th></tr></thead><tbody>${issueRows}</tbody></table></div></section>` : ''}${workRows ? `<section class="section"><h3>Work item details</h3><div style="overflow-x:auto"><table class="detail-table"><thead><tr><th>ID</th><th>Title</th><th>State</th><th>Assigned to</th></tr></thead><tbody>${workRows}</tbody></table></div></section>` : ''}`;
 }
 
-function openRepoDetail(repo) {
+function openRepoDetail(repo, fromHash = false) {
   els.detailTitle.textContent = repo.fullName || repo.name || 'Repository details';
-  els.detailBody.innerHTML = `<div class="section"><div class="section-head"><h3>Release readiness</h3>${readinessBadge(repo)}</div><p class="empty-note">${esc((repo.releaseReadiness?.reasons || ['All release checks passed']).join('. '))}</p></div>${renderVersions(repo.versions)}${renderCoverage(repo.coverage)}${renderPipelines(repo.pipelines)}${renderSnyk(repo.snyk)}${renderWorkItems(repo.workItems)}${renderOptionalDetailTables(repo)}${renderFooter(repo)}<div class="body-actions"><button type="button" class="btn btn-sm" data-copy-detail-link>🔗 Copy link</button></div>`;
+  const overview = `<section class="section"><div class="section-head"><h3>Overview</h3>${readinessBadge(repo)}</div>${repo.owner ? `<p class="empty-note">Owner: ${esc(repo.owner)}</p>` : ''}${repo.description ? `<p class="empty-note">${esc(repo.description)}</p>` : ''}<p class="empty-note">${esc((repo.releaseReadiness?.reasons || ['All release checks passed']).join('. '))}</p></section>`;
+  const raw = `<details class="section"><summary>Raw data (JSON)</summary><pre>${esc(JSON.stringify(repo, null, 2))}</pre></details>`;
+  els.detailBody.innerHTML = `${overview}${renderVersions(repo.versions)}${renderCoverage(repo.coverage)}${renderPipelines(repo.pipelines)}${renderPipelineHistory(repo)}${renderSnyk(repo.snyk)}${renderWorkItems(repo.workItems)}${renderOptionalDetailTables(repo)}${renderFooter(repo)}${raw}<div class="body-actions"><button type="button" class="btn btn-sm" data-copy-detail-link>🔗 Copy link</button></div>`;
   const hash = `#repo=${encodeURIComponent(repo.fullName || repo.name)}`;
-  history.pushState({ detail: hash }, '', hash);
-  if (typeof els.dialog.showModal === 'function') els.dialog.showModal();
+  if (!fromHash && location.hash !== hash) history.pushState({ detail: hash }, '', hash);
+  if (typeof els.dialog.showModal === 'function' && !els.dialog.open) els.dialog.showModal();
   else els.dialog.setAttribute('open', '');
 }
 
@@ -1263,6 +1273,11 @@ async function loadData({ demo = false } = {}) {
     renderStats(state.items);
     renderInsights(json);
     render();
+    const hash = location.hash.match(/^#repo=(.+)$/);
+    if (hash) {
+      const item = state.items.find(({ repo }) => (repo.fullName || repo.name) === decodeURIComponent(hash[1]));
+      if (item) openRepoDetail(item.repo, true);
+    }
   } catch (err) {
     showError(err);
   }
@@ -1341,7 +1356,7 @@ window.addEventListener('hashchange', () => {
   if (!match) return;
   const name = decodeURIComponent(match[1]);
   const item = state.items.find(({ repo }) => (repo.fullName || repo.name) === name);
-  if (item) openRepoDetail(item.repo);
+  if (item) openRepoDetail(item.repo, true);
 });
 
 function setCardOpen(card, open) {
