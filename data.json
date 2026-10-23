@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-23T12:49:35.042Z",
-  "lastUpdated": "2026-10-23T12:49:35.042Z",
+  "generatedAt": "2026-10-23T12:49:53.643Z",
+  "lastUpdated": "2026-10-23T12:49:53.643Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -12061,31 +12061,31 @@
   "dataSources": {
     "repositories": {
       "status": "connected",
-      "checkedAt": "2026-10-23T12:49:48.972Z"
+      "checkedAt": "2026-10-23T12:50:08.359Z"
     },
     "sourceCode": {
       "status": "connected",
-      "checkedAt": "2026-10-23T12:49:48.972Z"
+      "checkedAt": "2026-10-23T12:50:08.359Z"
     },
     "pipelines": {
       "status": "connected",
-      "checkedAt": "2026-10-23T12:49:48.972Z"
+      "checkedAt": "2026-10-23T12:50:08.359Z"
     },
     "artifacts": {
       "status": "connected",
-      "checkedAt": "2026-10-23T12:49:48.972Z"
+      "checkedAt": "2026-10-23T12:50:08.359Z"
     },
     "coverage": {
       "status": "connected",
-      "checkedAt": "2026-10-23T12:49:59.864Z"
+      "checkedAt": "2026-10-23T12:50:19.831Z"
     },
     "workItems": {
       "status": "connected",
-      "checkedAt": "2026-10-23T12:49:48.972Z"
+      "checkedAt": "2026-10-23T12:50:08.359Z"
     },
     "snyk": {
       "status": "connected",
-      "checkedAt": "2026-10-23T12:50:19.925Z"
+      "checkedAt": "2026-10-23T12:50:46.155Z"
     }
   },
   "history": [
@@ -28484,7 +28484,7 @@
       ]
     },
     {
-      "timestamp": "2026-10-23T12:49:35.042Z",
+      "timestamp": "2026-10-23T12:49:53.643Z",
       "summary": {
         "total": 14,
         "healthy": 11,
