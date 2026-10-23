@@ -1064,8 +1064,7 @@ function renderCard({ repo, ev }, index) {
   return `<article class="card is-${ev.level}${open ? ' is-open' : ''}" data-key="${esc(name)}" data-name="${esc(name)}" data-repo-key="${esc(repo.fullName || name)}" aria-labelledby="${headingId}">
     <div class="card-top">
       <header class="card-head">
-        <div class="card-title-row"><div class="title-left"><div class="card-icon ${typeCls}">${typeIcon}</div><h2 class="card-name" id="${headingId}">${breakable(name)}</h2></div><div class="title-right">${readinessBadge(repo)}<span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span><button type="button" class="icon-btn" data-open-detail aria-label="Open full details for ${esc(name)}" title="Open full details"><span aria-hidden="true">⤢</span></button></div></div>
-        <div class="card-meta"><span class="type-badge ${typeCls}">${esc(typeLabel)}</span>${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}</div>
+        <div class="card-title-row"><div class="title-left"><div class="card-icon ${typeCls}">${typeIcon}</div><h2 class="card-name" id="${headingId}">${breakable(name)}</h2></div><div class="title-right">${readinessBadge(repo)}<span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span>${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}<button type="button" class="icon-btn" data-open-detail aria-label="Open full details for ${esc(name)}" title="Open full details"><span aria-hidden="true">⤢</span></button></div></div>
       </header>
       ${renderSummary(repo, open, bodyId, name)}
     </div>
