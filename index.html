@@ -1029,20 +1029,20 @@ function renderFooter(repo) {
 function renderSummary(repo, open, bodyId, name) {
   const v = repo.versions || {};
   const sync = analyzeVersions(v);
-  const ver = v.source ? `<span class="mini" title="${esc(sync.outOfSync ? sync.notes.join('. ') : 'Source version')}">${helpTip('Repository source code version tag')}📝 <code>${esc(v.source)}</code>${sync.outOfSync ? ' ⚠️' : ''}</span>` : '';
+  const ver = v.source ? `<span class="mini" title="Repository source code version tag. ${esc(sync.outOfSync ? sync.notes.join('. ') : 'Source version')}">📝 <code>${esc(v.source)}</code>${sync.outOfSync ? ' ⚠️' : ''}</span>` : '';
   const pipes = Object.entries(repo.pipelines || {}).filter(([, pipeline]) => pipeline).map(([key, pipeline]) => {
     const info = pipelineInfo(pipeline.status);
     const label = key === 'ci' ? 'CI' : key === 'release' ? 'Release' : key;
     const pipeHelp = key === 'ci' ? 'Latest continuous integration build status' : key === 'release' ? 'Latest release pipeline status' : 'Pipeline status';
-    return `<span class="mini pipe-${info.cls}" title="${esc(pipeline.name || label)}: ${esc(info.label)}">${helpTip(pipeHelp)}${info.icon} ${esc(label)}</span>`;
+    return `<span class="mini pipe-${info.cls}" title="${pipeHelp}. ${esc(pipeline.name || label)}: ${esc(info.label)}">${info.icon} ${esc(label)}</span>`;
   }).join('');
   const coverage = coverageInfo(repo);
-  const covChip = coverage ? `<span class="mini ${coverage.level === 'ok' ? 'cov-ok' : coverage.level === 'warn' ? 'cov-warn' : 'cov-bad'}" title="Coverage ${fmtPct(coverage.pct)}%, threshold ${fmtPct(coverage.threshold)}%">${helpTip('Code coverage percentage from latest build')}🧪 ${fmtPct(coverage.pct)}%</span>` : '';
+  const covChip = coverage ? `<span class="mini ${coverage.level === 'ok' ? 'cov-ok' : coverage.level === 'warn' ? 'cov-warn' : 'cov-bad'}" title="Code coverage percentage from latest build. Current: ${fmtPct(coverage.pct)}%, threshold: ${fmtPct(coverage.threshold)}%">🧪 ${fmtPct(coverage.pct)}%</span>` : '';
   const snyk = repo.snyk ? (() => {
     const parts = [['critical', '🔴'], ['high', '🟠'], ['medium', '🟡']].filter(([key]) => num(repo.snyk[key]) > 0).map(([key, icon]) => `<span class="mini-sev sev-${key}">${icon}${num(repo.snyk[key])}</span>`);
-    return parts.length ? `<span class="mini-group">${parts.join('')}</span>` : `<span class="mini is-clean">${helpTip('No active security vulnerabilities found in Snyk scan')}🛡️ Clean</span>`;
-  })() : `<span class="mini is-muted">${helpTip('Snyk security scan data not available')}🛡️ No scan</span>`;
-  const work = repo.workItems ? `<span class="mini">${helpTip('Open work items linked to recent builds')}📋 ${num(repo.workItems.open)} open</span>` : '';
+    return parts.length ? `<span class="mini-group">${parts.join('')}</span>` : `<span class="mini is-clean" title="No active security vulnerabilities found in Snyk scan">🛡️ Clean</span>`;
+  })() : `<span class="mini is-muted" title="Snyk security scan data not available">🛡️ No scan</span>`;
+  const work = repo.workItems ? `<span class="mini" title="Open work items linked to recent builds">📋 ${num(repo.workItems.open)} open</span>` : '';
   return `<div class="summary"><div class="sum-row">${ver}${pipes}${covChip}</div><div class="sum-row">${snyk}${work}<button type="button" class="card-toggle" aria-expanded="${open}" aria-controls="${bodyId}"><span class="toggle-text">${open ? 'Hide' : 'Details'}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>`;
 }
 
