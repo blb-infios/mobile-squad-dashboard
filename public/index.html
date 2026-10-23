@@ -567,7 +567,7 @@ html.dlg-open { overflow:hidden; }
       </div>
 
       <div class="field">
-        <label for="typeFilter">Type${helpTip('Filter repositories by framework type: KMP or Capacitor.')}</label>
+        <label for="typeFilter" id="typeLabel">Type</label>
         <select id="typeFilter">
           <option value="all">All</option>
           <option value="kmp">KMP</option>
@@ -576,7 +576,7 @@ html.dlg-open { overflow:hidden; }
       </div>
 
       <div class="field">
-        <label for="statusFilter">Status${helpTip('Filter repositories by overall calculated health.')}</label>
+        <label for="statusFilter" id="statusLabel">Status</label>
         <select id="statusFilter">
           <option value="all">All</option>
           <option value="issues">Issues</option>
@@ -586,7 +586,7 @@ html.dlg-open { overflow:hidden; }
 
       <!-- Cards have no table columns, so these buttons act as the "column headers" for sorting -->
       <div class="sort" role="group" aria-label="Sort repositories">
-        <span class="sort-label">Sort by${helpTip('Sort the visible repositories by name, latest pipeline run, vulnerability count, or coverage.')}</span>
+        <span class="sort-label" id="sortLabel">Sort by</span>
         <button type="button" class="sort-btn" data-sort="name">Name <span class="arrow" aria-hidden="true"></span></button>
         <button type="button" class="sort-btn" data-sort="lastRun">Last run <span class="arrow" aria-hidden="true"></span></button>
         <button type="button" class="sort-btn" data-sort="vulns">Vulnerabilities <span class="arrow" aria-hidden="true"></span></button>
@@ -1500,6 +1500,11 @@ document.addEventListener('keydown', (e) => {
 /* ===================================================================
    J. BOOT
    =================================================================== */
+// Initialize filter and sort label help tips
+document.getElementById('typeLabel').innerHTML = 'Type' + helpTip('Filter repositories by framework type: KMP or Capacitor.');
+document.getElementById('statusLabel').innerHTML = 'Status' + helpTip('Filter repositories by overall calculated health.');
+document.getElementById('sortLabel').innerHTML = 'Sort by' + helpTip('Sort the visible repositories by name, latest pipeline run, vulnerability count, or coverage.');
+
 setTheme(document.documentElement.getAttribute('data-theme') || 'light', false);
 updateSortButtons();
 loadData({ demo: new URLSearchParams(location.search).has('demo') });
