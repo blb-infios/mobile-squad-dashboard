@@ -441,6 +441,17 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .bar-fill.warn { background: var(--warn); }
 .bar-fill.bad { background: var(--crit); }
 .bar-mark { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; background: var(--text); border-radius: 2px; opacity: .75; }
+
+/* Coverage platform targets */
+.cov-targets { list-style: none; margin: 12px 0 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.cov-target { display: flex; align-items: center; gap: 10px; font-size: .9rem; }
+.t-name { min-width: 70px; font-weight: 500; color: var(--text); }
+.bar-sm { flex: 1; height: 6px; }
+.t-val { min-width: 45px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.t-val.ok { color: var(--ok-text); }
+.t-val.warn { color: var(--warn-text); }
+.t-val.bad { color: var(--crit-text); }
+
 .cov-meta { display: flex; flex-wrap: wrap; gap: 2px 14px; }
 
 /* --- Footer --- */
