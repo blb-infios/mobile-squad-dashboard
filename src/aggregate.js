@@ -1031,7 +1031,7 @@ function calculateReleaseReadiness(repo) {
   if (reasons.some((reason) => /vulnerabilit|pipeline failed/.test(reason))) status = 'blocked';
   else if (reasons.some((reason) => /differs/.test(reason))) status = 'versionDrift';
   else if (reasons.length) status = 'dataUnavailable';
-  return { status, label: { ready: 'Ready', blocked: 'Blocked', versionDrift: 'Version drift', dataUnavailable: 'Data unavailable' }[status], reasons };
+  return { status, label: { ready: 'Ready', blocked: 'Blocked', versionDrift: 'Version drift', dataUnavailable: 'NA' }[status], reasons };
 }
 
 function buildDataSources(repositories, snykState) {
@@ -1175,7 +1175,7 @@ async function aggregateData() {
           category,
           type: category,
           health: { status: 'unknown', label: 'Not Found', color: '#999' },
-          releaseReadiness: { status: 'dataUnavailable', label: 'Data unavailable', reasons: ['Repository not found'] },
+          releaseReadiness: { status: 'dataUnavailable', label: 'NA', reasons: ['Repository not found'] },
           platforms: category === 'kmp' ? ['android', 'ios', 'jvm'] : category === 'capacitor' ? ['android', 'ios', 'web'] : [],
           versions: { source: null, devFeed: null, platformFeed: null },
           packages: { npm: null, maven: null },
