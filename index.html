@@ -277,6 +277,7 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .card-toggle .chev { width: 14px; height: 14px; transition: transform .25s ease; }
 .card.is-open .card-toggle .chev { transform: rotate(180deg); }
 .title-right { display:flex; align-items:center; gap:6px; flex-wrap: wrap; justify-content: flex-end; }
+.card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; white-space: nowrap; overflow: hidden; }
 .icon-btn { width:30px; height:30px; display:grid; place-items:center; flex-shrink:0; background:transparent; border:1px solid var(--border-strong); border-radius:8px; color:var(--muted); cursor:pointer; }
 .icon-btn:hover { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
 .icon-btn svg { width:16px; height:16px; }
@@ -1064,7 +1065,8 @@ function renderCard({ repo, ev }, index) {
   return `<article class="card is-${ev.level}${open ? ' is-open' : ''}" data-key="${esc(name)}" data-name="${esc(name)}" data-repo-key="${esc(repo.fullName || name)}" aria-labelledby="${headingId}">
     <div class="card-top">
       <header class="card-head">
-        <div class="card-title-row"><div class="title-left"><div class="card-icon ${typeCls}">${typeIcon}</div><h2 class="card-name" id="${headingId}">${breakable(name)}</h2></div><div class="title-right">${readinessBadge(repo)}<span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span>${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}<button type="button" class="icon-btn" data-open-detail aria-label="Open full details for ${esc(name)}" title="Open full details"><span aria-hidden="true">⤢</span></button></div></div>
+        <div class="card-title-row"><div class="title-left"><div class="card-icon ${typeCls}">${typeIcon}</div><h2 class="card-name" id="${headingId}">${breakable(name)}</h2></div><div class="title-right">${readinessBadge(repo)}<span class="pill ${ev.level}" title="${esc(statusDetail)}" aria-label="Status: ${statusLabel}. ${esc(statusDetail)}">${statusLabel}</span><button type="button" class="icon-btn" data-open-detail aria-label="Open full details for ${esc(name)}" title="Open full details"><span aria-hidden="true">⤢</span></button></div></div>
+        <div class="card-meta"><span class="type-badge ${typeCls}">${esc(typeLabel)}</span>${platforms ? `<ul class="platforms" aria-label="Platforms">${platforms}</ul>` : ''}</div>
       </header>
       ${renderSummary(repo, open, bodyId, name)}
     </div>
