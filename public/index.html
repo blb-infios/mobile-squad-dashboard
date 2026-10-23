@@ -1138,7 +1138,7 @@ function renderInsights(data) {
 }
 
 function readinessBadge(repo) {
-  const readiness = repo.releaseReadiness || { status: 'dataUnavailable', label: 'Data unavailable', reasons: [] };
+  const readiness = repo.releaseReadiness || { status: 'dataUnavailable', label: 'NA', reasons: [] };
   const detail = readiness.reasons?.length ? readiness.reasons.join(', ') : 'Repository release checks passed';
   return `<span class="readiness readiness-${esc(readiness.status)}" title="${esc(detail)}">Release: ${esc(readiness.label)}</span>`;
 }
@@ -1282,7 +1282,7 @@ function showError(err) {
   els.stats.innerHTML = '';
   els.insights.innerHTML = '';
   els.count.textContent = '';
-  els.updated.textContent = 'Data unavailable';
+  els.updated.textContent = 'NA';
 
   let msg = err && err.message ? err.message : 'Unknown error';
   let hint = '';
