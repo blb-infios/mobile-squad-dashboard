@@ -1042,7 +1042,7 @@ function renderSummary(repo, open, bodyId, name) {
     const parts = [['critical', '🔴'], ['high', '🟠'], ['medium', '🟡']].filter(([key]) => num(repo.snyk[key]) > 0).map(([key, icon]) => `<span class="mini-sev sev-${key}">${icon}${num(repo.snyk[key])}</span>`);
     return parts.length ? `<span class="mini-group">${parts.join('')}</span>` : `<span class="mini is-clean" title="No active security vulnerabilities found in Snyk scan">🛡️ Clean</span>`;
   })() : `<span class="mini is-muted" title="Snyk security scan data not available">🛡️ No scan</span>`;
-  const work = repo.workItems ? `<span class="mini" title="Open work items linked to recent builds">📋 ${num(repo.workItems.open)} open</span>` : '';
+  const work = repo.workItems ? `<span class="mini" title="Total work items linked to repository">📋 ${num((repo.workItems.open || 0) + (repo.workItems.inProgress || 0) + (repo.workItems.committed || 0))} total</span>` : '';
   return `<div class="summary"><div class="sum-row">${ver}${pipes}${covChip}</div><div class="sum-row">${snyk}${work}<button type="button" class="card-toggle" aria-expanded="${open}" aria-controls="${bodyId}"><span class="toggle-text">${open ? 'Hide' : 'Details'}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>`;
 }
 
