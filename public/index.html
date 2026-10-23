@@ -1347,11 +1347,12 @@ async function loadData({ demo = false } = {}) {
     renderStats(state.items);
     renderInsights(json);
     render();
-    const hash = location.hash.match(/^#repo=(.+)$/);
-    if (hash) {
-      const item = state.items.find(({ repo }) => (repo.fullName || repo.name) === decodeURIComponent(hash[1]));
-      if (item) openRepoDetail(item.repo, true);
-    }
+    // Disable auto-open modal on page reload (deep linking still works if user navigates to a link with hash)
+    // const hash = location.hash.match(/^#repo=(.+)$/);
+    // if (hash) {
+    //   const item = state.items.find(({ repo }) => (repo.fullName || repo.name) === decodeURIComponent(hash[1]));
+    //   if (item) openRepoDetail(item.repo, true);
+    // }
   } catch (err) {
     showError(err);
   }
