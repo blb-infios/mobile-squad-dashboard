@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-25T06:29:49.393Z",
-  "lastUpdated": "2026-10-25T06:29:49.393Z",
+  "generatedAt": "2026-10-25T12:27:04.767Z",
+  "lastUpdated": "2026-10-25T12:27:04.767Z",
   "summary": {
     "total": 14,
     "healthy": 11,
@@ -1200,7 +1200,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-06-13T11:01:03.483Z",
-                "ageDays": 133,
+                "ageDays": 134,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/470453"
               },
               {
@@ -1250,7 +1250,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-07-21T07:27:24.933Z",
-                "ageDays": 95,
+                "ageDays": 96,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/480587"
               },
               {
@@ -1280,7 +1280,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-08-21T10:44:20.83Z",
-                "ageDays": 64,
+                "ageDays": 65,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/489315"
               },
               {
@@ -1380,7 +1380,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-10-08T12:08:07.97Z",
-                "ageDays": 16,
+                "ageDays": 17,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/503889"
               }
             ],
@@ -1885,7 +1885,7 @@
                 "state": "Done",
                 "assignedTo": "Marcus Choi",
                 "createdDate": "2026-10-23T06:51:29.257Z",
-                "ageDays": 1,
+                "ageDays": 2,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/508656"
               }
             ],
@@ -1912,7 +1912,7 @@
               "author": "Marcus Choi",
               "status": "active",
               "createdDate": "2026-10-23T08:20:04.3158575Z",
-              "ageDays": 1,
+              "ageDays": 2,
               "isDraft": false,
               "reviewers": [
                 {
@@ -1939,7 +1939,7 @@
               "author": "Vijay Masal",
               "status": "active",
               "createdDate": "2026-10-23T06:57:14.9175436Z",
-              "ageDays": 1,
+              "ageDays": 2,
               "isDraft": false,
               "reviewers": [
                 {
@@ -2447,7 +2447,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-10-07T08:28:03.957Z",
-                "ageDays": 17,
+                "ageDays": 18,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/502856"
               },
               {
@@ -2457,7 +2457,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-10-08T12:07:32.63Z",
-                "ageDays": 16,
+                "ageDays": 17,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/503886"
               }
             ],
@@ -3253,7 +3253,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-10-10T11:01:19.96Z",
-                "ageDays": 14,
+                "ageDays": 15,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/504502"
               },
               {
@@ -3263,7 +3263,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-10-12T11:44:46.453Z",
-                "ageDays": 12,
+                "ageDays": 13,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/504632"
               }
             ],
@@ -3463,7 +3463,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-07-22T11:47:46.25Z",
-                "ageDays": 94,
+                "ageDays": 95,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/481298"
               },
               {
@@ -3473,7 +3473,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-07-25T11:00:55.157Z",
-                "ageDays": 91,
+                "ageDays": 92,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/482795"
               },
               {
@@ -3493,7 +3493,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-10-10T11:01:19.437Z",
-                "ageDays": 14,
+                "ageDays": 15,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/504500"
               },
               {
@@ -3503,7 +3503,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-10-12T11:44:54.173Z",
-                "ageDays": 12,
+                "ageDays": 13,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/504633"
               }
             ],
@@ -3828,7 +3828,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-08-22T11:01:21.973Z",
-                "ageDays": 63,
+                "ageDays": 64,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/489541"
               },
               {
@@ -3838,7 +3838,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-09-22T09:49:22.627Z",
-                "ageDays": 32,
+                "ageDays": 33,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/498110"
               }
             ],
@@ -3896,7 +3896,7 @@
               "author": "Bhargav L",
               "status": "active",
               "createdDate": "2026-08-25T10:17:39.5095265Z",
-              "ageDays": 60,
+              "ageDays": 61,
               "isDraft": false,
               "reviewers": [
                 {
@@ -4151,7 +4151,7 @@
                 "state": "Committed",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-10-10T11:01:19.673Z",
-                "ageDays": 14,
+                "ageDays": 15,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/504501"
               }
             ],
@@ -4492,7 +4492,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2025-04-18T11:20:46.8Z",
-                "ageDays": 554,
+                "ageDays": 555,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/378278"
               },
               {
@@ -4622,7 +4622,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-07-22T09:18:42.183Z",
-                "ageDays": 94,
+                "ageDays": 95,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/481145"
               },
               {
@@ -4632,7 +4632,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-07-22T11:48:42.07Z",
-                "ageDays": 94,
+                "ageDays": 95,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/481301"
               },
               {
@@ -4662,7 +4662,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-09-22T09:49:22.627Z",
-                "ageDays": 32,
+                "ageDays": 33,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/498110"
               }
             ],
@@ -5071,7 +5071,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-07-22T11:49:56.363Z",
-                "ageDays": 94,
+                "ageDays": 95,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/481307"
               },
               {
@@ -5081,7 +5081,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-07-25T11:00:56.52Z",
-                "ageDays": 91,
+                "ageDays": 92,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/482800"
               },
               {
@@ -5101,7 +5101,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-09-22T09:49:22.627Z",
-                "ageDays": 32,
+                "ageDays": 33,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/498110"
               }
             ],
@@ -5485,7 +5485,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2025-09-01T08:25:44.99Z",
-                "ageDays": 418,
+                "ageDays": 419,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/401788"
               },
               {
@@ -5555,7 +5555,7 @@
                 "state": "Done",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-07-22T09:53:57.53Z",
-                "ageDays": 94,
+                "ageDays": 95,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/481212"
               },
               {
@@ -5575,7 +5575,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-08-15T11:01:05.76Z",
-                "ageDays": 70,
+                "ageDays": 71,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/488021"
               },
               {
@@ -5595,7 +5595,7 @@
                 "state": "Done",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-09-22T09:49:22.627Z",
-                "ageDays": 32,
+                "ageDays": 33,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/498110"
               }
             ],
@@ -6950,7 +6950,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-06-13T11:01:03.483Z",
-            "ageDays": 133,
+            "ageDays": 134,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/470453"
           },
           {
@@ -7000,7 +7000,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-07-21T07:27:24.933Z",
-            "ageDays": 95,
+            "ageDays": 96,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/480587"
           },
           {
@@ -7030,7 +7030,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-08-21T10:44:20.83Z",
-            "ageDays": 64,
+            "ageDays": 65,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/489315"
           },
           {
@@ -7130,7 +7130,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-10-08T12:08:07.97Z",
-            "ageDays": 16,
+            "ageDays": 17,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/503889"
           }
         ],
@@ -7637,7 +7637,7 @@
             "state": "Done",
             "assignedTo": "Marcus Choi",
             "createdDate": "2026-10-23T06:51:29.257Z",
-            "ageDays": 1,
+            "ageDays": 2,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/508656"
           }
         ],
@@ -7664,7 +7664,7 @@
           "author": "Marcus Choi",
           "status": "active",
           "createdDate": "2026-10-23T08:20:04.3158575Z",
-          "ageDays": 1,
+          "ageDays": 2,
           "isDraft": false,
           "reviewers": [
             {
@@ -7691,7 +7691,7 @@
           "author": "Vijay Masal",
           "status": "active",
           "createdDate": "2026-10-23T06:57:14.9175436Z",
-          "ageDays": 1,
+          "ageDays": 2,
           "isDraft": false,
           "reviewers": [
             {
@@ -8201,7 +8201,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-10-07T08:28:03.957Z",
-            "ageDays": 17,
+            "ageDays": 18,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/502856"
           },
           {
@@ -8211,7 +8211,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-10-08T12:07:32.63Z",
-            "ageDays": 16,
+            "ageDays": 17,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/503886"
           }
         ],
@@ -9005,7 +9005,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-10-10T11:01:19.96Z",
-            "ageDays": 14,
+            "ageDays": 15,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/504502"
           },
           {
@@ -9015,7 +9015,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-10-12T11:44:46.453Z",
-            "ageDays": 12,
+            "ageDays": 13,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/504632"
           }
         ],
@@ -9217,7 +9217,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-07-22T11:47:46.25Z",
-            "ageDays": 94,
+            "ageDays": 95,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/481298"
           },
           {
@@ -9227,7 +9227,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-07-25T11:00:55.157Z",
-            "ageDays": 91,
+            "ageDays": 92,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/482795"
           },
           {
@@ -9247,7 +9247,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-10-10T11:01:19.437Z",
-            "ageDays": 14,
+            "ageDays": 15,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/504500"
           },
           {
@@ -9257,7 +9257,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-10-12T11:44:54.173Z",
-            "ageDays": 12,
+            "ageDays": 13,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/504633"
           }
         ],
@@ -9584,7 +9584,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-08-22T11:01:21.973Z",
-            "ageDays": 63,
+            "ageDays": 64,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/489541"
           },
           {
@@ -9594,7 +9594,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-09-22T09:49:22.627Z",
-            "ageDays": 32,
+            "ageDays": 33,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/498110"
           }
         ],
@@ -9652,7 +9652,7 @@
           "author": "Bhargav L",
           "status": "active",
           "createdDate": "2026-08-25T10:17:39.5095265Z",
-          "ageDays": 60,
+          "ageDays": 61,
           "isDraft": false,
           "reviewers": [
             {
@@ -9909,7 +9909,7 @@
             "state": "Committed",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-10-10T11:01:19.673Z",
-            "ageDays": 14,
+            "ageDays": 15,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/504501"
           }
         ],
@@ -10252,7 +10252,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2025-04-18T11:20:46.8Z",
-            "ageDays": 554,
+            "ageDays": 555,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/378278"
           },
           {
@@ -10382,7 +10382,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-07-22T09:18:42.183Z",
-            "ageDays": 94,
+            "ageDays": 95,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/481145"
           },
           {
@@ -10392,7 +10392,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-07-22T11:48:42.07Z",
-            "ageDays": 94,
+            "ageDays": 95,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/481301"
           },
           {
@@ -10422,7 +10422,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-09-22T09:49:22.627Z",
-            "ageDays": 32,
+            "ageDays": 33,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/498110"
           }
         ],
@@ -10833,7 +10833,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-07-22T11:49:56.363Z",
-            "ageDays": 94,
+            "ageDays": 95,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/481307"
           },
           {
@@ -10843,7 +10843,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-07-25T11:00:56.52Z",
-            "ageDays": 91,
+            "ageDays": 92,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/482800"
           },
           {
@@ -10863,7 +10863,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-09-22T09:49:22.627Z",
-            "ageDays": 32,
+            "ageDays": 33,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/498110"
           }
         ],
@@ -11249,7 +11249,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2025-09-01T08:25:44.99Z",
-            "ageDays": 418,
+            "ageDays": 419,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/401788"
           },
           {
@@ -11319,7 +11319,7 @@
             "state": "Done",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-07-22T09:53:57.53Z",
-            "ageDays": 94,
+            "ageDays": 95,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/481212"
           },
           {
@@ -11339,7 +11339,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-08-15T11:01:05.76Z",
-            "ageDays": 70,
+            "ageDays": 71,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/488021"
           },
           {
@@ -11359,7 +11359,7 @@
             "state": "Done",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-09-22T09:49:22.627Z",
-            "ageDays": 32,
+            "ageDays": 33,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/498110"
           }
         ],
@@ -11521,31 +11521,31 @@
   "dataSources": {
     "repositories": {
       "status": "connected",
-      "checkedAt": "2026-10-25T06:30:04.752Z"
+      "checkedAt": "2026-10-25T12:27:20.095Z"
     },
     "sourceCode": {
       "status": "connected",
-      "checkedAt": "2026-10-25T06:30:04.752Z"
+      "checkedAt": "2026-10-25T12:27:20.095Z"
     },
     "pipelines": {
       "status": "connected",
-      "checkedAt": "2026-10-25T06:30:04.752Z"
+      "checkedAt": "2026-10-25T12:27:20.095Z"
     },
     "artifacts": {
       "status": "connected",
-      "checkedAt": "2026-10-25T06:30:04.752Z"
+      "checkedAt": "2026-10-25T12:27:20.095Z"
     },
     "coverage": {
       "status": "connected",
-      "checkedAt": "2026-10-25T06:30:12.780Z"
+      "checkedAt": "2026-10-25T12:27:27.384Z"
     },
     "workItems": {
       "status": "connected",
-      "checkedAt": "2026-10-25T06:30:04.752Z"
+      "checkedAt": "2026-10-25T12:27:20.095Z"
     },
     "snyk": {
       "status": "connected",
-      "checkedAt": "2026-10-25T06:30:36.966Z"
+      "checkedAt": "2026-10-25T12:27:53.524Z"
     }
   },
   "history": [
@@ -48648,6 +48648,1247 @@
     },
     {
       "timestamp": "2026-10-25T06:29:49.393Z",
+      "summary": {
+        "total": 14,
+        "healthy": 11,
+        "warning": 0,
+        "unhealthy": 3,
+        "unknown": 0
+      },
+      "repositories": [
+        {
+          "name": "Dex",
+          "fullName": "Koerber.Mobile.Kotlin.Dex",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": {
+            "percent": 90,
+            "threshold": 80,
+            "thresholdStatus": "passing",
+            "change": 0,
+            "previous": {
+              "timestamp": "2026-10-16T14:51:58.253079Z",
+              "percent": 90,
+              "lines": {
+                "covered": 621,
+                "total": 690,
+                "percent": 90
+              },
+              "blocks": {
+                "covered": 0,
+                "total": 0,
+                "percent": null
+              }
+            },
+            "history": [
+              {
+                "buildId": 547498,
+                "timestamp": "2026-10-22T11:45:11.4695507Z",
+                "percent": 90,
+                "lines": {
+                  "covered": 621,
+                  "total": 690,
+                  "percent": 90
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498&view=codecoverage-tab"
+              },
+              {
+                "buildId": 544010,
+                "timestamp": "2026-10-16T14:51:58.253079Z",
+                "percent": 90,
+                "lines": {
+                  "covered": 621,
+                  "total": 690,
+                  "percent": 90
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544010&view=codecoverage-tab"
+              },
+              {
+                "buildId": 543993,
+                "timestamp": "2026-10-16T14:32:04.0660619Z",
+                "percent": 89.71014492753623,
+                "lines": {
+                  "covered": 619,
+                  "total": 690,
+                  "percent": 89.71014492753623
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=543993&view=codecoverage-tab"
+              },
+              {
+                "buildId": 539022,
+                "timestamp": "2026-10-09T09:35:55.8923933Z",
+                "percent": 90,
+                "lines": {
+                  "covered": 621,
+                  "total": 690,
+                  "percent": 90
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022&view=codecoverage-tab"
+              },
+              {
+                "buildId": 534191,
+                "timestamp": "2026-10-01T14:30:31.0791562Z",
+                "percent": 90,
+                "lines": {
+                  "covered": 621,
+                  "total": 690,
+                  "percent": 90
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=534191&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261022113613",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1V1 Authorization",
+          "fullName": "Koerber.Mobile.Kotlin.K1V1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": {
+            "percent": 90.01536098310292,
+            "threshold": 80,
+            "thresholdStatus": "passing",
+            "change": 0,
+            "previous": {
+              "timestamp": "2026-10-08T15:49:16.5534192Z",
+              "percent": 90.01536098310292,
+              "lines": {
+                "covered": 586,
+                "total": 651,
+                "percent": 90.01536098310292
+              },
+              "blocks": {
+                "covered": 0,
+                "total": 0,
+                "percent": null
+              }
+            },
+            "history": [
+              {
+                "buildId": 539025,
+                "timestamp": "2026-10-09T09:38:21.5527388Z",
+                "percent": 90.01536098310292,
+                "lines": {
+                  "covered": 586,
+                  "total": 651,
+                  "percent": 90.01536098310292
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539025&view=codecoverage-tab"
+              },
+              {
+                "buildId": 538524,
+                "timestamp": "2026-10-08T15:49:16.5534192Z",
+                "percent": 90.01536098310292,
+                "lines": {
+                  "covered": 586,
+                  "total": 651,
+                  "percent": 90.01536098310292
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538524&view=codecoverage-tab"
+              },
+              {
+                "buildId": 534194,
+                "timestamp": "2026-10-01T14:42:09.7987923Z",
+                "percent": 90.01536098310292,
+                "lines": {
+                  "covered": 586,
+                  "total": 651,
+                  "percent": 90.01536098310292
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=534194&view=codecoverage-tab"
+              },
+              {
+                "buildId": 521659,
+                "timestamp": "2026-09-10T14:43:57.2765875Z",
+                "percent": 90.01536098310292,
+                "lines": {
+                  "covered": 586,
+                  "total": 651,
+                  "percent": 90.01536098310292
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521659&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092654",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "Scanner",
+          "fullName": "Koerber.Mobile.Kotlin.BarcodeScanning",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 4,
+            "low": 1
+          },
+          "coverage": {
+            "percent": 40.59701492537313,
+            "threshold": 80,
+            "thresholdStatus": "failing",
+            "change": 0,
+            "previous": {
+              "timestamp": "2026-10-13T13:22:10.1779175Z",
+              "percent": 40.59701492537313,
+              "lines": {
+                "covered": 136,
+                "total": 335,
+                "percent": 40.59701492537313
+              },
+              "blocks": {
+                "covered": 0,
+                "total": 0,
+                "percent": null
+              }
+            },
+            "history": [
+              {
+                "buildId": 541352,
+                "timestamp": "2026-10-13T16:57:55.6188121Z",
+                "percent": 40.59701492537313,
+                "lines": {
+                  "covered": 136,
+                  "total": 335,
+                  "percent": 40.59701492537313
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541352&view=codecoverage-tab"
+              },
+              {
+                "buildId": 541116,
+                "timestamp": "2026-10-13T13:22:10.1779175Z",
+                "percent": 40.59701492537313,
+                "lines": {
+                  "covered": 136,
+                  "total": 335,
+                  "percent": 40.59701492537313
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541116&view=codecoverage-tab"
+              },
+              {
+                "buildId": 541115,
+                "timestamp": "2026-10-13T13:14:19.1266678Z",
+                "percent": 40.59701492537313,
+                "lines": {
+                  "covered": 136,
+                  "total": 335,
+                  "percent": 40.59701492537313
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541115&view=codecoverage-tab"
+              },
+              {
+                "buildId": 541073,
+                "timestamp": "2026-10-13T12:58:09.3027496Z",
+                "percent": 40.59701492537313,
+                "lines": {
+                  "covered": 136,
+                  "total": 335,
+                  "percent": 40.59701492537313
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541073&view=codecoverage-tab"
+              },
+              {
+                "buildId": 541045,
+                "timestamp": "2026-10-13T12:13:29.1644388Z",
+                "percent": 40.59701492537313,
+                "lines": {
+                  "covered": 136,
+                  "total": 335,
+                  "percent": 40.59701492537313
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541045&view=codecoverage-tab"
+              },
+              {
+                "buildId": 540608,
+                "timestamp": "2026-10-12T16:50:13.0662024Z",
+                "percent": 40.59701492537313,
+                "lines": {
+                  "covered": 136,
+                  "total": 335,
+                  "percent": 40.59701492537313
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=540608&view=codecoverage-tab"
+              },
+              {
+                "buildId": 540597,
+                "timestamp": "2026-10-12T16:22:12.590552Z",
+                "percent": 40.59701492537313,
+                "lines": {
+                  "covered": 136,
+                  "total": 335,
+                  "percent": 40.59701492537313
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=540597&view=codecoverage-tab"
+              },
+              {
+                "buildId": 540587,
+                "timestamp": "2026-10-12T15:56:47.2180943Z",
+                "percent": 40.59701492537313,
+                "lines": {
+                  "covered": 136,
+                  "total": 335,
+                  "percent": 40.59701492537313
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=540587&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-202610061308",
+            "platformFeed": "1.0.0"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Kotlin.Printing",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": {
+            "percent": 89.92869875222816,
+            "threshold": 80,
+            "thresholdStatus": "passing",
+            "change": 0.09819027765188082,
+            "previous": {
+              "timestamp": "2026-10-09T14:36:24.1120937Z",
+              "percent": 89.83050847457628,
+              "lines": {
+                "covered": 1007,
+                "total": 1121,
+                "percent": 89.83050847457628
+              },
+              "blocks": {
+                "covered": 0,
+                "total": 0,
+                "percent": null
+              }
+            },
+            "history": [
+              {
+                "buildId": 548221,
+                "timestamp": "2026-10-23T07:14:29.0923565Z",
+                "percent": 89.92869875222816,
+                "lines": {
+                  "covered": 1009,
+                  "total": 1122,
+                  "percent": 89.92869875222816
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=548221&view=codecoverage-tab"
+              },
+              {
+                "buildId": 539255,
+                "timestamp": "2026-10-09T14:36:24.1120937Z",
+                "percent": 89.83050847457628,
+                "lines": {
+                  "covered": 1007,
+                  "total": 1121,
+                  "percent": 89.83050847457628
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539255&view=codecoverage-tab"
+              },
+              {
+                "buildId": 539172,
+                "timestamp": "2026-10-09T13:29:08.6288372Z",
+                "percent": 89.83050847457628,
+                "lines": {
+                  "covered": 1007,
+                  "total": 1121,
+                  "percent": 89.83050847457628
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539172&view=codecoverage-tab"
+              },
+              {
+                "buildId": 538365,
+                "timestamp": "2026-10-08T13:40:34.7433411Z",
+                "percent": 89.83050847457628,
+                "lines": {
+                  "covered": 1007,
+                  "total": 1121,
+                  "percent": 89.83050847457628
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538365&view=codecoverage-tab"
+              },
+              {
+                "buildId": 538122,
+                "timestamp": "2026-10-08T01:48:54.5439334Z",
+                "percent": 89.83050847457628,
+                "lines": {
+                  "covered": 1007,
+                  "total": 1121,
+                  "percent": 89.83050847457628
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538122&view=codecoverage-tab"
+              },
+              {
+                "buildId": 537840,
+                "timestamp": "2026-10-07T17:55:51.5125198Z",
+                "percent": 89.83050847457628,
+                "lines": {
+                  "covered": 1007,
+                  "total": 1121,
+                  "percent": 89.83050847457628
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=537840&view=codecoverage-tab"
+              },
+              {
+                "buildId": 537834,
+                "timestamp": "2026-10-07T17:45:45.643702Z",
+                "percent": 89.83050847457628,
+                "lines": {
+                  "covered": 1007,
+                  "total": 1121,
+                  "percent": 89.83050847457628
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=537834&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "2.1.0",
+            "devFeed": "2.0.0-20261008132046",
+            "platformFeed": "2.0.1-20261016231736"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Kotlin.Beep",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": {
+            "percent": 90.47619047619048,
+            "threshold": 80,
+            "thresholdStatus": "passing",
+            "change": 0,
+            "previous": {
+              "timestamp": "2026-10-09T08:26:07.4301519Z",
+              "percent": 90.47619047619048,
+              "lines": {
+                "covered": 57,
+                "total": 63,
+                "percent": 90.47619047619048
+              },
+              "blocks": {
+                "covered": 0,
+                "total": 0,
+                "percent": null
+              }
+            },
+            "history": [
+              {
+                "buildId": 539260,
+                "timestamp": "2026-10-09T15:05:58.9288216Z",
+                "percent": 90.47619047619048,
+                "lines": {
+                  "covered": 57,
+                  "total": 63,
+                  "percent": 90.47619047619048
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539260&view=codecoverage-tab"
+              },
+              {
+                "buildId": 538997,
+                "timestamp": "2026-10-09T08:26:07.4301519Z",
+                "percent": 90.47619047619048,
+                "lines": {
+                  "covered": 57,
+                  "total": 63,
+                  "percent": 90.47619047619048
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538997&view=codecoverage-tab"
+              },
+              {
+                "buildId": 538989,
+                "timestamp": "2026-10-09T08:07:12.9248036Z",
+                "percent": 90.47619047619048,
+                "lines": {
+                  "covered": 57,
+                  "total": 63,
+                  "percent": 90.47619047619048
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538989&view=codecoverage-tab"
+              },
+              {
+                "buildId": 538461,
+                "timestamp": "2026-10-08T15:06:08.5295951Z",
+                "percent": 90.47619047619048,
+                "lines": {
+                  "covered": 57,
+                  "total": 63,
+                  "percent": 90.47619047619048
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538461&view=codecoverage-tab"
+              },
+              {
+                "buildId": 538349,
+                "timestamp": "2026-10-08T12:59:54.399192Z",
+                "percent": 90.47619047619048,
+                "lines": {
+                  "covered": 57,
+                  "total": 63,
+                  "percent": 90.47619047619048
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538349&view=codecoverage-tab"
+              },
+              {
+                "buildId": 537672,
+                "timestamp": "2026-10-07T15:05:57.2548684Z",
+                "percent": 90.47619047619048,
+                "lines": {
+                  "covered": 57,
+                  "total": 63,
+                  "percent": 90.47619047619048
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=537672&view=codecoverage-tab"
+              },
+              {
+                "buildId": 537592,
+                "timestamp": "2026-10-07T13:10:15.8988198Z",
+                "percent": 90.47619047619048,
+                "lines": {
+                  "covered": 57,
+                  "total": 63,
+                  "percent": 90.47619047619048
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=537592&view=codecoverage-tab"
+              },
+              {
+                "buildId": 537466,
+                "timestamp": "2026-10-07T07:55:12.675999Z",
+                "percent": 90.47619047619048,
+                "lines": {
+                  "covered": 57,
+                  "total": 63,
+                  "percent": 90.47619047619048
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=537466&view=codecoverage-tab"
+              },
+              {
+                "buildId": 447212,
+                "timestamp": "2026-04-01T14:13:41.3313592Z",
+                "percent": 75,
+                "lines": {
+                  "covered": 30,
+                  "total": 40,
+                  "percent": 75
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=447212&view=codecoverage-tab"
+              },
+              {
+                "buildId": 408606,
+                "timestamp": "2025-12-11T15:57:10.3377004Z",
+                "percent": 81.81818181818183,
+                "lines": {
+                  "covered": 27,
+                  "total": 33,
+                  "percent": 81.81818181818183
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=408606&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "1.0.3",
+            "devFeed": "1.0.3-202610091437",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Kotlin.Vibrate",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": {
+            "percent": 47.22222222222222,
+            "threshold": 80,
+            "thresholdStatus": "failing",
+            "change": 0,
+            "previous": {
+              "timestamp": "2026-09-02T15:11:13.5749408Z",
+              "percent": 47.22222222222222,
+              "lines": {
+                "covered": 17,
+                "total": 36,
+                "percent": 47.22222222222222
+              },
+              "blocks": {
+                "covered": 0,
+                "total": 0,
+                "percent": null
+              }
+            },
+            "history": [
+              {
+                "buildId": 521463,
+                "timestamp": "2026-09-10T09:49:36.4208298Z",
+                "percent": 47.22222222222222,
+                "lines": {
+                  "covered": 17,
+                  "total": 36,
+                  "percent": 47.22222222222222
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521463&view=codecoverage-tab"
+              },
+              {
+                "buildId": 516780,
+                "timestamp": "2026-09-02T15:11:13.5749408Z",
+                "percent": 47.22222222222222,
+                "lines": {
+                  "covered": 17,
+                  "total": 36,
+                  "percent": 47.22222222222222
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=516780&view=codecoverage-tab"
+              },
+              {
+                "buildId": 516081,
+                "timestamp": "2026-09-01T14:49:01.9408798Z",
+                "percent": 47.22222222222222,
+                "lines": {
+                  "covered": 17,
+                  "total": 36,
+                  "percent": 47.22222222222222
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=516081&view=codecoverage-tab"
+              },
+              {
+                "buildId": 495498,
+                "timestamp": "2026-07-23T00:50:34.9876558Z",
+                "percent": 47.22222222222222,
+                "lines": {
+                  "covered": 17,
+                  "total": 36,
+                  "percent": 47.22222222222222
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=495498&view=codecoverage-tab"
+              },
+              {
+                "buildId": 486090,
+                "timestamp": "2026-07-02T15:49:53.8659869Z",
+                "percent": 41.66666666666667,
+                "lines": {
+                  "covered": 15,
+                  "total": 36,
+                  "percent": 41.66666666666667
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=486090&view=codecoverage-tab"
+              },
+              {
+                "buildId": 441091,
+                "timestamp": "2026-03-17T12:38:28.1769601Z",
+                "percent": 44.11764705882353,
+                "lines": {
+                  "covered": 15,
+                  "total": 34,
+                  "percent": 44.11764705882353
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=441091&view=codecoverage-tab"
+              },
+              {
+                "buildId": 410321,
+                "timestamp": "2025-12-16T10:00:41.9692774Z",
+                "percent": 44.11764705882353,
+                "lines": {
+                  "covered": 15,
+                  "total": 34,
+                  "percent": 44.11764705882353
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=410321&view=codecoverage-tab"
+              },
+              {
+                "buildId": 408634,
+                "timestamp": "2025-12-11T16:21:00.0400301Z",
+                "percent": 44.11764705882353,
+                "lines": {
+                  "covered": 15,
+                  "total": 34,
+                  "percent": 44.11764705882353
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=408634&view=codecoverage-tab"
+              },
+              {
+                "buildId": 405269,
+                "timestamp": "2025-12-03T15:30:01.2541146Z",
+                "percent": 44.11764705882353,
+                "lines": {
+                  "covered": 15,
+                  "total": 34,
+                  "percent": 44.11764705882353
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=405269&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-20260902141630",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1Authorization",
+          "fullName": "Koerber.Mobile.Capacitor.K1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "coverage": {
+            "percent": 100,
+            "threshold": 80,
+            "thresholdStatus": "passing",
+            "change": null,
+            "previous": null,
+            "history": [
+              {
+                "buildId": 541038,
+                "timestamp": "2026-10-13T11:32:59.8807132Z",
+                "percent": 100,
+                "lines": {
+                  "covered": 75,
+                  "total": 75,
+                  "percent": 100
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541038&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "1.1.2",
+            "devFeed": "1.1.2-202610141300",
+            "platformFeed": "1.1.1"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Capacitor.Printing",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 1
+          },
+          "coverage": null,
+          "versions": {
+            "source": "0.0.3",
+            "devFeed": "0.0.3-202610141300",
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Camera",
+          "fullName": "Koerber.Mobile.Capacitor.Camera",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "coverage": {
+            "percent": 100,
+            "threshold": 80,
+            "thresholdStatus": "passing",
+            "change": null,
+            "previous": null,
+            "history": [
+              {
+                "buildId": 531065,
+                "timestamp": "2026-09-25T14:32:04.548899Z",
+                "percent": 100,
+                "lines": {
+                  "covered": 11,
+                  "total": 11,
+                  "percent": 100
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531065&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "1.1.0",
+            "devFeed": "1.0.7-202608211032",
+            "platformFeed": "1.1.0"
+          }
+        },
+        {
+          "name": "Logger",
+          "fullName": "Koerber.Mobile.Capacitor.Logger",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 0
+          },
+          "coverage": {
+            "percent": 93.42105263157895,
+            "threshold": 80,
+            "thresholdStatus": "passing",
+            "change": null,
+            "previous": null,
+            "history": [
+              {
+                "buildId": 542040,
+                "timestamp": "2026-10-14T13:31:04.4455552Z",
+                "percent": 93.42105263157895,
+                "lines": {
+                  "covered": 142,
+                  "total": 152,
+                  "percent": 93.42105263157895
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542040&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202610231443",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Capacitor.Beep",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "coverage": {
+            "percent": 95.34883720930233,
+            "threshold": 80,
+            "thresholdStatus": "passing",
+            "change": null,
+            "previous": null,
+            "history": [
+              {
+                "buildId": 529178,
+                "timestamp": "2026-09-23T13:58:17.1123456Z",
+                "percent": 95.34883720930233,
+                "lines": {
+                  "covered": 41,
+                  "total": 43,
+                  "percent": 95.34883720930233
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529178&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "1.0.7",
+            "devFeed": "1.0.7-202609231520",
+            "platformFeed": "1.0.7"
+          }
+        },
+        {
+          "name": "MDM Reader",
+          "fullName": "Koerber.Mobile.Capacitor.MDMReader",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.5",
+            "devFeed": "1.0.5-202609281443",
+            "platformFeed": "1.0.5"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Capacitor.Vibrate",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 4,
+            "low": 0
+          },
+          "coverage": {
+            "percent": 100,
+            "threshold": 80,
+            "thresholdStatus": "passing",
+            "change": null,
+            "previous": null,
+            "history": [
+              {
+                "buildId": 529993,
+                "timestamp": "2026-09-24T12:05:04.1873321Z",
+                "percent": 100,
+                "lines": {
+                  "covered": 60,
+                  "total": 60,
+                  "percent": 100
+                },
+                "blocks": {
+                  "covered": 0,
+                  "total": 0,
+                  "percent": null
+                },
+                "targets": null,
+                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529993&view=codecoverage-tab"
+              }
+            ]
+          },
+          "versions": {
+            "source": "1.0.6",
+            "devFeed": "1.0.6-202609241219",
+            "platformFeed": "1.0.6"
+          }
+        },
+        {
+          "name": "Security Automation",
+          "fullName": "MobileToolKit.Maintenance",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "coverage": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-10-25T12:27:04.767Z",
       "summary": {
         "total": 14,
         "healthy": 11,
