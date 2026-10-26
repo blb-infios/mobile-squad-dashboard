@@ -1,0 +1,322 @@
+{
+  "generatedAt": "2026-10-26T09:25:22.391Z",
+  "probes": [
+    {
+      "repository": "Dex",
+      "buildId": 547498,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 191349,
+            "uri": "vstfs:///Build/Build/547498",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 8,
+          "moduleNames": [
+            "DEXExceptions.kt",
+            "StringExt.kt",
+            "BleDexProfile.kt",
+            "DexDeviceType.kt",
+            "DEXTimeoutSettings.kt",
+            "DEXLog.kt",
+            "X328Protocol.kt",
+            "CRC.kt"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {
+              "linesCovered": 30
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repository": "K1V1 Authorization",
+      "buildId": 539025,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 187141,
+            "uri": "vstfs:///Build/Build/539025",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 7,
+          "moduleNames": [
+            "CommunicationData.kt",
+            "SupportManager.kt",
+            "HighJumpOneODataController.kt",
+            "CommunicationManager.kt",
+            "SynchronizationManager.kt",
+            "AuthModels.kt",
+            "HighJumpOneManager.kt"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {
+              "linesCovered": 33
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repository": "Scanner",
+      "buildId": 541352,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 188409,
+            "uri": "vstfs:///Build/Build/541352",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 18,
+          "moduleNames": [
+            "ScanSession.kt",
+            "DetectedBarcode.kt",
+            "SnapshotScanView.android.kt",
+            "FeedbackConfig.kt",
+            "CompositeCaptureRule.kt",
+            "PriorityCaptureRule.kt",
+            "CaptureRule.kt",
+            "BarcodeProcessor.kt",
+            "BarcodeFormat.kt",
+            "SnapshotScanResult.kt",
+            "ScanFeedbackProvider.android.kt",
+            "Comparisons.kt",
+            "ScanCallbacks.kt",
+            "PatternCaptureRule.kt",
+            "_Collections.kt",
+            "BarcodeScanResult.kt",
+            "ScanConfig.kt",
+            "TorchMode.kt"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {
+              "linesCovered": 31,
+              "linesNotCovered": 6
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repository": "Printing",
+      "buildId": 549356,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 192246,
+            "uri": "vstfs:///Build/Build/549356",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 20,
+          "moduleNames": [
+            "Report.kt",
+            "ReportDataSet.kt",
+            "PrinterConfigurations.kt",
+            "ReportLayout.kt",
+            "PrintingStyle.kt",
+            "PrinterPageSettings.kt",
+            "Alignment.kt",
+            "PortSettingDefinition.kt",
+            "PrintingFactory.kt",
+            "HtmlPrinterFormatWriter.kt",
+            "ReportFileSource.jvm.kt",
+            "PaperSize.kt",
+            "PrintingLogger.kt",
+            "ReportFileSource.android.kt",
+            "BaseProtocol.kt",
+            "ReportFileSource.kt",
+            "PortSettingValue.kt",
+            "JSONPrinterFormatWriter.kt",
+            "FontTypes.kt",
+            "Lua.kt"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {
+              "linesCovered": 88
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repository": "Beep",
+      "buildId": 539260,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 187284,
+            "uri": "vstfs:///Build/Build/539260",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 6,
+          "moduleNames": [
+            "Platform.jvm.kt",
+            "Platform.android.kt",
+            "BeepSoundJvm.kt",
+            "AudioLineFactory.kt",
+            "BeepSoundAndroid.kt",
+            "MediaPlayerWrapper.kt"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {
+              "linesCovered": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repository": "Vibrate",
+      "buildId": 521463,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 179461,
+            "uri": "vstfs:///Build/Build/521463",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 5,
+          "moduleNames": [
+            "Haptics.kt",
+            "Platform.kt",
+            "Platform.android.kt",
+            "Greeting.kt",
+            "Haptics.android.kt"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {
+              "linesCovered": 5
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
