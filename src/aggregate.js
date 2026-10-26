@@ -656,11 +656,23 @@ async function fetchSourceMetadata(repoId) {
   return { version: null, packages: { npm: null, maven: null }, branch: null, path: null };
 }
 
+/**
+ * Bucket an Azure DevOps work-item state.
+ *
+ * 'done' is a distinct bucket rather than being folded into 'committed'.
+ * Work items reach the dashboard via build and pull-request links, and
+ * anything linked to a merged build is finished by definition, so completed
+ * items dominate the raw result. The dashboard reports active work only, so
+ * fetchWorkItems() drops everything in the 'done' bucket.
+ *
+ * 'committed' therefore means the Scrum state Committed - work the team has
+ * signed up for - and no longer doubles as a synonym for finished.
+ */
 function classifyWorkItem(state) {
   const normalized = String(state || '').toLowerCase();
-  if (['new', 'approved', 'proposed', 'to do', 'open'].includes(normalized)) return 'open';
+  if (['done', 'closed', 'resolved', 'completed', 'removed'].includes(normalized)) return 'done';
   if (['active', 'in progress', 'doing'].includes(normalized)) return 'inProgress';
-  if (['committed', 'resolved', 'closed', 'done', 'completed'].includes(normalized)) return 'committed';
+  if (['committed'].includes(normalized)) return 'committed';
   return 'open';
 }
 
@@ -715,7 +727,12 @@ async function fetchWorkItems(repoId, pullRequests, builds) {
     (data.value || []).forEach((item) => {
       const fields = item.fields || {};
       const state = fields['System.State'] || null;
-      result[classifyWorkItem(state)]++;
+      const bucket = classifyWorkItem(state);
+      // Completed work is excluded entirely: the dashboard reports active
+      // work, and every work-item type (PBI, Bug, Feature, Epic) counts the
+      // same towards that total.
+      if (bucket === 'done') return;
+      result[bucket]++;
       result.items.push({
         id: item.id ?? null,
         title: fields['System.Title'] || null,

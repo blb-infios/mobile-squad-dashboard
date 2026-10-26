@@ -991,8 +991,9 @@ function renderWorkItems(w) {
   const tiles = items.map(([icon, label, n]) =>
     `<li class="tile" aria-label="${num(n)} ${label}"><span class="num">${num(n)}</span>
       <span class="lbl"><span aria-hidden="true">${icon}</span> ${label}</span></li>`).join('');
+  const empty = !(w.open || w.inProgress || w.committed);
   return section('🗂️ Work items', extLink(w.url, 'View in ADO', 'Open Azure DevOps query'),
-    `<ul class="tiles three">${tiles}</ul>`);
+    `<ul class="tiles three">${tiles}</ul>${empty ? '<p class="scan-meta">No active work items. Completed items are excluded.</p>' : ''}`);
 }
 
 /* Repo + feed links. Use repo.links.repo / repo.links.feeds if provided; otherwise derive
@@ -1042,7 +1043,7 @@ function renderSummary(repo, open, bodyId, name) {
     const parts = [['critical', '🔴'], ['high', '🟠'], ['medium', '🟡']].filter(([key]) => num(repo.snyk[key]) > 0).map(([key, icon]) => `<span class="mini-sev sev-${key}">${icon}${num(repo.snyk[key])}</span>`);
     return parts.length ? `<span class="mini-group">${parts.join('')}</span>` : `<span class="mini is-clean" title="No active security vulnerabilities found in Snyk scan">🛡️ Clean</span>`;
   })() : `<span class="mini is-muted" title="Snyk security scan data not available">🛡️ No scan</span>`;
-  const work = repo.workItems ? `<span class="mini" title="Total PBIs (Product Backlog Items) linked to repository">📋 ${num((repo.workItems.open || 0) + (repo.workItems.inProgress || 0) + (repo.workItems.committed || 0))} PBIs</span>` : '';
+  const work = repo.workItems ? `<span class="mini" title="Active work items linked to this repository (PBIs, Bugs, Features and Epics). Completed items are excluded.">📋 ${num((repo.workItems.open || 0) + (repo.workItems.inProgress || 0) + (repo.workItems.committed || 0))} PBIs</span>` : '';
   return `<div class="summary"><div class="sum-row">${ver}${pipes}${covChip}</div><div class="sum-row">${snyk}${work}<button type="button" class="card-toggle" aria-expanded="${open}" aria-controls="${bodyId}"><span class="toggle-text">${open ? 'Hide' : 'Details'}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>`;
 }
 
