@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T09:25:22.391Z",
+  "generatedAt": "2026-10-26T09:29:52.070Z",
   "probes": [
     {
       "repository": "Dex",
@@ -317,6 +317,251 @@
           }
         }
       ]
+    },
+    {
+      "repository": "K1Authorization",
+      "buildId": 541038,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 188281,
+            "uri": "vstfs:///Build/Build/541038",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 4,
+          "moduleNames": [
+            "/Users/runner/work/1/s/koerber-mobile-capacitor-k1authorization/src/definitions.ts",
+            "/Users/runner/work/1/s/koerber-mobile-capacitor-k1authorization/src/web.ts",
+            "HttpService.kt",
+            "AppAuthPluginPlugin.kt"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {}
+          }
+        }
+      ]
+    },
+    {
+      "repository": "Printing",
+      "buildId": 542007,
+      "httpStatus": 200,
+      "recordCount": 0,
+      "records": []
+    },
+    {
+      "repository": "Camera",
+      "buildId": 531065,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 183364,
+            "uri": "vstfs:///Build/Build/531065",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 2,
+          "moduleNames": [
+            "/Users/runner/work/1/s/mobile-capacitor-camera/src/web.ts",
+            "/Users/runner/work/1/s/mobile-capacitor-camera/src/definitions.ts"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {
+              "linesCovered": 11
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repository": "Logger",
+      "buildId": 542040,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 188790,
+            "uri": "vstfs:///Build/Build/542040",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 4,
+          "moduleNames": [
+            "/Users/runner/work/1/s/koerber-mobile-capacitor-logger/src/definitions.ts",
+            "/Users/runner/work/1/s/koerber-mobile-capacitor-logger/src/web.ts",
+            "LoggerPlugin.kt",
+            "LoggerService.kt"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {
+              "linesCovered": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repository": "Beep",
+      "buildId": 529178,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 182614,
+            "uri": "vstfs:///Build/Build/529178",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 2,
+          "moduleNames": [
+            "BeepSoundPlugin.kt",
+            "/Users/runner/work/1/s/koerber-mobile-capacitor-beep/src/web.ts"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {
+              "linesCovered": 31,
+              "linesNotCovered": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repository": "MDM Reader",
+      "buildId": 532071,
+      "httpStatus": 200,
+      "recordCount": 0,
+      "records": []
+    },
+    {
+      "repository": "Vibrate",
+      "buildId": 529993,
+      "httpStatus": 200,
+      "recordCount": 1,
+      "records": [
+        {
+          "keys": [
+            "configuration",
+            "state",
+            "lastError",
+            "modules"
+          ],
+          "configuration": {
+            "id": 182964,
+            "uri": "vstfs:///Build/Build/529993",
+            "flavor": "",
+            "platform": "",
+            "project": {}
+          },
+          "label": null,
+          "name": null,
+          "moduleCount": 3,
+          "moduleNames": [
+            "HapticsPlugin.kt",
+            "/Users/runner/work/1/s/koerber.mobile.capacitor.vibrate/src/web.ts",
+            "/Users/runner/work/1/s/koerber.mobile.capacitor.vibrate/src/definitions.ts"
+          ],
+          "sampleModule": {
+            "keys": [
+              "blockData",
+              "name",
+              "signature",
+              "signatureAge",
+              "statistics",
+              "functions",
+              "fileUrl"
+            ],
+            "statistics": {
+              "linesCovered": 38
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repository": "Security Automation",
+      "buildId": 549029,
+      "httpStatus": 200,
+      "recordCount": 0,
+      "records": []
     }
   ]
 }
