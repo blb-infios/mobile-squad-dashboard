@@ -443,6 +443,28 @@ select:hover, input[type="search"]:hover { border-color: var(--accent); }
 .bar-fill.bad { background: var(--crit); }
 .bar-mark { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; background: var(--text); border-radius: 2px; opacity: .75; }
 
+/* Recent pipeline run outcomes */
+.run-strip { display: flex; align-items: center; gap: 3px; margin: 6px 0 2px; flex-wrap: wrap; }
+.run-dot { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; background: var(--border-strong); }
+.run-dot.run-ok   { background: var(--ok); }
+.run-dot.run-bad  { background: var(--crit); }
+.run-dot.run-warn { background: var(--warn); }
+.run-dot.run-run  { background: var(--accent); }
+.run-dot.run-idle { background: var(--border-strong); }
+.run-rate { margin-left: 6px; font-size: .72rem; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Coverage trend sparkline */
+.spark-wrap { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.spark { display: block; overflow: visible; }
+.spark polyline { stroke: var(--ok); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+.spark circle { fill: var(--ok); }
+.spark.spark-warn polyline { stroke: var(--warn); }
+.spark.spark-warn circle   { fill: var(--warn); }
+.spark.spark-bad polyline  { stroke: var(--crit); }
+.spark.spark-bad circle    { fill: var(--crit); }
+.spark-threshold { stroke: var(--border-strong); stroke-width: 1; stroke-dasharray: 3 3; }
+.spark-note { font-size: .72rem; color: var(--muted); }
+
 /* Coverage platform targets */
 .cov-targets { list-style: none; margin: 12px 0 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .cov-target { display: flex; align-items: center; gap: 10px; font-size: .9rem; }
@@ -914,6 +936,22 @@ function renderVersions(v) {
   return section('🏷️ Versions', badge, `<ul class="ver-list">${list}</ul>`);
 }
 
+/* Recent run outcomes as a row of dots, oldest on the left. Makes clustered
+   failures (a broken pipeline) visually distinct from alternating ones (a
+   flaky pipeline) without computing anything new - history is already in the
+   payload, newest-first, so it is reversed for chronological reading. */
+function runStrip(pipeline) {
+  const history = Array.isArray(pipeline?.history) ? pipeline.history : [];
+  if (history.length < 2) return '';
+  const dots = history.slice(0, 10).reverse().map((run) => {
+    const info = pipelineInfo(run?.status);
+    const when = run?.lastRun ? new Date(run.lastRun).toLocaleString() : 'unknown date';
+    return `<span class="run-dot run-${info.cls}" title="${esc(info.label)} · ${esc(when)}"></span>`;
+  }).join('');
+  const rate = Number.isFinite(Number(pipeline.successRate)) ? `${fmtPct(pipeline.successRate)}% success` : '';
+  return `<div class="run-strip" role="img" aria-label="Last ${history.slice(0, 10).length} runs, oldest first. ${esc(rate || 'outcomes')}">${dots}${rate ? `<span class="run-rate">${esc(rate)}</span>` : ''}</div>`;
+}
+
 function renderPipelines(pipelines) {
   // Show CI first, then Release, then anything else the data contains.
   const order = ['ci', 'release'];
@@ -934,6 +972,7 @@ function renderPipelines(pipelines) {
         <span class="pipe-icon" role="img" aria-label="${esc(info.label)}">${info.icon}</span>
         <div class="pipe-main">
           <div class="pipe-name">${esc(title)} <span class="pipe-status ${info.cls}">${esc(info.label)}</span></div>
+          ${runStrip(p)}
           <div class="pipe-meta">
             <span><span aria-hidden="true">🕒</span> Last run: ${timeEl(p.lastRun)}</span>
             <span><span aria-hidden="true">⏱️</span> ${p.duration ? esc(p.duration) : '—'}</span>
@@ -951,6 +990,38 @@ function coverageTargetPercent(value) {
   return Number(value);
 }
 
+/* Coverage trend as an inline SVG polyline, oldest on the left. Built from the
+   snapshots already present in coverage.history, so it needs no charting
+   library and no extra data. The y-axis is padded around the observed range
+   rather than fixed to 0-100, so small real movements stay visible. */
+function coverageSparkline(history, threshold) {
+  const points = (Array.isArray(history) ? history : [])
+    .map((snapshot) => Number(snapshot?.percent))
+    .filter((value) => Number.isFinite(value))
+    .reverse();
+  if (points.length < 2) return '';
+
+  const w = 120, h = 28, pad = 3;
+  const min = Math.min(...points), max = Math.max(...points);
+  const span = Math.max(max - min, 4);
+  const lo = Math.max(0, Math.min(min, max) - span * 0.25);
+  const hi = Math.min(100, Math.max(max, min) + span * 0.25);
+  const range = hi - lo || 1;
+  const x = (i) => pad + (i * (w - pad * 2)) / (points.length - 1);
+  const y = (v) => pad + (h - pad * 2) * (1 - (v - lo) / range);
+
+  const line = points.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+  const last = points[points.length - 1];
+  const first = points[0];
+  const level = last >= threshold ? 'ok' : last >= threshold - 10 ? 'warn' : 'bad';
+  const mark = threshold > lo && threshold < hi
+    ? `<line x1="${pad}" y1="${y(threshold).toFixed(1)}" x2="${w - pad}" y2="${y(threshold).toFixed(1)}" class="spark-threshold"/>`
+    : '';
+  const label = `Coverage trend over ${points.length} runs, oldest first: ${fmtPct(first)}% to ${fmtPct(last)}%`;
+
+  return `<div class="spark-wrap"><svg class="spark spark-${level}" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" role="img" aria-label="${esc(label)}">${mark}<polyline points="${line}" fill="none"/><circle cx="${x(points.length - 1).toFixed(1)}" cy="${y(last).toFixed(1)}" r="2.5"/></svg><span class="spark-note">${points.length} runs</span></div>`;
+}
+
 function renderCoverage(coverage) {
   const cov = coverageInfo({ coverage });
   if (!cov) return section('📊 Code coverage', '', '<p class="empty-note">No coverage data</p>');
@@ -964,7 +1035,7 @@ function renderCoverage(coverage) {
     return `<li class="cov-target"><span class="t-name">${esc(targetLabels[name] || name)}</span><span class="bar bar-sm"><span class="bar-fill ${level}" style="width:${pct}%"></span></span><span class="t-val ${level}">${fmtPct(pct)}%</span></li>`;
   }).join('');
   const lines = c.lines?.covered != null && c.lines?.total != null ? `${Number(c.lines.covered).toLocaleString()} / ${Number(c.lines.total).toLocaleString()} lines` : '';
-  return section('📊 Code coverage', c.url ? extLink(c.url, 'View report', 'Open code coverage report') : '', `<div class="cov-top"><span class="cov-big ${cov.level}">${fmtPct(cov.pct)}%</span><span class="cov-note ${cov.level}">${esc(verdict)}</span></div><div class="bar" role="progressbar" aria-label="Overall code coverage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${fmtPct(cov.pct)}"><span class="bar-fill ${cov.level}" style="width:${cov.pct}%"></span><span class="bar-mark" style="left:${cov.threshold}%" title="Threshold ${fmtPct(cov.threshold)}%"></span></div>${targets ? `<ul class="cov-targets">${targets}</ul>` : ''}<p class="scan-meta cov-meta"><span>🕒 Last run: ${timeEl(c.lastRun || c.timestamp)}</span>${lines ? `<span>📄 ${esc(lines)}</span>` : ''}${c.modules ? `<span>📦 ${num(c.modules)} modules</span>` : ''}</p>`);
+  return section('📊 Code coverage', c.url ? extLink(c.url, 'View report', 'Open code coverage report') : '', `<div class="cov-top"><span class="cov-big ${cov.level}">${fmtPct(cov.pct)}%</span><span class="cov-note ${cov.level}">${esc(verdict)}</span></div><div class="bar" role="progressbar" aria-label="Overall code coverage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${fmtPct(cov.pct)}"><span class="bar-fill ${cov.level}" style="width:${cov.pct}%"></span><span class="bar-mark" style="left:${cov.threshold}%" title="Threshold ${fmtPct(cov.threshold)}%"></span></div>${coverageSparkline(c.history, cov.threshold)}${targets ? `<ul class="cov-targets">${targets}</ul>` : ''}<p class="scan-meta cov-meta"><span>🕒 Last run: ${timeEl(c.lastRun || c.timestamp)}</span>${lines ? `<span>📄 ${esc(lines)}</span>` : ''}${c.modules ? `<span>📦 ${num(c.modules)} modules</span>` : ''}</p>`);
 }
 
 function renderSnyk(s) {
@@ -1035,6 +1106,31 @@ function renderFooter(repo) {
   </footer>`;
 }
 
+/* Oldest open pull request, surfaced on the collapsed card once it passes the
+   ageing threshold. Age and approval state are already in the payload, but
+   until now were only visible after opening the detail modal - which hid
+   things like an approved PR left sitting for months. */
+const PR_AGE_WARN = 14;
+const PR_AGE_STALE = 30;
+
+function stalePullRequest(repo) {
+  const oldest = (Array.isArray(repo?.pullRequests) ? repo.pullRequests : [])
+    .filter((pr) => Number.isFinite(Number(pr?.ageDays)))
+    .sort((a, b) => Number(b.ageDays) - Number(a.ageDays))[0];
+  if (!oldest || Number(oldest.ageDays) < PR_AGE_WARN) return '';
+
+  const age = Number(oldest.ageDays);
+  const cls = age >= PR_AGE_STALE ? 'pipe-bad' : 'pipe-warn';
+  const count = repo.pullRequests.length;
+  const approved = String(oldest.approvalState || '').toLowerCase() === 'approved';
+  const why = approved
+    ? 'approved and waiting to merge'
+    : `review ${esc(oldest.approvalState || 'pending')}`;
+  const extra = count > 1 ? ` · ${count} open PRs` : '';
+  const title = `Oldest open pull request is ${age} days old - ${why}${extra}. Flagged from ${PR_AGE_WARN} days, critical from ${PR_AGE_STALE}.`;
+  return `<span class="mini ${cls}" title="${esc(title)}">🔀 PR ${age}d</span>`;
+}
+
 function renderSummary(repo, open, bodyId, name) {
   const v = repo.versions || {};
   const sync = analyzeVersions(v);
@@ -1052,7 +1148,8 @@ function renderSummary(repo, open, bodyId, name) {
     return parts.length ? `<span class="mini-group">${parts.join('')}</span>` : `<span class="mini is-clean" title="No active security vulnerabilities found in Snyk scan">🛡️ Clean</span>`;
   })() : `<span class="mini is-muted" title="Snyk security scan data not available">🛡️ No scan</span>`;
   const work = repo.workItems ? `<span class="mini" title="Active work items for this repository: New, Approved, In progress and Committed. Counts every type (PBI, Bug, Feature, Epic); completed items are excluded.">📋 ${num(workItemTotal(repo.workItems))} PBIs</span>` : '';
-  return `<div class="summary"><div class="sum-row">${ver}${pipes}${covChip}</div><div class="sum-row">${snyk}${work}<button type="button" class="card-toggle" aria-expanded="${open}" aria-controls="${bodyId}"><span class="toggle-text">${open ? 'Hide' : 'Details'}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>`;
+  const prs = stalePullRequest(repo);
+  return `<div class="summary"><div class="sum-row">${ver}${pipes}${covChip}</div><div class="sum-row">${snyk}${work}${prs}<button type="button" class="card-toggle" aria-expanded="${open}" aria-controls="${bodyId}"><span class="toggle-text">${open ? 'Hide' : 'Details'}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>`;
 }
 
 function renderCard({ repo, ev }, index) {
