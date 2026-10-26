@@ -7,10 +7,65 @@
 require('dotenv').config();
 const fs = require('fs').promises;
 const path = require('path');
+const axios = require('axios');
 const {
   calculateReleaseReadiness,
   fetchLatestCoverage
 } = require('./aggregate');
+
+const ADO_ORG = process.env.ADO_ORG || 'Highjumpvso';
+const ADO_PROJECT = process.env.ADO_PROJECT || 'WES';
+
+/**
+ * Capture the raw shape of the ADO code-coverage response for a build.
+ * Used to discover where per-target (platform/flavor) identity actually lives
+ * so the dashboard can group coverage by Android / iOS / JVM / Web.
+ */
+async function probeCoverageShape(buildId) {
+  const client = axios.create({
+    baseURL: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_apis`,
+    auth: { username: '', password: process.env.ADO_PAT || process.env.AZURE_DEVOPS_EXT_PAT },
+    headers: { Accept: 'application/json' },
+    timeout: 30000,
+    validateStatus: () => true
+  });
+  const response = await client.get('/test/codecoverage', {
+    params: { buildId, flags: 7, 'api-version': '7.0' }
+  });
+  const records = Array.isArray(response.data?.value) ? response.data.value : [];
+  return {
+    buildId,
+    httpStatus: response.status,
+    recordCount: records.length,
+    records: records.map((record) => ({
+      keys: Object.keys(record),
+      configuration: record.configuration || null,
+      label: record.label ?? null,
+      name: record.name ?? null,
+      moduleCount: Array.isArray(record.modules) ? record.modules.length : 0,
+      moduleNames: Array.isArray(record.modules) ? record.modules.map((module) => module?.name).slice(0, 40) : [],
+      sampleModule: Array.isArray(record.modules) && record.modules[0]
+        ? { keys: Object.keys(record.modules[0]), statistics: record.modules[0].statistics || null }
+        : null
+    }))
+  };
+}
+
+async function writeCoverageDiagnostics(data) {
+  const probes = [];
+  for (const repo of (data.repositories || []).slice(0, 6)) {
+    const buildId = repo.coverage?.buildId || repo.pipelines?.ci?.buildId;
+    if (!buildId) continue;
+    try {
+      probes.push({ repository: repo.name, ...(await probeCoverageShape(buildId)) });
+    } catch (error) {
+      probes.push({ repository: repo.name, buildId, error: error.message });
+    }
+  }
+  const diagPath = path.join(__dirname, '../public/coverage-diag.json');
+  await fs.writeFile(diagPath, JSON.stringify({ generatedAt: new Date().toISOString(), probes }, null, 2));
+  console.log(`🔎 Coverage shape diagnostics written for ${probes.length} builds`);
+}
 
 async function main() {
   if (!process.env.ADO_PAT && !process.env.AZURE_DEVOPS_EXT_PAT) {
@@ -63,6 +118,12 @@ async function main() {
 
   await fs.writeFile(dataPath, JSON.stringify(data, null, 2));
   console.log(`✅ Coverage data merged into ${dataPath}: ${coverageCount}/${attempted} repositories with coverage`);
+
+  try {
+    await writeCoverageDiagnostics(data);
+  } catch (error) {
+    console.warn(`⚠ Coverage diagnostics skipped: ${error.message}`);
+  }
 }
 
 main().catch((error) => {
