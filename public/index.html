@@ -652,7 +652,7 @@ const SAMPLE_DATA = {
         release: { name: 'Release Pipeline', status: 'succeeded', lastRun: '2026-10-12T14:40:00Z', duration: '11m 03s', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12377' }
       },
       snyk: { critical: 0, high: 0, medium: 0, low: 2, lastScan: '2026-10-14T06:00:12Z', url: 'https://app.eu.snyk.io/org/mobile-sdk/project/barcode-001' },
-      workItems: { open: 4, inProgress: 2, committed: 5, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
+      workItems: { new: 4, approved: 1, inProgress: 2, committed: 5, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
       coverage: { percent: 92.6, threshold: 90, lastRun: '2026-10-14T08:12:00Z', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12401&view=codecoverage-tab', lines: { covered: 3708, total: 4004 }, targets: { common: 94.1, android: 91.3, ios: 90.2 } },
       packages: { npm: null, maven: 'com.infios:barcode-scanner-kmp-library' }
     },
@@ -666,7 +666,7 @@ const SAMPLE_DATA = {
         release: { name: 'Release Pipeline', status: 'notRun',    lastRun: null,                   duration: null,     url: 'https://highjumpvso.visualstudio.com/WES/_build' }
       },
       snyk: { critical: 0, high: 3, medium: 5, low: 2, lastScan: '2026-10-13T11:03:37Z', url: 'https://app.eu.snyk.io/org/mobile-sdk/project/abc123' },
-      workItems: { open: 2, inProgress: 1, committed: 3, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
+      workItems: { new: 2, approved: 0, inProgress: 1, committed: 3, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
       coverage: { percent: 74.8, threshold: 80, lastRun: '2026-10-13T15:30:00Z', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12345&view=codecoverage-tab', lines: { covered: 1871, total: 2501 }, targets: { web: 71.5, android: 77.9, ios: 75.0 } },
       packages: { npm: '@koerber/mobile-capacitor-printing', maven: null }
     },
@@ -680,7 +680,7 @@ const SAMPLE_DATA = {
         release: { name: 'Release Pipeline', status: 'succeeded', lastRun: '2026-10-09T16:50:00Z', duration: '10m 27s', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12288' }
       },
       snyk: { critical: 1, high: 2, medium: 4, low: 6, lastScan: '2026-10-14T06:00:40Z', url: 'https://app.eu.snyk.io/org/mobile-sdk/project/dex-002' },
-      workItems: { open: 6, inProgress: 3, committed: 2, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
+      workItems: { new: 6, approved: 2, inProgress: 3, committed: 2, url: 'https://highjumpvso.visualstudio.com/WES/_queries' },
       coverage: { percent: 85.3, threshold: 90, lastRun: '2026-10-14T07:55:00Z', url: 'https://highjumpvso.visualstudio.com/WES/_build/results?buildId=12410&view=codecoverage-tab', lines: { covered: 5122, total: 6005 }, targets: { common: 88.0, android: 84.1, ios: 83.9, jvm: 87.5 } },
       packages: { npm: null, maven: 'com.infios:dex-kmp-library' }
     }
@@ -985,15 +985,23 @@ function renderSnyk(s) {
      <p class="scan-meta"><span aria-hidden="true">🕒</span> Last scan: ${timeEl(s.lastScan)}</p>`);
 }
 
+/* Active work-item total. Sums the four active Scrum states; `open` is read as
+   a fallback so older generated payloads still render a sensible number. */
+function workItemTotal(w) {
+  if (!w) return 0;
+  return ['new', 'approved', 'inProgress', 'committed', 'open']
+    .reduce((total, key) => total + (Number(w[key]) || 0), 0);
+}
+
 function renderWorkItems(w) {
   if (!w) return section('🗂️ Work items', '', '<p class="empty-note">No work item data</p>');
-  const items = [['📋', 'Open', w.open], ['⚙️', 'In progress', w.inProgress], ['✅', 'Committed', w.committed]];
+  const items = [['🆕', 'New', w.new], ['👍', 'Approved', w.approved], ['⚙️', 'In progress', w.inProgress], ['🤝', 'Committed', w.committed]];
   const tiles = items.map(([icon, label, n]) =>
     `<li class="tile" aria-label="${num(n)} ${label}"><span class="num">${num(n)}</span>
       <span class="lbl"><span aria-hidden="true">${icon}</span> ${label}</span></li>`).join('');
-  const empty = !(w.open || w.inProgress || w.committed);
+  const empty = !workItemTotal(w);
   return section('🗂️ Work items', extLink(w.url, 'View in ADO', 'Open Azure DevOps query'),
-    `<ul class="tiles three">${tiles}</ul>${empty ? '<p class="scan-meta">No active work items. Completed items are excluded.</p>' : ''}`);
+    `<ul class="tiles four">${tiles}</ul>${empty ? '<p class="scan-meta">No active work items. Completed items are excluded.</p>' : ''}`);
 }
 
 /* Repo + feed links. Use repo.links.repo / repo.links.feeds if provided; otherwise derive
@@ -1043,7 +1051,7 @@ function renderSummary(repo, open, bodyId, name) {
     const parts = [['critical', '🔴'], ['high', '🟠'], ['medium', '🟡']].filter(([key]) => num(repo.snyk[key]) > 0).map(([key, icon]) => `<span class="mini-sev sev-${key}">${icon}${num(repo.snyk[key])}</span>`);
     return parts.length ? `<span class="mini-group">${parts.join('')}</span>` : `<span class="mini is-clean" title="No active security vulnerabilities found in Snyk scan">🛡️ Clean</span>`;
   })() : `<span class="mini is-muted" title="Snyk security scan data not available">🛡️ No scan</span>`;
-  const work = repo.workItems ? `<span class="mini" title="Active work items linked to this repository (PBIs, Bugs, Features and Epics). Completed items are excluded.">📋 ${num((repo.workItems.open || 0) + (repo.workItems.inProgress || 0) + (repo.workItems.committed || 0))} PBIs</span>` : '';
+  const work = repo.workItems ? `<span class="mini" title="Active work items for this repository: New, Approved, In progress and Committed. Counts every type (PBI, Bug, Feature, Epic); completed items are excluded.">📋 ${num(workItemTotal(repo.workItems))} PBIs</span>` : '';
   return `<div class="summary"><div class="sum-row">${ver}${pipes}${covChip}</div><div class="sum-row">${snyk}${work}<button type="button" class="card-toggle" aria-expanded="${open}" aria-controls="${bodyId}"><span class="toggle-text">${open ? 'Hide' : 'Details'}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>`;
 }
 

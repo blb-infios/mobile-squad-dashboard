@@ -73,6 +73,8 @@ const snykClient = axios.create({
   timeout: 30000
 });
 
+const WORK_ITEM_FIELDS = 'System.Title,System.State,System.WorkItemType,System.AssignedTo,System.CreatedDate';
+
 const apiParams = (extra = {}) => ({ 'api-version': ADO_API_VERSION, ...extra });
 const dollarTop = (value) => ({ [String.fromCharCode(36) + 'top']: value });
 
@@ -657,23 +659,120 @@ async function fetchSourceMetadata(repoId) {
 }
 
 /**
- * Bucket an Azure DevOps work-item state.
+ * Bucket an Azure DevOps work-item state into the four active Scrum states
+ * the dashboard reports, plus a 'done' bucket that callers discard.
  *
- * 'done' is a distinct bucket rather than being folded into 'committed'.
- * Work items reach the dashboard via build and pull-request links, and
- * anything linked to a merged build is finished by definition, so completed
- * items dominate the raw result. The dashboard reports active work only, so
- * fetchWorkItems() drops everything in the 'done' bucket.
- *
- * 'committed' therefore means the Scrum state Committed - work the team has
- * signed up for - and no longer doubles as a synonym for finished.
+ * Completed work is separated out rather than folded into 'committed' because
+ * work items arrive largely through build links, and anything linked to a
+ * merged build is finished by definition - without this split, finished work
+ * swamped the counts and read as current workload.
  */
 function classifyWorkItem(state) {
   const normalized = String(state || '').toLowerCase();
   if (['done', 'closed', 'resolved', 'completed', 'removed'].includes(normalized)) return 'done';
   if (['active', 'in progress', 'doing'].includes(normalized)) return 'inProgress';
-  if (['committed'].includes(normalized)) return 'committed';
-  return 'open';
+  if (normalized === 'committed') return 'committed';
+  if (normalized === 'approved') return 'approved';
+  return 'new';
+}
+
+const WORK_ITEM_STATES = ['new', 'approved', 'inProgress', 'committed'];
+const ADO_AREA_PATH = process.env.ADO_AREA_PATH || 'WES\\Mobile Squad';
+let activeBacklogCache = null;
+
+/**
+ * Fetch every active (non-completed) work item under the squad's area path.
+ *
+ * Build and pull-request links alone surface almost nothing: most active work
+ * is in the New state, has no commits yet, and is therefore invisible to a
+ * commit-derived lookup. Measured against this project, widening the build
+ * sample from 2 to 25 builds returned identical results, so the backlog has to
+ * be queried directly.
+ *
+ * Fetched once per run and reused across repositories.
+ */
+async function fetchActiveBacklog() {
+  if (activeBacklogCache) return activeBacklogCache;
+  activeBacklogCache = [];
+  try {
+    const wiql = {
+      query: `SELECT [System.Id] FROM WorkItems WHERE [System.AreaPath] UNDER '${ADO_AREA_PATH}'`
+        + " AND [System.State] NOT IN ('Done','Closed','Removed','Resolved')"
+    };
+    const queried = await adoClient.post('/wit/wiql', wiql, { params: apiParams() });
+    const ids = (queried.data?.workItems || []).map((item) => item.id).filter(Boolean);
+    for (let start = 0; start < ids.length; start += 200) {
+      const data = await optionalGet(
+        '/wit/workitems',
+        { params: apiParams({ ids: ids.slice(start, start + 200).join(','), fields: WORK_ITEM_FIELDS }) },
+        'Could not fetch active backlog details',
+        { value: [] }
+      );
+      (data.value || []).forEach((item) => activeBacklogCache.push(item));
+    }
+    console.log(`  🗂 Active backlog under ${ADO_AREA_PATH}: ${activeBacklogCache.length} items`);
+  } catch (error) {
+    warn(`Could not query active backlog for ${ADO_AREA_PATH}; falling back to build and PR links only`, error);
+  }
+  return activeBacklogCache;
+}
+
+/**
+ * Match backlog items to a repository by title.
+ *
+ * Azure DevOps has no field tying a work item to a repository, and the
+ * alternatives measured worse: work-item artifact relations resolve for only
+ * 5% of active items, and build links resolve for none on most repositories.
+ * Titles here routinely name the component - "[Snyk][HIGH][Koerber.Mobile.
+ * Capacitor.Logger] ..." - so the title is the strongest signal available.
+ *
+ * This is a heuristic: squad-level items that name no component (roughly
+ * seven in eight of the backlog) cannot be attributed to any repository and
+ * are intentionally left out rather than guessed at.
+ */
+const ALL_TRACKED_REPOS = Object.values(REPOSITORIES).flat();
+
+/** Display names shared by more than one tracked repository. KMP and Capacitor
+ *  both ship Beep, Printing and Vibrate, so those short names identify no
+ *  single repository and must not be used for attribution. */
+const AMBIGUOUS_DISPLAY_NAMES = new Set(
+  ALL_TRACKED_REPOS
+    .map((repo) => String(repo.displayName || '').toLowerCase())
+    .filter((name, index, names) => name && names.indexOf(name) !== index)
+);
+
+function componentPattern(value) {
+  const escaped = String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  // Treat dot, hyphen, underscore and space as interchangeable separators.
+  const loose = escaped.replace(/\\\./g, '[.\\-_ ]');
+  return new RegExp(`(^|[^a-z0-9])${loose}([^a-z0-9]|$)`, 'i');
+}
+
+function backlogItemsForRepository(backlog, repoDef, fullName) {
+  const ownFullNames = [fullName, repoDef?.name].filter(Boolean).map(String);
+  const ownPatterns = ownFullNames.map(componentPattern);
+
+  // Full names belonging to a *different* tracked repository. A title naming
+  // one of these is claimed by that repository alone, which stops the KMP
+  // Beep card from absorbing "[Snyk][HIGH][Koerber.Mobile.Capacitor.Beep]".
+  const otherPatterns = ALL_TRACKED_REPOS
+    .map((repo) => String(repo.name))
+    .filter((name) => !ownFullNames.some((own) => own.toLowerCase() === name.toLowerCase()))
+    .map(componentPattern);
+
+  const display = String(repoDef?.displayName || '');
+  const displayPattern = display && !AMBIGUOUS_DISPLAY_NAMES.has(display.toLowerCase())
+    ? componentPattern(display)
+    : null;
+
+  return (backlog || []).filter((item) => {
+    const title = String(item?.fields?.['System.Title'] || '');
+    if (!title) return false;
+    if (ownPatterns.some((pattern) => pattern.test(title))) return true;
+    // Another repository is named explicitly - leave the item to it.
+    if (otherPatterns.some((pattern) => pattern.test(title))) return false;
+    return displayPattern ? displayPattern.test(title) : false;
+  });
 }
 
 async function fetchWorkItemIds(repoId, pullRequests, builds) {
@@ -711,40 +810,56 @@ function workItemUrl(itemId, item) {
     : null);
 }
 
-async function fetchWorkItems(repoId, pullRequests, builds) {
-  const ids = await fetchWorkItemIds(repoId, pullRequests, builds);
-  const result = { open: 0, inProgress: 0, committed: 0, items: [], url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_queries` };
-  if (!ids.length) return result;
+async function fetchWorkItems(repoId, pullRequests, builds, repoDef, fullName) {
+  const result = {
+    new: 0,
+    approved: 0,
+    inProgress: 0,
+    committed: 0,
+    items: [],
+    url: `https://dev.azure.com/${ADO_ORG}/${ADO_PROJECT}/_queries`
+  };
 
-  for (let start = 0; start < ids.length; start += 200) {
-    const chunk = ids.slice(start, start + 200);
+  // Source 1: work items linked to recent builds and open pull requests.
+  const linkedIds = await fetchWorkItemIds(repoId, pullRequests, builds);
+  const linked = [];
+  for (let start = 0; start < linkedIds.length; start += 200) {
     const data = await optionalGet(
       '/wit/workitems',
-      { params: apiParams({ ids: chunk.join(','), fields: 'System.Title,System.State,System.WorkItemType,System.AssignedTo,System.CreatedDate' }) },
+      { params: apiParams({ ids: linkedIds.slice(start, start + 200).join(','), fields: WORK_ITEM_FIELDS }) },
       `Could not fetch work-item details for repository ${repoId}`,
       { value: [] }
     );
-    (data.value || []).forEach((item) => {
-      const fields = item.fields || {};
-      const state = fields['System.State'] || null;
-      const bucket = classifyWorkItem(state);
-      // Completed work is excluded entirely: the dashboard reports active
-      // work, and every work-item type (PBI, Bug, Feature, Epic) counts the
-      // same towards that total.
-      if (bucket === 'done') return;
-      result[bucket]++;
-      result.items.push({
-        id: item.id ?? null,
-        title: fields['System.Title'] || null,
-        type: fields['System.WorkItemType'] || null,
-        state,
-        assignedTo: fields['System.AssignedTo']?.displayName || fields['System.AssignedTo']?.uniqueName || fields['System.AssignedTo'] || null,
-        createdDate: fields['System.CreatedDate'] || null,
-        ageDays: ageInDays(fields['System.CreatedDate']),
-        url: workItemUrl(item.id, item)
-      });
-    });
+    (data.value || []).forEach((item) => linked.push(item));
   }
+
+  // Source 2: active backlog items whose title names this component.
+  const backlog = backlogItemsForRepository(await fetchActiveBacklog(), repoDef, fullName);
+
+  const seen = new Set();
+  [...linked, ...backlog].forEach((item) => {
+    if (item?.id == null || seen.has(item.id)) return;
+    const fields = item.fields || {};
+    const state = fields['System.State'] || null;
+    const bucket = classifyWorkItem(state);
+    // Completed work is excluded entirely. Every work-item type - PBI, Bug,
+    // Feature, Epic - counts the same towards the active total.
+    if (bucket === 'done') return;
+    seen.add(item.id);
+    result[bucket]++;
+    result.items.push({
+      id: item.id ?? null,
+      title: fields['System.Title'] || null,
+      type: fields['System.WorkItemType'] || null,
+      state,
+      assignedTo: fields['System.AssignedTo']?.displayName || fields['System.AssignedTo']?.uniqueName || fields['System.AssignedTo'] || null,
+      createdDate: fields['System.CreatedDate'] || null,
+      ageDays: ageInDays(fields['System.CreatedDate']),
+      url: workItemUrl(item.id, item)
+    });
+  });
+
+  result.items.sort((a, b) => WORK_ITEM_STATES.indexOf(classifyWorkItem(a.state)) - WORK_ITEM_STATES.indexOf(classifyWorkItem(b.state)));
   return result;
 }
 
@@ -1147,7 +1262,7 @@ function buildDataSources(repositories, snykState) {
   const hasPipelines = repositories.some((repo) => repo.pipelines?.ci || repo.pipelines?.release);
   const hasWorkItems = repositories.some((repo) => {
     const work = repo.workItems || {};
-    return work.open + work.inProgress + work.committed > 0;
+    return WORK_ITEM_STATES.some((state) => Number(work[state] || 0) > 0);
   });
   const hasArtifacts = repositories.some((repo) => repo.versions?.devFeed || repo.versions?.platformFeed);
   return {
@@ -1313,7 +1428,7 @@ async function aggregateData() {
       const [coverage, feedVersions, workItems, snyk] = await Promise.all([
         SKIP_COVERAGE ? null : fetchLatestCoverage(builds, category),
         fetchFeedVersions(metadata, category),
-        fetchWorkItems(repo.id, pullRequests, builds),
+        fetchWorkItems(repo.id, pullRequests, builds, repoDef, repo.name),
         fetchSnykData(snykProjects, snykIssues, { ...repoDef, fullName: repo.name, category, packageName: metadata.packages.npm || metadata.packages.maven })
       ]);
       const repoData = repositoryData(repoDef, repo, category, commit, pullRequests, metadata, feedVersions, pipelines, coverage, workItems, snyk);
@@ -1374,6 +1489,7 @@ module.exports = {
   classifyCoverageTarget,
   coverageTargetsFromModules,
   calculateReleaseReadiness,
+  backlogItemsForRepository,
   classifyWorkItem,
   createHistorySnapshot,
   emptySnyk,
