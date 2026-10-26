@@ -133,6 +133,83 @@ function coverageMetrics(totals) {
   };
 }
 
+/**
+ * Derive a platform bucket from a covered source-file name.
+ *
+ * Azure DevOps returns a single coverage record per build with an empty
+ * configuration.flavor/platform, and its "modules" are individual source
+ * files. Kotlin Multiplatform encodes the source set in the file name
+ * (Platform.android.kt, ReportFileSource.jvm.kt, BeepSoundAndroid.kt), and
+ * Capacitor plugins split by extension (.ts for web, .java for Android), so
+ * the file name is the only available platform signal.
+ *
+ * Two matching styles are used deliberately:
+ *   - dot-delimited suffixes are matched case-insensitively (Platform.ios.kt)
+ *   - bare suffixes require a CamelCase boundary on the original casing, so
+ *     "Scenarios.kt" is not mistaken for an iOS source file.
+ *
+ * Returns null when the file carries no platform signal at all.
+ */
+function classifyCoverageTarget(name) {
+  const file = String(name || '').trim();
+  if (!file) return null;
+
+  // Extension-only signals (Capacitor plugin sources).
+  if (/\.(ts|tsx|js|jsx|mjs|cjs)$/i.test(file)) return 'web';
+  if (/\.(swift|mm?|h)$/i.test(file)) return 'ios';
+  if (/\.java$/i.test(file)) return 'android';
+
+  // Dot-delimited Kotlin source-set suffixes: Platform.android.kt
+  const dotted = file.match(/\.(android|ios|apple|native|darwin|jvm|desktop|js|wasm|web|common)\.kts?$/i);
+  if (dotted) return normalizeCoverageTarget(dotted[1]);
+
+  // CamelCase suffixes on the original casing: BeepSoundAndroid.kt
+  const camel = file.match(/[a-z0-9](Android|IOS|Ios|Apple|Native|Darwin|Jvm|JVM|Desktop|Web|Wasm)\.kts?$/);
+  if (camel) return normalizeCoverageTarget(camel[1]);
+
+  // Plain Kotlin with no source-set marker: shared/common code.
+  if (/\.kts?$/i.test(file)) return 'common';
+  return null;
+}
+
+function normalizeCoverageTarget(token) {
+  const key = String(token).toLowerCase();
+  if (key === 'apple' || key === 'native' || key === 'darwin') return 'ios';
+  if (key === 'desktop') return 'jvm';
+  if (key === 'js' || key === 'wasm') return 'web';
+  return key;
+}
+
+/**
+ * Group covered source files into platform buckets.
+ * Returns null unless at least two distinct platforms are present, so a
+ * repository without a real split does not render a single row that merely
+ * restates the headline percentage.
+ */
+function coverageTargetsFromModules(modules) {
+  const buckets = new Map();
+  modules.forEach((module) => {
+    const target = classifyCoverageTarget(module?.name);
+    if (!target) return;
+    if (!buckets.has(target)) buckets.set(target, []);
+    buckets.get(target).push(module);
+  });
+  if (buckets.size < 2) return null;
+
+  const targets = {};
+  buckets.forEach((bucketModules, target) => {
+    const metrics = coverageMetrics(coverageTotals(bucketModules));
+    if (!metrics.lines.total && !metrics.blocks.total) return;
+    targets[target] = {
+      percent: metrics.lines.percent,
+      lines: metrics.lines,
+      blocks: metrics.blocks,
+      files: bucketModules.length
+    };
+  });
+  return Object.keys(targets).length > 1 ? targets : null;
+}
+
 function summarizeCoverage(data, buildId) {
   const records = Array.isArray(data?.value) ? data.value : [];
   const modules = records.flatMap((record) => Array.isArray(record?.modules) ? record.modules : []);
@@ -140,24 +217,34 @@ function summarizeCoverage(data, buildId) {
   const metrics = coverageMetrics(totals);
   if (!metrics.lines.total && !metrics.blocks.total) return null;
 
-  const targets = {};
+  // Preferred split: ADO sometimes labels each record with a build flavor or
+  // platform (configuration.flavor / configuration.platform). Most pipelines
+  // here leave both empty, so this only applies when the values are present.
+  const labelled = {};
   records.forEach((record) => {
-    const targetName = record?.label || record?.name || record?.targetName || record?.target;
-    if (!targetName) return;
+    const config = record?.configuration || {};
+    const targetName = record?.label || record?.name || record?.targetName || record?.target
+      || config.platform || config.flavor;
+    if (!targetName || !String(targetName).trim()) return;
     const targetModules = Array.isArray(record.modules) && record.modules.length ? record.modules : [record];
     const targetMetrics = coverageMetrics(coverageTotals(targetModules));
-    if (targetMetrics.lines.total || targetMetrics.blocks.total) targets[String(targetName)] = {
+    if (targetMetrics.lines.total || targetMetrics.blocks.total) labelled[String(targetName).trim()] = {
       percent: targetMetrics.lines.percent,
       lines: targetMetrics.lines,
       blocks: targetMetrics.blocks
     };
   });
 
+  // Fallback split: derive platforms from the covered source-file names.
+  const targets = Object.keys(labelled).length > 1
+    ? labelled
+    : coverageTargetsFromModules(modules);
+
   return {
     buildId,
     ...metrics,
     percent: metrics.lines.percent,
-    targets: Object.keys(targets).length ? targets : null,
+    targets,
     modules: modules.length
   };
 }
@@ -1263,6 +1350,8 @@ if (require.main === module) main();
 module.exports = {
   aggregateData,
   calculateHealth,
+  classifyCoverageTarget,
+  coverageTargetsFromModules,
   calculateReleaseReadiness,
   classifyWorkItem,
   createHistorySnapshot,

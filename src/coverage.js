@@ -53,7 +53,7 @@ async function probeCoverageShape(buildId) {
 
 async function writeCoverageDiagnostics(data) {
   const probes = [];
-  for (const repo of (data.repositories || []).slice(0, 6)) {
+  for (const repo of data.repositories || []) {
     const buildId = repo.coverage?.buildId || repo.pipelines?.ci?.buildId;
     if (!buildId) continue;
     try {
