@@ -255,6 +255,104 @@ function summarizeCoverage(data, buildId, framework) {
   };
 }
 
+let testAccessWarningShown = false;
+
+/**
+ * Aggregate Azure DevOps test runs for one build.
+ *
+ * A build publishes one test run per test class, so a single build routinely
+ * reports ten or more runs that have to be summed - Dex's 114 tests arrive as
+ * 10 separate runs. Run names carry a numeric suffix per class and a common
+ * prefix naming the suite ("Android Unit Tests_1", "JVM Unit Tests_2"), so
+ * stripping the suffix groups them back into meaningful suites.
+ *
+ * The /testresults/resultsummarybybuild endpoint returns 404 on this
+ * organisation, so the run list is the only source.
+ */
+function summarizeTestRuns(runs, buildId) {
+  const completed = (Array.isArray(runs) ? runs : []).filter((run) => Number(run?.totalTests) > 0);
+  if (!completed.length) return null;
+
+  const totals = completed.reduce((summary, run) => {
+    const total = Number(run.totalTests || 0);
+    const passed = Number(run.passedTests || 0);
+    const notApplicable = Number(run.notApplicableTests || 0);
+    const incomplete = Number(run.incompleteTests || 0);
+    const unanalyzed = Number(run.unanalyzedTests || 0);
+    // Azure DevOps reports failures as unanalyzedTests. Fall back to the
+    // arithmetic remainder so a run that populates neither still reconciles.
+    const failed = unanalyzed > 0 ? unanalyzed : Math.max(0, total - passed - notApplicable - incomplete);
+    summary.total += total;
+    summary.passed += passed;
+    summary.failed += failed;
+    summary.skipped += notApplicable + incomplete;
+    return summary;
+  }, { total: 0, passed: 0, failed: 0, skipped: 0 });
+
+  const suites = {};
+  completed.forEach((run) => {
+    const suite = String(run.name || 'Tests').replace(/[_\s]*\d+$/, '').trim() || 'Tests';
+    const entry = suites[suite] || (suites[suite] = { total: 0, passed: 0, failed: 0, skipped: 0, runs: 0 });
+    const total = Number(run.totalTests || 0);
+    const passed = Number(run.passedTests || 0);
+    const notApplicable = Number(run.notApplicableTests || 0);
+    const incomplete = Number(run.incompleteTests || 0);
+    const unanalyzed = Number(run.unanalyzedTests || 0);
+    entry.total += total;
+    entry.passed += passed;
+    entry.failed += unanalyzed > 0 ? unanalyzed : Math.max(0, total - passed - notApplicable - incomplete);
+    entry.skipped += notApplicable + incomplete;
+    entry.runs++;
+  });
+
+  return {
+    buildId,
+    ...totals,
+    passRate: totals.total ? (totals.passed / totals.total) * 100 : null,
+    runCount: completed.length,
+    suites: Object.keys(suites).length ? suites : null
+  };
+}
+
+async function fetchBuildTestResults(buildId) {
+  if (!buildId) return null;
+  try {
+    const data = await adoClient.get('/test/runs', {
+      params: { buildUri: `vstfs:///Build/Build/${buildId}`, 'api-version': '7.0' }
+    });
+    return summarizeTestRuns(data.data?.value, buildId);
+  } catch (error) {
+    if (!testAccessWarningShown) {
+      warn(`Test results unavailable for build ${buildId}; add Test Management: Read to ADO_PAT`, error);
+      testAccessWarningShown = true;
+    }
+    return null;
+  }
+}
+
+/**
+ * Find the most recent build that actually published test results.
+ * Several pipelines publish them only on PR builds, so the latest CI build
+ * frequently reports nothing and earlier builds have to be tried.
+ */
+async function fetchLatestTestResults(builds) {
+  const candidates = [...(builds || [])]
+    .sort((a, b) => Date.parse(b.finishTime || b.startTime || 0) - Date.parse(a.finishTime || a.startTime || 0))
+    .slice(0, 10);
+  for (const build of candidates) {
+    const tests = await fetchBuildTestResults(build.id);
+    if (tests) {
+      const runUrl = buildUrl(build);
+      return {
+        ...tests,
+        timestamp: build.finishTime || build.startTime || null,
+        url: runUrl ? `${runUrl}${runUrl.includes('?') ? '&' : '?'}view=ms.vss-test-web.build-test-results-tab` : null
+      };
+    }
+  }
+  return null;
+}
+
 async function fetchBuildCoverage(buildId, framework) {
   if (!buildId) return null;
   try {
@@ -1495,6 +1593,7 @@ module.exports = {
   emptySnyk,
   fetchBuildCoverage,
   fetchLatestCoverage,
+  fetchLatestTestResults,
   fetchSnykData,
   fetchSnykIssues,
   fetchSnykProjects,
