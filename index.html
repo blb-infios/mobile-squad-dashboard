@@ -1038,6 +1038,42 @@ function renderCoverage(coverage) {
   return section('📊 Code coverage', c.url ? extLink(c.url, 'View report', 'Open code coverage report') : '', `<div class="cov-top"><span class="cov-big ${cov.level}">${fmtPct(cov.pct)}%</span><span class="cov-note ${cov.level}">${esc(verdict)}</span></div><div class="bar" role="progressbar" aria-label="Overall code coverage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${fmtPct(cov.pct)}"><span class="bar-fill ${cov.level}" style="width:${cov.pct}%"></span><span class="bar-mark" style="left:${cov.threshold}%" title="Threshold ${fmtPct(cov.threshold)}%"></span></div>${coverageSparkline(c.history, cov.threshold)}${targets ? `<ul class="cov-targets">${targets}</ul>` : ''}<p class="scan-meta cov-meta"><span>🕒 Last run: ${timeEl(c.lastRun || c.timestamp)}</span>${lines ? `<span>📄 ${esc(lines)}</span>` : ''}${c.modules ? `<span>📦 ${num(c.modules)} modules</span>` : ''}</p>`);
 }
 
+/* Test results. Suite rows reuse the coverage-target styling so no new CSS is
+   needed - a suite is the run-name prefix Azure DevOps assigns, which on KMP
+   repositories splits naturally into Android / JVM / Desktop. */
+function renderTests(t) {
+  if (!t) return section('🔬 Tests', '', '<p class="empty-note">No published test results</p>');
+  const rate = Number(t.passRate);
+  const level = !Number.isFinite(rate) ? 'idle' : t.failed > 0 ? 'bad' : rate >= 100 ? 'ok' : 'warn';
+  const tiles = [
+    ['🧾', 'Total', t.total, ''],
+    ['✅', 'Passed', t.passed, t.passed > 0 ? 'is-clean' : 'zero'],
+    ['❌', 'Failed', t.failed, t.failed > 0 ? 'sev-critical' : 'zero'],
+    ['⏭️', 'Skipped', t.skipped, t.skipped > 0 ? 'sev-low' : 'zero']
+  ].map(([icon, label, n, cls]) =>
+    `<li class="tile ${cls}" aria-label="${num(n)} ${label}"><span class="num">${num(n)}</span>
+      <span class="lbl"><span aria-hidden="true">${icon}</span> ${label}</span></li>`).join('');
+
+  const suites = Object.entries(t.suites || {})
+    .sort(([, a], [, b]) => b.total - a.total)
+    .map(([name, s]) => {
+      const pct = s.total ? (s.passed / s.total) * 100 : 0;
+      const lvl = s.failed > 0 ? 'bad' : pct >= 100 ? 'ok' : 'warn';
+      const detail = `${s.passed} passed${s.failed ? `, ${s.failed} failed` : ''}${s.skipped ? `, ${s.skipped} skipped` : ''} across ${s.runs} run${s.runs === 1 ? '' : 's'}`;
+      return `<li class="cov-target" title="${esc(name)}: ${esc(detail)}"><span class="t-name">${esc(name)}</span><span class="bar bar-sm"><span class="bar-fill ${lvl}" style="width:${pct}%"></span></span><span class="t-val ${lvl}">${s.passed}/${s.total}</span></li>`;
+    }).join('');
+
+  const bar = Number.isFinite(rate)
+    ? `<div class="bar" role="progressbar" aria-label="Test pass rate" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${fmtPct(rate)}"><span class="bar-fill ${level}" style="width:${Math.min(100, Math.max(0, rate))}%"></span></div>`
+    : '';
+
+  return section('🔬 Tests', t.url ? extLink(t.url, 'View results', 'Open test results in Azure DevOps') : '',
+    `<div class="cov-top"><span class="cov-big ${level}">${Number.isFinite(rate) ? `${fmtPct(rate)}%` : '—'}</span><span class="cov-note ${level}">${t.failed > 0 ? `${num(t.failed)} failing` : 'all passing'}</span></div>${bar}
+     <ul class="tiles four" style="margin-top:10px">${tiles}</ul>
+     ${suites ? `<ul class="cov-targets">${suites}</ul>` : ''}
+     <p class="scan-meta cov-meta"><span>🕒 Last run: ${timeEl(t.timestamp)}</span><span>📦 ${num(t.runCount)} test run${t.runCount === 1 ? '' : 's'}</span></p>`);
+}
+
 function renderSnyk(s) {
   if (!s) return section('🛡️ Security (Snyk)', '', '<p class="empty-note">No scan data</p>');
   const sev = [
@@ -1149,7 +1185,14 @@ function renderSummary(repo, open, bodyId, name) {
   })() : `<span class="mini is-muted" title="Snyk security scan data not available">🛡️ No scan</span>`;
   const work = repo.workItems ? `<span class="mini" title="Active work items for this repository: New, Approved, In progress and Committed. Counts every type (PBI, Bug, Feature, Epic); completed items are excluded.">📋 ${num(workItemTotal(repo.workItems))} PBIs</span>` : '';
   const prs = stalePullRequest(repo);
-  return `<div class="summary"><div class="sum-row">${ver}${pipes}${covChip}</div><div class="sum-row">${snyk}${work}${prs}<button type="button" class="card-toggle" aria-expanded="${open}" aria-controls="${bodyId}"><span class="toggle-text">${open ? 'Hide' : 'Details'}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>`;
+  const tests = repo.tests ? (() => {
+    const t = repo.tests, failing = Number(t.failed) > 0;
+    const cls = failing ? 'pipe-bad' : 'is-clean';
+    const text = failing ? `${num(t.failed)}/${num(t.total)} failed` : `${num(t.total)} tests`;
+    const title = `${num(t.passed)} passed, ${num(t.failed)} failed, ${num(t.skipped)} skipped across ${num(t.runCount)} test run(s). Published by the pipeline; repositories without a PublishTestResults task show nothing.`;
+    return `<span class="mini ${cls}" title="${esc(title)}">${failing ? '\u274c' : '\u2705'} ${esc(text)}</span>`;
+  })() : '';
+  return `<div class="summary"><div class="sum-row">${ver}${pipes}${covChip}${tests}</div><div class="sum-row">${snyk}${work}${prs}<button type="button" class="card-toggle" aria-expanded="${open}" aria-controls="${bodyId}"><span class="toggle-text">${open ? 'Hide' : 'Details'}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>`;
 }
 
 function renderCard({ repo, ev }, index) {
@@ -1181,6 +1224,7 @@ function renderCard({ repo, ev }, index) {
       ${renderVersions(repo.versions)}
       ${renderPipelines(repo.pipelines)}
       ${renderCoverage(repo.coverage)}
+      ${renderTests(repo.tests)}
       ${renderSnyk(repo.snyk)}
       ${renderWorkItems(repo.workItems)}
       ${renderFooter(repo)}
@@ -1228,7 +1272,7 @@ function renderStats(items) {
 
 function renderInsights(data) {
   const sources = data.dataSources || {};
-  const sourceLabels = { repositories: 'Repositories', sourceCode: 'Source code', pipelines: 'Pipelines', coverage: 'Code coverage', artifacts: 'Package feeds', workItems: 'Work items', snyk: 'Snyk' };
+  const sourceLabels = { repositories: 'Repositories', sourceCode: 'Source code', pipelines: 'Pipelines', coverage: 'Code coverage', tests: 'Test results', artifacts: 'Package feeds', workItems: 'Work items', snyk: 'Snyk' };
   const sourceRows = Object.entries(sourceLabels).map(([key, label]) => {
     const status = sources[key]?.status || 'unknown';
     const cls = status === 'connected' ? 'source-ok' : status === 'noData' ? 'source-muted' : 'source-bad';
@@ -1295,7 +1339,7 @@ function openRepoDetail(repo, fromHash = false) {
   els.detailTitle.textContent = repo.fullName || repo.name || 'Repository details';
   const overview = `<section class="section"><div class="section-head"><h3>Overview</h3>${readinessBadge(repo)}</div>${repo.owner ? `<p class="empty-note">Owner: ${esc(repo.owner)}</p>` : ''}${repo.description ? `<p class="empty-note">${esc(repo.description)}</p>` : ''}<p class="empty-note">${esc((repo.releaseReadiness?.reasons || ['All release checks passed']).join('. '))}</p></section>`;
   const raw = `<details class="section"><summary>Raw data (JSON)</summary><pre>${esc(JSON.stringify(repo, null, 2))}</pre></details>`;
-  els.detailBody.innerHTML = `${overview}${renderVersions(repo.versions)}${renderCoverage(repo.coverage)}${renderCoverageDetails(repo.coverage)}${renderPipelines(repo.pipelines)}${renderPipelineHistory(repo)}${renderSnyk(repo.snyk)}${renderWorkItems(repo.workItems)}${renderOptionalDetailTables(repo)}${renderPullRequests(repo)}${renderFooter(repo)}${raw}<div class="body-actions"><button type="button" class="btn btn-sm" data-copy-detail-link>🔗 Copy link</button></div>`;
+  els.detailBody.innerHTML = `${overview}${renderVersions(repo.versions)}${renderCoverage(repo.coverage)}${renderCoverageDetails(repo.coverage)}${renderTests(repo.tests)}${renderPipelines(repo.pipelines)}${renderPipelineHistory(repo)}${renderSnyk(repo.snyk)}${renderWorkItems(repo.workItems)}${renderOptionalDetailTables(repo)}${renderPullRequests(repo)}${renderFooter(repo)}${raw}<div class="body-actions"><button type="button" class="btn btn-sm" data-copy-detail-link>🔗 Copy link</button></div>`;
   const hash = `#repo=${encodeURIComponent(repo.fullName || repo.name)}`;
   if (!fromHash && location.hash !== hash) history.pushState({ detail: hash }, '', hash);
   if (typeof els.dialog.showModal === 'function' && !els.dialog.open) els.dialog.showModal();
