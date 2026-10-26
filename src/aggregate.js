@@ -150,11 +150,11 @@ function coverageMetrics(totals) {
  *
  * Returns null when the file carries no platform signal at all.
  */
-function classifyCoverageTarget(name) {
+function classifyCoverageTarget(name, framework) {
   const file = String(name || '').trim();
   if (!file) return null;
 
-  // Extension-only signals (Capacitor plugin sources).
+  // Extension-only signals.
   if (/\.(ts|tsx|js|jsx|mjs|cjs)$/i.test(file)) return 'web';
   if (/\.(swift|mm?|h)$/i.test(file)) return 'ios';
   if (/\.java$/i.test(file)) return 'android';
@@ -167,8 +167,12 @@ function classifyCoverageTarget(name) {
   const camel = file.match(/[a-z0-9](Android|IOS|Ios|Apple|Native|Darwin|Jvm|JVM|Desktop|Web|Wasm)\.kts?$/);
   if (camel) return normalizeCoverageTarget(camel[1]);
 
-  // Plain Kotlin with no source-set marker: shared/common code.
-  if (/\.kts?$/i.test(file)) return 'common';
+  // Plain Kotlin with no source-set marker. A Capacitor plugin has no shared
+  // Kotlin source set at all - its Kotlin lives in android/src - so these are
+  // Android sources. Only KMP genuinely has common Kotlin.
+  if (/\.kts?$/i.test(file)) {
+    return String(framework || '').toLowerCase() === 'capacitor' ? 'android' : 'common';
+  }
   return null;
 }
 
@@ -186,10 +190,10 @@ function normalizeCoverageTarget(token) {
  * repository without a real split does not render a single row that merely
  * restates the headline percentage.
  */
-function coverageTargetsFromModules(modules) {
+function coverageTargetsFromModules(modules, framework) {
   const buckets = new Map();
   modules.forEach((module) => {
-    const target = classifyCoverageTarget(module?.name);
+    const target = classifyCoverageTarget(module?.name, framework);
     if (!target) return;
     if (!buckets.has(target)) buckets.set(target, []);
     buckets.get(target).push(module);
@@ -210,7 +214,7 @@ function coverageTargetsFromModules(modules) {
   return Object.keys(targets).length > 1 ? targets : null;
 }
 
-function summarizeCoverage(data, buildId) {
+function summarizeCoverage(data, buildId, framework) {
   const records = Array.isArray(data?.value) ? data.value : [];
   const modules = records.flatMap((record) => Array.isArray(record?.modules) ? record.modules : []);
   const totals = coverageTotals(modules);
@@ -238,7 +242,7 @@ function summarizeCoverage(data, buildId) {
   // Fallback split: derive platforms from the covered source-file names.
   const targets = Object.keys(labelled).length > 1
     ? labelled
-    : coverageTargetsFromModules(modules);
+    : coverageTargetsFromModules(modules, framework);
 
   return {
     buildId,
@@ -249,13 +253,13 @@ function summarizeCoverage(data, buildId) {
   };
 }
 
-async function fetchBuildCoverage(buildId) {
+async function fetchBuildCoverage(buildId, framework) {
   if (!buildId) return null;
   try {
     const data = await adoClient.get('/test/codecoverage', {
       params: { buildId, flags: 7, 'api-version': '7.0' }
     });
-    return summarizeCoverage(data.data, buildId);
+    return summarizeCoverage(data.data, buildId, framework);
   } catch (error) {
     if (!coverageAccessWarningShown) {
       warn(`Code coverage unavailable for build ${buildId}; add Test Management: Read to ADO_PAT`, error);
@@ -280,14 +284,14 @@ function coverageSnapshot(coverage, build) {
   };
 }
 
-async function fetchLatestCoverage(builds) {
+async function fetchLatestCoverage(builds, framework) {
   const candidates = [...(builds || [])]
     .filter((build) => !isReleaseBuild(build))
     .sort((a, b) => Date.parse(b.finishTime || b.startTime || 0) - Date.parse(a.finishTime || a.startTime || 0))
     .slice(0, 10);
   const snapshots = [];
   for (const build of candidates) {
-    const coverage = await fetchBuildCoverage(build.id);
+    const coverage = await fetchBuildCoverage(build.id, framework);
     if (coverage) snapshots.push(coverageSnapshot(coverage, build));
   }
   const latest = snapshots[0];
@@ -1290,7 +1294,7 @@ async function aggregateData() {
       ]);
       const pipelines = pipelinesFromBuilds(builds);
       const [coverage, feedVersions, workItems, snyk] = await Promise.all([
-        SKIP_COVERAGE ? null : fetchLatestCoverage(builds),
+        SKIP_COVERAGE ? null : fetchLatestCoverage(builds, category),
         fetchFeedVersions(metadata, category),
         fetchWorkItems(repo.id, pullRequests, builds),
         fetchSnykData(snykProjects, snykIssues, { ...repoDef, fullName: repo.name, category, packageName: metadata.packages.npm || metadata.packages.maven })
