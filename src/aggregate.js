@@ -41,7 +41,8 @@ const REPOSITORIES = {
     { name: 'Koerber.Mobile.Kotlin.BarcodeScanning',  displayName: 'Scanner' },
     { name: 'Koerber.Mobile.Kotlin.Printing',          displayName: 'Printing' },
     { name: 'Koerber.Mobile.Kotlin.Beep',              displayName: 'Beep' },
-    { name: 'Koerber.Mobile.Kotlin.Vibrate',           displayName: 'Vibrate' }
+    { name: 'Koerber.Mobile.Kotlin.Vibrate',           displayName: 'Vibrate' },
+    { name: 'Koerber.Mobile.Kotlin.MDMReader',         displayName: 'MDM Reader' }
   ],
   capacitor: [
     { name: 'Koerber.Mobile.Capacitor.K1Authorization', displayName: 'K1Authorization' },
