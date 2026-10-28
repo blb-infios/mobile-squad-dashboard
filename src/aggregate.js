@@ -42,7 +42,16 @@ const REPOSITORIES = {
     { name: 'Koerber.Mobile.Kotlin.Printing',          displayName: 'Printing' },
     { name: 'Koerber.Mobile.Kotlin.Beep',              displayName: 'Beep' },
     { name: 'Koerber.Mobile.Kotlin.Vibrate',           displayName: 'Vibrate' },
-    { name: 'Koerber.Mobile.Kotlin.MDMReader',         displayName: 'MDM Reader' }
+    { name: 'Koerber.Mobile.Kotlin.MDMReader',         displayName: 'MDM Reader' },
+    { name: 'Koerber.Mobile.Kotlin.DocScanning',       displayName: 'Doc Scanning' },
+    { name: 'Koerber.Mobile.Kotlin.ImageCapture',      displayName: 'Image Capture' },
+    { name: 'Koerber.Mobile.Kotlin.SignatureCapture',  displayName: 'Signature Capture' },
+    { name: 'Koerber.Mobile.Kotlin.ObjectDetection',   displayName: 'Object Detection' },
+    { name: 'Koerber.Mobile.Kotlin.Luak',              displayName: 'Luak' },
+    { name: 'Koerber.Mobile.Kotlin.UtilityApp',        displayName: 'Utility App' },
+    // Dormant: last commit 272 days ago. Tracked so the staleness is visible
+    // rather than invisible; drop it if the component is retired.
+    { name: 'Koerber.Mobile.Kotlin.DynaTrace',         displayName: 'DynaTrace' }
   ],
   capacitor: [
     { name: 'Koerber.Mobile.Capacitor.K1Authorization', displayName: 'K1Authorization' },
@@ -51,10 +60,18 @@ const REPOSITORIES = {
     { name: 'Koerber.Mobile.Capacitor.Logger',          displayName: 'Logger' },
     { name: 'Koerber.Mobile.Capacitor.Beep',            displayName: 'Beep' },
     { name: 'Koerber.Mobile.Capacitor.MDMReader',       displayName: 'MDM Reader' },
-    { name: 'Koerber.Mobile.Capacitor.Vibrate',         displayName: 'Vibrate' }
+    { name: 'Koerber.Mobile.Capacitor.Vibrate',         displayName: 'Vibrate' },
+    { name: 'Koerber.Mobile.Capacitor.UtilityApp',      displayName: 'Utility App' },
+    // Yields no data: Azure DevOps reports size 0, source listing returns 404
+    // on every branch tried, and no build has ever run. Tracked so the empty
+    // state is visible rather than the repository being silently absent, but
+    // it will render a blank card and log a 404 each run. Remove it if the
+    // repository is abandoned rather than merely unstarted.
+    { name: 'Koerber.Mobile.Capacitor.WorkProfileManager', displayName: 'Work Profile Manager' }
   ],
   security: [
-    { name: 'MobileToolKit.Maintenance', displayName: 'Security Automation' }
+    { name: 'MobileToolKit.Maintenance',        displayName: 'Security Automation' },
+    { name: 'Koerber.Mobile.Security.Processes', displayName: 'Security Processes' }
   ]
 };
 
