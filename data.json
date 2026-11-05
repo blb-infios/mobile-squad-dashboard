@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-04T18:50:27.844Z",
-  "lastUpdated": "2026-11-04T18:50:27.844Z",
+  "generatedAt": "2026-11-05T00:53:20.210Z",
+  "lastUpdated": "2026-11-05T00:53:20.210Z",
   "summary": {
     "total": 25,
     "healthy": 20,
@@ -304,7 +304,7 @@
                 "state": "New",
                 "assignedTo": null,
                 "createdDate": "2026-02-27T19:22:43.247Z",
-                "ageDays": 249,
+                "ageDays": 250,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/429995"
               },
               {
@@ -314,7 +314,7 @@
                 "state": "New",
                 "assignedTo": null,
                 "createdDate": "2026-02-27T20:52:44.19Z",
-                "ageDays": 249,
+                "ageDays": 250,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/430030"
               },
               {
@@ -324,7 +324,7 @@
                 "state": "New",
                 "assignedTo": null,
                 "createdDate": "2026-02-27T20:54:30.887Z",
-                "ageDays": 249,
+                "ageDays": 250,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/430031"
               },
               {
@@ -334,7 +334,7 @@
                 "state": "New",
                 "assignedTo": null,
                 "createdDate": "2026-02-27T20:55:43.83Z",
-                "ageDays": 249,
+                "ageDays": 250,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/430033"
               },
               {
@@ -1424,7 +1424,7 @@
                 "state": "Approved",
                 "assignedTo": null,
                 "createdDate": "2026-07-01T23:24:23.113Z",
-                "ageDays": 125,
+                "ageDays": 126,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/475823"
               },
               {
@@ -6357,7 +6357,7 @@
               "author": "Marcus Choi",
               "status": "active",
               "createdDate": "2026-09-17T22:22:09.728445Z",
-              "ageDays": 47,
+              "ageDays": 48,
               "isDraft": false,
               "reviewers": [
                 {
@@ -9898,7 +9898,7 @@
             "state": "New",
             "assignedTo": null,
             "createdDate": "2026-02-27T19:22:43.247Z",
-            "ageDays": 249,
+            "ageDays": 250,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/429995"
           },
           {
@@ -9908,7 +9908,7 @@
             "state": "New",
             "assignedTo": null,
             "createdDate": "2026-02-27T20:52:44.19Z",
-            "ageDays": 249,
+            "ageDays": 250,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/430030"
           },
           {
@@ -9918,7 +9918,7 @@
             "state": "New",
             "assignedTo": null,
             "createdDate": "2026-02-27T20:54:30.887Z",
-            "ageDays": 249,
+            "ageDays": 250,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/430031"
           },
           {
@@ -9928,7 +9928,7 @@
             "state": "New",
             "assignedTo": null,
             "createdDate": "2026-02-27T20:55:43.83Z",
-            "ageDays": 249,
+            "ageDays": 250,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/430033"
           },
           {
@@ -11022,7 +11022,7 @@
             "state": "Approved",
             "assignedTo": null,
             "createdDate": "2026-07-01T23:24:23.113Z",
-            "ageDays": 125,
+            "ageDays": 126,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/475823"
           },
           {
@@ -15975,7 +15975,7 @@
           "author": "Marcus Choi",
           "status": "active",
           "createdDate": "2026-09-17T22:22:09.728445Z",
-          "ageDays": 47,
+          "ageDays": 48,
           "isDraft": false,
           "reviewers": [
             {
@@ -19239,35 +19239,35 @@
   "dataSources": {
     "repositories": {
       "status": "connected",
-      "checkedAt": "2026-11-04T18:51:01.386Z"
+      "checkedAt": "2026-11-05T00:53:48.586Z"
     },
     "sourceCode": {
       "status": "connected",
-      "checkedAt": "2026-11-04T18:51:01.386Z"
+      "checkedAt": "2026-11-05T00:53:48.586Z"
     },
     "pipelines": {
       "status": "connected",
-      "checkedAt": "2026-11-04T18:51:01.386Z"
+      "checkedAt": "2026-11-05T00:53:48.586Z"
     },
     "artifacts": {
       "status": "connected",
-      "checkedAt": "2026-11-04T18:51:01.386Z"
+      "checkedAt": "2026-11-05T00:53:48.586Z"
     },
     "coverage": {
       "status": "connected",
-      "checkedAt": "2026-11-04T18:51:23.923Z"
+      "checkedAt": "2026-11-05T00:54:07.008Z"
     },
     "workItems": {
       "status": "connected",
-      "checkedAt": "2026-11-04T18:51:01.386Z"
+      "checkedAt": "2026-11-05T00:53:48.586Z"
     },
     "snyk": {
       "status": "connected",
-      "checkedAt": "2026-11-04T18:51:50.853Z"
+      "checkedAt": "2026-11-05T00:54:34.676Z"
     },
     "tests": {
       "status": "connected",
-      "checkedAt": "2026-11-04T18:51:23.923Z"
+      "checkedAt": "2026-11-05T00:54:07.008Z"
     }
   },
   "history": [
@@ -213284,7 +213284,7 @@
       ]
     },
     {
-      "timestamp": "2026-11-04T18:50:27.844Z",
+      "timestamp": "2026-11-05T00:53:20.210Z",
       "summary": {
         "total": 25,
         "healthy": 20,
