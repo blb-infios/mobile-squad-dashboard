@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-19T00:04:41.164Z",
-  "lastUpdated": "2026-11-19T00:04:41.164Z",
+  "generatedAt": "2026-11-19T15:29:58.411Z",
+  "lastUpdated": "2026-11-19T15:29:58.411Z",
   "summary": {
     "total": 25,
-    "healthy": 22,
+    "healthy": 20,
     "warning": 1,
-    "unhealthy": 1,
+    "unhealthy": 3,
     "unknown": 1
   },
   "categories": [
@@ -765,7 +765,7 @@
                 "state": "Committed",
                 "assignedTo": "Vijay Masal",
                 "createdDate": "2026-11-04T01:14:59.087Z",
-                "ageDays": 14,
+                "ageDays": 15,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/511752"
               }
             ],
@@ -792,7 +792,7 @@
               "author": "Vijay Masal",
               "status": "active",
               "createdDate": "2026-11-18T15:24:38.7158382Z",
-              "ageDays": 0,
+              "ageDays": 1,
               "isDraft": false,
               "reviewers": [
                 {
@@ -1043,7 +1043,7 @@
                 "state": "Acknowledged",
                 "assignedTo": "Roger Cormier",
                 "createdDate": "2026-10-08T15:07:25.86Z",
-                "ageDays": 41,
+                "ageDays": 42,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/503946"
               },
               {
@@ -1053,7 +1053,7 @@
                 "state": "Acknowledged",
                 "assignedTo": "Roger Cormier",
                 "createdDate": "2026-10-19T14:23:43.127Z",
-                "ageDays": 30,
+                "ageDays": 31,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/507139"
               }
             ],
@@ -1602,29 +1602,8 @@
             "new": 0,
             "approved": 0,
             "inProgress": 0,
-            "committed": 2,
-            "items": [
-              {
-                "id": 512348,
-                "title": "POC 1: Android Test DPC Enrollment & MDM Policy Enforcement",
-                "type": "Product Backlog Item",
-                "state": "Committed",
-                "assignedTo": "Bhargav L",
-                "createdDate": "2026-11-05T12:34:00.04Z",
-                "ageDays": 13,
-                "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/512348"
-              },
-              {
-                "id": 512350,
-                "title": "POC 3: PIN-Gated Cryptographic Operations (Local Authentication)",
-                "type": "Product Backlog Item",
-                "state": "Committed",
-                "assignedTo": "Bhargav L",
-                "createdDate": "2026-11-05T12:34:32.597Z",
-                "ageDays": 13,
-                "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/512350"
-              }
-            ],
+            "committed": 0,
+            "items": [],
             "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
           },
           "lastBuild": {
@@ -2036,7 +2015,7 @@
                 "state": "New",
                 "assignedTo": null,
                 "createdDate": "2026-02-27T13:44:53.187Z",
-                "ageDays": 264,
+                "ageDays": 265,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/429898"
               },
               {
@@ -2046,7 +2025,7 @@
                 "state": "New",
                 "assignedTo": null,
                 "createdDate": "2026-02-27T13:45:53.557Z",
-                "ageDays": 264,
+                "ageDays": 265,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/429899"
               },
               {
@@ -2056,7 +2035,7 @@
                 "state": "New",
                 "assignedTo": null,
                 "createdDate": "2026-02-27T13:47:54.7Z",
-                "ageDays": 264,
+                "ageDays": 265,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/429900"
               },
               {
@@ -2066,7 +2045,7 @@
                 "state": "New",
                 "assignedTo": null,
                 "createdDate": "2026-02-27T13:49:05.107Z",
-                "ageDays": 264,
+                "ageDays": 265,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/429902"
               }
             ],
@@ -2584,7 +2563,7 @@
               "author": "Marcus Choi",
               "status": "active",
               "createdDate": "2026-10-23T07:15:17.0696464Z",
-              "ageDays": 26,
+              "ageDays": 27,
               "isDraft": true,
               "reviewers": [
                 {
@@ -2816,18 +2795,18 @@
           },
           "workItems": {
             "new": 0,
-            "approved": 1,
+            "approved": 0,
             "inProgress": 0,
-            "committed": 0,
+            "committed": 1,
             "items": [
               {
                 "id": 513098,
                 "title": "[Snyk][HIGH][Koerber.Mobile.Kotlin.UtilityApp] 2 security vulnerabilities",
                 "type": "Bug",
-                "state": "Approved",
+                "state": "Committed",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-11-07T11:01:23.713Z",
-                "ageDays": 11,
+                "ageDays": 12,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/513098"
               }
             ],
@@ -2854,7 +2833,7 @@
               "author": "Bhargav L",
               "status": "active",
               "createdDate": "2026-11-17T12:39:24.1640646Z",
-              "ageDays": 1,
+              "ageDays": 2,
               "isDraft": false,
               "reviewers": [],
               "approvalState": null,
@@ -2868,7 +2847,7 @@
               "author": "Bhargav L",
               "status": "active",
               "createdDate": "2026-11-13T14:49:26.9380982Z",
-              "ageDays": 5,
+              "ageDays": 6,
               "isDraft": false,
               "reviewers": [],
               "approvalState": null,
@@ -2909,7 +2888,7 @@
               "author": "Vijay Masal",
               "status": "active",
               "createdDate": "2026-08-28T10:12:08.135127Z",
-              "ageDays": 82,
+              "ageDays": 83,
               "isDraft": false,
               "reviewers": [
                 {
@@ -3306,9 +3285,9 @@
           "name": "Printing",
           "fullName": "Koerber.Mobile.Capacitor.Printing",
           "health": {
-            "status": "warning",
-            "label": "Warning",
-            "color": "#ffc107"
+            "status": "unhealthy",
+            "label": "Unhealthy",
+            "color": "#dc3545"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing",
           "platforms": [
@@ -3331,16 +3310,34 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Printing",
-              "buildId": 542007,
-              "status": "succeeded",
-              "lastRun": "2026-10-14T13:04:47.4964824Z",
-              "duration": "12m 5s",
+              "buildId": 566288,
+              "status": "failed",
+              "lastRun": "2026-11-19T15:17:02.9182793Z",
+              "duration": "9m 48s",
               "branch": "develop",
-              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007",
-              "successRate": 100,
-              "failedRuns": 0,
-              "totalRuns": 5,
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566288",
+              "successRate": 85.71428571428571,
+              "failedRuns": 1,
+              "totalRuns": 7,
               "history": [
+                {
+                  "name": "Koerber.Mobile.Capacitor.Printing",
+                  "buildId": 566288,
+                  "status": "failed",
+                  "lastRun": "2026-11-19T15:17:02.9182793Z",
+                  "duration": "9m 48s",
+                  "branch": "develop",
+                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566288"
+                },
+                {
+                  "name": "Koerber.Mobile.Capacitor.Printing",
+                  "buildId": 566286,
+                  "status": "succeeded",
+                  "lastRun": "2026-11-19T15:15:43.3080787Z",
+                  "duration": "9m 1s",
+                  "branch": "feature/VM_515434_snyk_org_json_vulnerability",
+                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566286"
+                },
                 {
                   "name": "Koerber.Mobile.Capacitor.Printing",
                   "buildId": 542007,
@@ -3393,23 +3390,12 @@
           "coverage": null,
           "snyk": {
             "critical": 0,
-            "high": 1,
+            "high": 0,
             "medium": 6,
             "low": 2,
             "lastScan": null,
             "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/ba764a01-2c29-4d51-bde5-c23024c7279c",
             "issues": [
-              {
-                "id": "01a1c5e8-941e-7d20-af9e-342ce31a7689",
-                "cve": null,
-                "title": "Allocation of Resources Without Limits or Throttling",
-                "severity": "high",
-                "package": null,
-                "version": null,
-                "fixedVersion": null,
-                "status": "open",
-                "url": null
-              },
               {
                 "id": "19fa4bda-e918-45e0-86fd-4cddaac4333a",
                 "cve": null,
@@ -3502,16 +3488,16 @@
           },
           "workItems": {
             "new": 0,
-            "approved": 1,
+            "approved": 0,
             "inProgress": 0,
-            "committed": 0,
+            "committed": 1,
             "items": [
               {
                 "id": 515434,
                 "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Printing] 1 security vulnerability",
                 "type": "Bug",
-                "state": "Approved",
-                "assignedTo": null,
+                "state": "Committed",
+                "assignedTo": "Vijay Masal",
                 "createdDate": "2026-11-17T16:13:15.507Z",
                 "ageDays": 1,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515434"
@@ -3520,17 +3506,17 @@
             "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
           },
           "lastBuild": {
-            "result": "succeeded",
-            "status": "succeeded",
-            "finishTime": "2026-10-14T13:04:47.4964824Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007"
+            "result": "failed",
+            "status": "failed",
+            "finishTime": "2026-11-19T15:17:02.9182793Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566288"
           },
           "lastCommit": {
-            "id": "ae0af17",
-            "message": "Feature/504633 printing release pipeline",
-            "author": "Bhargav L",
-            "date": "2026-10-14T12:52:33Z",
-            "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing/commit/ae0af173cfb9613a501a53f7281536d1bccd1eaf"
+            "id": "03c0bfb",
+            "message": "Merge pull request 121957 from feature/VM_515434_snyk_org_json_vulnerability into develop",
+            "author": "Vijay Masal",
+            "date": "2026-11-19T15:06:51Z",
+            "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing/commit/03c0bfbabb29da3c1e711c949b37e88357f891b8"
           },
           "activePRs": 0,
           "pullRequests": [],
@@ -3539,8 +3525,8 @@
             "label": "Blocked",
             "reasons": [
               "Published feed version unavailable",
-              "Release pipeline unavailable",
-              "Critical/high vulnerabilities found"
+              "CI pipeline failed",
+              "Release pipeline unavailable"
             ]
           },
           "tests": null
@@ -3549,9 +3535,9 @@
           "name": "Camera",
           "fullName": "Koerber.Mobile.Capacitor.Camera",
           "health": {
-            "status": "healthy",
-            "label": "Healthy",
-            "color": "#28a745"
+            "status": "unhealthy",
+            "label": "Unhealthy",
+            "color": "#dc3545"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera",
           "platforms": [
@@ -3574,16 +3560,43 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.Camera.Dev",
-              "buildId": 565261,
-              "status": "succeeded",
-              "lastRun": "2026-11-18T13:22:20.6040442Z",
-              "duration": "22m 39s",
-              "branch": "refs/pull/121705/merge",
-              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=565261",
-              "successRate": 87.5,
-              "failedRuns": 1,
-              "totalRuns": 8,
+              "buildId": 566188,
+              "status": "failed",
+              "lastRun": "2026-11-19T12:48:59.1767802Z",
+              "duration": "8m 13s",
+              "branch": "feature/version_update",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566188",
+              "successRate": 60,
+              "failedRuns": 4,
+              "totalRuns": 10,
               "history": [
+                {
+                  "name": "Koerber.Mobile.Capacitor.Camera.Dev",
+                  "buildId": 566188,
+                  "status": "failed",
+                  "lastRun": "2026-11-19T12:48:59.1767802Z",
+                  "duration": "8m 13s",
+                  "branch": "feature/version_update",
+                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566188"
+                },
+                {
+                  "name": "Koerber.Mobile.Capacitor.Camera.Dev",
+                  "buildId": 566189,
+                  "status": "failed",
+                  "lastRun": "2026-11-19T12:46:28.2858422Z",
+                  "duration": "5m 0s",
+                  "branch": "refs/pull/114052/merge",
+                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566189"
+                },
+                {
+                  "name": "Koerber.Mobile.Capacitor.Camera.Dev",
+                  "buildId": 566178,
+                  "status": "failed",
+                  "lastRun": "2026-11-19T12:34:29.9790433Z",
+                  "duration": "9m 35s",
+                  "branch": "feature/version_update",
+                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566178"
+                },
                 {
                   "name": "Koerber.Mobile.Capacitor.Camera.Dev",
                   "buildId": 565261,
@@ -3646,15 +3659,6 @@
                   "duration": "8m 18s",
                   "branch": "develop",
                   "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=510420"
-                },
-                {
-                  "name": "Koerber.Mobile.Capacitor.Camera.Dev",
-                  "buildId": 509710,
-                  "status": "succeeded",
-                  "lastRun": "2026-08-20T11:09:06.6172853Z",
-                  "duration": "11m 6s",
-                  "branch": "develop",
-                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=509710"
                 }
               ]
             },
@@ -3694,12 +3698,23 @@
           "coverage": null,
           "snyk": {
             "critical": 0,
-            "high": 0,
+            "high": 1,
             "medium": 3,
             "low": 1,
             "lastScan": null,
             "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/305f626e-4119-4b87-81bb-9687c27e8649",
             "issues": [
+              {
+                "id": "01a1c5de-0c31-7b32-ad1f-7d5ebe87f078",
+                "cve": null,
+                "title": "Allocation of Resources Without Limits or Throttling",
+                "severity": "high",
+                "package": null,
+                "version": null,
+                "fixedVersion": null,
+                "status": "open",
+                "url": null
+              },
               {
                 "id": "6b60d2a4-9308-4b2d-a830-eb330f0b91e9",
                 "cve": null,
@@ -3748,15 +3763,15 @@
           },
           "workItems": {
             "new": 0,
-            "approved": 1,
+            "approved": 0,
             "inProgress": 0,
-            "committed": 0,
+            "committed": 1,
             "items": [
               {
                 "id": 515436,
                 "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Camera] 1 security vulnerability",
                 "type": "Bug",
-                "state": "Approved",
+                "state": "Committed",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-11-17T16:13:15.98Z",
                 "ageDays": 1,
@@ -3766,10 +3781,10 @@
             "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
           },
           "lastBuild": {
-            "result": "succeeded",
-            "status": "succeeded",
-            "finishTime": "2026-11-18T13:22:20.6040442Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=565261"
+            "result": "failed",
+            "status": "failed",
+            "finishTime": "2026-11-19T12:48:59.1767802Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566188"
           },
           "lastCommit": {
             "id": "5d680bc",
@@ -3786,12 +3801,12 @@
               "author": "Bhargav L",
               "status": "active",
               "createdDate": "2026-11-18T12:59:33.7263418Z",
-              "ageDays": 0,
+              "ageDays": 1,
               "isDraft": false,
               "reviewers": [
                 {
                   "name": "Vijay Masal",
-                  "vote": 0
+                  "vote": 10
                 },
                 {
                   "name": "Marcus Choi",
@@ -3806,7 +3821,7 @@
                   "vote": 0
                 }
               ],
-              "approvalState": "pending",
+              "approvalState": "approved",
               "mergeConflicts": false,
               "buildStatus": "pending",
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_apis/git/repositories/64bfd139-ff13-4d57-bbd9-b731245c3150/pullRequests/121705"
@@ -3817,7 +3832,7 @@
               "author": "Bhargav L",
               "status": "active",
               "createdDate": "2026-09-25T14:23:42.6924331Z",
-              "ageDays": 54,
+              "ageDays": 55,
               "isDraft": false,
               "reviewers": [
                 {
@@ -3848,7 +3863,7 @@
               "author": "Bhargav L",
               "status": "active",
               "createdDate": "2026-08-25T10:17:39.5095265Z",
-              "ageDays": 85,
+              "ageDays": 86,
               "isDraft": false,
               "reviewers": [
                 {
@@ -3875,9 +3890,12 @@
             }
           ],
           "releaseReadiness": {
-            "status": "ready",
-            "label": "Ready",
-            "reasons": []
+            "status": "blocked",
+            "label": "Blocked",
+            "reasons": [
+              "CI pipeline failed",
+              "Critical/high vulnerabilities found"
+            ]
           },
           "tests": null
         },
@@ -3973,6 +3991,15 @@
                   "duration": "12m 16s",
                   "branch": "develop",
                   "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=510524"
+                },
+                {
+                  "name": "Koerber.Mobile.Capacitor.Logger.Dev",
+                  "buildId": 566257,
+                  "status": "notRun",
+                  "lastRun": null,
+                  "duration": null,
+                  "branch": "develop",
+                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566257"
                 }
               ]
             },
@@ -4126,19 +4153,29 @@
           },
           "workItems": {
             "new": 0,
-            "approved": 1,
+            "approved": 0,
             "inProgress": 0,
-            "committed": 0,
+            "committed": 2,
             "items": [
               {
                 "id": 515435,
                 "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Logger] 1 security vulnerability",
                 "type": "Bug",
-                "state": "Approved",
+                "state": "Committed",
                 "assignedTo": "Bhargav L",
                 "createdDate": "2026-11-17T16:13:15.753Z",
                 "ageDays": 1,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515435"
+              },
+              {
+                "id": 515436,
+                "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Camera] 1 security vulnerability",
+                "type": "Bug",
+                "state": "Committed",
+                "assignedTo": "Bhargav L",
+                "createdDate": "2026-11-17T16:13:15.98Z",
+                "ageDays": 1,
+                "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515436"
               }
             ],
             "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
@@ -4150,46 +4187,14 @@
             "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=565421"
           },
           "lastCommit": {
-            "id": "5a22535",
-            "message": "Feature/504501 logger bouncy castle security fix",
+            "id": "9ee8353",
+            "message": "#515435: [Snyk][HIGH][Koerber.Mobile.Capacitor.Logger] 1 security vulnerability",
             "author": "Bhargav L",
-            "date": "2026-10-23T14:41:40Z",
-            "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger/commit/5a225358354246dabaed056a154d1288af3c8e74"
+            "date": "2026-11-19T14:42:04Z",
+            "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger/commit/9ee8353ff23e47504a01900ab09db6407a2071cf"
           },
-          "activePRs": 1,
-          "pullRequests": [
-            {
-              "id": 121712,
-              "title": "#515435: [Snyk][HIGH][Koerber.Mobile.Capacitor.Logger] 1 security vulnerability",
-              "author": "Bhargav L",
-              "status": "active",
-              "createdDate": "2026-11-18T13:21:58.0507017Z",
-              "ageDays": 0,
-              "isDraft": false,
-              "reviewers": [
-                {
-                  "name": "Vijay Masal",
-                  "vote": 10
-                },
-                {
-                  "name": "Marcus Choi",
-                  "vote": 0
-                },
-                {
-                  "name": "Bhargav L",
-                  "vote": 0
-                },
-                {
-                  "name": "Tony Velasco",
-                  "vote": 0
-                }
-              ],
-              "approvalState": "approved",
-              "mergeConflicts": false,
-              "buildStatus": "pending",
-              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_apis/git/repositories/08ab60d5-c9aa-4683-87e8-abe5f0723885/pullRequests/121712"
-            }
-          ],
+          "activePRs": 0,
+          "pullRequests": [],
           "releaseReadiness": {
             "status": "ready",
             "label": "Ready",
@@ -4436,7 +4441,7 @@
               "author": "Bhargav L",
               "status": "active",
               "createdDate": "2026-09-25T14:23:53.3908785Z",
-              "ageDays": 54,
+              "ageDays": 55,
               "isDraft": false,
               "reviewers": [
                 {
@@ -4473,9 +4478,9 @@
           "name": "MDM Reader",
           "fullName": "Koerber.Mobile.Capacitor.MDMReader",
           "health": {
-            "status": "warning",
-            "label": "Warning",
-            "color": "#ffc107"
+            "status": "healthy",
+            "label": "Healthy",
+            "color": "#28a745"
           },
           "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader",
           "platforms": [
@@ -4498,16 +4503,34 @@
           "pipelines": {
             "ci": {
               "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
-              "buildId": 551764,
+              "buildId": 566072,
               "status": "succeeded",
-              "lastRun": "2026-10-28T14:23:23.9880363Z",
-              "duration": "4m 26s",
-              "branch": "develop",
-              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=551764",
+              "lastRun": "2026-11-19T09:41:28.6942833Z",
+              "duration": "8m 51s",
+              "branch": "refs/pull/121896/merge",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566072",
               "successRate": 100,
               "failedRuns": 0,
-              "totalRuns": 7,
+              "totalRuns": 9,
               "history": [
+                {
+                  "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
+                  "buildId": 566072,
+                  "status": "succeeded",
+                  "lastRun": "2026-11-19T09:41:28.6942833Z",
+                  "duration": "8m 51s",
+                  "branch": "refs/pull/121896/merge",
+                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566072"
+                },
+                {
+                  "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
+                  "buildId": 566071,
+                  "status": "succeeded",
+                  "lastRun": "2026-11-19T09:38:22.4237519Z",
+                  "duration": "7m 8s",
+                  "branch": "feature/BL_snyk",
+                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566071"
+                },
                 {
                   "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
                   "buildId": 551764,
@@ -4570,6 +4593,15 @@
                   "duration": "7m 2s",
                   "branch": "develop",
                   "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=532071"
+                },
+                {
+                  "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
+                  "buildId": 566293,
+                  "status": "notRun",
+                  "lastRun": null,
+                  "duration": null,
+                  "branch": "develop",
+                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566293"
                 }
               ]
             },
@@ -4636,23 +4668,12 @@
           "coverage": null,
           "snyk": {
             "critical": 0,
-            "high": 1,
+            "high": 0,
             "medium": 3,
             "low": 1,
             "lastScan": null,
             "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/402626e7-c9d5-4434-a46c-49bbb2ce9b69",
             "issues": [
-              {
-                "id": "01a1c5e8-71ba-770e-8c46-1979a3663f68",
-                "cve": null,
-                "title": "Allocation of Resources Without Limits or Throttling",
-                "severity": "high",
-                "package": null,
-                "version": null,
-                "fixedVersion": null,
-                "status": "open",
-                "url": null
-              },
               {
                 "id": "639c7314-ce34-434f-8334-f0c6d51303b0",
                 "cve": null,
@@ -4703,17 +4724,37 @@
             "new": 0,
             "approved": 1,
             "inProgress": 0,
-            "committed": 0,
+            "committed": 2,
             "items": [
               {
                 "id": 515437,
                 "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.MDMReader] 1 security vulnerability",
                 "type": "Bug",
                 "state": "Approved",
-                "assignedTo": null,
+                "assignedTo": "Bhargav L",
                 "createdDate": "2026-11-17T16:13:16.2Z",
                 "ageDays": 1,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515437"
+              },
+              {
+                "id": 515435,
+                "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Logger] 1 security vulnerability",
+                "type": "Bug",
+                "state": "Committed",
+                "assignedTo": "Bhargav L",
+                "createdDate": "2026-11-17T16:13:15.753Z",
+                "ageDays": 1,
+                "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515435"
+              },
+              {
+                "id": 515436,
+                "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Camera] 1 security vulnerability",
+                "type": "Bug",
+                "state": "Committed",
+                "assignedTo": "Bhargav L",
+                "createdDate": "2026-11-17T16:13:15.98Z",
+                "ageDays": 1,
+                "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515436"
               }
             ],
             "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
@@ -4721,24 +4762,22 @@
           "lastBuild": {
             "result": "succeeded",
             "status": "succeeded",
-            "finishTime": "2026-10-28T14:23:23.9880363Z",
-            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=551764"
+            "finishTime": "2026-11-19T09:41:28.6942833Z",
+            "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566072"
           },
           "lastCommit": {
-            "id": "f49108f",
-            "message": "#509519: MDM Reader: verify array of platform URLs delivered by managed configuration",
+            "id": "6b35824",
+            "message": "#515437: [Snyk][HIGH][Koerber.Mobile.Capacitor.MDMReader] 1 security vulnerability",
             "author": "Bhargav L",
-            "date": "2026-10-28T14:11:37Z",
-            "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader/commit/f49108f67bf4251b96296e00588fbeb04113650b"
+            "date": "2026-11-19T15:16:02Z",
+            "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader/commit/6b35824bf638204c12a3958dff8c0b771457b62d"
           },
           "activePRs": 0,
           "pullRequests": [],
           "releaseReadiness": {
-            "status": "blocked",
-            "label": "Blocked",
-            "reasons": [
-              "Critical/high vulnerabilities found"
-            ]
+            "status": "ready",
+            "label": "Ready",
+            "reasons": []
           },
           "tests": null
         },
@@ -4861,6 +4900,15 @@
                   "duration": "8m 41s",
                   "branch": "develop",
                   "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=354558"
+                },
+                {
+                  "name": "Koerber.Mobile.Capacitor.Vibrate.Dev",
+                  "buildId": 566253,
+                  "status": "notRun",
+                  "lastRun": null,
+                  "duration": null,
+                  "branch": "refs/pull/121945/merge",
+                  "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566253"
                 }
               ]
             },
@@ -4965,16 +5013,16 @@
           },
           "workItems": {
             "new": 0,
-            "approved": 1,
+            "approved": 0,
             "inProgress": 0,
-            "committed": 0,
+            "committed": 1,
             "items": [
               {
                 "id": 515438,
                 "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Vibrate] 1 security vulnerability",
                 "type": "Bug",
-                "state": "Approved",
-                "assignedTo": null,
+                "state": "Committed",
+                "assignedTo": "Vijay Masal",
                 "createdDate": "2026-11-17T16:13:16.467Z",
                 "ageDays": 1,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515438"
@@ -4995,8 +5043,40 @@
             "date": "2026-10-29T14:01:29Z",
             "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate/commit/8f9e48ed2cb6ffd988d689b78af85bdd706297f3"
           },
-          "activePRs": 0,
-          "pullRequests": [],
+          "activePRs": 1,
+          "pullRequests": [
+            {
+              "id": 121945,
+              "title": "#515438: Fix Snyk vulnerability - Upgrade org.json dependency to v20260719",
+              "author": "Vijay Masal",
+              "status": "active",
+              "createdDate": "2026-11-19T14:41:16.3388866Z",
+              "ageDays": 0,
+              "isDraft": false,
+              "reviewers": [
+                {
+                  "name": "Vijay Masal",
+                  "vote": 0
+                },
+                {
+                  "name": "Marcus Choi",
+                  "vote": 0
+                },
+                {
+                  "name": "Bhargav L",
+                  "vote": 10
+                },
+                {
+                  "name": "Tony Velasco",
+                  "vote": 0
+                }
+              ],
+              "approvalState": "approved",
+              "mergeConflicts": false,
+              "buildStatus": null,
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_apis/git/repositories/f4057db1-e2d4-4216-9984-b4ac841a13c1/pullRequests/121945"
+            }
+          ],
           "releaseReadiness": {
             "status": "blocked",
             "label": "Blocked",
@@ -5200,7 +5280,7 @@
                 "state": "New",
                 "assignedTo": null,
                 "createdDate": "2026-11-07T11:01:23.07Z",
-                "ageDays": 11,
+                "ageDays": 12,
                 "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/513097"
               }
             ],
@@ -5227,7 +5307,7 @@
               "author": "Bhargav L",
               "status": "active",
               "createdDate": "2026-11-17T15:00:19.8882968Z",
-              "ageDays": 1,
+              "ageDays": 2,
               "isDraft": false,
               "reviewers": [],
               "approvalState": null,
@@ -6293,7 +6373,7 @@
             "state": "Committed",
             "assignedTo": "Vijay Masal",
             "createdDate": "2026-11-04T01:14:59.087Z",
-            "ageDays": 14,
+            "ageDays": 15,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/511752"
           }
         ],
@@ -6320,7 +6400,7 @@
           "author": "Vijay Masal",
           "status": "active",
           "createdDate": "2026-11-18T15:24:38.7158382Z",
-          "ageDays": 0,
+          "ageDays": 1,
           "isDraft": false,
           "reviewers": [
             {
@@ -6573,7 +6653,7 @@
             "state": "Acknowledged",
             "assignedTo": "Roger Cormier",
             "createdDate": "2026-10-08T15:07:25.86Z",
-            "ageDays": 41,
+            "ageDays": 42,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/503946"
           },
           {
@@ -6583,7 +6663,7 @@
             "state": "Acknowledged",
             "assignedTo": "Roger Cormier",
             "createdDate": "2026-10-19T14:23:43.127Z",
-            "ageDays": 30,
+            "ageDays": 31,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/507139"
           }
         ],
@@ -7138,29 +7218,8 @@
         "new": 0,
         "approved": 0,
         "inProgress": 0,
-        "committed": 2,
-        "items": [
-          {
-            "id": 512348,
-            "title": "POC 1: Android Test DPC Enrollment & MDM Policy Enforcement",
-            "type": "Product Backlog Item",
-            "state": "Committed",
-            "assignedTo": "Bhargav L",
-            "createdDate": "2026-11-05T12:34:00.04Z",
-            "ageDays": 13,
-            "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/512348"
-          },
-          {
-            "id": 512350,
-            "title": "POC 3: PIN-Gated Cryptographic Operations (Local Authentication)",
-            "type": "Product Backlog Item",
-            "state": "Committed",
-            "assignedTo": "Bhargav L",
-            "createdDate": "2026-11-05T12:34:32.597Z",
-            "ageDays": 13,
-            "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/512350"
-          }
-        ],
+        "committed": 0,
+        "items": [],
         "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
       },
       "lastBuild": {
@@ -7576,7 +7635,7 @@
             "state": "New",
             "assignedTo": null,
             "createdDate": "2026-02-27T13:44:53.187Z",
-            "ageDays": 264,
+            "ageDays": 265,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/429898"
           },
           {
@@ -7586,7 +7645,7 @@
             "state": "New",
             "assignedTo": null,
             "createdDate": "2026-02-27T13:45:53.557Z",
-            "ageDays": 264,
+            "ageDays": 265,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/429899"
           },
           {
@@ -7596,7 +7655,7 @@
             "state": "New",
             "assignedTo": null,
             "createdDate": "2026-02-27T13:47:54.7Z",
-            "ageDays": 264,
+            "ageDays": 265,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/429900"
           },
           {
@@ -7606,7 +7665,7 @@
             "state": "New",
             "assignedTo": null,
             "createdDate": "2026-02-27T13:49:05.107Z",
-            "ageDays": 264,
+            "ageDays": 265,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/429902"
           }
         ],
@@ -8130,7 +8189,7 @@
           "author": "Marcus Choi",
           "status": "active",
           "createdDate": "2026-10-23T07:15:17.0696464Z",
-          "ageDays": 26,
+          "ageDays": 27,
           "isDraft": true,
           "reviewers": [
             {
@@ -8364,18 +8423,18 @@
       },
       "workItems": {
         "new": 0,
-        "approved": 1,
+        "approved": 0,
         "inProgress": 0,
-        "committed": 0,
+        "committed": 1,
         "items": [
           {
             "id": 513098,
             "title": "[Snyk][HIGH][Koerber.Mobile.Kotlin.UtilityApp] 2 security vulnerabilities",
             "type": "Bug",
-            "state": "Approved",
+            "state": "Committed",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-11-07T11:01:23.713Z",
-            "ageDays": 11,
+            "ageDays": 12,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/513098"
           }
         ],
@@ -8402,7 +8461,7 @@
           "author": "Bhargav L",
           "status": "active",
           "createdDate": "2026-11-17T12:39:24.1640646Z",
-          "ageDays": 1,
+          "ageDays": 2,
           "isDraft": false,
           "reviewers": [],
           "approvalState": null,
@@ -8416,7 +8475,7 @@
           "author": "Bhargav L",
           "status": "active",
           "createdDate": "2026-11-13T14:49:26.9380982Z",
-          "ageDays": 5,
+          "ageDays": 6,
           "isDraft": false,
           "reviewers": [],
           "approvalState": null,
@@ -8457,7 +8516,7 @@
           "author": "Vijay Masal",
           "status": "active",
           "createdDate": "2026-08-28T10:12:08.135127Z",
-          "ageDays": 82,
+          "ageDays": 83,
           "isDraft": false,
           "reviewers": [
             {
@@ -8854,9 +8913,9 @@
       "name": "Printing",
       "fullName": "Koerber.Mobile.Capacitor.Printing",
       "health": {
-        "status": "warning",
-        "label": "Warning",
-        "color": "#ffc107"
+        "status": "unhealthy",
+        "label": "Unhealthy",
+        "color": "#dc3545"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing",
       "platforms": [
@@ -8879,16 +8938,34 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Printing",
-          "buildId": 542007,
-          "status": "succeeded",
-          "lastRun": "2026-10-14T13:04:47.4964824Z",
-          "duration": "12m 5s",
+          "buildId": 566288,
+          "status": "failed",
+          "lastRun": "2026-11-19T15:17:02.9182793Z",
+          "duration": "9m 48s",
           "branch": "develop",
-          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007",
-          "successRate": 100,
-          "failedRuns": 0,
-          "totalRuns": 5,
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566288",
+          "successRate": 85.71428571428571,
+          "failedRuns": 1,
+          "totalRuns": 7,
           "history": [
+            {
+              "name": "Koerber.Mobile.Capacitor.Printing",
+              "buildId": 566288,
+              "status": "failed",
+              "lastRun": "2026-11-19T15:17:02.9182793Z",
+              "duration": "9m 48s",
+              "branch": "develop",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566288"
+            },
+            {
+              "name": "Koerber.Mobile.Capacitor.Printing",
+              "buildId": 566286,
+              "status": "succeeded",
+              "lastRun": "2026-11-19T15:15:43.3080787Z",
+              "duration": "9m 1s",
+              "branch": "feature/VM_515434_snyk_org_json_vulnerability",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566286"
+            },
             {
               "name": "Koerber.Mobile.Capacitor.Printing",
               "buildId": 542007,
@@ -8941,23 +9018,12 @@
       "coverage": null,
       "snyk": {
         "critical": 0,
-        "high": 1,
+        "high": 0,
         "medium": 6,
         "low": 2,
         "lastScan": null,
         "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/ba764a01-2c29-4d51-bde5-c23024c7279c",
         "issues": [
-          {
-            "id": "01a1c5e8-941e-7d20-af9e-342ce31a7689",
-            "cve": null,
-            "title": "Allocation of Resources Without Limits or Throttling",
-            "severity": "high",
-            "package": null,
-            "version": null,
-            "fixedVersion": null,
-            "status": "open",
-            "url": null
-          },
           {
             "id": "19fa4bda-e918-45e0-86fd-4cddaac4333a",
             "cve": null,
@@ -9050,16 +9116,16 @@
       },
       "workItems": {
         "new": 0,
-        "approved": 1,
+        "approved": 0,
         "inProgress": 0,
-        "committed": 0,
+        "committed": 1,
         "items": [
           {
             "id": 515434,
             "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Printing] 1 security vulnerability",
             "type": "Bug",
-            "state": "Approved",
-            "assignedTo": null,
+            "state": "Committed",
+            "assignedTo": "Vijay Masal",
             "createdDate": "2026-11-17T16:13:15.507Z",
             "ageDays": 1,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515434"
@@ -9068,17 +9134,17 @@
         "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
       },
       "lastBuild": {
-        "result": "succeeded",
-        "status": "succeeded",
-        "finishTime": "2026-10-14T13:04:47.4964824Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542007"
+        "result": "failed",
+        "status": "failed",
+        "finishTime": "2026-11-19T15:17:02.9182793Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566288"
       },
       "lastCommit": {
-        "id": "ae0af17",
-        "message": "Feature/504633 printing release pipeline",
-        "author": "Bhargav L",
-        "date": "2026-10-14T12:52:33Z",
-        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing/commit/ae0af173cfb9613a501a53f7281536d1bccd1eaf"
+        "id": "03c0bfb",
+        "message": "Merge pull request 121957 from feature/VM_515434_snyk_org_json_vulnerability into develop",
+        "author": "Vijay Masal",
+        "date": "2026-11-19T15:06:51Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Printing/commit/03c0bfbabb29da3c1e711c949b37e88357f891b8"
       },
       "activePRs": 0,
       "pullRequests": [],
@@ -9087,8 +9153,8 @@
         "label": "Blocked",
         "reasons": [
           "Published feed version unavailable",
-          "Release pipeline unavailable",
-          "Critical/high vulnerabilities found"
+          "CI pipeline failed",
+          "Release pipeline unavailable"
         ]
       },
       "category": "capacitor",
@@ -9099,9 +9165,9 @@
       "name": "Camera",
       "fullName": "Koerber.Mobile.Capacitor.Camera",
       "health": {
-        "status": "healthy",
-        "label": "Healthy",
-        "color": "#28a745"
+        "status": "unhealthy",
+        "label": "Unhealthy",
+        "color": "#dc3545"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Camera",
       "platforms": [
@@ -9124,16 +9190,43 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.Camera.Dev",
-          "buildId": 565261,
-          "status": "succeeded",
-          "lastRun": "2026-11-18T13:22:20.6040442Z",
-          "duration": "22m 39s",
-          "branch": "refs/pull/121705/merge",
-          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=565261",
-          "successRate": 87.5,
-          "failedRuns": 1,
-          "totalRuns": 8,
+          "buildId": 566188,
+          "status": "failed",
+          "lastRun": "2026-11-19T12:48:59.1767802Z",
+          "duration": "8m 13s",
+          "branch": "feature/version_update",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566188",
+          "successRate": 60,
+          "failedRuns": 4,
+          "totalRuns": 10,
           "history": [
+            {
+              "name": "Koerber.Mobile.Capacitor.Camera.Dev",
+              "buildId": 566188,
+              "status": "failed",
+              "lastRun": "2026-11-19T12:48:59.1767802Z",
+              "duration": "8m 13s",
+              "branch": "feature/version_update",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566188"
+            },
+            {
+              "name": "Koerber.Mobile.Capacitor.Camera.Dev",
+              "buildId": 566189,
+              "status": "failed",
+              "lastRun": "2026-11-19T12:46:28.2858422Z",
+              "duration": "5m 0s",
+              "branch": "refs/pull/114052/merge",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566189"
+            },
+            {
+              "name": "Koerber.Mobile.Capacitor.Camera.Dev",
+              "buildId": 566178,
+              "status": "failed",
+              "lastRun": "2026-11-19T12:34:29.9790433Z",
+              "duration": "9m 35s",
+              "branch": "feature/version_update",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566178"
+            },
             {
               "name": "Koerber.Mobile.Capacitor.Camera.Dev",
               "buildId": 565261,
@@ -9196,15 +9289,6 @@
               "duration": "8m 18s",
               "branch": "develop",
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=510420"
-            },
-            {
-              "name": "Koerber.Mobile.Capacitor.Camera.Dev",
-              "buildId": 509710,
-              "status": "succeeded",
-              "lastRun": "2026-08-20T11:09:06.6172853Z",
-              "duration": "11m 6s",
-              "branch": "develop",
-              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=509710"
             }
           ]
         },
@@ -9244,12 +9328,23 @@
       "coverage": null,
       "snyk": {
         "critical": 0,
-        "high": 0,
+        "high": 1,
         "medium": 3,
         "low": 1,
         "lastScan": null,
         "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/305f626e-4119-4b87-81bb-9687c27e8649",
         "issues": [
+          {
+            "id": "01a1c5de-0c31-7b32-ad1f-7d5ebe87f078",
+            "cve": null,
+            "title": "Allocation of Resources Without Limits or Throttling",
+            "severity": "high",
+            "package": null,
+            "version": null,
+            "fixedVersion": null,
+            "status": "open",
+            "url": null
+          },
           {
             "id": "6b60d2a4-9308-4b2d-a830-eb330f0b91e9",
             "cve": null,
@@ -9298,15 +9393,15 @@
       },
       "workItems": {
         "new": 0,
-        "approved": 1,
+        "approved": 0,
         "inProgress": 0,
-        "committed": 0,
+        "committed": 1,
         "items": [
           {
             "id": 515436,
             "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Camera] 1 security vulnerability",
             "type": "Bug",
-            "state": "Approved",
+            "state": "Committed",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-11-17T16:13:15.98Z",
             "ageDays": 1,
@@ -9316,10 +9411,10 @@
         "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
       },
       "lastBuild": {
-        "result": "succeeded",
-        "status": "succeeded",
-        "finishTime": "2026-11-18T13:22:20.6040442Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=565261"
+        "result": "failed",
+        "status": "failed",
+        "finishTime": "2026-11-19T12:48:59.1767802Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566188"
       },
       "lastCommit": {
         "id": "5d680bc",
@@ -9336,12 +9431,12 @@
           "author": "Bhargav L",
           "status": "active",
           "createdDate": "2026-11-18T12:59:33.7263418Z",
-          "ageDays": 0,
+          "ageDays": 1,
           "isDraft": false,
           "reviewers": [
             {
               "name": "Vijay Masal",
-              "vote": 0
+              "vote": 10
             },
             {
               "name": "Marcus Choi",
@@ -9356,7 +9451,7 @@
               "vote": 0
             }
           ],
-          "approvalState": "pending",
+          "approvalState": "approved",
           "mergeConflicts": false,
           "buildStatus": "pending",
           "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_apis/git/repositories/64bfd139-ff13-4d57-bbd9-b731245c3150/pullRequests/121705"
@@ -9367,7 +9462,7 @@
           "author": "Bhargav L",
           "status": "active",
           "createdDate": "2026-09-25T14:23:42.6924331Z",
-          "ageDays": 54,
+          "ageDays": 55,
           "isDraft": false,
           "reviewers": [
             {
@@ -9398,7 +9493,7 @@
           "author": "Bhargav L",
           "status": "active",
           "createdDate": "2026-08-25T10:17:39.5095265Z",
-          "ageDays": 85,
+          "ageDays": 86,
           "isDraft": false,
           "reviewers": [
             {
@@ -9425,9 +9520,12 @@
         }
       ],
       "releaseReadiness": {
-        "status": "ready",
-        "label": "Ready",
-        "reasons": []
+        "status": "blocked",
+        "label": "Blocked",
+        "reasons": [
+          "CI pipeline failed",
+          "Critical/high vulnerabilities found"
+        ]
       },
       "category": "capacitor",
       "type": "capacitor",
@@ -9525,6 +9623,15 @@
               "duration": "12m 16s",
               "branch": "develop",
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=510524"
+            },
+            {
+              "name": "Koerber.Mobile.Capacitor.Logger.Dev",
+              "buildId": 566257,
+              "status": "notRun",
+              "lastRun": null,
+              "duration": null,
+              "branch": "develop",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566257"
             }
           ]
         },
@@ -9678,19 +9785,29 @@
       },
       "workItems": {
         "new": 0,
-        "approved": 1,
+        "approved": 0,
         "inProgress": 0,
-        "committed": 0,
+        "committed": 2,
         "items": [
           {
             "id": 515435,
             "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Logger] 1 security vulnerability",
             "type": "Bug",
-            "state": "Approved",
+            "state": "Committed",
             "assignedTo": "Bhargav L",
             "createdDate": "2026-11-17T16:13:15.753Z",
             "ageDays": 1,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515435"
+          },
+          {
+            "id": 515436,
+            "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Camera] 1 security vulnerability",
+            "type": "Bug",
+            "state": "Committed",
+            "assignedTo": "Bhargav L",
+            "createdDate": "2026-11-17T16:13:15.98Z",
+            "ageDays": 1,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515436"
           }
         ],
         "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
@@ -9702,46 +9819,14 @@
         "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=565421"
       },
       "lastCommit": {
-        "id": "5a22535",
-        "message": "Feature/504501 logger bouncy castle security fix",
+        "id": "9ee8353",
+        "message": "#515435: [Snyk][HIGH][Koerber.Mobile.Capacitor.Logger] 1 security vulnerability",
         "author": "Bhargav L",
-        "date": "2026-10-23T14:41:40Z",
-        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger/commit/5a225358354246dabaed056a154d1288af3c8e74"
+        "date": "2026-11-19T14:42:04Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Logger/commit/9ee8353ff23e47504a01900ab09db6407a2071cf"
       },
-      "activePRs": 1,
-      "pullRequests": [
-        {
-          "id": 121712,
-          "title": "#515435: [Snyk][HIGH][Koerber.Mobile.Capacitor.Logger] 1 security vulnerability",
-          "author": "Bhargav L",
-          "status": "active",
-          "createdDate": "2026-11-18T13:21:58.0507017Z",
-          "ageDays": 0,
-          "isDraft": false,
-          "reviewers": [
-            {
-              "name": "Vijay Masal",
-              "vote": 10
-            },
-            {
-              "name": "Marcus Choi",
-              "vote": 0
-            },
-            {
-              "name": "Bhargav L",
-              "vote": 0
-            },
-            {
-              "name": "Tony Velasco",
-              "vote": 0
-            }
-          ],
-          "approvalState": "approved",
-          "mergeConflicts": false,
-          "buildStatus": "pending",
-          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_apis/git/repositories/08ab60d5-c9aa-4683-87e8-abe5f0723885/pullRequests/121712"
-        }
-      ],
+      "activePRs": 0,
+      "pullRequests": [],
       "releaseReadiness": {
         "status": "ready",
         "label": "Ready",
@@ -9990,7 +10075,7 @@
           "author": "Bhargav L",
           "status": "active",
           "createdDate": "2026-09-25T14:23:53.3908785Z",
-          "ageDays": 54,
+          "ageDays": 55,
           "isDraft": false,
           "reviewers": [
             {
@@ -10029,9 +10114,9 @@
       "name": "MDM Reader",
       "fullName": "Koerber.Mobile.Capacitor.MDMReader",
       "health": {
-        "status": "warning",
-        "label": "Warning",
-        "color": "#ffc107"
+        "status": "healthy",
+        "label": "Healthy",
+        "color": "#28a745"
       },
       "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader",
       "platforms": [
@@ -10054,16 +10139,34 @@
       "pipelines": {
         "ci": {
           "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
-          "buildId": 551764,
+          "buildId": 566072,
           "status": "succeeded",
-          "lastRun": "2026-10-28T14:23:23.9880363Z",
-          "duration": "4m 26s",
-          "branch": "develop",
-          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=551764",
+          "lastRun": "2026-11-19T09:41:28.6942833Z",
+          "duration": "8m 51s",
+          "branch": "refs/pull/121896/merge",
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566072",
           "successRate": 100,
           "failedRuns": 0,
-          "totalRuns": 7,
+          "totalRuns": 9,
           "history": [
+            {
+              "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
+              "buildId": 566072,
+              "status": "succeeded",
+              "lastRun": "2026-11-19T09:41:28.6942833Z",
+              "duration": "8m 51s",
+              "branch": "refs/pull/121896/merge",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566072"
+            },
+            {
+              "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
+              "buildId": 566071,
+              "status": "succeeded",
+              "lastRun": "2026-11-19T09:38:22.4237519Z",
+              "duration": "7m 8s",
+              "branch": "feature/BL_snyk",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566071"
+            },
             {
               "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
               "buildId": 551764,
@@ -10126,6 +10229,15 @@
               "duration": "7m 2s",
               "branch": "develop",
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=532071"
+            },
+            {
+              "name": "Koerber.Mobile.Capacitor.MDMReader.Dev",
+              "buildId": 566293,
+              "status": "notRun",
+              "lastRun": null,
+              "duration": null,
+              "branch": "develop",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566293"
             }
           ]
         },
@@ -10192,23 +10304,12 @@
       "coverage": null,
       "snyk": {
         "critical": 0,
-        "high": 1,
+        "high": 0,
         "medium": 3,
         "low": 1,
         "lastScan": null,
         "url": "https://app.snyk.io/org/28aa5671-469c-48b5-94c0-769b64247486/project/402626e7-c9d5-4434-a46c-49bbb2ce9b69",
         "issues": [
-          {
-            "id": "01a1c5e8-71ba-770e-8c46-1979a3663f68",
-            "cve": null,
-            "title": "Allocation of Resources Without Limits or Throttling",
-            "severity": "high",
-            "package": null,
-            "version": null,
-            "fixedVersion": null,
-            "status": "open",
-            "url": null
-          },
           {
             "id": "639c7314-ce34-434f-8334-f0c6d51303b0",
             "cve": null,
@@ -10259,17 +10360,37 @@
         "new": 0,
         "approved": 1,
         "inProgress": 0,
-        "committed": 0,
+        "committed": 2,
         "items": [
           {
             "id": 515437,
             "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.MDMReader] 1 security vulnerability",
             "type": "Bug",
             "state": "Approved",
-            "assignedTo": null,
+            "assignedTo": "Bhargav L",
             "createdDate": "2026-11-17T16:13:16.2Z",
             "ageDays": 1,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515437"
+          },
+          {
+            "id": 515435,
+            "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Logger] 1 security vulnerability",
+            "type": "Bug",
+            "state": "Committed",
+            "assignedTo": "Bhargav L",
+            "createdDate": "2026-11-17T16:13:15.753Z",
+            "ageDays": 1,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515435"
+          },
+          {
+            "id": 515436,
+            "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Camera] 1 security vulnerability",
+            "type": "Bug",
+            "state": "Committed",
+            "assignedTo": "Bhargav L",
+            "createdDate": "2026-11-17T16:13:15.98Z",
+            "ageDays": 1,
+            "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515436"
           }
         ],
         "url": "https://dev.azure.com/Highjumpvso/WES/_queries"
@@ -10277,24 +10398,22 @@
       "lastBuild": {
         "result": "succeeded",
         "status": "succeeded",
-        "finishTime": "2026-10-28T14:23:23.9880363Z",
-        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=551764"
+        "finishTime": "2026-11-19T09:41:28.6942833Z",
+        "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566072"
       },
       "lastCommit": {
-        "id": "f49108f",
-        "message": "#509519: MDM Reader: verify array of platform URLs delivered by managed configuration",
+        "id": "6b35824",
+        "message": "#515437: [Snyk][HIGH][Koerber.Mobile.Capacitor.MDMReader] 1 security vulnerability",
         "author": "Bhargav L",
-        "date": "2026-10-28T14:11:37Z",
-        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader/commit/f49108f67bf4251b96296e00588fbeb04113650b"
+        "date": "2026-11-19T15:16:02Z",
+        "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.MDMReader/commit/6b35824bf638204c12a3958dff8c0b771457b62d"
       },
       "activePRs": 0,
       "pullRequests": [],
       "releaseReadiness": {
-        "status": "blocked",
-        "label": "Blocked",
-        "reasons": [
-          "Critical/high vulnerabilities found"
-        ]
+        "status": "ready",
+        "label": "Ready",
+        "reasons": []
       },
       "category": "capacitor",
       "type": "capacitor",
@@ -10419,6 +10538,15 @@
               "duration": "8m 41s",
               "branch": "develop",
               "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=354558"
+            },
+            {
+              "name": "Koerber.Mobile.Capacitor.Vibrate.Dev",
+              "buildId": 566253,
+              "status": "notRun",
+              "lastRun": null,
+              "duration": null,
+              "branch": "refs/pull/121945/merge",
+              "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=566253"
             }
           ]
         },
@@ -10523,16 +10651,16 @@
       },
       "workItems": {
         "new": 0,
-        "approved": 1,
+        "approved": 0,
         "inProgress": 0,
-        "committed": 0,
+        "committed": 1,
         "items": [
           {
             "id": 515438,
             "title": "[Snyk][HIGH][Koerber.Mobile.Capacitor.Vibrate] 1 security vulnerability",
             "type": "Bug",
-            "state": "Approved",
-            "assignedTo": null,
+            "state": "Committed",
+            "assignedTo": "Vijay Masal",
             "createdDate": "2026-11-17T16:13:16.467Z",
             "ageDays": 1,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/515438"
@@ -10553,8 +10681,40 @@
         "date": "2026-10-29T14:01:29Z",
         "url": "https://dev.azure.com/highjumpvso/WES/_git/Koerber.Mobile.Capacitor.Vibrate/commit/8f9e48ed2cb6ffd988d689b78af85bdd706297f3"
       },
-      "activePRs": 0,
-      "pullRequests": [],
+      "activePRs": 1,
+      "pullRequests": [
+        {
+          "id": 121945,
+          "title": "#515438: Fix Snyk vulnerability - Upgrade org.json dependency to v20260719",
+          "author": "Vijay Masal",
+          "status": "active",
+          "createdDate": "2026-11-19T14:41:16.3388866Z",
+          "ageDays": 0,
+          "isDraft": false,
+          "reviewers": [
+            {
+              "name": "Vijay Masal",
+              "vote": 0
+            },
+            {
+              "name": "Marcus Choi",
+              "vote": 0
+            },
+            {
+              "name": "Bhargav L",
+              "vote": 10
+            },
+            {
+              "name": "Tony Velasco",
+              "vote": 0
+            }
+          ],
+          "approvalState": "approved",
+          "mergeConflicts": false,
+          "buildStatus": null,
+          "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_apis/git/repositories/f4057db1-e2d4-4216-9984-b4ac841a13c1/pullRequests/121945"
+        }
+      ],
       "releaseReadiness": {
         "status": "blocked",
         "label": "Blocked",
@@ -10760,7 +10920,7 @@
             "state": "New",
             "assignedTo": null,
             "createdDate": "2026-11-07T11:01:23.07Z",
-            "ageDays": 11,
+            "ageDays": 12,
             "url": "https://dev.azure.com/Highjumpvso/WES/_workitems/edit/513097"
           }
         ],
@@ -10787,7 +10947,7 @@
           "author": "Bhargav L",
           "status": "active",
           "createdDate": "2026-11-17T15:00:19.8882968Z",
-          "ageDays": 1,
+          "ageDays": 2,
           "isDraft": false,
           "reviewers": [],
           "approvalState": null,
@@ -11099,2591 +11259,38 @@
   "dataSources": {
     "repositories": {
       "status": "connected",
-      "checkedAt": "2026-11-19T00:05:29.710Z"
+      "checkedAt": "2026-11-19T15:30:50.248Z"
     },
     "sourceCode": {
       "status": "connected",
-      "checkedAt": "2026-11-19T00:05:29.710Z"
+      "checkedAt": "2026-11-19T15:30:50.248Z"
     },
     "pipelines": {
       "status": "connected",
-      "checkedAt": "2026-11-19T00:05:29.710Z"
+      "checkedAt": "2026-11-19T15:30:50.248Z"
     },
     "artifacts": {
       "status": "connected",
-      "checkedAt": "2026-11-19T00:05:29.710Z"
+      "checkedAt": "2026-11-19T15:30:50.248Z"
     },
     "coverage": {
       "status": "unavailable",
-      "checkedAt": "2026-11-19T00:05:53.622Z"
+      "checkedAt": "2026-11-19T15:31:26.332Z"
     },
     "workItems": {
       "status": "connected",
-      "checkedAt": "2026-11-19T00:05:29.710Z"
+      "checkedAt": "2026-11-19T15:30:50.248Z"
     },
     "snyk": {
       "status": "connected",
-      "checkedAt": "2026-11-19T00:06:26.756Z"
+      "checkedAt": "2026-11-19T15:32:04.161Z"
     },
     "tests": {
       "status": "unavailable",
-      "checkedAt": "2026-11-19T00:05:53.622Z"
+      "checkedAt": "2026-11-19T15:31:26.332Z"
     }
   },
   "history": [
-    {
-      "timestamp": "2026-10-26T09:33:11.174Z",
-      "summary": {
-        "total": 14,
-        "healthy": 11,
-        "warning": 1,
-        "unhealthy": 2,
-        "unknown": 0
-      },
-      "repositories": [
-        {
-          "name": "Dex",
-          "fullName": "Koerber.Mobile.Kotlin.Dex",
-          "health": "healthy",
-          "releaseReadiness": "ready",
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "low": 0
-          },
-          "coverage": {
-            "percent": 90,
-            "threshold": 80,
-            "thresholdStatus": "passing",
-            "change": 0,
-            "previous": {
-              "timestamp": "2026-10-16T14:51:58.253079Z",
-              "percent": 90,
-              "lines": {
-                "covered": 621,
-                "total": 690,
-                "percent": 90
-              },
-              "blocks": {
-                "covered": 0,
-                "total": 0,
-                "percent": null
-              }
-            },
-            "history": [
-              {
-                "buildId": 547498,
-                "timestamp": "2026-10-22T11:45:11.4695507Z",
-                "percent": 90,
-                "lines": {
-                  "covered": 621,
-                  "total": 690,
-                  "percent": 90
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": null,
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=547498&view=codecoverage-tab"
-              },
-              {
-                "buildId": 544010,
-                "timestamp": "2026-10-16T14:51:58.253079Z",
-                "percent": 90,
-                "lines": {
-                  "covered": 621,
-                  "total": 690,
-                  "percent": 90
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": null,
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=544010&view=codecoverage-tab"
-              },
-              {
-                "buildId": 543993,
-                "timestamp": "2026-10-16T14:32:04.0660619Z",
-                "percent": 89.71014492753623,
-                "lines": {
-                  "covered": 619,
-                  "total": 690,
-                  "percent": 89.71014492753623
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": null,
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=543993&view=codecoverage-tab"
-              },
-              {
-                "buildId": 539022,
-                "timestamp": "2026-10-09T09:35:55.8923933Z",
-                "percent": 90,
-                "lines": {
-                  "covered": 621,
-                  "total": 690,
-                  "percent": 90
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": null,
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539022&view=codecoverage-tab"
-              },
-              {
-                "buildId": 534191,
-                "timestamp": "2026-10-01T14:30:31.0791562Z",
-                "percent": 90,
-                "lines": {
-                  "covered": 621,
-                  "total": 690,
-                  "percent": 90
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": null,
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=534191&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "1.0.1",
-            "devFeed": "1.0.1-20261022113613",
-            "platformFeed": "1.0.1"
-          }
-        },
-        {
-          "name": "K1V1 Authorization",
-          "fullName": "Koerber.Mobile.Kotlin.K1V1Authorization",
-          "health": "healthy",
-          "releaseReadiness": "ready",
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "low": 0
-          },
-          "coverage": {
-            "percent": 90.01536098310292,
-            "threshold": 80,
-            "thresholdStatus": "passing",
-            "change": 0,
-            "previous": {
-              "timestamp": "2026-10-08T15:49:16.5534192Z",
-              "percent": 90.01536098310292,
-              "lines": {
-                "covered": 586,
-                "total": 651,
-                "percent": 90.01536098310292
-              },
-              "blocks": {
-                "covered": 0,
-                "total": 0,
-                "percent": null
-              }
-            },
-            "history": [
-              {
-                "buildId": 539025,
-                "timestamp": "2026-10-09T09:38:21.5527388Z",
-                "percent": 90.01536098310292,
-                "lines": {
-                  "covered": 586,
-                  "total": 651,
-                  "percent": 90.01536098310292
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": null,
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539025&view=codecoverage-tab"
-              },
-              {
-                "buildId": 538524,
-                "timestamp": "2026-10-08T15:49:16.5534192Z",
-                "percent": 90.01536098310292,
-                "lines": {
-                  "covered": 586,
-                  "total": 651,
-                  "percent": 90.01536098310292
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": null,
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538524&view=codecoverage-tab"
-              },
-              {
-                "buildId": 534194,
-                "timestamp": "2026-10-01T14:42:09.7987923Z",
-                "percent": 90.01536098310292,
-                "lines": {
-                  "covered": 586,
-                  "total": 651,
-                  "percent": 90.01536098310292
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": null,
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=534194&view=codecoverage-tab"
-              },
-              {
-                "buildId": 521659,
-                "timestamp": "2026-09-10T14:43:57.2765875Z",
-                "percent": 90.01536098310292,
-                "lines": {
-                  "covered": 586,
-                  "total": 651,
-                  "percent": 90.01536098310292
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": null,
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521659&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "1.0.1",
-            "devFeed": "1.0.1-20261009092654",
-            "platformFeed": "1.0.1"
-          }
-        },
-        {
-          "name": "Scanner",
-          "fullName": "Koerber.Mobile.Kotlin.BarcodeScanning",
-          "health": "unhealthy",
-          "releaseReadiness": "blocked",
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 4,
-            "low": 1
-          },
-          "coverage": {
-            "percent": 40.59701492537313,
-            "threshold": 80,
-            "thresholdStatus": "failing",
-            "change": 0,
-            "previous": {
-              "timestamp": "2026-10-13T13:22:10.1779175Z",
-              "percent": 40.59701492537313,
-              "lines": {
-                "covered": 136,
-                "total": 335,
-                "percent": 40.59701492537313
-              },
-              "blocks": {
-                "covered": 0,
-                "total": 0,
-                "percent": null
-              }
-            },
-            "history": [
-              {
-                "buildId": 541352,
-                "timestamp": "2026-10-13T16:57:55.6188121Z",
-                "percent": 40.59701492537313,
-                "lines": {
-                  "covered": 136,
-                  "total": 335,
-                  "percent": 40.59701492537313
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 75.13812154696133,
-                    "lines": {
-                      "covered": 136,
-                      "total": 181,
-                      "percent": 75.13812154696133
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 16
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 154,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541352&view=codecoverage-tab"
-              },
-              {
-                "buildId": 541116,
-                "timestamp": "2026-10-13T13:22:10.1779175Z",
-                "percent": 40.59701492537313,
-                "lines": {
-                  "covered": 136,
-                  "total": 335,
-                  "percent": 40.59701492537313
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 75.13812154696133,
-                    "lines": {
-                      "covered": 136,
-                      "total": 181,
-                      "percent": 75.13812154696133
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 16
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 154,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541116&view=codecoverage-tab"
-              },
-              {
-                "buildId": 541115,
-                "timestamp": "2026-10-13T13:14:19.1266678Z",
-                "percent": 40.59701492537313,
-                "lines": {
-                  "covered": 136,
-                  "total": 335,
-                  "percent": 40.59701492537313
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 75.13812154696133,
-                    "lines": {
-                      "covered": 136,
-                      "total": 181,
-                      "percent": 75.13812154696133
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 16
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 154,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541115&view=codecoverage-tab"
-              },
-              {
-                "buildId": 541073,
-                "timestamp": "2026-10-13T12:58:09.3027496Z",
-                "percent": 40.59701492537313,
-                "lines": {
-                  "covered": 136,
-                  "total": 335,
-                  "percent": 40.59701492537313
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 75.13812154696133,
-                    "lines": {
-                      "covered": 136,
-                      "total": 181,
-                      "percent": 75.13812154696133
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 16
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 154,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541073&view=codecoverage-tab"
-              },
-              {
-                "buildId": 541045,
-                "timestamp": "2026-10-13T12:13:29.1644388Z",
-                "percent": 40.59701492537313,
-                "lines": {
-                  "covered": 136,
-                  "total": 335,
-                  "percent": 40.59701492537313
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 75.13812154696133,
-                    "lines": {
-                      "covered": 136,
-                      "total": 181,
-                      "percent": 75.13812154696133
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 16
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 154,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541045&view=codecoverage-tab"
-              },
-              {
-                "buildId": 540608,
-                "timestamp": "2026-10-12T16:50:13.0662024Z",
-                "percent": 40.59701492537313,
-                "lines": {
-                  "covered": 136,
-                  "total": 335,
-                  "percent": 40.59701492537313
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 75.13812154696133,
-                    "lines": {
-                      "covered": 136,
-                      "total": 181,
-                      "percent": 75.13812154696133
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 16
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 154,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=540608&view=codecoverage-tab"
-              },
-              {
-                "buildId": 540597,
-                "timestamp": "2026-10-12T16:22:12.590552Z",
-                "percent": 40.59701492537313,
-                "lines": {
-                  "covered": 136,
-                  "total": 335,
-                  "percent": 40.59701492537313
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 75.13812154696133,
-                    "lines": {
-                      "covered": 136,
-                      "total": 181,
-                      "percent": 75.13812154696133
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 16
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 154,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=540597&view=codecoverage-tab"
-              },
-              {
-                "buildId": 540587,
-                "timestamp": "2026-10-12T15:56:47.2180943Z",
-                "percent": 40.59701492537313,
-                "lines": {
-                  "covered": 136,
-                  "total": 335,
-                  "percent": 40.59701492537313
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 75.13812154696133,
-                    "lines": {
-                      "covered": 136,
-                      "total": 181,
-                      "percent": 75.13812154696133
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 16
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 154,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=540587&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "1.0.1",
-            "devFeed": "1.0.0-202610061308",
-            "platformFeed": "1.0.0"
-          }
-        },
-        {
-          "name": "Printing",
-          "fullName": "Koerber.Mobile.Kotlin.Printing",
-          "health": "unhealthy",
-          "releaseReadiness": "blocked",
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "low": 0
-          },
-          "coverage": {
-            "percent": 89.92869875222816,
-            "threshold": 80,
-            "thresholdStatus": "passing",
-            "change": 0,
-            "previous": {
-              "timestamp": "2026-10-23T07:14:29.0923565Z",
-              "percent": 89.92869875222816,
-              "lines": {
-                "covered": 1009,
-                "total": 1122,
-                "percent": 89.92869875222816
-              },
-              "blocks": {
-                "covered": 0,
-                "total": 0,
-                "percent": null
-              }
-            },
-            "history": [
-              {
-                "buildId": 549356,
-                "timestamp": "2026-10-26T08:36:50.7648411Z",
-                "percent": 89.92869875222816,
-                "lines": {
-                  "covered": 1009,
-                  "total": 1122,
-                  "percent": 89.92869875222816
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 90.25044722719142,
-                    "lines": {
-                      "covered": 1009,
-                      "total": 1118,
-                      "percent": 90.25044722719142
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 18
-                  },
-                  "jvm": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=549356&view=codecoverage-tab"
-              },
-              {
-                "buildId": 548221,
-                "timestamp": "2026-10-23T07:14:29.0923565Z",
-                "percent": 89.92869875222816,
-                "lines": {
-                  "covered": 1009,
-                  "total": 1122,
-                  "percent": 89.92869875222816
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 90.25044722719142,
-                    "lines": {
-                      "covered": 1009,
-                      "total": 1118,
-                      "percent": 90.25044722719142
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 18
-                  },
-                  "jvm": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=548221&view=codecoverage-tab"
-              },
-              {
-                "buildId": 539255,
-                "timestamp": "2026-10-09T14:36:24.1120937Z",
-                "percent": 89.83050847457628,
-                "lines": {
-                  "covered": 1007,
-                  "total": 1121,
-                  "percent": 89.83050847457628
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 90.1521933751119,
-                    "lines": {
-                      "covered": 1007,
-                      "total": 1117,
-                      "percent": 90.1521933751119
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 18
-                  },
-                  "jvm": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539255&view=codecoverage-tab"
-              },
-              {
-                "buildId": 539172,
-                "timestamp": "2026-10-09T13:29:08.6288372Z",
-                "percent": 89.83050847457628,
-                "lines": {
-                  "covered": 1007,
-                  "total": 1121,
-                  "percent": 89.83050847457628
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 90.1521933751119,
-                    "lines": {
-                      "covered": 1007,
-                      "total": 1117,
-                      "percent": 90.1521933751119
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 18
-                  },
-                  "jvm": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539172&view=codecoverage-tab"
-              },
-              {
-                "buildId": 538365,
-                "timestamp": "2026-10-08T13:40:34.7433411Z",
-                "percent": 89.83050847457628,
-                "lines": {
-                  "covered": 1007,
-                  "total": 1121,
-                  "percent": 89.83050847457628
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 90.1521933751119,
-                    "lines": {
-                      "covered": 1007,
-                      "total": 1117,
-                      "percent": 90.1521933751119
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 18
-                  },
-                  "jvm": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538365&view=codecoverage-tab"
-              },
-              {
-                "buildId": 538122,
-                "timestamp": "2026-10-08T01:48:54.5439334Z",
-                "percent": 89.83050847457628,
-                "lines": {
-                  "covered": 1007,
-                  "total": 1121,
-                  "percent": 89.83050847457628
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 90.1521933751119,
-                    "lines": {
-                      "covered": 1007,
-                      "total": 1117,
-                      "percent": 90.1521933751119
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 18
-                  },
-                  "jvm": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  },
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538122&view=codecoverage-tab"
-              },
-              {
-                "buildId": 537840,
-                "timestamp": "2026-10-07T17:55:51.5125198Z",
-                "percent": 89.83050847457628,
-                "lines": {
-                  "covered": 1007,
-                  "total": 1121,
-                  "percent": 89.83050847457628
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "android": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  },
-                  "common": {
-                    "percent": 90.1521933751119,
-                    "lines": {
-                      "covered": 1007,
-                      "total": 1117,
-                      "percent": 90.1521933751119
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 18
-                  },
-                  "jvm": {
-                    "percent": 0,
-                    "lines": {
-                      "covered": 0,
-                      "total": 2,
-                      "percent": 0
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=537840&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "2.1.0",
-            "devFeed": "2.0.0-20261008132046",
-            "platformFeed": "2.0.1-20261016231736"
-          }
-        },
-        {
-          "name": "Beep",
-          "fullName": "Koerber.Mobile.Kotlin.Beep",
-          "health": "healthy",
-          "releaseReadiness": "versionDrift",
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "low": 0
-          },
-          "coverage": {
-            "percent": 90.47619047619048,
-            "threshold": 80,
-            "thresholdStatus": "passing",
-            "change": 0,
-            "previous": {
-              "timestamp": "2026-10-09T08:26:07.4301519Z",
-              "percent": 90.47619047619048,
-              "lines": {
-                "covered": 57,
-                "total": 63,
-                "percent": 90.47619047619048
-              },
-              "blocks": {
-                "covered": 0,
-                "total": 0,
-                "percent": null
-              }
-            },
-            "history": [
-              {
-                "buildId": 539260,
-                "timestamp": "2026-10-09T15:05:58.9288216Z",
-                "percent": 90.47619047619048,
-                "lines": {
-                  "covered": 57,
-                  "total": 63,
-                  "percent": 90.47619047619048
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "jvm": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 29,
-                      "total": 29,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "android": {
-                    "percent": 86.36363636363636,
-                    "lines": {
-                      "covered": 19,
-                      "total": 22,
-                      "percent": 86.36363636363636
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 75,
-                    "lines": {
-                      "covered": 9,
-                      "total": 12,
-                      "percent": 75
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=539260&view=codecoverage-tab"
-              },
-              {
-                "buildId": 538997,
-                "timestamp": "2026-10-09T08:26:07.4301519Z",
-                "percent": 90.47619047619048,
-                "lines": {
-                  "covered": 57,
-                  "total": 63,
-                  "percent": 90.47619047619048
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "jvm": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 29,
-                      "total": 29,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "android": {
-                    "percent": 86.36363636363636,
-                    "lines": {
-                      "covered": 19,
-                      "total": 22,
-                      "percent": 86.36363636363636
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 75,
-                    "lines": {
-                      "covered": 9,
-                      "total": 12,
-                      "percent": 75
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538997&view=codecoverage-tab"
-              },
-              {
-                "buildId": 538989,
-                "timestamp": "2026-10-09T08:07:12.9248036Z",
-                "percent": 90.47619047619048,
-                "lines": {
-                  "covered": 57,
-                  "total": 63,
-                  "percent": 90.47619047619048
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "jvm": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 29,
-                      "total": 29,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "android": {
-                    "percent": 86.36363636363636,
-                    "lines": {
-                      "covered": 19,
-                      "total": 22,
-                      "percent": 86.36363636363636
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 75,
-                    "lines": {
-                      "covered": 9,
-                      "total": 12,
-                      "percent": 75
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538989&view=codecoverage-tab"
-              },
-              {
-                "buildId": 538461,
-                "timestamp": "2026-10-08T15:06:08.5295951Z",
-                "percent": 90.47619047619048,
-                "lines": {
-                  "covered": 57,
-                  "total": 63,
-                  "percent": 90.47619047619048
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "jvm": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 29,
-                      "total": 29,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "android": {
-                    "percent": 86.36363636363636,
-                    "lines": {
-                      "covered": 19,
-                      "total": 22,
-                      "percent": 86.36363636363636
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 75,
-                    "lines": {
-                      "covered": 9,
-                      "total": 12,
-                      "percent": 75
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538461&view=codecoverage-tab"
-              },
-              {
-                "buildId": 538349,
-                "timestamp": "2026-10-08T12:59:54.399192Z",
-                "percent": 90.47619047619048,
-                "lines": {
-                  "covered": 57,
-                  "total": 63,
-                  "percent": 90.47619047619048
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "jvm": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 29,
-                      "total": 29,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "android": {
-                    "percent": 86.36363636363636,
-                    "lines": {
-                      "covered": 19,
-                      "total": 22,
-                      "percent": 86.36363636363636
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 75,
-                    "lines": {
-                      "covered": 9,
-                      "total": 12,
-                      "percent": 75
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=538349&view=codecoverage-tab"
-              },
-              {
-                "buildId": 537672,
-                "timestamp": "2026-10-07T15:05:57.2548684Z",
-                "percent": 90.47619047619048,
-                "lines": {
-                  "covered": 57,
-                  "total": 63,
-                  "percent": 90.47619047619048
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "android": {
-                    "percent": 86.36363636363636,
-                    "lines": {
-                      "covered": 19,
-                      "total": 22,
-                      "percent": 86.36363636363636
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 75,
-                    "lines": {
-                      "covered": 9,
-                      "total": 12,
-                      "percent": 75
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "jvm": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 29,
-                      "total": 29,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=537672&view=codecoverage-tab"
-              },
-              {
-                "buildId": 537592,
-                "timestamp": "2026-10-07T13:10:15.8988198Z",
-                "percent": 90.47619047619048,
-                "lines": {
-                  "covered": 57,
-                  "total": 63,
-                  "percent": 90.47619047619048
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "jvm": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 29,
-                      "total": 29,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "android": {
-                    "percent": 86.36363636363636,
-                    "lines": {
-                      "covered": 19,
-                      "total": 22,
-                      "percent": 86.36363636363636
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 75,
-                    "lines": {
-                      "covered": 9,
-                      "total": 12,
-                      "percent": 75
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=537592&view=codecoverage-tab"
-              },
-              {
-                "buildId": 537466,
-                "timestamp": "2026-10-07T07:55:12.675999Z",
-                "percent": 90.47619047619048,
-                "lines": {
-                  "covered": 57,
-                  "total": 63,
-                  "percent": 90.47619047619048
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "jvm": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 29,
-                      "total": 29,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "android": {
-                    "percent": 86.36363636363636,
-                    "lines": {
-                      "covered": 19,
-                      "total": 22,
-                      "percent": 86.36363636363636
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 75,
-                    "lines": {
-                      "covered": 9,
-                      "total": 12,
-                      "percent": 75
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=537466&view=codecoverage-tab"
-              },
-              {
-                "buildId": 447212,
-                "timestamp": "2026-04-01T14:13:41.3313592Z",
-                "percent": 75,
-                "lines": {
-                  "covered": 30,
-                  "total": 40,
-                  "percent": 75
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "android": {
-                    "percent": 66.66666666666666,
-                    "lines": {
-                      "covered": 20,
-                      "total": 30,
-                      "percent": 66.66666666666666
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 10,
-                      "total": 10,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=447212&view=codecoverage-tab"
-              },
-              {
-                "buildId": 408606,
-                "timestamp": "2025-12-11T15:57:10.3377004Z",
-                "percent": 81.81818181818183,
-                "lines": {
-                  "covered": 27,
-                  "total": 33,
-                  "percent": 81.81818181818183
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "android": {
-                    "percent": 73.91304347826086,
-                    "lines": {
-                      "covered": 17,
-                      "total": 23,
-                      "percent": 73.91304347826086
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 10,
-                      "total": 10,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=408606&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "1.0.3",
-            "devFeed": "1.0.3-202610091437",
-            "platformFeed": "1.0.2"
-          }
-        },
-        {
-          "name": "Vibrate",
-          "fullName": "Koerber.Mobile.Kotlin.Vibrate",
-          "health": "healthy",
-          "releaseReadiness": "versionDrift",
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "low": 0
-          },
-          "coverage": {
-            "percent": 47.22222222222222,
-            "threshold": 80,
-            "thresholdStatus": "failing",
-            "change": 0,
-            "previous": {
-              "timestamp": "2026-09-02T15:11:13.5749408Z",
-              "percent": 47.22222222222222,
-              "lines": {
-                "covered": 17,
-                "total": 36,
-                "percent": 47.22222222222222
-              },
-              "blocks": {
-                "covered": 0,
-                "total": 0,
-                "percent": null
-              }
-            },
-            "history": [
-              {
-                "buildId": 521463,
-                "timestamp": "2026-09-10T09:49:36.4208298Z",
-                "percent": 47.22222222222222,
-                "lines": {
-                  "covered": 17,
-                  "total": 36,
-                  "percent": 47.22222222222222
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 8,
-                      "total": 8,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 3
-                  },
-                  "android": {
-                    "percent": 32.142857142857146,
-                    "lines": {
-                      "covered": 9,
-                      "total": 28,
-                      "percent": 32.142857142857146
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=521463&view=codecoverage-tab"
-              },
-              {
-                "buildId": 516780,
-                "timestamp": "2026-09-02T15:11:13.5749408Z",
-                "percent": 47.22222222222222,
-                "lines": {
-                  "covered": 17,
-                  "total": 36,
-                  "percent": 47.22222222222222
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 8,
-                      "total": 8,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 3
-                  },
-                  "android": {
-                    "percent": 32.142857142857146,
-                    "lines": {
-                      "covered": 9,
-                      "total": 28,
-                      "percent": 32.142857142857146
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=516780&view=codecoverage-tab"
-              },
-              {
-                "buildId": 516081,
-                "timestamp": "2026-09-01T14:49:01.9408798Z",
-                "percent": 47.22222222222222,
-                "lines": {
-                  "covered": 17,
-                  "total": 36,
-                  "percent": 47.22222222222222
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 8,
-                      "total": 8,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 3
-                  },
-                  "android": {
-                    "percent": 32.142857142857146,
-                    "lines": {
-                      "covered": 9,
-                      "total": 28,
-                      "percent": 32.142857142857146
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=516081&view=codecoverage-tab"
-              },
-              {
-                "buildId": 495498,
-                "timestamp": "2026-07-23T00:50:34.9876558Z",
-                "percent": 47.22222222222222,
-                "lines": {
-                  "covered": 17,
-                  "total": 36,
-                  "percent": 47.22222222222222
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 8,
-                      "total": 8,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 3
-                  },
-                  "android": {
-                    "percent": 32.142857142857146,
-                    "lines": {
-                      "covered": 9,
-                      "total": 28,
-                      "percent": 32.142857142857146
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=495498&view=codecoverage-tab"
-              },
-              {
-                "buildId": 486090,
-                "timestamp": "2026-07-02T15:49:53.8659869Z",
-                "percent": 41.66666666666667,
-                "lines": {
-                  "covered": 15,
-                  "total": 36,
-                  "percent": 41.66666666666667
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "android": {
-                    "percent": 25,
-                    "lines": {
-                      "covered": 7,
-                      "total": 28,
-                      "percent": 25
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 8,
-                      "total": 8,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 3
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=486090&view=codecoverage-tab"
-              },
-              {
-                "buildId": 441091,
-                "timestamp": "2026-03-17T12:38:28.1769601Z",
-                "percent": 44.11764705882353,
-                "lines": {
-                  "covered": 15,
-                  "total": 34,
-                  "percent": 44.11764705882353
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 8,
-                      "total": 8,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 3
-                  },
-                  "android": {
-                    "percent": 26.923076923076923,
-                    "lines": {
-                      "covered": 7,
-                      "total": 26,
-                      "percent": 26.923076923076923
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=441091&view=codecoverage-tab"
-              },
-              {
-                "buildId": 410321,
-                "timestamp": "2025-12-16T10:00:41.9692774Z",
-                "percent": 44.11764705882353,
-                "lines": {
-                  "covered": 15,
-                  "total": 34,
-                  "percent": 44.11764705882353
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 8,
-                      "total": 8,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 3
-                  },
-                  "android": {
-                    "percent": 26.923076923076923,
-                    "lines": {
-                      "covered": 7,
-                      "total": 26,
-                      "percent": 26.923076923076923
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=410321&view=codecoverage-tab"
-              },
-              {
-                "buildId": 408634,
-                "timestamp": "2025-12-11T16:21:00.0400301Z",
-                "percent": 44.11764705882353,
-                "lines": {
-                  "covered": 15,
-                  "total": 34,
-                  "percent": 44.11764705882353
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 8,
-                      "total": 8,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 3
-                  },
-                  "android": {
-                    "percent": 26.923076923076923,
-                    "lines": {
-                      "covered": 7,
-                      "total": 26,
-                      "percent": 26.923076923076923
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=408634&view=codecoverage-tab"
-              },
-              {
-                "buildId": 405269,
-                "timestamp": "2025-12-03T15:30:01.2541146Z",
-                "percent": 44.11764705882353,
-                "lines": {
-                  "covered": 15,
-                  "total": 34,
-                  "percent": 44.11764705882353
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "common": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 8,
-                      "total": 8,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 3
-                  },
-                  "android": {
-                    "percent": 26.923076923076923,
-                    "lines": {
-                      "covered": 7,
-                      "total": 26,
-                      "percent": 26.923076923076923
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=405269&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "1.0.1",
-            "devFeed": "1.0.0-20260902141630",
-            "platformFeed": "1.0.1"
-          }
-        },
-        {
-          "name": "K1Authorization",
-          "fullName": "Koerber.Mobile.Capacitor.K1Authorization",
-          "health": "healthy",
-          "releaseReadiness": "versionDrift",
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 1,
-            "low": 0
-          },
-          "coverage": {
-            "percent": 100,
-            "threshold": 80,
-            "thresholdStatus": "passing",
-            "change": null,
-            "previous": null,
-            "history": [
-              {
-                "buildId": 541038,
-                "timestamp": "2026-10-13T11:32:59.8807132Z",
-                "percent": 100,
-                "lines": {
-                  "covered": 75,
-                  "total": 75,
-                  "percent": 100
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "web": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 3,
-                      "total": 3,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "android": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 72,
-                      "total": 72,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=541038&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "1.1.2",
-            "devFeed": "1.1.2-202610141300",
-            "platformFeed": "1.1.1"
-          }
-        },
-        {
-          "name": "Printing",
-          "fullName": "Koerber.Mobile.Capacitor.Printing",
-          "health": "healthy",
-          "releaseReadiness": "dataUnavailable",
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 6,
-            "low": 1
-          },
-          "coverage": null,
-          "versions": {
-            "source": "0.0.3",
-            "devFeed": "0.0.3-202610141300",
-            "platformFeed": null
-          }
-        },
-        {
-          "name": "Camera",
-          "fullName": "Koerber.Mobile.Capacitor.Camera",
-          "health": "warning",
-          "releaseReadiness": "blocked",
-          "snyk": {
-            "critical": 0,
-            "high": 3,
-            "medium": 4,
-            "low": 0
-          },
-          "coverage": {
-            "percent": 100,
-            "threshold": 80,
-            "thresholdStatus": "passing",
-            "change": null,
-            "previous": null,
-            "history": [
-              {
-                "buildId": 531065,
-                "timestamp": "2026-09-25T14:32:04.548899Z",
-                "percent": 100,
-                "lines": {
-                  "covered": 11,
-                  "total": 11,
-                  "percent": 100
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": null,
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=531065&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "1.1.0",
-            "devFeed": "1.0.7-202608211032",
-            "platformFeed": "1.1.0"
-          }
-        },
-        {
-          "name": "Logger",
-          "fullName": "Koerber.Mobile.Capacitor.Logger",
-          "health": "healthy",
-          "releaseReadiness": "ready",
-          "snyk": {
-            "critical": 0,
-            "high": 0,
-            "medium": 6,
-            "low": 0
-          },
-          "coverage": {
-            "percent": 93.42105263157895,
-            "threshold": 80,
-            "thresholdStatus": "passing",
-            "change": null,
-            "previous": null,
-            "history": [
-              {
-                "buildId": 542040,
-                "timestamp": "2026-10-14T13:31:04.4455552Z",
-                "percent": 93.42105263157895,
-                "lines": {
-                  "covered": 142,
-                  "total": 152,
-                  "percent": 93.42105263157895
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "web": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 22,
-                      "total": 22,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  },
-                  "android": {
-                    "percent": 92.3076923076923,
-                    "lines": {
-                      "covered": 120,
-                      "total": 130,
-                      "percent": 92.3076923076923
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=542040&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "1.0.2",
-            "devFeed": "1.0.2-202610231443",
-            "platformFeed": "1.0.2"
-          }
-        },
-        {
-          "name": "Beep",
-          "fullName": "Koerber.Mobile.Capacitor.Beep",
-          "health": "warning",
-          "releaseReadiness": "blocked",
-          "snyk": {
-            "critical": 0,
-            "high": 3,
-            "medium": 4,
-            "low": 0
-          },
-          "coverage": {
-            "percent": 95.34883720930233,
-            "threshold": 80,
-            "thresholdStatus": "passing",
-            "change": null,
-            "previous": null,
-            "history": [
-              {
-                "buildId": 529178,
-                "timestamp": "2026-09-23T13:58:17.1123456Z",
-                "percent": 95.34883720930233,
-                "lines": {
-                  "covered": 41,
-                  "total": 43,
-                  "percent": 95.34883720930233
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "android": {
-                    "percent": 93.93939393939394,
-                    "lines": {
-                      "covered": 31,
-                      "total": 33,
-                      "percent": 93.93939393939394
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  },
-                  "web": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 10,
-                      "total": 10,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529178&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "1.0.7",
-            "devFeed": "1.0.7-202609231520",
-            "platformFeed": "1.0.7"
-          }
-        },
-        {
-          "name": "MDM Reader",
-          "fullName": "Koerber.Mobile.Capacitor.MDMReader",
-          "health": "warning",
-          "releaseReadiness": "blocked",
-          "snyk": {
-            "critical": 0,
-            "high": 3,
-            "medium": 4,
-            "low": 0
-          },
-          "coverage": null,
-          "versions": {
-            "source": "1.0.5",
-            "devFeed": "1.0.5-202609281443",
-            "platformFeed": "1.0.5"
-          }
-        },
-        {
-          "name": "Vibrate",
-          "fullName": "Koerber.Mobile.Capacitor.Vibrate",
-          "health": "warning",
-          "releaseReadiness": "blocked",
-          "snyk": {
-            "critical": 0,
-            "high": 3,
-            "medium": 4,
-            "low": 0
-          },
-          "coverage": {
-            "percent": 100,
-            "threshold": 80,
-            "thresholdStatus": "passing",
-            "change": null,
-            "previous": null,
-            "history": [
-              {
-                "buildId": 529993,
-                "timestamp": "2026-09-24T12:05:04.1873321Z",
-                "percent": 100,
-                "lines": {
-                  "covered": 60,
-                  "total": 60,
-                  "percent": 100
-                },
-                "blocks": {
-                  "covered": 0,
-                  "total": 0,
-                  "percent": null
-                },
-                "targets": {
-                  "android": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 38,
-                      "total": 38,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 1
-                  },
-                  "web": {
-                    "percent": 100,
-                    "lines": {
-                      "covered": 22,
-                      "total": 22,
-                      "percent": 100
-                    },
-                    "blocks": {
-                      "covered": 0,
-                      "total": 0,
-                      "percent": null
-                    },
-                    "files": 2
-                  }
-                },
-                "url": "https://dev.azure.com/highjumpvso/694ea4fc-aceb-4d39-a0bb-950ddd92a308/_build/results?buildId=529993&view=codecoverage-tab"
-              }
-            ]
-          },
-          "versions": {
-            "source": "1.0.6",
-            "devFeed": "1.0.6-202609241219",
-            "platformFeed": "1.0.6"
-          }
-        },
-        {
-          "name": "Security Automation",
-          "fullName": "MobileToolKit.Maintenance",
-          "health": "healthy",
-          "releaseReadiness": "dataUnavailable",
-          "snyk": null,
-          "coverage": null,
-          "versions": {
-            "source": "1.0.0",
-            "devFeed": null,
-            "platformFeed": null
-          }
-        }
-      ]
-    },
     {
       "timestamp": "2026-10-26T11:56:45.483Z",
       "summary": {
@@ -299856,6 +297463,433 @@
           "snyk": {
             "critical": 0,
             "high": 1,
+            "medium": 3,
+            "low": 1
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.5",
+            "devFeed": "1.0.5-202610281419",
+            "platformFeed": "1.0.5"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Capacitor.Vibrate",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 1,
+            "medium": 3,
+            "low": 1
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.6",
+            "devFeed": "1.0.6-202610291402",
+            "platformFeed": "1.0.6"
+          }
+        },
+        {
+          "name": "Utility App",
+          "fullName": "Koerber.Mobile.Capacitor.UtilityApp",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 3,
+            "medium": 3,
+            "low": 0
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Work Profile Manager",
+          "fullName": "Koerber.Mobile.Capacitor.WorkProfileManager",
+          "health": "unknown",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "coverage": null,
+          "versions": {
+            "source": null,
+            "devFeed": null,
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Security Automation",
+          "fullName": "MobileToolKit.Maintenance",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "coverage": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Security Processes",
+          "fullName": "Koerber.Mobile.Security.Processes",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "coverage": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-11-19T15:29:58.411Z",
+      "summary": {
+        "total": 25,
+        "healthy": 20,
+        "warning": 1,
+        "unhealthy": 3,
+        "unknown": 1
+      },
+      "repositories": [
+        {
+          "name": "Dex",
+          "fullName": "Koerber.Mobile.Kotlin.Dex",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261022113613",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "K1V1 Authorization",
+          "fullName": "Koerber.Mobile.Kotlin.K1V1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.1-20261009092654",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "Scanner",
+          "fullName": "Koerber.Mobile.Kotlin.BarcodeScanning",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 10,
+            "low": 1
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-202610061308",
+            "platformFeed": "1.0.0"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Kotlin.Printing",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": null,
+          "versions": {
+            "source": "2.1.3",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Kotlin.Beep",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.3",
+            "devFeed": "1.0.3-202610091437",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Vibrate",
+          "fullName": "Koerber.Mobile.Kotlin.Vibrate",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.1",
+            "devFeed": "1.0.0-20260902141630",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "MDM Reader",
+          "fullName": "Koerber.Mobile.Kotlin.MDMReader",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": "1.0.0-202611160816",
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Doc Scanning",
+          "fullName": "Koerber.Mobile.Kotlin.DocScanning",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "coverage": null,
+          "versions": {
+            "source": "0.2.1",
+            "devFeed": "0.2.1-20260928234451",
+            "platformFeed": "0.2.1"
+          }
+        },
+        {
+          "name": "Image Capture",
+          "fullName": "Koerber.Mobile.Kotlin.ImageCapture",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 9,
+            "low": 1
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202610141335",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "Signature Capture",
+          "fullName": "Koerber.Mobile.Kotlin.SignatureCapture",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 9,
+            "low": 1
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202610302325",
+            "platformFeed": "1.0.1"
+          }
+        },
+        {
+          "name": "Object Detection",
+          "fullName": "Koerber.Mobile.Kotlin.ObjectDetection",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "coverage": null,
+          "versions": {
+            "source": "0.1.0",
+            "devFeed": "0.1.0",
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Luak",
+          "fullName": "Koerber.Mobile.Kotlin.Luak",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "coverage": null,
+          "versions": {
+            "source": null,
+            "devFeed": null,
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Utility App",
+          "fullName": "Koerber.Mobile.Kotlin.UtilityApp",
+          "health": "warning",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 2,
+            "medium": 3,
+            "low": 0
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.0",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "DynaTrace",
+          "fullName": "Koerber.Mobile.Kotlin.DynaTrace",
+          "health": "healthy",
+          "releaseReadiness": "dataUnavailable",
+          "snyk": null,
+          "coverage": null,
+          "versions": {
+            "source": "1.0.5",
+            "devFeed": null,
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "K1Authorization",
+          "fullName": "Koerber.Mobile.Capacitor.K1Authorization",
+          "health": "healthy",
+          "releaseReadiness": "versionDrift",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 6,
+            "low": 1
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.1.2",
+            "devFeed": "1.1.2-202610141300",
+            "platformFeed": "1.1.1"
+          }
+        },
+        {
+          "name": "Printing",
+          "fullName": "Koerber.Mobile.Capacitor.Printing",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 6,
+            "low": 2
+          },
+          "coverage": null,
+          "versions": {
+            "source": "0.0.3",
+            "devFeed": "0.0.3-202610141300",
+            "platformFeed": null
+          }
+        },
+        {
+          "name": "Camera",
+          "fullName": "Koerber.Mobile.Capacitor.Camera",
+          "health": "unhealthy",
+          "releaseReadiness": "blocked",
+          "snyk": {
+            "critical": 0,
+            "high": 1,
+            "medium": 3,
+            "low": 1
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.1.0",
+            "devFeed": "1.1.0-202610271435",
+            "platformFeed": "1.1.0"
+          }
+        },
+        {
+          "name": "Logger",
+          "fullName": "Koerber.Mobile.Capacitor.Logger",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 6,
+            "low": 1
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.2",
+            "devFeed": "1.0.2-202610231443",
+            "platformFeed": "1.0.2"
+          }
+        },
+        {
+          "name": "Beep",
+          "fullName": "Koerber.Mobile.Capacitor.Beep",
+          "health": "warning",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
+            "medium": 3,
+            "low": 1
+          },
+          "coverage": null,
+          "versions": {
+            "source": "1.0.7",
+            "devFeed": "1.0.7-202610291403",
+            "platformFeed": "1.0.7"
+          }
+        },
+        {
+          "name": "MDM Reader",
+          "fullName": "Koerber.Mobile.Capacitor.MDMReader",
+          "health": "healthy",
+          "releaseReadiness": "ready",
+          "snyk": {
+            "critical": 0,
+            "high": 0,
             "medium": 3,
             "low": 1
           },
